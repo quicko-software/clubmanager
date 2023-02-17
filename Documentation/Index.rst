@@ -43,14 +43,10 @@ Quicko - Der Clubmanager
 The content of this document is related to TYPO3 CMS,
 a GNU/GPL CMS/Framework available from `typo3.org <https://typo3.org/>`_ .
 
-**Community Documentation:**
-
-This documentation is community documentation for the TYPO3 extension 'clubmanager'.
-
 It is maintained as part of this third party extension.
 
 If you find an error or something is missing, please:
-`Report a Problem <https://github.com/quicko/extension-clubmanager/issues/new>`__
+`Report a Problem <https://github.com/quicko-software/clubmanager/issues>`__
 
 **Extension Manual**
 

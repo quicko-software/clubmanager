@@ -1,7 +1,7 @@
 <?php
 $EM_CONF[$_EXTKEY] = [
 	'title' => 'Clubmanager Base',
-	'description' => 'Clubmanager Base - The free basic module with many functions',
+	'description' => 'Clubmanager Base - The free TYPO3 module for managing clubs, foundations and associations. The only thing you need are members!',
 	'category' => 'misc',
 	'author' => 'wirkwerk.com und codemacher.de',
 	'author_email' => 'post@quicko.software',
