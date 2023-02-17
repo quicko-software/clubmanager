@@ -1,0 +1,32 @@
+####################
+#### EXTENSIONS ####
+####################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager/Configuration/TypoScript/Bootstrap_package/constants.typoscript" condition="extension.isLoaded('bootstrap_package') == 1">
+
+#############################
+### CLUBMANAGER CONSTANTS ###
+#############################
+plugin.tx_clubmanager {
+	view {
+		templateRootPath = EXT:clubmanager/Resources/Private/Templates/
+		partialRootPath = EXT:clubmanager/Resources/Private/Partials/
+		layoutRootPath = EXT:clubmanager/Resources/Private/Layouts/
+	}
+	mailView {
+		templateRootPath = EXT:clubmanager/Resources/Private/Templates/Email
+		partialRootPath = EXT:clubmanager/Resources/Private/Templates/Email
+		layoutRootPath = EXT:clubmanager/Resources/Private/Templates/Email
+	}
+	persistence {
+		// DO NOT DEFINE HERE! Overwrite the value from ext_conf_template
+		## storagePid =
+	}
+}
+
+module.tx_clubmanager {
+	view {
+		templateRootPath = EXT:clubmanager/Resources/Private/Templates/
+		partialRootPath = EXT:clubmanager/Resources/Private/Partials/
+		layoutRootPath = EXT:clubmanager/Resources/Private/Layouts/
+	}
+}

@@ -1,0 +1,47 @@
+//
+// Variables
+//
+@import "variables";
+
+//
+// Import needed Bootstrap Package Files
+//
+@import "EXT:bootstrap_package/Resources/Public/Scss/bootstrap5/theme";
+
+//
+// Borders
+// --------------------------------------------------
+.border-color-primary {
+  border-color: $border-color-primary;
+  border-top-width:$border-top-width;
+  a:not(.btn) {
+    color: $primary;
+  }
+}
+
+.border-color-secondary {
+  border-color: $border-color-secondary;
+  border-top-width:$border-top-width;
+  a:not(.btn) {
+    color: $secondary;
+  }
+}
+
+.border-color-tertiary {
+  border-color: $border-color-tertiary;
+  border-top-width:$border-top-width;
+  a:not(.btn) {
+    color: $tertiary;
+  }
+}
+
+.border-color-quaternary {
+  border-color: $border-color-quaternary;
+  border-top-width:$border-top-width;
+  a:not(.btn) {
+    color: $quaternary;
+  }
+}
+
+.typo3-messages, .signin-form ul {list-style:none;padding:0;margin:0;}
+.typo3-messages p {margin:0;}

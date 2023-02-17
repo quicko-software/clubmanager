@@ -1,0 +1,23 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<div class="block-content external-iframe" 
+    data-src="https://www.youtube.com/embed/{youtubeVideoId}?autoplay=1&mute=0"
+    data-consent-groupid="external"
+    data-content-blocker-mode="{settings.contentBlockerMode}"
+    data-type="iframe">
+  <div class="isblocked-content">
+    <p class="hint-text">
+      <f:translate key="content_element.contentBlocker.{type}.text" /><br />
+      <a href="https://www.google.de/intl/de/policies/privacy" target="_blank" rel="noreferrer">https://www.google.de/intl/de/policies/privacy</a>
+    </p>
+    <button class="btn btn-primary contentAllowButton">
+      <f:translate key="content_element.contentBlocker.{type}.loadButton.text" />
+    </button>
+    <!--
+    <label>
+      <f:translate key="content_element.contentBlocker.{type}.alwaysCheckbox.label" />
+      <input class="allow-always" type="checkbox" />
+    </label>
+    -->
+  </div>
+</div>

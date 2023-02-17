@@ -1,0 +1,121 @@
+######################
+#### DEPENDENCIES ####
+######################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:bootstrap_package/Configuration/TypoScript/constants.typoscript" condition="extension.isLoaded('bootstrap_package') == 1">
+
+##############################
+### BOOTSTRAP PACKAGE PAGE ###
+##############################
+page {
+	logo {
+		file = EXT:clubmanager/Resources/Public/Images/quicko-clubmanager-typeface.svg
+		fileInverted = EXT:clubmanager/Resources/Public/Images/quicko-clubmanager-typeface-white.svg
+		width = 192
+		height = 120
+		alt = QUICKO Clubmanager Logo
+		linktitle = QUICKO Clubmanager Home
+	}
+
+	favicon {
+		file = EXT:clubmanager/Resources/Public/Images/favicon.ico
+	}
+
+	theme {
+		googleFont {
+			enable = 1
+			font = Montserrat Alternates
+			# cat=bootstrap package: google font/161/3_weight; type=string; label=Font Weights: Comma separated list of font weights
+			weight = 300,400,700
+		}
+		navigation {
+			style = default
+			type = top
+		}
+
+		language {
+			enable = 0
+		}
+
+		socialmedia {
+			enable = 0
+			channels {
+				facebook.url = https://www.facebook.com/typo3/
+				twitter.url = https://twitter.com/typo3
+				github.url = https://github.com/TYPO3/TYPO3.CMS
+				youtube.url = https://www.youtube.com/user/typo3
+			}
+		}
+
+		meta {
+			navigationValue = 173,174
+		}
+
+		copyright {
+			text = <a href="https://quicko.software" rel="noopener" target="_blank">QUiCKO - Der Clubmanager</a> - entwickelt von <a href="https://www.wirkwerk.com" rel="noopener" target="_blank">WirkWerk</a> & <a href="https://www.codemacher.de" rel="noopener" target="_blank">Codemacher UG</a>.
+		}
+
+		//Cookieman is used
+		cookieconsent.enable = 0
+	}
+
+	fluidtemplate {
+		layoutRootPath = EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Layouts/Page/
+		partialRootPath = EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Partials/Page/
+		templateRootPath = EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Templates/Page/
+	}
+
+	tracking {
+		google {
+			trackingID =
+		}
+	}
+}
+
+##############################
+## BOOTSTRAP PACKAGE CONFIG ##
+##############################
+config {
+	compressJs = {$config.compression}
+	compressCss = {$config.compression}
+	concatenateJs = {$config.compression}
+	concatenateCss = {$config.compression}
+	headerComment = quicko.software - TYPO3 Vereinsmanagement seit 2022
+
+	removeDefaultJS = external
+}
+
+#########################
+### BOOTSTRAP PACKAGE ###
+#########################
+plugin.bootstrap_package {
+	view {
+		layoutRootPath = EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Layouts/
+		partialRootPath = EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Partials/
+		templateRootPath = EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Templates/
+	}
+	settings {
+		// Override Parser Variables: If enabled the variables defined in your SCSS files will be overridden with the ones defined as TypoScript Constants.
+		overrideParserVariables = 1
+		// CSS source mapping: Create a CSS source map useful to debug CSS in browser developer tools. Note: CSS compression will be disabled.
+		cssSourceMapping = 0
+		// BOOTSTRAP SCSS CONSTANTS
+		scss {
+			primary = #0288D1
+			secondary = #FFEB3B
+			breadcrumb-bg = #FFFFFF
+			cookieconsent-bg = #F2F2F2
+			footer-sections = (content:(background: #0288D1, color: #ffffff, link-color: #FFEB3B), meta:(background: #ffffff, color: $body-color, link-color: #0288D1))
+		}
+	}
+}
+
+########################
+### CONTENT ELEMENTS ###
+########################
+plugin.bootstrap_package_contentelements {
+	view {
+		layoutRootPath = EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Layouts/ContentElements/
+		partialRootPath = EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Partials/ContentElements/
+		templateRootPath = EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Templates/ContentElements/
+	}
+}

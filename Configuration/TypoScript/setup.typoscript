@@ -1,0 +1,13 @@
+####################
+#### EXTENSIONS ####
+####################
+//<INCLUDE_TYPOSCRIPT: source="FILE:EXT:bootstrap_package/Configuration/TypoScript/setup.typoscript" condition="extension.isLoaded('bootstrap_package') == 1">
+
+##########################
+### CLUBMANAGER CONFIG ###
+##########################
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:clubmanager/Configuration/TypoScript/Config/"            extensions="typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:clubmanager/Configuration/TypoScript/Development/"       extensions="typoscript" condition="[applicationContext == 'Development']">
+
+
+

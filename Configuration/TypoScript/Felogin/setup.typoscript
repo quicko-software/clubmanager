@@ -1,0 +1,178 @@
+//FELOGIN
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/setup.typoscript">
+
+plugin.tx_felogin_login.view.templateRootPaths.10 = EXT:clubmanager/Resources/Private/Extensions/Felogin/Templates/
+
+//LOGIN ON EVERY PAGE
+lib.login >
+lib.login = COA_INT
+lib.login {
+    10 = TEXT
+    10 {
+        wrap = <div class="ms-md-5 my-3 text-end"> | </div>
+        value = <span class="btn btn-primary d-block">{$styles.content.loginform.label.login}</span>
+        typolink {
+            ATagParams = class="text-white"
+            enable = 1
+            parameter = {$styles.content.loginform.loginFormPid}
+        }
+    }
+}
+
+//SHOW MODAL ON PAGE LOGIN ON LOAD
+[page["uid"] == {$styles.content.loginform.loginFormPid}]
+    lib.login >
+    lib.login = USER
+    lib.login {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = Felogin
+        pluginName = Login
+
+        settings < plugin.tx_felogin_login.settings
+        settings {
+            //pages = 57
+        }
+    }
+    page {
+        includeJSFooter {
+            showLoginModal = EXT:clubmanager/Resources/Public/JavaScript/Felogin.js
+        }
+    }
+[END]
+
+//If USER IS LOGGED IN
+[frontend.user.isLoggedIn]
+    lib.login >
+    lib.login = COA_INT
+    lib.login {
+        10 = COA
+        10 {
+            wrap = <div class="ms-md-3 my-3 row gx-3 text-end"> | </div>
+            10 = TEXT
+            10 {
+                wrap = <div class="col"> | </div>
+                value = <span class="btn btn-success d-block">{$styles.content.loginform.label.profile}</span>
+                typolink {
+                    ATagParams = class="text-white"
+                    enable = 1
+                    parameter = {$styles.content.loginform.memberProfilePage}
+                }
+            }
+            //OUTCOMMENTED BECAUSE ext:clubmanager HAS NO INDIVIDUAL PROFILE SUPPORT --> SEE https://quicko.software/clubmanager_pro FOR MORE
+            10 >
+            20 = TEXT
+            20 {
+                wrap = <div class="col"> | </div>
+                value = <span class="btn btn-danger d-block">{$styles.content.loginform.label.logout}</span>
+                typolink {
+                    ATagParams = class="text-white"
+                    enable = 1
+                    parameter = {$styles.content.loginform.redirectPageLogout}
+                    additionalParams = &logintype=logout
+                }
+            }
+        }
+    }
+[end]
+
+//CHANGE LOCALIZATION TO YOUR NEEDS
+plugin.tx_felogin_login {
+    _LOCAL_LANG.de  {
+        welcome_header =
+        msg_welcome =
+        header_logout =
+        msg_logout = Sie sind angemeldet.
+        header_error = Anmeldefehler
+        msg_error = Bitte versuchen Sie es erneut
+        header_success = Anmeldung erfolgreich
+        msg_success = Sie sind angemeldet als ###USER###
+        header_status = Sie sind am System angemeldet:
+        msg_status =
+        username = Tester-ID:
+        password = Passwort:
+        login = Einloggen
+        logout = Abmelden
+        send_password = Passwort neu setzen
+        reset_password = Passwort neu setzen
+        your_email = Ihre Quicko Tester-ID:
+        forgot_password = Passwort vergessen?
+        forgot_reset_message = Bitte geben Sie Ihre Quicko-Tester-ID ein. Ihnen wird anschließend an Ihre, bei Quicko hinterlegte E-Mail Adresse, ein Link zugesendet, mit dem Sie Ihr Passwort zurücksetzen können.
+        forgot_reset_message_emailSent = Ihnen wurde eine E-Mail an Ihre Adresse gesendet, die einen Link enthält, um Ihr Passwort zurückzusetzen. Wenn Sie keine E-Mail erhalten, dann wurde Ihre Tester-ID in unserem System nicht gefunden.
+        enter_your_data = Wir werden Ihre Daten niemals mit jemand anderem teilen!
+        change_password_header = Ändern Sie Ihr Passwort
+        change_password_message = Bitte geben Sie Ihr neues Passwort zweimal ein. Das Passwort muss mindestens %s Zeichen enthalten.
+        change_password_notvalid_message = Der Link, den Sie angeklickt haben ist nicht valide. Bitte fordern Sie ein neues Passwort an.
+        change_password_notequal_message = Die Passwörter sind nicht gleich. Bitte geben Sie Ihr neues Passwort zweimal ein. Das Passwort muss mindestens %s Zeichen enthalten.
+        change_password_tooshort_message = Das Passwort ist zu kurz. Bitte geben Sie Ihr neues Passwort zweimal ein. Das Passwort muss mindestens %s Zeichen enthalten.
+        change_password_done_message = Ihr Passwort wurde gespeichert. Sie können sich nun mit dem neuen Passwort einloggen.
+        change_password = Passwort ändern
+        newpassword_label1 = Neues Passwort
+        newpassword_label2 = Passwort wiederholen
+
+        loginFormPid = {$styles.content.loginform.loginFormPid}
+
+        password_recovery_link = Passwort jetzt zurücksetzen
+
+        forgot_validate_reset_password (
+Ihr neues Quicko-Passwort
+Ihre Tester-ID: %s
+
+Guten Tag,
+
+diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Sie versendet. Bitte klicken Sie auf folgenden Link.
+%s
+
+Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s. Sollten Sie den Link bis dahin nicht besucht haben, müssen Sie ein neues Passwort anfordern.
+
+Mit freundlichen Grüßen,
+Ihr Quicko - Der Clubmanager
+https://quicko.software
+        )
+        forgot_validate_reset_password_html (
+Ihr neues Quicko-Passwort
+Ihre Tester-ID: %s
+
+Sehr geehrtes Quicko-Mitglied,
+diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Sie versendet. Bitte klicken Sie auf folgenden Link.
+%s
+Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s. Sollten Sie den Link bis dahin nicht besucht haben, müssen Sie ein neues Passwort anfordern.
+Mit freundlichen Grüßen,
+Ihr Quicko - Der Clubmanager
+https://quicko.software
+        )
+        forgot_validate_reset_password_plaintext (
+Ihr neues Quicko-Passwort
+Ihre Tester-ID: %s
+
+Guten Tag,
+
+diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Sie versendet. Bitte klicken Sie auf folgenden Link.
+%s
+
+Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s. Sollten Sie den Link bis dahin nicht besucht haben, müssen Sie ein neues Passwort anfordern.
+
+Mit freundlichen Grüßen,
+Ihr Quicko - Der Clubmanager
+https://quicko.software
+        )
+    }
+    default {
+        welcome_header =
+        msg_welcome =
+        header_logout =
+        msg_logout = Sie sind angemeldet.
+        header_error = Failure
+        msg_error = Please try again
+        header_success = Success
+        msg_success = You are logged in named ###USER###
+        status_header = You are logged in:
+        msg_status =
+        username = username:
+        password = password:
+        login = Login
+        logout = logout
+        send_password = send password
+        your_email = your email-address:
+        forgot_password = forgot your password?
+    }
+}

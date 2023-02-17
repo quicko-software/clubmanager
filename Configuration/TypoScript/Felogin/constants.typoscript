@@ -1,0 +1,24 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/constants.typoscript">
+
+//plugin.tx_felogin_login.view.templateRootPath = EXT:clubmanager/Resources/Private/Extensions/Felogin/Templates/
+
+styles.content.loginform {
+    showForgotPasswordLink = 1
+    showLogoutFormAfterLogin = 1
+    //changed to german format
+    dateFormat = d-m-Y H:i
+
+    pid = {$plugin.tx_clubmanager.settings.fe_users_storagePid}
+    emailFrom =
+    emailFromName =
+    replyToEmail =
+
+	redirectPageLogout =
+
+    // Own constants
+    loginFormPid = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
+    label {
+        login = Login
+        logout = Logout
+    }
+}

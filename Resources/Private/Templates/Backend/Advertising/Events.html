@@ -1,0 +1,49 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Backend/Default"/>
+
+<f:section name="content">
+    <h1>
+        <f:translate key="LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.title"/>
+    </h1>
+    <h2>
+        <f:translate key="LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.title"/>
+    </h2>
+    <p class="lead">
+        {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.lead_intro')}
+    </p>
+
+    <f:be.infobox iconName="info" title="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.tip')}" state="0">
+        <p>
+            {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.tip.text')}<br/>
+            <a href="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.tip.link.url')}" target ="_blank" class="btn btn-default">
+                <core:icon identifier="actions-link"/>
+                {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.tip.link.text')}
+            </a>
+        </p>
+    </f:be.infobox>
+
+    <h3>
+        {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.subtitle')}
+    </h3>
+    <h4>{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.features.title')}</h4>
+    <ul class="list-unstyled">
+        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.features.1')}</li>
+        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.features.2')}</li>
+        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.features.3')}</li>
+        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.features.4')}</li>
+        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.calendar.features.5')}</li>
+    </ul>
+
+    <f:be.infobox iconName="check" title="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info')}" state="-1">
+        <p>
+            {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info.text')}<br/>
+            <a href="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info.link.url')}" target ="_blank" class="btn btn-default">
+                <core:icon identifier="actions-envelope"/>
+                {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info.link.text')}
+            </a>
+        </p>
+    </f:be.infobox>
+
+</f:section>
+</html>
+

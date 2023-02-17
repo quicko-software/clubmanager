@@ -1,0 +1,10 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/constants.typoscript" condition="extension.isLoaded('cookieman') == 1">
+plugin.tx_cookieman {
+	settings {
+		theme = bootstrap5-modal
+		links {
+			dataProtectionDeclarationPid =
+			imprintPid =
+		}
+	}
+}

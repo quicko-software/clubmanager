@@ -1,0 +1,27 @@
+# cat=basic/enable; type=int; label=UID of the default storage page for members
+storagePid = 
+# cat=basic/enable; type=string; label=UID list for member category parent nodes
+uidCategoryMember = 
+# cat=basic/enable; type=string; label=UID list for location category parent nodes
+uidCategoryLocation = 
+# cat=basic/enable; type=int; label=UID of the default city detail page
+defaultDetailCityPage = 
+# cat=basic/enable; type=int; label=UID of the default member detail page
+defaultDetailMemberPage = 
+# cat=basic/enable; type=int; label=UID of the default location detail page
+defaultDetailLocationPage = 
+# cat=FE-User-Login; type=int; label=UID of the Default fe_users storage page
+fe_users_storagePid = 
+# cat=FE-User-Login; type=int; label=UID of the Default fe_users login page
+feUsersLoginPid = 
+# cat=FE-User-Login; type=int; label=UID of the default target page after logout
+defaultTargetLogoutPage = 
+# cat=FE-User-Login; type=string; label=UID of the default UserGroup for FE Users
+defaultFeUserGroupUid = 
+# cat=FE-User-Login; type=int; label=Livetime of the password recovery link
+passwordRecoveryLifeTime = 48
+# cat=Mail; type=int; label=Number of attempts for a mail delivery
+mailTries = 6
+
+
+

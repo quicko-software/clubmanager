@@ -1,0 +1,88 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<div class="row g-0">
+    <div class="card-body pt-3 pb-3">
+        <f:if condition="{location.company}">
+            <h2 class="card-title mb-1">
+                <span class="company">{location.company}</span>
+            </h2>
+        </f:if>
+        <div class="h5">
+            <span class="categorylabel">{f:translate(key:'content_element.location.label.category',extensionName:'clubmanager')}</span>
+            <strong>
+                <f:if condition="{location.categories}">
+                    <f:then>
+                        <f:for each="{location.categories}" as="category" key="key" iteration="filterIterator">
+                            <f:if condition="{filterIterator.index}>0">
+                                <f:then>
+                                    &bull; {category.title}
+                                </f:then>
+                                <f:else>
+                                    {category.title}
+                                </f:else>
+                            </f:if>
+                        </f:for>
+                    </f:then>
+                    <f:else>
+                        {f:translate(key:'content_element.location.standard.category',extensionName:'clubmanager')}
+                    </f:else>
+                </f:if>
+            </strong>
+        </div>
+        <p class="card-text mb-2">
+            <span class="street">{location.street}</span><br/>
+            <span class="zip">{location.zip} </span> <span class="city">{location.city}</span><br/>
+            <span class="country">{location.country.shortNameLocal}</span>
+        </p>
+
+        <f:if condition="{location.phone || location.mobile || location.fax || location.email || location.url}">
+            <p class="card-text mb-2">
+                <f:if condition="{location.phone}">
+                    {f:translate(key:'content_element.location.label.phone',extensionName:'clubmanager')} <span class="phone" itemprop="telephone"><a href="tel:{location.phone}">{location.phone}</a></span>
+                    <br/>
+                </f:if>
+                <f:if condition="{location.mobile}">
+                    {f:translate(key:'content_element.location.label.mobile',extensionName:'clubmanager')}
+                    <span class="mobile" itemprop="mobile">
+                        <a href="tel:{location.mobile}">{location.mobile}</a>
+                    </span>
+                    <br/>
+                </f:if>
+                <f:if condition="{location.fax}">
+                    {f:translate(key:'content_element.location.label.fax',extensionName:'clubmanager')}
+                    <span class="fax" itemprop="faxNumber">
+                        {location.fax}
+                    </span>
+                    <br/>
+                </f:if>
+                <f:if condition="{location.email}">
+                    {f:translate(key:'content_element.location.label.email',extensionName:'clubmanager')} <br class="d-none d-sm-block d-md-none"/>
+                    <span itemprop="email">
+                        <f:link.email email="{location.email}"/>
+                    </span>
+                    <br/>
+                </f:if>
+                <f:if condition="{location.website}">
+                    {f:translate(key:'content_element.location.label.website',extensionName:'clubmanager')} <br class="d-none d-sm-block d-md-none"/>
+                    <span itemprop="url">
+                        <f:link.external uri="{location.website}" class="external-link url" defaultScheme="https">{location.website}</f:link.external>
+                    </span><br/>
+                </f:if>
+            </p>
+        </f:if>
+
+        <f:link.action action="detail" arguments="{location:location}" pluginName="location" controller="Location"
+                       pageUid="{settings.detailLocationPage}" class="btn {f:if(condition: '{location.member.level} == 0', then: 'btn-default')}{f:if(condition: '{location.member.level} == 10', then: 'btn-primary')}{f:if(condition: '{location.member.level} == 20', then: 'btn-secondary')}{f:if(condition: '{location.member.level} == 30', then: 'btn-tertiary')}">
+            <f:if condition="{location.kind} == 0">
+                <f:then>
+                    {f:translate(key:'content_element.location.main.detail.button',extensionName:'clubmanager')}
+                </f:then>
+                <f:else>
+                    {f:translate(key:'content_element.location.sub.detail.button',extensionName:'clubmanager')}
+                </f:else>
+            </f:if>
+        </f:link.action>
+    </div>
+</div>
+
+</html>

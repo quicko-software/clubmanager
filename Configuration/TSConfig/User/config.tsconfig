@@ -1,0 +1,73 @@
+//-----------------------------------------------------------//
+// Clubmanager Member Config
+//-----------------------------------------------------------//
+page.TCEFORM.tx_clubmanager_domain_model_member {
+    starttime.disabled = 0
+    endtime.disabled = 0
+    cancellationWish.disabled = 0
+    reducedRate.disabled = 0
+    state.disabled = 0
+    feuser.disabled = 0
+    directDebit.disabled = 0
+    iban.disabled = 0
+    bic.disabled = 0
+    account.disabled = 0
+    mainLocation.disabled = 0
+    subLocations.disabled = 0
+    altBillingName.disabled = 0
+    altBillingStreet.disabled = 0
+    altBillingZip.disabled = 0
+    altBillingCity.disabled = 0
+    altBillingCountry.disabled = 0
+    ident.disabled = 0
+    title.disabled = 0
+    firstname.disabled = 0
+    midname.disabled = 0
+    lastname.disabled = 0
+    zip.disabled = 0
+    street.disabled = 0
+    city.disabled = 0
+    country.disabled = 0
+    email.disabled = 0
+    phone.disabled = 0
+    company.disabled = 0
+    personType.disabled = 0
+    salutation.disabled = 0
+    level.disabled = 0
+    addAddressInfo.disabled = 0
+    dateofbirth.disabled = 0
+    categories.disabled = 0
+}
+
+//-----------------------------------------------------------//
+// Clubmanager Location Config
+//-----------------------------------------------------------//
+page.TCEFORM.tx_clubmanager_domain_model_location {
+    salutation.disabled = 0
+    title.disabled = 0
+    firstname.disabled = 0
+    midname.disabled = 0
+    lastname.disabled = 0
+    company.disabled = 0
+    street.disabled = 0
+    addAddressInfo.disabled = 0
+    zip.disabled = 0
+    city.disabled = 0
+    state.disabled = 0
+    country.disabled = 0
+    latitude.disabled = 0
+    longitude.disabled = 0
+    image.disabled = 0
+    info.disabled = 0
+    categories.disabled = 0
+    contacts.disabled = 0
+    socialmedia.disabled = 0
+    youtubeVideoUrl.disabled = 0
+}
+
+//-----------------------------------------------------------//
+// Override for Admin-Users
+//-----------------------------------------------------------//
+[backend.user.isAdmin]
+    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager_template/Configuration/TsConfig/User/admin.tsconfig">
+[END]

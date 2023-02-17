@@ -1,0 +1,11 @@
+config {
+	no_cache = 1
+	compressJs = 0
+	concatenateJs = 0
+	compressCss = 0
+	concatenateCss = 0
+	disablePrefixComment = 0
+	contentObjectExceptionHandler = 0
+	sendCacheHeaders = 0
+	debug = 1
+}

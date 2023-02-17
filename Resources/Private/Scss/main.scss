@@ -1,0 +1,29 @@
+// im .build ordner:
+// npm i
+// npm run watch
+$bootstrap-icons-font-file: "~bootstrap-icons/font/fonts/bootstrap-icons";
+@import "~bootstrap-icons/font/bootstrap-icons.scss";
+@import "content.scss";
+@import "blocked-content.scss";
+
+.social-media-bar {
+
+  // Facebook
+  .socialmedia-type-0 {
+    background-color: #3b5998;
+  }
+
+  // Instagram
+  .socialmedia-type-1 {
+    background-color: #ac2bac;
+  }
+
+  // Youtube
+  .socialmedia-type-2 {
+    background-color: #dd4b39;
+  }
+  // Twitter
+  .socialmedia-type-3 {
+    background-color: #55acee;
+  }
+}

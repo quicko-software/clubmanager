@@ -1,0 +1,5 @@
+.build/node_modules
+.build/yarn.lock
+.build/package-lock.json
+/Documentation-GENERATED-temp
+/Documentation/Localization.de_DE

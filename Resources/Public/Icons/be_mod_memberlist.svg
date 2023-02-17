@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<style type="text/css">
+	.memberlist0{fill:#018DC6;}
+	.memberlist1{fill:#018DC6;stroke:#FFFFFF;stroke-width:0.5179;stroke-miterlimit:10;}
+	.memberlist2{fill:#FFFFFF;}
+</style>
+<g>
+	<g id="Ebene_1-2_00000167381720182787899210000003216433884725850261_">
+		<g>
+			<path class="memberlist0" d="M11.4,5L9.7,3.5C9.3,3.2,8.9,3,8.3,3H2.3C1,3,0,4.1,0,5.5l0,0v21C0,27.9,1,29,2.3,29h27.5
+				c1.2,0,2.3-1.1,2.3-2.5V8c0-1.4-1-2.5-2.3-2.5h-17C12.3,5.5,11.8,5.3,11.4,5z"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<circle class="memberlist1" cx="12.2" cy="12.2" r="0.8"/>
+			<path class="memberlist2" d="M28.1,12.8H14.6c-0.4,0-0.6-0.3-0.6-0.6v0c0-0.4,0.3-0.6,0.6-0.6h13.5c0.4,0,0.6,0.3,0.6,0.6v0
+				C28.7,12.5,28.4,12.8,28.1,12.8z"/>
+			<circle class="memberlist1" cx="12.2" cy="15.2" r="0.8"/>
+			<path class="memberlist2" d="M28.1,15.8l-13.5,0c-0.4,0-0.6-0.3-0.6-0.6v0c0-0.4,0.3-0.6,0.6-0.6h13.5c0.4,0,0.6,0.3,0.6,0.6v0
+				C28.7,15.5,28.4,15.8,28.1,15.8z"/>
+			<g>
+				<circle class="memberlist2" cx="6.6" cy="13.4" r="3.3"/>
+				<circle class="memberlist0" cx="6.6" cy="12.9" r="1.5"/>
+				<path class="memberlist0" d="M8.6,17.3h-4c-0.1,0-0.1-0.1-0.1-0.2l0.6-1.6c0.2-0.6,0.8-1,1.5-1h0.1c0.7,0,1.2,0.4,1.5,1l0.6,1.6
+					C8.8,17.2,8.7,17.3,8.6,17.3z"/>
+			</g>
+		</g>
+		<g>
+			<circle class="memberlist1" cx="12.2" cy="21.2" r="0.8"/>
+			<path class="memberlist2" d="M28.1,21.8H14.6c-0.4,0-0.6-0.3-0.6-0.6l0,0c0-0.4,0.3-0.6,0.6-0.6h13.5c0.4,0,0.6,0.3,0.6,0.6l0,0
+				C28.7,21.6,28.4,21.8,28.1,21.8z"/>
+			<circle class="memberlist1" cx="12.2" cy="24.2" r="0.8"/>
+			<path class="memberlist2" d="M28.1,24.8H14.6c-0.4,0-0.6-0.3-0.6-0.6v0c0-0.4,0.3-0.6,0.6-0.6h13.5c0.4,0,0.6,0.3,0.6,0.6v0
+				C28.7,24.5,28.4,24.8,28.1,24.8z"/>
+			<g>
+				<circle class="memberlist2" cx="6.6" cy="22.4" r="3.3"/>
+				<circle class="memberlist0" cx="6.6" cy="21.9" r="1.5"/>
+				<path class="memberlist0" d="M8.6,26.3h-4c-0.1,0-0.1-0.1-0.1-0.2l0.6-1.6c0.2-0.6,0.8-1,1.5-1h0.1c0.7,0,1.2,0.4,1.5,1l0.6,1.6
+					C8.8,26.2,8.7,26.3,8.6,26.3z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

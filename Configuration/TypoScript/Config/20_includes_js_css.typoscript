@@ -1,0 +1,11 @@
+page {
+    includeJSFooter {
+        clubmanager = EXT:clubmanager/Resources/Public/JavaScript/Main.js
+        smoothscroll = EXT:clubmanager/Resources/Public/JavaScript/SmoothScroll.js
+    }
+
+    includeCSS {
+        clubmanager_css = EXT:clubmanager/Resources/Public/Css/Main.css
+        theme = EXT:clubmanager/Resources/Public/Scss/Theme/Theme.scss
+    }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "quicko/clubmanager",
+  "type": "typo3-cms-extension",
+  "description": "Clubmanager Base - The free basic module with many functions",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://quicko.software",
+  "keywords": [
+    "typo3","club","manager","location","member","membership"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Quicko\\Clubmanager\\": "Classes"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "clubmanager"
+    }
+  },
+  "require": {
+    "typo3/cms-core": "^11.5",
+    "sjbr/static-info-tables": "^11.5"
+  }    
+}

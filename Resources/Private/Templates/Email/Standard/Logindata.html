@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:render partial="Header" arguments="{title:'Logindata'}" />
+<body>
+<span class="preheader">
+    <f:translate key="mail.logindata.preheader" extensionName="clubmanager"/>
+</span>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+    <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+            <div class="content">
+                <table role="presentation" class="main">
+                    <tr>
+                        <td class="wrapper">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <f:image
+                                                alt="Quicko Clubmanager Logo"
+                                                src="EXT:clubmanager/Resources/Public/Images/quicko-clubmanager-logo.svg"
+                                                absolute="1"/>
+                                        <h1>
+                                            <f:translate key="mail.logindata.title" extensionName="clubmanager"/>
+                                        </h1>
+                                        <p>
+                                            <f:translate key="mail.logindata.welcome" extensionName="clubmanager"/> {member.firstname} {member.lastname}! <br/><br/>
+                                            <f:translate key="mail.logindata.text" extensionName="clubmanager"/> <br/><br/>
+
+                                            <f:translate key="mail.logindata.access.title" extensionName="clubmanager"/> <br/>
+                                            <strong><f:translate key="mail.logindata.access.number" extensionName="clubmanager"/></strong> {member.ident}<br/>
+
+                                            <a href="{recoveryLink}"><f:translate key="mail.logindata.link.recovery" extensionName="clubmanager"/></a> <br/>
+
+                                            <f:translate key="mail.logindata.link.recovery.validuntil" extensionName="clubmanager"/> {passwordRecoveryLifeTime->f:format.date(format: '%d.%m.%Y %H:%M')} <br/><br/>
+
+                                            <a href="{loginLink}"><f:translate key="mail.logindata.link.login" extensionName="clubmanager"/></a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <f:render partial="Footer" arguments="{_all}"/>
+            </div>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</body>

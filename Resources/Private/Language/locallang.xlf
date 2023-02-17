@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns:t3="http://typo3.org/schemas/xliff" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" original="EXT:clubmanager/Resources/Private/Language/locallang.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T16:57:51+01:00">
+		<header></header>
+		<body>
+			<trans-unit id="statictextmailgenerator.label" resname="statictextmailgenerator.label">
+				<source>Static text mail</source>
+			</trans-unit>
+			<trans-unit id="memberloginremindergenerator.label" resname="memberloginremindergenerator.label">
+				<source>Member Login Reminder</source>
+			</trans-unit>
+			<trans-unit id="passwordrecoverygenerator.label" resname="passwordrecoverygenerator.label">
+				<source>Password Set/Recovery</source>
+			</trans-unit>
+			<trans-unit id="search" resname="search">
+				<source>Search</source>
+			</trans-unit>
+			<trans-unit id="datatable.resetfilters" resname="datatable.resetfilters">
+				<source>Reset filters</source>
+			</trans-unit>
+			<trans-unit id="datatable.resettable" resname="datatable.resettable">
+				<source>Reset table</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.subject" resname="mail.logindata.subject">
+				<source>Your login data for the club</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.title" resname="mail.logindata.title">
+				<source>Your access data to the member area</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.preheader" resname="mail.logindata.preheader">
+				<source>Your access data to the member area</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.welcome" resname="mail.logindata.welcome">
+				<source>Hello</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.text" resname="mail.logindata.text">
+				<source>Enclosed we send you your personal access data to the member area.</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.access.title" resname="mail.logindata.access.title">
+				<source>Your login data:</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.access.number" resname="mail.logindata.access.number">
+				<source>Membership number:</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.link.recovery" resname="mail.logindata.link.recovery">
+				<source>Assign password now!</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.link.recovery.validuntil" resname="mail.logindata.link.recovery.validuntil">
+				<source>The link is valid until</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.link.login" resname="mail.logindata.link.login">
+				<source>Log in to the members area here.</source>
+			</trans-unit>
+			<trans-unit id="mail.footer.linktext" resname="mail.footer.linktext">
+				<source>Quicko - The Clubmanager</source>
+			</trans-unit>
+			<trans-unit id="mail.footer.copyright" resname="mail.footer.copyright">
+				<source>© 2023 </source>
+			</trans-unit>
+			<trans-unit id="mail.footer.imprint" resname="mail.footer.imprint">
+				<source>Legal notice</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.subject" resname="mail.reminder.subject">
+				<source>Club login reminder email</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.title" resname="mail.reminder.title">
+				<source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.preheader" resname="mail.reminder.preheader">
+				<source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome">
+				<source>Guten Tag </source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.text" resname="mail.reminder.text">
+				<source>You have not yet registered in the members area, so we are sending you a reminder. Don&#39;t miss out on the many exciting topics in our exclusive member area!</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.access.title" resname="mail.reminder.access.title">
+				<source>Your login data:</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.access.number" resname="mail.reminder.access.number">
+				<source>Membership number:</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.link.recovery" resname="mail.reminder.link.recovery">
+				<source>Assign password now!</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.link.recovery.validuntil" resname="mail.reminder.link.recovery.validuntil">
+				<source>valid until</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.link.login" resname="mail.reminder.link.login">
+				<source>Log in to the members area here.</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.salutation.male" resname="content_element.member.salutation.male">
+				<source>Mr.</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.salutation.female" resname="content_element.member.salutation.female">
+				<source>Ms.</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.salutation.company" resname="content_element.member.salutation.company">
+				<source>Company</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.salutation.divers" resname="content_element.member.salutation.divers">
+				<source>Divers</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
+				<source>Membership number:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.category" resname="content_element.member.label.category">
+				<source>Member Category:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.standard.category" resname="content_element.member.standard.category">
+				<source>Without</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.state" resname="content_element.member.label.state">
+				<source>Membership Status:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.unset" resname="content_element.member.state.unset">
+				<source>Not set</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.applied" resname="content_element.member.state.applied">
+				<source>Requested</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.active" resname="content_element.member.state.active">
+				<source>Active</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.suspended" resname="content_element.member.state.suspended">
+				<source>Resting</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.cancelled" resname="content_element.member.state.cancelled">
+				<source>Cancelled</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.level" resname="content_element.member.label.level">
+				<source>Type of membership:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.level.basic" resname="content_element.member.level.basic">
+				<source>Basic</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.level.bronze" resname="content_element.member.level.bronze">
+				<source>Bronze</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.level.silver" resname="content_element.member.level.silver">
+				<source>Silver</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.level.gold" resname="content_element.member.level.gold">
+				<source>Gold</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.reducedRate" resname="content_element.member.label.reducedRate">
+				<source>Reduced membership:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.reducedRate.yes" resname="content_element.member.reducedRate.yes">
+				<source>Yes</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.reducedRate.no" resname="content_element.member.reducedRate.no">
+				<source>No</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.starttime" resname="content_element.member.label.starttime">
+				<source>Start of membership:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.endtime" resname="content_element.member.label.endtime">
+				<source>End of membership:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.cancellationWish" resname="content_element.member.label.cancellationWish">
+				<source>Cancellation requested:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.cancellationWish.yes" resname="content_element.member.cancellationWish.yes">
+				<source>Yes</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.cancellationWish.no" resname="content_element.member.cancellationWish.no">
+				<source>No</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.route" resname="content_element.member.label.route">
+				<source>Route planning</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.mainLocation" resname="content_element.member.label.mainLocation">
+				<source>Head office</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.subLocation" resname="content_element.member.label.subLocation">
+				<source>Secondary seat</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.back" resname="content_element.member.label.back">
+				<source>Back</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.detail.button" resname="content_element.member.detail.button">
+				<source>Member details</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.category" resname="content_element.location.label.category">
+				<source>Location Category:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.standard.category" resname="content_element.location.standard.category">
+				<source>Without</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.main.detail.button" resname="content_element.location.main.detail.button">
+				<source>Headquarters</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.sub.detail.button" resname="content_element.location.sub.detail.button">
+				<source>Secondary seat detail view</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.phone" resname="content_element.location.label.phone">
+				<source>Phone:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.mobile" resname="content_element.location.label.mobile">
+				<source>Mobile:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.fax" resname="content_element.location.label.fax">
+				<source>Fax:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.email" resname="content_element.location.label.email">
+				<source>Email:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.website" resname="content_element.location.label.website">
+				<source>Internet:</source>
+			</trans-unit>
+			<trans-unit id="content_element.cities.header" resname="content_element.cities.header">
+				<source>All members from</source>
+			</trans-unit>
+			<trans-unit id="content_element.contentBlocker.youtube.text" resname="content_element.contentBlocker.youtube.text">
+				<source>By loading the video, you accept YouTube&#39;s privacy policy.</source>
+			</trans-unit>
+			<trans-unit id="content_element.contentBlocker.youtube.loadButton.text" resname="content_element.contentBlocker.youtube.loadButton.text">
+				<source>Load video</source>
+			</trans-unit>
+			<trans-unit id="content_element.contentBlocker.youtube.alwaysCheckbox.label" resname="content_element.contentBlocker.youtube.alwaysCheckbox.label">
+				<source>Always unlock Youtube</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2022-09-30T11:41:32Z" product-name="clubmanager">
+		<header />
+		<body>
+			<trans-unit id="task.MemberLoginReminderTask.title">
+				<source>Erinnerungs-E-Mail</source>
+			</trans-unit>
+			<trans-unit id="task.MemberLoginReminderTask.description">
+				<source>Erinnerungs-Email an Mitglieder, die noch nie angemeldet waren</source>
+			</trans-unit>
+			<trans-unit id="task.MemberLoginReminderTask.arg.MIN_DAY_PERIOD">
+				<source>Tage bis zur erneuten Erinnerung</source>
+			</trans-unit>
+			<trans-unit id="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST">
+				<source>Liste der PID's für Mitglieder, komma-separiert (z.B. '147,55,99', leer für alle)</source>
+			</trans-unit>
+
+			<trans-unit id="task.MailServiceTask.title">
+				<source>EMail Service</source>
+			</trans-unit>
+			<trans-unit id="task.MailServiceTask.description">
+				<source>Service zum versenden von E-Mails</source>
+			</trans-unit>
+			<trans-unit id="task.MailServiceTask.statusMsg" xml:space="preserve">
+				<source>Offene Mails: %1$d, Fehler: %2$d, E-Mails pro Durchlauf: %3$d. </source>
+			</trans-unit>
+			<trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS">
+				<source>Maximale Anzahl der E-Mails pro Durchlauf</source>
+			</trans-unit>
+			<trans-unit id="task.general.errors.invalid_value" xml:space="preserve">
+				<source>Ungültiger Wert für Feld:  %1</source>
+			</trans-unit>
+
+			<trans-unit id="content_element.citieslist">
+				<source>Städteausgabe</source>
+			</trans-unit>
+			<trans-unit id="content_element.citieslist.description">
+				<source>Ausgabe der Städteübersicht</source>
+			</trans-unit>
+			<trans-unit id="content_element.city">
+				<source>Standorte pro Stadt</source>
+			</trans-unit>
+			<trans-unit id="content_element.city.description">
+				<source>Ausgabe der Standorte für eine Stadt</source>
+			</trans-unit>
+			<trans-unit id="content_element.member">
+				<source>Mitglied Einzelausgabe</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.description">
+				<source>Detailsausgabe eines Mitgliedes</source>
+			</trans-unit>
+			<trans-unit id="content_element.location">
+				<source>Standort Einzelausgabe</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.description">
+				<source>Detailsausgabe eines Standortes</source>
+			</trans-unit>
+			<trans-unit id="content_element.locationlist">
+				<source>Standortliste</source>
+			</trans-unit>
+			<trans-unit id="content_element.locationlist.description">
+				<source>List alller Standorte</source>
+			</trans-unit>
+			<trans-unit id="content_element.memberlist">
+				<source>Mitgliederliste</source>
+			</trans-unit>
+			<trans-unit id="content_element.memberlist.description">
+				<source>Liste aller Mitglieder</source>
+			</trans-unit>
+
+			<trans-unit id="storagesettings">
+				<source>Einstellungen</source>
+			</trans-unit>
+			<trans-unit id="storagesettings.detail_city_page">
+				<source>Stadtübersichtsseite</source>
+			</trans-unit>
+			<trans-unit id="storagesettings.detail_member_page">
+				<source>Mitglieder Seite</source>
+			</trans-unit>
+
+			<trans-unit id="backend_main_module_name">
+				<source>Clubmanager</source>
+			</trans-unit>
+
+			<trans-unit id="bem-toolbox.edit">
+				<source>Bearbeiten</source>
+			</trans-unit>
+			<trans-unit id="bem-toolbox.delete">
+				<source>Löschen</source>
+			</trans-unit>
+
+			<trans-unit id="mlang_tabs_tab_memberlist">
+				<source>Mitgliederliste</source>
+			</trans-unit>
+			<trans-unit id="mlang_tabs_tab_mailtasks">
+				<source>Mailjournal</source>
+			</trans-unit>
+			<trans-unit id="mlang_tabs_tab_settlements">
+				<source>Abrechnungen</source>
+			</trans-unit>
+			<trans-unit id="mlang_tabs_tab_membershipstatistics">
+				<source>Statistiken</source>
+			</trans-unit>
+			<trans-unit id="mlang_tabs_tab_events">
+				<source>Veranstaltungen</source>
+			</trans-unit>
+
+			<trans-unit id="bem.apiCall.flash.error.title">
+				<source>Fehler</source>
+			</trans-unit>
+
+			<trans-unit id="module.title" xml:space="preserve">
+				<source>Quicko - The Clubmanager</source>
+			</trans-unit>
+
+			<trans-unit id="module.memberlist.title" xml:space="preserve">
+				<source>Mitgliederlisten Modul</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.lead_intro" xml:space="preserve">
+				<source>Das Mitgliederliste-Modul ist Bestandteil der clubmanager_pro Extension.</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.lead_full" xml:space="preserve">
+				<source>Ihr Club hat bereits %d Mitglieder mit %d Standorten.</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.lead_none" xml:space="preserve">
+				<source>Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mitglieder gefunden.</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.subtitle" xml:space="preserve">
+				<source>Clubmanager Pro</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.features.title" xml:space="preserve">
+				<source>Features</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.features.1" xml:space="preserve">
+				<source>Backend module for member management</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.features.2" xml:space="preserve">
+				<source>Mail journal module for mail task management</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.features.3" xml:space="preserve">
+				<source>Dynamic registration process for new members via web form</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.features.4" xml:space="preserve">
+				<source>Automated cancellation process for members</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.features.5" xml:space="preserve">
+				<source>Prioritization of members (e.g. for advertising purposes)</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.tip" xml:space="preserve">
+				<source>Tip</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.tip.text" xml:space="preserve">
+				<source>Have a look at `Quicko - Clubmanager Pro` for more information about `ext:clubmanager_pro`.</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.tip.link.text" xml:space="preserve">
+				<source>More Information</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.tip.link.url" xml:space="preserve">
+				<source>https://quicko.software/en/modules/pro/</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.info" xml:space="preserve">
+				<source>Note</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.info.text" xml:space="preserve">
+				<source>Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.info.link.text" xml:space="preserve">
+				<source>Submit request now</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.info.link.url" xml:space="preserve">
+				<source>https://quicko.software/en/contact-us/</source>
+			</trans-unit>
+
+
+			<trans-unit id="module.mailtasks.title" xml:space="preserve">
+				<source>Mailjournal Modul</source>
+			</trans-unit>
+			<trans-unit id="module.mailtasks.lead_intro" xml:space="preserve">
+				<source>Das Mailjournal-Modul ist Bestandteil der clubmanager_pro Extension. Behalten Sie den Überblick über die vom System versendeten Mails.</source>
+			</trans-unit>
+			<trans-unit id="module.mailtasks.lead_full" xml:space="preserve">
+				<source>Ihr Club hat bereits %d Mails an %d Mitglieder versendet.</source>
+			</trans-unit>
+			<trans-unit id="module.mailtasks.lead_none" xml:space="preserve">
+				<source>Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mails an Mitglieder gefunden.</source>
+			</trans-unit>
+
+			<trans-unit id="module.billing.title" xml:space="preserve">
+				<source>Abrechnungs-Modul</source>
+			</trans-unit>
+			<trans-unit id="module.billing.lead_intro" xml:space="preserve">
+				<source>Das Abrechnungs-Modul ist Bestandteil der clubmanager_billing Extension.</source>
+			</trans-unit>
+			<trans-unit id="module.billing.subtitle" xml:space="preserve">
+				<source>Clubmanager Billing</source>
+			</trans-unit>
+			<trans-unit id="module.billing.features.title" xml:space="preserve">
+				<source>Features</source>
+			</trans-unit>
+			<trans-unit id="module.billing.features.1" xml:space="preserve">
+				<source>Extension of member management with bank data</source>
+			</trans-unit>
+			<trans-unit id="module.billing.features.2" xml:space="preserve">
+				<source>Set up different contributions and payment frequency</source>
+			</trans-unit>
+			<trans-unit id="module.billing.features.3" xml:space="preserve">
+				<source>One-time admission fee possible</source>
+			</trans-unit>
+			<trans-unit id="module.billing.features.4" xml:space="preserve">
+				<source>Collect membership fees: Submit collection file for house bank</source>
+			</trans-unit>
+			<trans-unit id="module.billing.features.5" xml:space="preserve">
+				<source>Invoice dispatch via e-mail</source>
+			</trans-unit>
+			<trans-unit id="module.billing.features.6" xml:space="preserve">
+				<source>Invoice retrieval in personalized login area</source>
+			</trans-unit>
+			<trans-unit id="module.billing.features.7" xml:space="preserve">
+				<source>Search functions</source>
+			</trans-unit>
+			<trans-unit id="module.billing.tip" xml:space="preserve">
+				<source>Tip</source>
+			</trans-unit>
+			<trans-unit id="module.billing.tip.text" xml:space="preserve">
+				<source>Have a look at `Quicko - Clubmanager Billing` for more information about `ext:clubmanager_billing`.</source>
+			</trans-unit>
+			<trans-unit id="module.billing.tip.link.text" xml:space="preserve">
+				<source>More Information</source>
+			</trans-unit>
+			<trans-unit id="module.billing.tip.link.url" xml:space="preserve">
+				<source>https://quicko.software/en/modules/billing/</source>
+			</trans-unit>
+			<trans-unit id="module.billing.info" xml:space="preserve">
+				<source>Note</source>
+			</trans-unit>
+			<trans-unit id="module.billing.info.text" xml:space="preserve">
+				<source>Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</source>
+			</trans-unit>
+			<trans-unit id="module.billing.info.link.text" xml:space="preserve">
+				<source>Submit request now</source>
+			</trans-unit>
+			<trans-unit id="module.billing.info.link.url" xml:space="preserve">
+				<source>https://quicko.software/en/contact-us/</source>
+			</trans-unit>
+
+			<trans-unit id="module.calendar.title" xml:space="preserve">
+				<source>Veranstaltungs-Modul</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.lead_intro" xml:space="preserve">
+				<source>Das Veranstaltungs-Modul ist Bestandteil der clubmanager_calendar und ergänzend der clubmanager_conference Extension.</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.subtitle" xml:space="preserve">
+				<source>Clubmanager Calendar und Clubmanager Conference</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.features.title" xml:space="preserve">
+				<source>Features</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.features.1" xml:space="preserve">
+				<source>Appointment scheduling (`ext:clubmanager_calendar`)</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.features.2" xml:space="preserve">
+				<source>Booking appointments for members (`ext:clubmanager_calendar`)</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.features.3" xml:space="preserve">
+				<source>Event Management (`ext:clubmanager_conference`)</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.features.4" xml:space="preserve">
+				<source>Bookings with costs (`ext:clubmanager_conference`)</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.features.4" xml:space="preserve">
+				<source>More to come</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.tip" xml:space="preserve">
+				<source>Tip</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.tip.text" xml:space="preserve">
+				<source>More information about `ext:clubmanager_calendar` and  `ext:clubmanager_conference` is coming soon.</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.tip.link.text" xml:space="preserve">
+				<source>See all our clubmanager modules</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.tip.link.url" xml:space="preserve">
+				<source>https://quicko.software/en/modules/</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.info" xml:space="preserve">
+				<source>Note</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.info.text" xml:space="preserve">
+				<source>Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.info.link.text" xml:space="preserve">
+				<source>Submit request now</source>
+			</trans-unit>
+			<trans-unit id="module.calendar.info.link.url" xml:space="preserve">
+				<source>https://quicko.software/en/contact-us/</source>
+			</trans-unit>
+
+
+			<trans-unit id="module.statistics.title" xml:space="preserve">
+				<source>Statistik-Modul</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.lead_intro" xml:space="preserve">
+				<source>Das Statistik-Modul ist Bestandteil der clubmanager_statistics Extension.</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.subtitle" xml:space="preserve">
+				<source>Clubmanager Statistics</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.features.title" xml:space="preserve">
+				<source>Features</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.features.1" xml:space="preserve">
+				<source>Membership development statistics</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.features.2" xml:space="preserve">
+				<source>Visitor analysis</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.features.3" xml:space="preserve">
+				<source>More to come</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.features.4" xml:space="preserve">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="module.statistics.features.4" xml:space="preserve">
+				<source>More to come</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.tip" xml:space="preserve">
+				<source>Tip</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.tip.text" xml:space="preserve">
+				<source>More information about `ext:clubmanager_statistics` is coming soon.</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.tip.link.text" xml:space="preserve">
+				<source>See all our clubmanager modules</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.tip.link.url" xml:space="preserve">
+				<source>https://quicko.software/en/modules/</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.info" xml:space="preserve">
+				<source>Note</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.info.text" xml:space="preserve">
+				<source>Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.info.link.text" xml:space="preserve">
+				<source>Submit request now</source>
+			</trans-unit>
+			<trans-unit id="module.statistics.info.link.url" xml:space="preserve">
+				<source>https://quicko.software/en/contact-us/</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

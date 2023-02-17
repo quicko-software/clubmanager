@@ -1,0 +1,11 @@
+{
+  "name": "clubmanager-lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sprintf-js": "^1.1.2"
+  }
+}

@@ -1,0 +1,7 @@
+#
+# Configuration/page.tsconfig for Clubmanager Template is loaded automatically with V 12.0 --> https://docs.typo3.org/m/typo3/reference-tsconfig/main/en-us/UsingSetting/PageTSconfig.html
+#
+
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:clubmanager/Configuration/TSConfig/ContentElements" extensions="tsconfig">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager/Configuration/TSConfig/Page/TCEFORM.tsconfig">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager/Configuration/TSConfig/Page/TCEMAIN.tsconfig">

@@ -1,0 +1,58 @@
+plugin.tx_clubmanager {
+	view {
+		templateRootPaths {
+			0 = EXT:clubmanager/Resources/Private/Templates/
+			1 = {$plugin.tx_clubmanager.view.templateRootPath}
+		}
+
+		partialRootPaths {
+			0 = EXT:clubmanager/Resources/Private/Partials/
+			1 = {$plugin.tx_clubmanager.view.partialRootPath}
+		}
+
+		layoutRootPaths {
+			0 = EXT:clubmanager/Resources/Private/Layouts/
+			1 = {$plugin.tx_clubmanager.view.layoutRootPath}
+		}
+	}
+
+    persistence {
+        storagePid = {$plugin.tx_clubmanager.persistence.storagePid}
+    }
+
+	settings {
+		mailView {
+			templateRootPaths {
+				0 = EXT:clubmanager/Resources/Private/Templates/Email
+				10 = {$plugin.tx_clubmanager.mailView.templateRootPath}
+			}
+
+			partialRootPaths {
+				0 = EXT:clubmanager/Resources/Private/Partials/Email
+				10 = {$plugin.tx_clubmanager.mailView.partialRootPath}
+			}
+
+			layoutRootPaths {
+				0 = EXT:clubmanager/Resources/Private/Layouts/Email
+				10 = {$plugin.tx_clubmanager.mailView.layoutRootPath}
+			}			
+		}
+		feUsersLoginPid = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
+		passwordRecoveryLifeTime = {$plugin.tx_clubmanager.settings.passwordRecoveryLifeTime}
+		contentBlockerMode = 
+	}
+}
+
+module.tx_clubmanager {
+	view {
+		templateRootPaths {
+			0 = {$module.tx_clubmanager.view.templateRootPath}
+		} 
+		partialRootPaths {
+			0 = {$module.tx_clubmanager.view.partialRootPath}
+		} 
+		layoutRootPaths {
+			0 = {$module.tx_clubmanager.view.layoutRootPath}
+		} 				
+	}
+}

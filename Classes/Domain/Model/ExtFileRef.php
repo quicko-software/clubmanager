@@ -1,0 +1,60 @@
+<?php
+
+namespace Quicko\Clubmanager\Domain\Model;
+
+
+///
+/// Class to fill a gap in Extbase - enables to create a file reference
+/// by providing a typo3-core-file (result from upload).
+///
+/// Requires configuration (Classes.php or typoscript) to map this class
+/// to sys_file_reference.
+///
+class ExtFileRef extends \TYPO3\CMS\Extbase\Domain\Model\FileReference {
+
+
+  /**
+   * uid of a sys_file
+   *
+   * @var integer
+   */
+  protected $originalFileIdentifier;
+
+  /**
+   * Called by framework, just overwrite to update the own int-id of the file.
+   * 
+   * @param \TYPO3\CMS\Core\Resource\FileReference $originalResource
+   * @return void
+   */
+  public function setOriginalResource(\TYPO3\CMS\Core\Resource\ResourceInterface $originalResource) {
+    $this->originalResource = $originalResource;
+    $this->originalFileIdentifier = (int)$originalResource->getOriginalFile()->getUid();    
+  }
+
+  /**
+   * @return \TYPO3\CMS\Core\Resource\FileReference
+   */
+  public function getOriginalResource() {
+    if ($this->originalResource === NULL) {
+        $this->originalResource = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getFileReferenceObject(
+            $this->getUid()
+        );
+    }
+    return $this->originalResource;
+  }
+
+  /**
+   * This is the magic function - give it a sys file. 
+   * 
+   * @param \TYPO3\CMS\Core\Resource\File $falFile
+   * @return void
+   */
+  public function setFile(\TYPO3\CMS\Core\Resource\File $falFile) {
+    $this->originalFileIdentifier = $falFile->getUid();
+    // $this->uidLocal = $this->originalFileIdentifier;
+  }
+
+  public function getOriginalFileIdentifier() {
+    return $this->originalFileIdentifier;
+  }
+}

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:clubmanager/Resources/Private/Language/locallang.xlf" date="2022-02-10T14:16:32Z" product-name="clubmanager">
+		<header/>
+		<body>
+			<trans-unit id="statictextmailgenerator.label">
+				<source>Statische Text Mail</source>
+			</trans-unit>  		
+			<trans-unit id="memberloginremindergenerator.label">
+				<source>Member Login Reminder</source>
+			</trans-unit>  					
+			<trans-unit id="passwordrecoverygenerator.label">
+				<source>Password Set/Recovery</source>
+			</trans-unit>
+			<trans-unit id="search">
+				<source>Suche</source>
+			</trans-unit>
+
+
+			<trans-unit id="datatable.resetfilters">
+				<source>Filter zurücksetzen</source>
+			</trans-unit>
+			<trans-unit id="datatable.resettable">
+				<source>Tabelle zurücksetzen</source>
+			</trans-unit>
+
+
+			<trans-unit id="mail.logindata.subject">
+				<source>Ihre Logindaten für den Club</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.title">
+				<source>Ihre Zugangsdaten zum Mitgliederbereich</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.preheader">
+				<source>Ihre Zugangsdaten zum Mitgliederbereich</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.welcome">
+				<source>Guten Tag </source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.text">
+				<source>Anbei übersenden wir Ihnen Ihre persönlichen Zugangsdaten zum Mitgliederbereich.</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.access.title">
+				<source>Ihre Zugangsdaten:</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.access.number">
+				<source>Mitgliedsnummer:</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.link.recovery">
+				<source>Jetzt Passwort vergeben!</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.link.recovery.validuntil">
+				<source>Der Link ist gültig bis</source>
+			</trans-unit>
+			<trans-unit id="mail.logindata.link.login">
+				<source>Loggen Sie sich hier in den Mitgliederbereich ein.</source>
+			</trans-unit>
+
+
+			<trans-unit id="mail.footer.linktext">
+				<source>Quicko - Der Clubmanager</source>
+			</trans-unit>
+			<trans-unit id="mail.footer.copyright">
+				<source>© 2023 </source>
+			</trans-unit>
+			<trans-unit id="mail.footer.imprint">
+				<source>Impressum</source>
+			</trans-unit>
+
+
+			<trans-unit id="mail.reminder.subject">
+				<source>Erinnerungs-Mail an Club-Login</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.title">
+				<source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.preheader">
+				<source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.welcome">
+				<source>Guten Tag </source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.text">
+				<source>Sie haben sich bisher noch nicht im Mitgliederbereich angemeldet, daher übersenden wir Ihnen eine Erinnerung.<br /> Verpassen Sie nicht die vielen spannenden Themen in unserem exklusiven Mitgliederbereich!</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.access.title">
+				<source>Ihre Zugangsdaten:</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.access.number">
+				<source>Mitgliedsnummer:</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.link.recovery">
+				<source>Jetzt Passwort vergeben!</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.link.recovery.validuntil">
+				<source>gültig bis</source>
+			</trans-unit>
+			<trans-unit id="mail.reminder.link.login">
+				<source>Loggen Sie sich hier in den Mitgliederbereich ein.</source>
+			</trans-unit>
+
+
+			<trans-unit id="mail.footer.linktext">
+				<source>Quicko - Der Clubmanager</source>
+			</trans-unit>
+			<trans-unit id="mail.footer.copyright">
+				<source>© 2023 </source>
+			</trans-unit>
+			<trans-unit id="mail.footer.imprint">
+				<source>Impressum</source>
+			</trans-unit>
+
+
+			<trans-unit id="content_element.member.salutation.male">
+				<source>Herr</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.salutation.female">
+				<source>Frau</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.salutation.company">
+				<source>Firma</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.salutation.divers">
+				<source>Divers</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.ident">
+				<source>Mitgliedsnummer:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.category">
+				<source>Mitglied-Kategorie:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.standard.category">
+				<source>Ohne</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.state">
+				<source>Mitgliedsstatus:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.unset">
+				<source>Nicht gesetzt</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.applied">
+				<source>Beantragt</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.active">
+				<source>Aktiv</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.suspended">
+				<source>Ruhend</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.state.cancelled">
+				<source>Gekündigt</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.level">
+				<source>Art der Mitgliedschaft:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.level.basic">
+				<source>Basic</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.level.bronze">
+				<source>Bronze</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.level.silver">
+				<source>Silber</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.level.gold">
+				<source>Gold</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.reducedRate">
+				<source>Ermäßigte Mitgliedschaft:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.reducedRate.yes">
+				<source>Ja</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.reducedRate.no">
+				<source>Nein</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.starttime">
+				<source>Beginn der Mitgliedschaft:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.endtime">
+				<source>Ende der Mitgliedschaft:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.cancellationWish">
+				<source>Kündigung gewünscht:</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.cancellationWish.yes">
+				<source>Ja</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.cancellationWish.no">
+				<source>Nein</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.route">
+				<source>Routenplanung</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.mainLocation">
+				<source>Hauptsitz</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.subLocation">
+				<source>Nebensitz</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.back">
+				<source>Zurück</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.detail.button">
+				<source>Mitglied-Detailansicht</source>
+			</trans-unit>
+
+
+			<trans-unit id="content_element.location.label.category">
+				<source>Standort-Kategorie:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.standard.category">
+				<source>Ohne</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.main.detail.button">
+				<source>Hauptsitz-Detailansicht</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.sub.detail.button">
+				<source>Nebensitz-Detailansicht</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.phone">
+				<source>Telefon:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.mobile">
+				<source>Mobil:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.fax">
+				<source>Fax:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.email">
+				<source>E-Mail:</source>
+			</trans-unit>
+			<trans-unit id="content_element.location.label.website">
+				<source>Internet:</source>
+			</trans-unit>
+
+
+			<trans-unit id="content_element.cities.header">
+				<source>Alle Mitglieder aus</source>
+			</trans-unit>
+
+			<trans-unit id="content_element.contentBlocker.youtube.text">
+				<source>Mit dem Laden des Videos akzeptieren Sie die Datenschutzerklärung von YouTube.</source>
+			</trans-unit>
+			<trans-unit id="content_element.contentBlocker.youtube.loadButton.text">
+				<source>Video laden</source>
+			</trans-unit>		
+			<trans-unit id="content_element.contentBlocker.youtube.alwaysCheckbox.label">
+				<source>Youtube immer entsperren</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

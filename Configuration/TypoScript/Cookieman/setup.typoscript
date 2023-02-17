@@ -1,0 +1,57 @@
+plugin.tx_clubmanager.settings.contentBlockerMode = cookieman
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/setup.typoscript" condition="extension.isLoaded('cookieman') == 1">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/TrackingObjects/fe_typo_user.typoscript" condition="extension.isLoaded('cookieman') == 1">
+
+plugin.tx_cookieman._LOCAL_LANG {
+    de {
+        accept = Alle akzeptieren
+        deny = Nur funktionale Cookies
+        introText = Unsere Webseite verwendet Cookies. Diese haben zwei Funktionen: Zum einen sind sie erforderlich für die grundlegende Funktionalität unserer Website. Zum anderen können wir mit Hilfe der Cookies unsere Inhalte für Sie immer weiter verbessern. Hierzu werden pseudonymisierte Daten von Website-Besuchern gesammelt und ausgewertet. Das Einverständnis in die Verwendung der Cookies können Sie jederzeit widerrufen. Weitere Informationen zu Cookies auf dieser Website finden Sie in unserer %1$s und in unserem %2$s.
+    }
+
+    default < .de
+}
+
+plugin.tx_cookieman {
+    settings {
+        trackingObjects {
+            YouTube {
+                inject (
+                    <script>
+                    $(document).ready(function(){
+                        window.ContentBlocker.load("external");
+                    });
+                    </script>                
+                )
+                show {
+                    YouTube {
+                        provider = Youtube
+                        duration = 
+                        durationUnit = none
+                        type = connection
+                    }
+                }
+            }
+        }
+        groups {
+            mandatory {
+                trackingObjects {
+                    10 = fe_typo_user
+                }
+            }
+            external {
+                trackingObjects {
+                    # https://policies.google.com/privacy
+                    10 = YouTube
+                }
+            }
+        }
+    }
+    _LOCAL_LANG {
+        de {
+            trackingobject\.YouTube\.desc = Einbindung von Youtube Videos
+        }
+    }
+}
+

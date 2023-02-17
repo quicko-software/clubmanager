@@ -1,0 +1,5 @@
+####################################
+#### CLEAR lib.login AS DEFAULT ####
+####################################
+lib.login = TEXT
+lib.login.value =

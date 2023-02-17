@@ -1,0 +1,34 @@
+#
+# TCEFORM
+#
+TCEFORM {
+    tx_clubmanager_domain_model_member {
+        //Set this to 0 if your member categories have no subcategories. 0,1 is useful when using the placeholder data.
+        categories.config.treeConfig.appearance.nonSelectableLevels = 0,1
+
+        salutation {
+            removeItems =
+            altLabels {
+                //default = LLL:EXT:clubmanager/Resources/Private/Language/Backend.xlf:salutation.default
+            }
+            addItems {
+                3 = LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.divers
+            }
+        }
+        //customfield1 {
+        //    label = LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.customfield1.default
+        //}
+    }
+
+    tx_clubmanager_domain_model_location {
+        salutation {
+            removeItems =
+            altLabels {
+                //default = LLL:EXT:clubmanager/Resources/Private/Language/Backend.xlf:salutation.default
+            }
+            addItems {
+                3 = LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.divers
+            }
+        }
+    }
+}
