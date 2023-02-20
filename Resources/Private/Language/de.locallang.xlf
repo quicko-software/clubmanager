@@ -83,16 +83,16 @@
 				<target>Erinnerungs-Mail an Club-Login</target>
 			</trans-unit>
 			<trans-unit id="mail.reminder.title" resname="mail.reminder.title">
-				<source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
+				<source>Reminder e-mail of your first login in the member area</source>
 				<target>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</target>
 			</trans-unit>
 			<trans-unit id="mail.reminder.preheader" resname="mail.reminder.preheader">
-				<source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
+				<source>Reminder e-mail of your first login in the member area</source>
 				<target>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</target>
 			</trans-unit>
 			<trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome">
-				<source>Guten Tag </source>
-				<target>Hello</target>
+				<source>Hello </source>
+				<target>Guten Tag </target>
 			</trans-unit>
 			<trans-unit id="mail.reminder.text" resname="mail.reminder.text">
 				<source>You have not yet registered in the members area, so we are sending you a reminder. Don&#39;t miss out on the many exciting topics in our exclusive member area!</source>
@@ -129,10 +129,6 @@
 			<trans-unit id="content_element.member.salutation.company" resname="content_element.member.salutation.company">
 				<source>Company</source>
 				<target>Firma</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.salutation.divers" resname="content_element.member.salutation.divers">
-				<source>Divers</source>
-				<target>Divers</target>
 			</trans-unit>
 			<trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
 				<source>Membership number:</source>
@@ -174,21 +170,9 @@
 				<source>Type of membership:</source>
 				<target>Art der Mitgliedschaft:</target>
 			</trans-unit>
-			<trans-unit id="content_element.member.level.basic" resname="content_element.member.level.basic">
-				<source>Basic</source>
-				<target>Basic</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.level.bronze" resname="content_element.member.level.bronze">
-				<source>Bronze</source>
-				<target>Bronze</target>
-			</trans-unit>
 			<trans-unit id="content_element.member.level.silver" resname="content_element.member.level.silver">
 				<source>Silver</source>
 				<target>Silber</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.level.gold" resname="content_element.member.level.gold">
-				<source>Gold</source>
-				<target>Gold</target>
 			</trans-unit>
 			<trans-unit id="content_element.member.label.reducedRate" resname="content_element.member.label.reducedRate">
 				<source>Reduced membership:</source>
@@ -266,17 +250,9 @@
 				<source>Mobile:</source>
 				<target>Mobil:</target>
 			</trans-unit>
-			<trans-unit id="content_element.location.label.fax" resname="content_element.location.label.fax">
-				<source>Fax:</source>
-				<target>Fax:</target>
-			</trans-unit>
 			<trans-unit id="content_element.location.label.email" resname="content_element.location.label.email">
 				<source>Email:</source>
 				<target>E-Mail:</target>
-			</trans-unit>
-			<trans-unit id="content_element.location.label.website" resname="content_element.location.label.website">
-				<source>Internet:</source>
-				<target>Internet:</target>
 			</trans-unit>
 			<trans-unit id="content_element.cities.header" resname="content_element.cities.header">
 				<source>All members from</source>
