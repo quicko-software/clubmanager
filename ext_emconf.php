@@ -5,18 +5,21 @@ $EM_CONF[$_EXTKEY] = [
 	'category' => 'misc',
 	'author' => 'wirkwerk.com und codemacher.de',
 	'author_email' => 'post@quicko.software',
-	'author_company' => 'Quicko - Der Clubmanager',
+	'author_company' => 'Quicko - The Clubmanager',
 	'state' => 'stable',
 	'clearCacheOnLoad' => 1,
-	'version' => '1.0.1',
+	'version' => '1.0.2',
 	'constraints' => [
 		'depends' => [
 			'typo3' => '11.5.0-11.5.99',
 			'static_info_tables' => '11.5.0-11.5.99'
 		],
-		'conflicts' => [
-		],
 		'suggests' => [
+            'felogin' => '11.5.0-11.5.99',
+            'bootstrap_package' => '12.0.0-12.0.99',
+            'cookieman' => '2.14.0-2.14.99'
 		],
+        'conflicts' => [
+        ],
 	]
 ];

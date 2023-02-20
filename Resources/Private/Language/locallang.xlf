@@ -64,13 +64,13 @@
 				<source>Club login reminder email</source>
 			</trans-unit>
 			<trans-unit id="mail.reminder.title" resname="mail.reminder.title">
-				<source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
+				<source>Reminder e-mail of your first login in the member area</source>
 			</trans-unit>
 			<trans-unit id="mail.reminder.preheader" resname="mail.reminder.preheader">
-				<source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
+				<source>Reminder e-mail of your first login in the member area</source>
 			</trans-unit>
 			<trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome">
-				<source>Guten Tag </source>
+				<source>Hello </source>
 			</trans-unit>
 			<trans-unit id="mail.reminder.text" resname="mail.reminder.text">
 				<source>You have not yet registered in the members area, so we are sending you a reminder. Don&#39;t miss out on the many exciting topics in our exclusive member area!</source>
