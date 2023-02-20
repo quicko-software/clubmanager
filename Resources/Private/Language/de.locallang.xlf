@@ -84,16 +84,16 @@
         <target state="translated">Erinnerungs-Mail an Club-Login</target>
       </trans-unit>
       <trans-unit id="mail.reminder.title" resname="mail.reminder.title">
-        <source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
-        <target state="needs-translation">Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</target>
+        <source>Reminder e-mail of your first login in the member area</source>
+        <target state="needs-translation">Reminder e-mail of your first login in the member area</target>
       </trans-unit>
       <trans-unit id="mail.reminder.preheader" resname="mail.reminder.preheader">
-        <source>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</source>
-        <target state="needs-translation">Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</target>
+        <source>Reminder e-mail of your first login in the member area</source>
+        <target state="needs-translation">Reminder e-mail of your first login in the member area</target>
       </trans-unit>
       <trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome">
-        <source>Guten Tag </source>
-        <target state="translated">Hello</target>
+        <source>Hello </source>
+        <target state="needs-translation">Hello </target>
       </trans-unit>
       <trans-unit id="mail.reminder.text" resname="mail.reminder.text">
         <source>You have not yet registered in the members area, so we are sending you a reminder. Don't miss out on the many exciting topics in our exclusive member area!</source>
