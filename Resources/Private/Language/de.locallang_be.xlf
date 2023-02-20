@@ -3,393 +3,393 @@
   <file source-language="en" original="EXT:clubmanager/Resources/Private/Language/locallang_be.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T17:43:36+01:00" target-language="de">
     <header/>
     <body>
-      <trans-unit id="task.MemberLoginReminderTask.title" resname="task.MemberLoginReminderTask.title">
+      <trans-unit id="task.MemberLoginReminderTask.title" resname="task.MemberLoginReminderTask.title" approved="yes">
         <source>Reminder email</source>
-        <target state="translated">Erinnerungs-E-Mail</target>
+        <target state="final">Erinnerungs-E-Mail</target>
       </trans-unit>
-      <trans-unit id="task.MemberLoginReminderTask.description" resname="task.MemberLoginReminderTask.description">
+      <trans-unit id="task.MemberLoginReminderTask.description" resname="task.MemberLoginReminderTask.description" approved="yes">
         <source>Reminder email to members who have never registered before</source>
-        <target state="translated">Erinnerungs-Email an Mitglieder, die noch nie angemeldet waren</target>
+        <target state="final">Erinnerungs-E-Mail an Mitglieder, die noch nie angemeldet waren</target>
       </trans-unit>
-      <trans-unit id="task.MemberLoginReminderTask.arg.MIN_DAY_PERIOD" resname="task.MemberLoginReminderTask.arg.MIN_DAY_PERIOD">
+      <trans-unit id="task.MemberLoginReminderTask.arg.MIN_DAY_PERIOD" resname="task.MemberLoginReminderTask.arg.MIN_DAY_PERIOD" approved="yes">
         <source>Days until reminder</source>
-        <target state="translated">Tage bis zur erneuten Erinnerung</target>
+        <target state="final">Tage bis zur erneuten Erinnerung</target>
       </trans-unit>
-      <trans-unit id="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST" resname="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST">
+      <trans-unit id="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST" resname="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST" approved="yes">
         <source>List of PID's for members, comma-separated (e.g. '147,55,99', blank for all).</source>
-        <target state="translated">Liste der PID's für Mitglieder, komma-separiert (z.B. '147,55,99', leer für alle)</target>
+        <target state="final">Liste der PID's für Mitglieder, komma-separiert (z.B. '147,55,99', leer für alle)</target>
       </trans-unit>
-      <trans-unit id="task.MailServiceTask.title" resname="task.MailServiceTask.title">
+      <trans-unit id="task.MailServiceTask.title" resname="task.MailServiceTask.title" approved="yes">
         <source>Email service</source>
-        <target state="translated">E-Mail Service</target>
+        <target state="final">E-Mail Service</target>
       </trans-unit>
-      <trans-unit id="task.MailServiceTask.description" resname="task.MailServiceTask.description">
+      <trans-unit id="task.MailServiceTask.description" resname="task.MailServiceTask.description" approved="yes">
         <source>Service for sending e-mails</source>
-        <target state="translated">Service zum Versenden von E-Mails</target>
+        <target state="final">Service zum Versenden von E-Mails</target>
       </trans-unit>
-      <trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg">
+      <trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg" approved="yes">
         <source>Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </source>
-        <target state="translated">Offene Mails: %1$d, Fehler: %2$d, E-Mails pro Durchlauf: %3$d. </target>
+        <target state="final">Offene Mails: %1$d, Fehler: %2$d, E-Mails pro Durchlauf: %3$d. </target>
       </trans-unit>
-      <trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS" resname="task.MailServiceTask.arg.MAX_NUM_MAILS">
+      <trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS" resname="task.MailServiceTask.arg.MAX_NUM_MAILS" approved="yes">
         <source>Maximum number of emails per run</source>
-        <target state="translated">Maximale Anzahl der E-Mails pro Durchlauf</target>
+        <target state="final">Maximale Anzahl der E-Mails pro Durchlauf</target>
       </trans-unit>
-      <trans-unit id="task.general.errors.invalid_value" resname="task.general.errors.invalid_value">
+      <trans-unit id="task.general.errors.invalid_value" resname="task.general.errors.invalid_value" approved="yes">
         <source>Invalid value for field: %1</source>
-        <target state="translated">Ungültiger Wert für Feld:  %1</target>
+        <target state="final">Ungültiger Wert für Feld:  %1</target>
       </trans-unit>
-      <trans-unit id="content_element.citieslist" resname="content_element.citieslist">
+      <trans-unit id="content_element.citieslist" resname="content_element.citieslist" approved="yes">
         <source>City overview</source>
-        <target state="translated">Städteausgabe</target>
+        <target state="final">Städteausgabe</target>
       </trans-unit>
-      <trans-unit id="content_element.citieslist.description" resname="content_element.citieslist.description">
+      <trans-unit id="content_element.citieslist.description" resname="content_element.citieslist.description" approved="yes">
         <source>Output of the city overview</source>
-        <target state="translated">Ausgabe der Städteübersicht</target>
+        <target state="final">Ausgabe der Städteübersicht</target>
       </trans-unit>
-      <trans-unit id="content_element.city" resname="content_element.city">
+      <trans-unit id="content_element.city" resname="content_element.city" approved="yes">
         <source>Locations per city</source>
-        <target state="translated">Standorte pro Stadt</target>
+        <target state="final">Standorte pro Stadt</target>
       </trans-unit>
-      <trans-unit id="content_element.city.description" resname="content_element.city.description">
+      <trans-unit id="content_element.city.description" resname="content_element.city.description" approved="yes">
         <source>Output of the locations for a city</source>
-        <target state="translated">Ausgabe der Standorte für eine Stadt</target>
+        <target state="final">Ausgabe der Standorte für eine Stadt</target>
       </trans-unit>
-      <trans-unit id="content_element.member" resname="content_element.member">
+      <trans-unit id="content_element.member" resname="content_element.member" approved="yes">
         <source>Member single view</source>
-        <target state="translated">Mitglied Einzelausgabe</target>
+        <target state="final">Mitglied Einzelausgabe</target>
       </trans-unit>
-      <trans-unit id="content_element.member.description" resname="content_element.member.description">
+      <trans-unit id="content_element.member.description" resname="content_element.member.description" approved="yes">
         <source>Detail output of a member</source>
-        <target state="translated">Detailsausgabe eines Mitgliedes</target>
+        <target state="final">Detailsausgabe eines Mitgliedes</target>
       </trans-unit>
-      <trans-unit id="content_element.location" resname="content_element.location">
+      <trans-unit id="content_element.location" resname="content_element.location" approved="yes">
         <source>Location single output</source>
-        <target state="translated">Standort Einzelausgabe</target>
+        <target state="final">Standort Einzelausgabe</target>
       </trans-unit>
-      <trans-unit id="content_element.location.description" resname="content_element.location.description">
+      <trans-unit id="content_element.location.description" resname="content_element.location.description" approved="yes">
         <source>Detail output of a location</source>
-        <target state="translated">Detailsausgabe eines Standortes</target>
+        <target state="final">Detailsausgabe eines Standortes</target>
       </trans-unit>
-      <trans-unit id="content_element.locationlist" resname="content_element.locationlist">
+      <trans-unit id="content_element.locationlist" resname="content_element.locationlist" approved="yes">
         <source>Location list</source>
-        <target state="translated">Standortliste</target>
+        <target state="final">Standortliste</target>
       </trans-unit>
-      <trans-unit id="content_element.locationlist.description" resname="content_element.locationlist.description">
+      <trans-unit id="content_element.locationlist.description" resname="content_element.locationlist.description" approved="yes">
         <source>List of all locations</source>
-        <target state="translated">List aller Standorte</target>
+        <target state="final">List aller Standorte</target>
       </trans-unit>
-      <trans-unit id="content_element.memberlist" resname="content_element.memberlist">
+      <trans-unit id="content_element.memberlist" resname="content_element.memberlist" approved="yes">
         <source>List of members</source>
-        <target state="translated">Mitgliederliste</target>
+        <target state="final">Mitgliederliste</target>
       </trans-unit>
-      <trans-unit id="content_element.memberlist.description" resname="content_element.memberlist.description">
+      <trans-unit id="content_element.memberlist.description" resname="content_element.memberlist.description" approved="yes">
         <source>List of all members</source>
-        <target state="translated">Liste aller Mitglieder</target>
+        <target state="final">Liste aller Mitglieder</target>
       </trans-unit>
-      <trans-unit id="storagesettings" resname="storagesettings">
+      <trans-unit id="storagesettings" resname="storagesettings" approved="yes">
         <source>Settings</source>
-        <target state="translated">Einstellungen</target>
+        <target state="final">Einstellungen</target>
       </trans-unit>
-      <trans-unit id="storagesettings.detail_city_page" resname="storagesettings.detail_city_page">
+      <trans-unit id="storagesettings.detail_city_page" resname="storagesettings.detail_city_page" approved="yes">
         <source>City overview page</source>
-        <target state="translated">Stadtübersichtsseite</target>
+        <target state="final">Stadtübersichtsseite</target>
       </trans-unit>
-      <trans-unit id="storagesettings.detail_member_page" resname="storagesettings.detail_member_page">
+      <trans-unit id="storagesettings.detail_member_page" resname="storagesettings.detail_member_page" approved="yes">
         <source>Members page</source>
-        <target state="translated">Mitglieder Seite</target>
+        <target state="final">Mitglieder Seite</target>
       </trans-unit>
       <trans-unit id="backend_main_module_name" resname="backend_main_module_name">
         <source>Clubmanager</source>
         <target state="needs-translation">Clubmanager</target>
       </trans-unit>
-      <trans-unit id="bem-toolbox.edit" resname="bem-toolbox.edit">
+      <trans-unit id="bem-toolbox.edit" resname="bem-toolbox.edit" approved="yes">
         <source>Edit</source>
-        <target state="translated">Bearbeiten</target>
+        <target state="final">Bearbeiten</target>
       </trans-unit>
-      <trans-unit id="bem-toolbox.delete" resname="bem-toolbox.delete">
+      <trans-unit id="bem-toolbox.delete" resname="bem-toolbox.delete" approved="yes">
         <source>Delete</source>
-        <target state="translated">Löschen</target>
+        <target state="final">Löschen</target>
       </trans-unit>
-      <trans-unit id="mlang_tabs_tab_memberlist" resname="mlang_tabs_tab_memberlist">
+      <trans-unit id="mlang_tabs_tab_memberlist" resname="mlang_tabs_tab_memberlist" approved="yes">
         <source>List of members</source>
-        <target state="translated">Mitgliederliste</target>
+        <target state="final">Mitgliederliste</target>
       </trans-unit>
       <trans-unit id="mlang_tabs_tab_mailtasks" resname="mlang_tabs_tab_mailtasks">
         <source>Mailjournal</source>
         <target state="needs-translation">Mailjournal</target>
       </trans-unit>
-      <trans-unit id="mlang_tabs_tab_settlements" resname="mlang_tabs_tab_settlements">
+      <trans-unit id="mlang_tabs_tab_settlements" resname="mlang_tabs_tab_settlements" approved="yes">
         <source>Billing</source>
-        <target state="translated">Abrechnungen</target>
+        <target state="final">Abrechnungen</target>
       </trans-unit>
-      <trans-unit id="mlang_tabs_tab_membershipstatistics" resname="mlang_tabs_tab_membershipstatistics">
+      <trans-unit id="mlang_tabs_tab_membershipstatistics" resname="mlang_tabs_tab_membershipstatistics" approved="yes">
         <source>Statistics</source>
-        <target state="translated">Statistiken</target>
+        <target state="final">Statistiken</target>
       </trans-unit>
-      <trans-unit id="mlang_tabs_tab_events" resname="mlang_tabs_tab_events">
+      <trans-unit id="mlang_tabs_tab_events" resname="mlang_tabs_tab_events" approved="yes">
         <source>Events</source>
-        <target state="translated">Veranstaltungen</target>
+        <target state="final">Veranstaltungen</target>
       </trans-unit>
-      <trans-unit id="bem.apiCall.flash.error.title" resname="bem.apiCall.flash.error.title">
+      <trans-unit id="bem.apiCall.flash.error.title" resname="bem.apiCall.flash.error.title" approved="yes">
         <source>Error</source>
-        <target state="translated">Fehler</target>
+        <target state="final">Fehler</target>
       </trans-unit>
-      <trans-unit id="module.title" resname="module.title">
+      <trans-unit id="module.title" resname="module.title" approved="yes">
         <source>Quicko - The Clubmanager</source>
-        <target state="translated">Quicko - Der Clubmanager</target>
+        <target state="final">Quicko - Der Clubmanager</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.title" resname="module.memberlist.title">
+      <trans-unit id="module.memberlist.title" resname="module.memberlist.title" approved="yes">
         <source>Member list module</source>
-        <target state="translated">Mitgliederlisten Modul</target>
+        <target state="final">Mitgliederlisten Modul</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.lead_intro" resname="module.memberlist.lead_intro">
+      <trans-unit id="module.memberlist.lead_intro" resname="module.memberlist.lead_intro" approved="yes">
         <source>The member list module is part of the clubmanager_pro extension.</source>
-        <target state="translated">Das Mitgliederliste-Modul ist Bestandteil der clubmanager_pro Extension.</target>
+        <target state="final">Das Mitgliederliste-Modul ist Bestandteil der clubmanager_pro Extension.</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.lead_full" resname="module.memberlist.lead_full">
+      <trans-unit id="module.memberlist.lead_full" resname="module.memberlist.lead_full" approved="yes">
         <source>Your club already has %d members with %d locations.</source>
-        <target state="translated">Ihr Club hat bereits %d Mitglieder mit %d Standorten.</target>
+        <target state="final">Ihr Club hat bereits %d Mitglieder mit %d Standorten.</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.lead_none" resname="module.memberlist.lead_none">
+      <trans-unit id="module.memberlist.lead_none" resname="module.memberlist.lead_none" approved="yes">
         <source>Have you finished setting up the club manager? No members were found.</source>
-        <target state="translated">Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mitglieder gefunden.</target>
+        <target state="final">Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mitglieder gefunden.</target>
       </trans-unit>
       <trans-unit id="module.memberlist.subtitle" resname="module.memberlist.subtitle">
         <source>Clubmanager Pro</source>
         <target state="needs-translation">Clubmanager Pro</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.features.title" resname="module.memberlist.features.title">
+      <trans-unit id="module.memberlist.features.title" resname="module.memberlist.features.title" approved="yes">
         <source>Features</source>
-        <target state="translated">Eigenschaften</target>
+        <target state="final">Eigenschaften</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.features.1" resname="module.memberlist.features.1">
+      <trans-unit id="module.memberlist.features.1" resname="module.memberlist.features.1" approved="yes">
         <source>Backend module for member management</source>
-        <target state="translated">Backend-Modul zur Mitgliederverwaltung</target>
+        <target state="final">Backend-Modul zur Mitgliederverwaltung</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.features.2" resname="module.memberlist.features.2">
+      <trans-unit id="module.memberlist.features.2" resname="module.memberlist.features.2" approved="yes">
         <source>Mail journal module for mail task management</source>
-        <target state="translated">Mailjournal-Modul für die Verwaltung und Überwachung der vom System versendeten E-Mails</target>
+        <target state="final">Mailjournal-Modul für die Verwaltung und Überwachung der vom System versendeten E-Mails</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.features.3" resname="module.memberlist.features.3">
+      <trans-unit id="module.memberlist.features.3" resname="module.memberlist.features.3" approved="yes">
         <source>Dynamic registration process for new members via web form</source>
-        <target state="translated">Dynamischer Anmelde-Prozess für neue Mitglieder via Webformular</target>
+        <target state="final">Dynamischer Anmelde-Prozess für neue Mitglieder via Webformular</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.features.4" resname="module.memberlist.features.4">
+      <trans-unit id="module.memberlist.features.4" resname="module.memberlist.features.4" approved="yes">
         <source>Automated cancellation process for members</source>
-        <target state="translated">Automatisierter Kündigungsprozess für Mitglieder</target>
+        <target state="final">Automatisierter Kündigungsprozess für Mitglieder</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.features.5" resname="module.memberlist.features.5">
+      <trans-unit id="module.memberlist.features.5" resname="module.memberlist.features.5" approved="yes">
         <source>Prioritization of members (e.g. for advertising purposes)</source>
-        <target state="translated">Priorisierung von Mitgliedern (bspw. zu Werbezwecken)</target>
+        <target state="final">Priorisierung von Mitgliedern (bspw. zu Werbezwecken)</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.tip" resname="module.memberlist.tip">
+      <trans-unit id="module.memberlist.tip" resname="module.memberlist.tip" approved="yes">
         <source>Tip</source>
-        <target state="translated">Tipp</target>
+        <target state="final">Tipp</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.tip.text" resname="module.memberlist.tip.text">
+      <trans-unit id="module.memberlist.tip.text" resname="module.memberlist.tip.text" approved="yes">
         <source>Have a look at `Quicko - Clubmanager Pro` for more information about `ext:clubmanager_pro`.</source>
-        <target state="translated">Unter `Quicko - Clubmanager Pro` finden Sie weitere Informationen über `ext:clubmanager_pro`.</target>
+        <target state="final">Unter `Quicko - Clubmanager Pro` finden Sie weitere Informationen über `ext:clubmanager_pro`.</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.tip.link.text" resname="module.memberlist.tip.link.text">
+      <trans-unit id="module.memberlist.tip.link.text" resname="module.memberlist.tip.link.text" approved="yes">
         <source>More Information</source>
-        <target state="translated">Mehr Informationen</target>
+        <target state="final">Mehr Informationen</target>
       </trans-unit>
-      <trans-unit id="module.memberlist.tip.link.url" resname="module.memberlist.tip.link.url">
+      <trans-unit id="module.memberlist.tip.link.url" resname="module.memberlist.tip.link.url" approved="yes">
         <source>https://quicko.software/en/modules/pro/</source>
-        <target state="translated">https://quicko.software/module/pro/</target>
+        <target state="final">https://quicko.software/module/pro/</target>
       </trans-unit>
-      <trans-unit id="module.mailtasks.title" resname="module.mailtasks.title">
+      <trans-unit id="module.mailtasks.title" resname="module.mailtasks.title" approved="yes">
         <source>Mailjournal Module</source>
-        <target state="translated">Mailjournal Modul</target>
+        <target state="final">Mailjournal Modul</target>
       </trans-unit>
-      <trans-unit id="module.mailtasks.lead_intro" resname="module.mailtasks.lead_intro">
+      <trans-unit id="module.mailtasks.lead_intro" resname="module.mailtasks.lead_intro" approved="yes">
         <source>The mail journal module is part of the clubmanager_pro extension. Keep track of the mails sent by the system.</source>
-        <target state="translated">Das Mailjournal-Modul ist Bestandteil der clubmanager_pro Extension. Behalten Sie den Überblick über die vom System versendeten Mails.</target>
+        <target state="final">Das Mailjournal-Modul ist Bestandteil der clubmanager_pro Extension. Behalten Sie den Überblick über die vom System versendeten Mails.</target>
       </trans-unit>
-      <trans-unit id="module.mailtasks.lead_full" resname="module.mailtasks.lead_full">
+      <trans-unit id="module.mailtasks.lead_full" resname="module.mailtasks.lead_full" approved="yes">
         <source>Your club has already sent %d mails to %d members.</source>
-        <target state="translated">Ihr Club hat bereits %d Mails an %d Mitglieder versendet.</target>
+        <target state="final">Ihr Club hat bereits %d Mails an %d Mitglieder versendet.</target>
       </trans-unit>
-      <trans-unit id="module.mailtasks.lead_none" resname="module.mailtasks.lead_none">
+      <trans-unit id="module.mailtasks.lead_none" resname="module.mailtasks.lead_none" approved="yes">
         <source>Have you finished setting up the club manager? No mails to members were found.</source>
-        <target state="translated">Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mails an Mitglieder gefunden.</target>
+        <target state="final">Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mails an Mitglieder gefunden.</target>
       </trans-unit>
-      <trans-unit id="module.billing.title" resname="module.billing.title">
+      <trans-unit id="module.billing.title" resname="module.billing.title" approved="yes">
         <source>Billing module</source>
-        <target state="translated">Abrechnungs-Modul</target>
+        <target state="final">Abrechnungs-Modul</target>
       </trans-unit>
-      <trans-unit id="module.billing.lead_intro" resname="module.billing.lead_intro">
+      <trans-unit id="module.billing.lead_intro" resname="module.billing.lead_intro" approved="yes">
         <source>The billing module is part of the clubmanager_billing extension.</source>
-        <target state="translated">Das Abrechnungs-Modul ist Bestandteil der clubmanager_billing Extension.</target>
+        <target state="final">Das Abrechnungs-Modul ist Bestandteil der clubmanager_billing Extension.</target>
       </trans-unit>
       <trans-unit id="module.billing.subtitle" resname="module.billing.subtitle">
         <source>Clubmanager Billing</source>
         <target state="needs-translation">Clubmanager Billing</target>
       </trans-unit>
-      <trans-unit id="module.billing.features.title" resname="module.billing.features.title">
+      <trans-unit id="module.billing.features.title" resname="module.billing.features.title" approved="yes">
         <source>Features</source>
-        <target state="translated">Eigenschaften</target>
+        <target state="final">Eigenschaften</target>
       </trans-unit>
-      <trans-unit id="module.billing.features.1" resname="module.billing.features.1">
+      <trans-unit id="module.billing.features.1" resname="module.billing.features.1" approved="yes">
         <source>Extension of member management with bank data</source>
-        <target state="translated">Erweiterung der Mitgliederverwaltung um Bankdaten</target>
+        <target state="final">Erweiterung der Mitgliederverwaltung um Bankdaten</target>
       </trans-unit>
-      <trans-unit id="module.billing.features.2" resname="module.billing.features.2">
+      <trans-unit id="module.billing.features.2" resname="module.billing.features.2" approved="yes">
         <source>Set up different contributions and payment frequency</source>
-        <target state="translated">Einrichtung unterschiedlicher Beiträge und Zahlungsrhythmus</target>
+        <target state="final">Einrichtung unterschiedlicher Beiträge und Zahlungsrhythmus</target>
       </trans-unit>
-      <trans-unit id="module.billing.features.3" resname="module.billing.features.3">
+      <trans-unit id="module.billing.features.3" resname="module.billing.features.3" approved="yes">
         <source>One-time admission fee possible</source>
-        <target state="translated">Einmalige Aufnahmegebühr möglich</target>
+        <target state="final">Einmalige Aufnahmegebühr möglich</target>
       </trans-unit>
-      <trans-unit id="module.billing.features.4" resname="module.billing.features.4">
+      <trans-unit id="module.billing.features.4" resname="module.billing.features.4" approved="yes">
         <source>Collect membership fees: Submit collection file for house bank</source>
-        <target state="translated">Mitgliedsbeiträge einziehen: Einzugsdatei für die Hausbank einreichen</target>
+        <target state="final">Mitgliedsbeiträge einziehen: Einzugsdatei für die Hausbank einreichen</target>
       </trans-unit>
-      <trans-unit id="module.billing.features.5" resname="module.billing.features.5">
+      <trans-unit id="module.billing.features.5" resname="module.billing.features.5" approved="yes">
         <source>Invoice dispatch via e-mail</source>
-        <target state="translated">Rechnungsversand via E-Mail</target>
+        <target state="final">Rechnungsversand via E-Mail</target>
       </trans-unit>
-      <trans-unit id="module.billing.features.6" resname="module.billing.features.6">
+      <trans-unit id="module.billing.features.6" resname="module.billing.features.6" approved="yes">
         <source>Invoice retrieval in personalized login area</source>
-        <target state="translated">Rechnungsabruf in personalisiertem Loginbereich</target>
+        <target state="final">Rechnungsabruf in personalisiertem Loginbereich</target>
       </trans-unit>
-      <trans-unit id="module.billing.features.7" resname="module.billing.features.7">
+      <trans-unit id="module.billing.features.7" resname="module.billing.features.7" approved="yes">
         <source>Search functions</source>
-        <target state="translated">Suchfunktionen</target>
+        <target state="final">Suchfunktionen</target>
       </trans-unit>
-      <trans-unit id="module.billing.tip" resname="module.billing.tip">
+      <trans-unit id="module.billing.tip" resname="module.billing.tip" approved="yes">
         <source>Tip</source>
-        <target state="translated">Tipp</target>
+        <target state="final">Tipp</target>
       </trans-unit>
-      <trans-unit id="module.billing.tip.text" resname="module.billing.tip.text">
+      <trans-unit id="module.billing.tip.text" resname="module.billing.tip.text" approved="yes">
         <source>Have a look at `Quicko - Clubmanager Billing` for more information about `ext:clubmanager_billing`.</source>
-        <target state="translated">Weitere Informationen zu `ext:clubmanager_billing` finden Sie unter `Quicko - Clubmanager Billing`.</target>
+        <target state="final">Weitere Informationen zu `ext:clubmanager_billing` finden Sie unter `Quicko - Clubmanager Billing`.</target>
       </trans-unit>
-      <trans-unit id="module.billing.tip.link.text" resname="module.billing.tip.link.text">
+      <trans-unit id="module.billing.tip.link.text" resname="module.billing.tip.link.text" approved="yes">
         <source>More Information</source>
-        <target state="translated">Mehr Informationen</target>
+        <target state="final">Mehr Informationen</target>
       </trans-unit>
-      <trans-unit id="module.billing.tip.link.url" resname="module.billing.tip.link.url">
+      <trans-unit id="module.billing.tip.link.url" resname="module.billing.tip.link.url" approved="yes">
         <source>https://quicko.software/en/modules/billing/</source>
-        <target state="translated">https://quicko.software/module/billing/</target>
+        <target state="final">https://quicko.software/module/billing/</target>
       </trans-unit>
-      <trans-unit id="module.calendar.title" resname="module.calendar.title">
+      <trans-unit id="module.calendar.title" resname="module.calendar.title" approved="yes">
         <source>Event module</source>
-        <target state="translated">Veranstaltungs-Modul</target>
+        <target state="final">Veranstaltungs-Modul</target>
       </trans-unit>
-      <trans-unit id="module.calendar.lead_intro" resname="module.calendar.lead_intro">
+      <trans-unit id="module.calendar.lead_intro" resname="module.calendar.lead_intro" approved="yes">
         <source>The event module is part of the clubmanager_calendar and complementary to the clubmanager_conference extension.</source>
-        <target state="translated">Das Veranstaltungs-Modul ist Bestandteil der clubmanager_calendar und ergänzend der clubmanager_conference Extension.</target>
+        <target state="final">Das Veranstaltungs-Modul ist Bestandteil der clubmanager_calendar und ergänzend der clubmanager_conference Extension.</target>
       </trans-unit>
-      <trans-unit id="module.calendar.subtitle" resname="module.calendar.subtitle">
+      <trans-unit id="module.calendar.subtitle" resname="module.calendar.subtitle" approved="yes">
         <source>Club Manager Calendar and Club Manager Conference</source>
-        <target state="translated">Clubmanager Calendar und Clubmanager Conference</target>
+        <target state="final">Clubmanager Calendar und Clubmanager Conference</target>
       </trans-unit>
-      <trans-unit id="module.calendar.features.title" resname="module.calendar.features.title">
+      <trans-unit id="module.calendar.features.title" resname="module.calendar.features.title" approved="yes">
         <source>Features</source>
-        <target state="translated">Eigenschaften</target>
+        <target state="final">Eigenschaften</target>
       </trans-unit>
-      <trans-unit id="module.calendar.features.1" resname="module.calendar.features.1">
+      <trans-unit id="module.calendar.features.1" resname="module.calendar.features.1" approved="yes">
         <source>Appointment scheduling (`ext:clubmanager_calendar`)</source>
-        <target state="translated">Terminplanung (`ext:clubmanager_calendar`)</target>
+        <target state="final">Terminplanung (`ext:clubmanager_calendar`)</target>
       </trans-unit>
-      <trans-unit id="module.calendar.features.2" resname="module.calendar.features.2">
+      <trans-unit id="module.calendar.features.2" resname="module.calendar.features.2" approved="yes">
         <source>Booking appointments for members (`ext:clubmanager_calendar`)</source>
-        <target state="translated">Buchung von Terminen für Mitglieder (`ext:clubmanager_calendar`)</target>
+        <target state="final">Buchung von Terminen für Mitglieder (`ext:clubmanager_calendar`)</target>
       </trans-unit>
-      <trans-unit id="module.calendar.features.3" resname="module.calendar.features.3">
+      <trans-unit id="module.calendar.features.3" resname="module.calendar.features.3" approved="yes">
         <source>Event Management (`ext:clubmanager_conference`)</source>
-        <target state="translated">Veranstaltungsmanagement (`ext:clubmanager_conference`)</target>
+        <target state="final">Veranstaltungsmanagement (`ext:clubmanager_conference`)</target>
       </trans-unit>
-      <trans-unit id="module.calendar.features.4" resname="module.calendar.features.4">
+      <trans-unit id="module.calendar.features.4" resname="module.calendar.features.4" approved="yes">
         <source>Bookings with costs  (`ext:clubmanager_conference`)</source>
-        <target state="translated">Kostenpflichtige Buchungen (`ext:clubmanager_conference`)</target>
+        <target state="final">Kostenpflichtige Buchungen (`ext:clubmanager_conference`)</target>
       </trans-unit>
-      <trans-unit id="module.calendar.features.5" resname="module.calendar.features.5">
+      <trans-unit id="module.calendar.features.5" resname="module.calendar.features.5" approved="yes">
         <source>More to come</source>
-        <target state="translated">Mehr dazu in Kürze</target>
+        <target state="final">Mehr dazu in Kürze</target>
       </trans-unit>
-      <trans-unit id="module.calendar.tip" resname="module.calendar.tip">
+      <trans-unit id="module.calendar.tip" resname="module.calendar.tip" approved="yes">
         <source>Tip</source>
-        <target state="translated">Tipp</target>
+        <target state="final">Tipp</target>
       </trans-unit>
-      <trans-unit id="module.calendar.tip.text" resname="module.calendar.tip.text">
+      <trans-unit id="module.calendar.tip.text" resname="module.calendar.tip.text" approved="yes">
         <source>More information about `ext:clubmanager_calendar` and  `ext:clubmanager_conference` is coming soon.</source>
-        <target state="translated">Weitere Informationen über `ext:clubmanager_calendar` und `ext:clubmanager_conference` folgen in Kürze.</target>
+        <target state="final">Weitere Informationen über `ext:clubmanager_calendar` und `ext:clubmanager_conference` folgen in Kürze.</target>
       </trans-unit>
-      <trans-unit id="module.calendar.tip.link.text" resname="module.calendar.tip.link.text">
+      <trans-unit id="module.calendar.tip.link.text" resname="module.calendar.tip.link.text" approved="yes">
         <source>See all our clubmanager modules</source>
-        <target state="translated">Alle unsere Clubmanager-Module anzeigen</target>
+        <target state="final">Alle unsere Clubmanager-Module anzeigen</target>
       </trans-unit>
-      <trans-unit id="module.calendar.tip.link.url" resname="module.calendar.tip.link.url">
+      <trans-unit id="module.calendar.tip.link.url" resname="module.calendar.tip.link.url" approved="yes">
         <source>https://quicko.software/en/modules/</source>
-        <target state="translated">https://quicko.software/module/</target>
+        <target state="final">https://quicko.software/module/</target>
       </trans-unit>
-      <trans-unit id="module.statistics.title" resname="module.statistics.title">
+      <trans-unit id="module.statistics.title" resname="module.statistics.title" approved="yes">
         <source>Statistics module</source>
-        <target state="translated">Statistik-Modul</target>
+        <target state="final">Statistik-Modul</target>
       </trans-unit>
-      <trans-unit id="module.statistics.lead_intro" resname="module.statistics.lead_intro">
+      <trans-unit id="module.statistics.lead_intro" resname="module.statistics.lead_intro" approved="yes">
         <source>The statistics module is part of the clubmanager_statistics extension.</source>
-        <target state="translated">Das Statistik-Modul ist Bestandteil der clubmanager_statistics Extension.</target>
+        <target state="final">Das Statistik-Modul ist Bestandteil der clubmanager_statistics Extension.</target>
       </trans-unit>
       <trans-unit id="module.statistics.subtitle" resname="module.statistics.subtitle">
         <source>Clubmanager Statistics</source>
         <target state="needs-translation">Clubmanager Statistics</target>
       </trans-unit>
-      <trans-unit id="module.statistics.features.title" resname="module.statistics.features.title">
+      <trans-unit id="module.statistics.features.title" resname="module.statistics.features.title" approved="yes">
         <source>Features</source>
-        <target state="translated">Eigenschaften</target>
+        <target state="final">Eigenschaften</target>
       </trans-unit>
-      <trans-unit id="module.statistics.features.1" resname="module.statistics.features.1">
+      <trans-unit id="module.statistics.features.1" resname="module.statistics.features.1" approved="yes">
         <source>Membership development statistics</source>
-        <target state="translated">Statistiken zur Mitgliederentwicklung</target>
+        <target state="final">Statistiken zur Mitgliederentwicklung</target>
       </trans-unit>
-      <trans-unit id="module.statistics.features.2" resname="module.statistics.features.2">
+      <trans-unit id="module.statistics.features.2" resname="module.statistics.features.2" approved="yes">
         <source>Visitor analysis</source>
-        <target state="translated">Besucheranalyse</target>
+        <target state="final">Besucheranalyse</target>
       </trans-unit>
-      <trans-unit id="module.statistics.features.3" resname="module.statistics.features.3">
+      <trans-unit id="module.statistics.features.3" resname="module.statistics.features.3" approved="yes">
         <source>More to come</source>
-        <target state="translated">Mehr dazu in Kürze</target>
+        <target state="final">Mehr dazu in Kürze</target>
       </trans-unit>
-      <trans-unit id="module.statistics.features.4" resname="module.statistics.features.4">
+      <trans-unit id="module.statistics.features.4" resname="module.statistics.features.4" approved="yes">
         <source>More to come</source>
-        <target state="translated">Mehr dazu in Kürze</target>
+        <target state="final">Mehr dazu in Kürze</target>
       </trans-unit>
-      <trans-unit id="module.statistics.tip" resname="module.statistics.tip">
+      <trans-unit id="module.statistics.tip" resname="module.statistics.tip" approved="yes">
         <source>Tip</source>
-        <target state="translated">Tipp</target>
+        <target state="final">Tipp</target>
       </trans-unit>
       <trans-unit id="module.statistics.tip.text" resname="module.statistics.tip.text">
         <source>More information about `ext:clubmanager_statistics` is coming soon.</source>
         <target state="needs-translation">More information about `ext:clubmanager_statistics` is coming soon.</target>
       </trans-unit>
-      <trans-unit id="module.statistics.tip.link.text" resname="module.statistics.tip.link.text">
+      <trans-unit id="module.statistics.tip.link.text" resname="module.statistics.tip.link.text" approved="yes">
         <source>See all our clubmanager modules</source>
-        <target state="translated">Alle unsere Clubmanager-Module anzeigen</target>
+        <target state="final">Alle unsere Clubmanager-Module anzeigen</target>
       </trans-unit>
-      <trans-unit id="module.statistics.tip.link.url" resname="module.statistics.tip.link.url">
+      <trans-unit id="module.statistics.tip.link.url" resname="module.statistics.tip.link.url" approved="yes">
         <source>https://quicko.software/en/modules/</source>
-        <target state="translated">https://quicko.software/module/</target>
+        <target state="final">https://quicko.software/module/</target>
       </trans-unit>
-      <trans-unit id="module.info" resname="module.info">
+      <trans-unit id="module.info" resname="module.info" approved="yes">
         <source>Note</source>
-        <target state="translated">Hinweis</target>
+        <target state="final">Hinweis</target>
       </trans-unit>
-      <trans-unit id="module.info.text" resname="module.info.text">
+      <trans-unit id="module.info.text" resname="module.info.text" approved="yes">
         <source>Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</source>
-        <target state="translated">Fordern sie noch heute ein unverbindliches Angebot und stellen Sie ihren Verein auf zukunftsfähige Füße. `Quicko - Der Clubmanager` ist ihr verlässlicher Partner.</target>
+        <target state="final">Fordern sie noch heute ein unverbindliches Angebot und stellen Sie ihren Verein auf zukunftsfähige Füße. `Quicko - Der Clubmanager` ist ihr verlässlicher Partner.</target>
       </trans-unit>
-      <trans-unit id="module.info.link.text" resname="module.info.link.text">
+      <trans-unit id="module.info.link.text" resname="module.info.link.text" approved="yes">
         <source>Submit request now</source>
-        <target state="translated">Jetzt Anfrage stellen</target>
+        <target state="final">Jetzt Anfrage stellen</target>
       </trans-unit>
-      <trans-unit id="module.info.link.url" resname="module.info.link.url">
+      <trans-unit id="module.info.link.url" resname="module.info.link.url" approved="yes">
         <source>https://quicko.software/en/contact-us/</source>
-        <target state="translated">https://quicko.software/kontakt/</target>
+        <target state="final">https://quicko.software/kontakt/</target>
       </trans-unit>
     </body>
   </file>
