@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns:t3="http://typo3.org/schemas/xliff" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" original="EXT:clubmanager/Resources/Private/Language/Overrides/de.locallang_db.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T18:05:50+01:00">
+	<file source-language="en" target-language="de" original="EXT:clubmanager/Resources/Private/Language/locallang_db.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T18:05:50+01:00">
+		<header></header>
 		<body>
 			<trans-unit id="tx_clubmanager_domain_model_location.phone" resname="tx_clubmanager_domain_model_location.phone">
 				<source>Phone</source>
