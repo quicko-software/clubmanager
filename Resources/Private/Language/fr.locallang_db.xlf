@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns:t3="http://typo3.org/schemas/xliff" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="en" original="messages" datatype="plaintext" product-name="clubmanager" date="2023-02-16T18:05:50+01:00" target-language="fr">
+  <file source-language="en" original="EXT:clubmanager/Resources/Private/Language/locallang_db.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T18:05:50+01:00" target-language="fr">
     <header/>
     <body>
       <trans-unit id="tx_clubmanager_domain_model_location.phone" resname="tx_clubmanager_domain_model_location.phone">
