@@ -3,177 +3,177 @@
   <file source-language="en" original="EXT:clubmanager/Resources/Private/Language/locallang_db.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T18:05:50+01:00" target-language="de">
     <header/>
     <body>
-      <trans-unit id="tx_clubmanager_domain_model_location.phone" resname="tx_clubmanager_domain_model_location.phone">
+      <trans-unit id="tx_clubmanager_domain_model_location.phone" resname="tx_clubmanager_domain_model_location.phone" approved="yes">
         <source>Phone</source>
-        <target state="translated">Telefon</target>
+        <target state="final">Telefon</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.mobile" resname="tx_clubmanager_domain_model_location.mobile">
+      <trans-unit id="tx_clubmanager_domain_model_location.mobile" resname="tx_clubmanager_domain_model_location.mobile" approved="yes">
         <source>Mobil</source>
-        <target state="translated">Mobile</target>
+        <target state="final">Mobile</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.fax" resname="tx_clubmanager_domain_model_location.fax">
         <source>FAX</source>
         <target state="needs-translation">FAX</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.email" resname="tx_clubmanager_domain_model_location.email">
+      <trans-unit id="tx_clubmanager_domain_model_location.email" resname="tx_clubmanager_domain_model_location.email" approved="yes">
         <source>Email</source>
-        <target state="translated">E-Mail</target>
+        <target state="final">E-Mail</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.website" resname="tx_clubmanager_domain_model_location.website">
         <source>Url</source>
         <target state="needs-translation">Url</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.tab.locations" resname="tx_clubmanager_domain_model_member.tab.locations">
+      <trans-unit id="tx_clubmanager_domain_model_member.tab.locations" resname="tx_clubmanager_domain_model_member.tab.locations" approved="yes">
         <source>Locations</source>
-        <target state="translated">Standorte</target>
+        <target state="final">Standorte</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.tab.customfields" resname="tx_clubmanager_domain_model_member.tab.customfields">
+      <trans-unit id="tx_clubmanager_domain_model_member.tab.customfields" resname="tx_clubmanager_domain_model_member.tab.customfields" approved="yes">
         <source>Additional data</source>
-        <target state="translated">Zusatzdaten</target>
+        <target state="final">Zusatzdaten</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.tab.bank" resname="tx_clubmanager_domain_model_member.tab.bank">
         <source>Bank</source>
         <target state="needs-translation">Bank</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member" resname="tx_clubmanager_domain_model_member">
+      <trans-unit id="tx_clubmanager_domain_model_member" resname="tx_clubmanager_domain_model_member" approved="yes">
         <source>Member</source>
-        <target state="translated">Mitglied</target>
+        <target state="final">Mitglied</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.palette.member" resname="tx_clubmanager_domain_model_member.palette.member">
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.member" resname="tx_clubmanager_domain_model_member.palette.member" approved="yes">
         <source>Member/Person</source>
-        <target state="translated">Mitglied/Person</target>
+        <target state="final">Mitglied/Person</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.palette.address" resname="tx_clubmanager_domain_model_member.palette.address">
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.address" resname="tx_clubmanager_domain_model_member.palette.address" approved="yes">
         <source>Address</source>
-        <target state="translated">Anschrift</target>
+        <target state="final">Anschrift</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.palette.membership" resname="tx_clubmanager_domain_model_member.palette.membership">
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.membership" resname="tx_clubmanager_domain_model_member.palette.membership" approved="yes">
         <source>Membership</source>
-        <target state="translated">Mitgliedschaft</target>
+        <target state="final">Mitgliedschaft</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.palette.account" resname="tx_clubmanager_domain_model_member.palette.account">
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.account" resname="tx_clubmanager_domain_model_member.palette.account" approved="yes">
         <source>Account data</source>
-        <target state="translated">Kontodaten</target>
+        <target state="final">Kontodaten</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.palette.alt_address" resname="tx_clubmanager_domain_model_member.palette.alt_address">
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.alt_address" resname="tx_clubmanager_domain_model_member.palette.alt_address" approved="yes">
         <source>Alternative billing address</source>
-        <target state="translated">Alternative Rechnungsadresse</target>
+        <target state="final">Alternative Rechnungsadresse</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.starttime" resname="tx_clubmanager_domain_model_member.starttime">
+      <trans-unit id="tx_clubmanager_domain_model_member.starttime" resname="tx_clubmanager_domain_model_member.starttime" approved="yes">
         <source>Beginning of membership</source>
-        <target state="translated">Beginn der Mitgliedschaft</target>
+        <target state="final">Beginn der Mitgliedschaft</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.endtime" resname="tx_clubmanager_domain_model_member.endtime">
+      <trans-unit id="tx_clubmanager_domain_model_member.endtime" resname="tx_clubmanager_domain_model_member.endtime" approved="yes">
         <source>End of membership</source>
-        <target state="translated">Ende der Mitgliedschaft</target>
+        <target state="final">Ende der Mitgliedschaft</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.person_type" resname="tx_clubmanager_domain_model_member.person_type">
+      <trans-unit id="tx_clubmanager_domain_model_member.person_type" resname="tx_clubmanager_domain_model_member.person_type" approved="yes">
         <source>Type of person</source>
-        <target state="translated">Typ der Person</target>
+        <target state="final">Typ der Person</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.person_type.natural" resname="tx_clubmanager_domain_model_member.person_type.natural">
+      <trans-unit id="tx_clubmanager_domain_model_member.person_type.natural" resname="tx_clubmanager_domain_model_member.person_type.natural" approved="yes">
         <source>Natural person</source>
-        <target state="translated">Natürliche Person</target>
+        <target state="final">Natürliche Person</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.person_type.juridical" resname="tx_clubmanager_domain_model_member.person_type.juridical">
+      <trans-unit id="tx_clubmanager_domain_model_member.person_type.juridical" resname="tx_clubmanager_domain_model_member.person_type.juridical" approved="yes">
         <source>Legal entity (company, association, etc.)</source>
-        <target state="translated">Juristische Person (Firma, Verein, o.ä.)</target>
+        <target state="final">Juristische Person (Firma, Verein, o.ä.)</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.salutation" resname="tx_clubmanager_domain_model_member.salutation">
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation" resname="tx_clubmanager_domain_model_member.salutation" approved="yes">
         <source>Salutation</source>
-        <target state="translated">Anrede</target>
+        <target state="final">Anrede</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.salutation.other" resname="tx_clubmanager_domain_model_member.salutation.other">
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.other" resname="tx_clubmanager_domain_model_member.salutation.other" approved="yes">
         <source>General</source>
-        <target state="translated">Allgemein</target>
+        <target state="final">Allgemein</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.salutation.male" resname="tx_clubmanager_domain_model_member.salutation.male">
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.male" resname="tx_clubmanager_domain_model_member.salutation.male" approved="yes">
         <source>Mr.</source>
-        <target state="translated">Herr</target>
+        <target state="final">Herr</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.salutation.female" resname="tx_clubmanager_domain_model_member.salutation.female">
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.female" resname="tx_clubmanager_domain_model_member.salutation.female" approved="yes">
         <source>Ms.</source>
-        <target state="translated">Frau</target>
+        <target state="final">Frau</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.salutation.divers" resname="tx_clubmanager_domain_model_member.salutation.divers">
         <source>Divers</source>
         <target state="needs-translation">Divers</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.email" resname="tx_clubmanager_domain_model_member.email">
+      <trans-unit id="tx_clubmanager_domain_model_member.email" resname="tx_clubmanager_domain_model_member.email" approved="yes">
         <source>Email</source>
-        <target state="translated">E-Mail</target>
+        <target state="final">E-Mail</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.phone" resname="tx_clubmanager_domain_model_member.phone">
+      <trans-unit id="tx_clubmanager_domain_model_member.phone" resname="tx_clubmanager_domain_model_member.phone" approved="yes">
         <source>Phone</source>
-        <target state="translated">Telefon</target>
+        <target state="final">Telefon</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.title" resname="tx_clubmanager_domain_model_member.title">
+      <trans-unit id="tx_clubmanager_domain_model_member.title" resname="tx_clubmanager_domain_model_member.title" approved="yes">
         <source>Academic title</source>
-        <target state="translated">Akademischer Titel</target>
+        <target state="final">Akademischer Titel</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.firstname" resname="tx_clubmanager_domain_model_member.firstname">
+      <trans-unit id="tx_clubmanager_domain_model_member.firstname" resname="tx_clubmanager_domain_model_member.firstname" approved="yes">
         <source>Firstname</source>
-        <target state="translated">Vorname</target>
+        <target state="final">Vorname</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.midname" resname="tx_clubmanager_domain_model_member.midname">
+      <trans-unit id="tx_clubmanager_domain_model_member.midname" resname="tx_clubmanager_domain_model_member.midname" approved="yes">
         <source>Middlename</source>
-        <target state="translated">Mittelname</target>
+        <target state="final">Mittelname</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.lastname" resname="tx_clubmanager_domain_model_member.lastname">
+      <trans-unit id="tx_clubmanager_domain_model_member.lastname" resname="tx_clubmanager_domain_model_member.lastname" approved="yes">
         <source>Lastname</source>
-        <target state="translated">Nachname</target>
+        <target state="final">Nachname</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.dateofbirth" resname="tx_clubmanager_domain_model_member.dateofbirth">
+      <trans-unit id="tx_clubmanager_domain_model_member.dateofbirth" resname="tx_clubmanager_domain_model_member.dateofbirth" approved="yes">
         <source>Date of birth</source>
-        <target state="translated">Geburtsdatum</target>
+        <target state="final">Geburtsdatum</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.street" resname="tx_clubmanager_domain_model_member.street">
+      <trans-unit id="tx_clubmanager_domain_model_member.street" resname="tx_clubmanager_domain_model_member.street" approved="yes">
         <source>Street</source>
-        <target state="translated">Straße</target>
+        <target state="final">Straße</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.zip" resname="tx_clubmanager_domain_model_member.zip">
+      <trans-unit id="tx_clubmanager_domain_model_member.zip" resname="tx_clubmanager_domain_model_member.zip" approved="yes">
         <source>Zip</source>
-        <target state="translated">Postleitzahl</target>
+        <target state="final">Postleitzahl</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.city" resname="tx_clubmanager_domain_model_member.city">
+      <trans-unit id="tx_clubmanager_domain_model_member.city" resname="tx_clubmanager_domain_model_member.city" approved="yes">
         <source>City</source>
-        <target state="translated">Ort</target>
+        <target state="final">Ort</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.country" resname="tx_clubmanager_domain_model_member.country">
+      <trans-unit id="tx_clubmanager_domain_model_member.country" resname="tx_clubmanager_domain_model_member.country" approved="yes">
         <source>Country</source>
-        <target state="translated">Land</target>
+        <target state="final">Land</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.ident" resname="tx_clubmanager_domain_model_member.ident">
+      <trans-unit id="tx_clubmanager_domain_model_member.ident" resname="tx_clubmanager_domain_model_member.ident" approved="yes">
         <source>Membership number</source>
-        <target state="translated">Mitgliedsnummer</target>
+        <target state="final">Mitgliedsnummer</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.company" resname="tx_clubmanager_domain_model_member.company">
+      <trans-unit id="tx_clubmanager_domain_model_member.company" resname="tx_clubmanager_domain_model_member.company" approved="yes">
         <source>Company</source>
-        <target state="translated">Firma</target>
+        <target state="final">Firma</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.level" resname="tx_clubmanager_domain_model_member.level">
         <source>Level</source>
         <target state="needs-translation">Level</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.level.0" resname="tx_clubmanager_domain_model_member.level.0">
+      <trans-unit id="tx_clubmanager_domain_model_member.level.0" resname="tx_clubmanager_domain_model_member.level.0" approved="yes">
         <source>Base</source>
-        <target state="translated">Basis</target>
+        <target state="final">Basis</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.level.10" resname="tx_clubmanager_domain_model_member.level.10">
         <source>Bronze</source>
         <target state="needs-translation">Bronze</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.level.20" resname="tx_clubmanager_domain_model_member.level.20">
+      <trans-unit id="tx_clubmanager_domain_model_member.level.20" resname="tx_clubmanager_domain_model_member.level.20" approved="yes">
         <source>Silver</source>
-        <target state="translated">Silber</target>
+        <target state="final">Silber</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.level.30" resname="tx_clubmanager_domain_model_member.level.30">
         <source>Gold</source>
         <target state="needs-translation">Gold</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.direct_debit" resname="tx_clubmanager_domain_model_member.direct_debit">
+      <trans-unit id="tx_clubmanager_domain_model_member.direct_debit" resname="tx_clubmanager_domain_model_member.direct_debit" approved="yes">
         <source>Participates in direct debit</source>
-        <target state="translated">Nimmt am Lastschriftverfahren teil</target>
+        <target state="final">Nimmt am Lastschriftverfahren teil</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.iban" resname="tx_clubmanager_domain_model_member.iban">
         <source>IBAN</source>
@@ -183,337 +183,337 @@
         <source>BIC</source>
         <target state="needs-translation">BIC</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.account" resname="tx_clubmanager_domain_model_member.account">
+      <trans-unit id="tx_clubmanager_domain_model_member.account" resname="tx_clubmanager_domain_model_member.account" approved="yes">
         <source>Account holder</source>
-        <target state="translated">Kontoinhaber</target>
+        <target state="final">Kontoinhaber</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.user" resname="tx_clubmanager_domain_model_member.user">
+      <trans-unit id="tx_clubmanager_domain_model_member.user" resname="tx_clubmanager_domain_model_member.user" approved="yes">
         <source>User</source>
-        <target state="translated">Benutzer</target>
+        <target state="final">Benutzer</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.username" resname="tx_clubmanager_domain_model_member.username">
+      <trans-unit id="tx_clubmanager_domain_model_member.username" resname="tx_clubmanager_domain_model_member.username" approved="yes">
         <source>Username</source>
-        <target state="translated">Benutzername</target>
+        <target state="final">Benutzername</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.main_location" resname="tx_clubmanager_domain_model_member.main_location">
+      <trans-unit id="tx_clubmanager_domain_model_member.main_location" resname="tx_clubmanager_domain_model_member.main_location" approved="yes">
         <source>Main location</source>
-        <target state="translated">Hauptstandort</target>
+        <target state="final">Hauptstandort</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.sub_locations" resname="tx_clubmanager_domain_model_member.sub_locations">
+      <trans-unit id="tx_clubmanager_domain_model_member.sub_locations" resname="tx_clubmanager_domain_model_member.sub_locations" approved="yes">
         <source>Other locations</source>
-        <target state="translated">Weitere Standorte</target>
+        <target state="final">Weitere Standorte</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_name" resname="tx_clubmanager_domain_model_member.alt_billing_name">
         <source>Name</source>
         <target state="needs-translation">Name</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_street" resname="tx_clubmanager_domain_model_member.alt_billing_street">
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_street" resname="tx_clubmanager_domain_model_member.alt_billing_street" approved="yes">
         <source>Street</source>
-        <target state="translated">Straße</target>
+        <target state="final">Straße</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_zip" resname="tx_clubmanager_domain_model_member.alt_billing_zip">
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_zip" resname="tx_clubmanager_domain_model_member.alt_billing_zip" approved="yes">
         <source>Zip</source>
-        <target state="translated">PLZ</target>
+        <target state="final">PLZ</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_city" resname="tx_clubmanager_domain_model_member.alt_billing_city">
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_city" resname="tx_clubmanager_domain_model_member.alt_billing_city" approved="yes">
         <source>City</source>
-        <target state="translated">Stadt</target>
+        <target state="final">Stadt</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_country" resname="tx_clubmanager_domain_model_member.alt_billing_country">
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_country" resname="tx_clubmanager_domain_model_member.alt_billing_country" approved="yes">
         <source>Country</source>
-        <target state="translated">Land</target>
+        <target state="final">Land</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.crdate" resname="tx_clubmanager_domain_model_member.crdate">
+      <trans-unit id="tx_clubmanager_domain_model_member.crdate" resname="tx_clubmanager_domain_model_member.crdate" approved="yes">
         <source>Record created on</source>
-        <target state="translated">Datensatz angelegt am</target>
+        <target state="final">Datensatz angelegt am</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state" resname="tx_clubmanager_domain_model_member.state">
+      <trans-unit id="tx_clubmanager_domain_model_member.state" resname="tx_clubmanager_domain_model_member.state" approved="yes">
         <source>Membership status</source>
-        <target state="translated">Status der Mitgliedschaft</target>
+        <target state="final">Status der Mitgliedschaft</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.unset" resname="tx_clubmanager_domain_model_member.state.unset">
+      <trans-unit id="tx_clubmanager_domain_model_member.state.unset" resname="tx_clubmanager_domain_model_member.state.unset" approved="yes">
         <source>Not set</source>
-        <target state="translated">Nicht gesetzt</target>
+        <target state="final">Nicht gesetzt</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.applied" resname="tx_clubmanager_domain_model_member.state.applied">
+      <trans-unit id="tx_clubmanager_domain_model_member.state.applied" resname="tx_clubmanager_domain_model_member.state.applied" approved="yes">
         <source>Requested</source>
-        <target state="translated">Beantragt</target>
+        <target state="final">Beantragt</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.active" resname="tx_clubmanager_domain_model_member.state.active">
+      <trans-unit id="tx_clubmanager_domain_model_member.state.active" resname="tx_clubmanager_domain_model_member.state.active" approved="yes">
         <source>Active</source>
-        <target state="translated">Aktiv</target>
+        <target state="final">Aktiv</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.suspended" resname="tx_clubmanager_domain_model_member.state.suspended">
+      <trans-unit id="tx_clubmanager_domain_model_member.state.suspended" resname="tx_clubmanager_domain_model_member.state.suspended" approved="yes">
         <source>Resting</source>
-        <target state="translated">Ruhend</target>
+        <target state="final">Ruhend</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info">
+      <trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info" approved="yes">
         <source>Address suffix</source>
-        <target state="translated">Adresszusatz</target>
+        <target state="final">Adresszusatz</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.cancellation_wish" resname="tx_clubmanager_domain_model_member.cancellation_wish">
+      <trans-unit id="tx_clubmanager_domain_model_member.cancellation_wish" resname="tx_clubmanager_domain_model_member.cancellation_wish" approved="yes">
         <source>Cancellation requested</source>
-        <target state="translated">Kündigung gewünscht</target>
+        <target state="final">Kündigung gewünscht</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate">
+      <trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate" approved="yes">
         <source>Reduced membership</source>
-        <target state="translated">Ermäßigte Mitgliedschaft</target>
+        <target state="final">Ermäßigte Mitgliedschaft</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.cancelled" resname="tx_clubmanager_domain_model_member.state.cancelled">
+      <trans-unit id="tx_clubmanager_domain_model_member.state.cancelled" resname="tx_clubmanager_domain_model_member.state.cancelled" approved="yes">
         <source>Cancelled</source>
-        <target state="translated">Gekündigt</target>
+        <target state="final">Gekündigt</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.customfield1" resname="tx_clubmanager_domain_model_member.customfield1">
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield1" resname="tx_clubmanager_domain_model_member.customfield1" approved="yes">
         <source>Additional field 1</source>
-        <target state="translated">Zusatzfeld 1</target>
+        <target state="final">Zusatzfeld 1</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.customfield2" resname="tx_clubmanager_domain_model_member.customfield2">
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield2" resname="tx_clubmanager_domain_model_member.customfield2" approved="yes">
         <source>Additional field 2</source>
-        <target state="translated">Zusatzfeld 2</target>
+        <target state="final">Zusatzfeld 2</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.customfield3" resname="tx_clubmanager_domain_model_member.customfield3">
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield3" resname="tx_clubmanager_domain_model_member.customfield3" approved="yes">
         <source>Additional field 3</source>
-        <target state="translated">Zusatzfeld 3</target>
+        <target state="final">Zusatzfeld 3</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.customfield4" resname="tx_clubmanager_domain_model_member.customfield4">
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield4" resname="tx_clubmanager_domain_model_member.customfield4" approved="yes">
         <source>Additional field 4</source>
-        <target state="translated">Zusatzfeld 4</target>
+        <target state="final">Zusatzfeld 4</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.customfield5" resname="tx_clubmanager_domain_model_member.customfield5">
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield5" resname="tx_clubmanager_domain_model_member.customfield5" approved="yes">
         <source>Additional field 5</source>
-        <target state="translated">Zusatzfeld 5</target>
+        <target state="final">Zusatzfeld 5</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location">
+      <trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location" approved="yes">
         <source>Location</source>
-        <target state="translated">Standort</target>
+        <target state="final">Standort</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.tab.geography" resname="tx_clubmanager_domain_model_location.tab.geography">
+      <trans-unit id="tx_clubmanager_domain_model_location.tab.geography" resname="tx_clubmanager_domain_model_location.tab.geography" approved="yes">
         <source>Geography</source>
-        <target state="translated">Geographie</target>
+        <target state="final">Geographie</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.tab.meta" resname="tx_clubmanager_domain_model_location.tab.meta">
         <source>Meta</source>
         <target state="needs-translation">Meta</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.tab.contacts" resname="tx_clubmanager_domain_model_location.tab.contacts">
+      <trans-unit id="tx_clubmanager_domain_model_location.tab.contacts" resname="tx_clubmanager_domain_model_location.tab.contacts" approved="yes">
         <source>Contact</source>
-        <target state="translated">Kontakt</target>
+        <target state="final">Kontakt</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.tab.socialmedia" resname="tx_clubmanager_domain_model_location.tab.socialmedia">
         <source>Social Media</source>
         <target state="needs-translation">Social Media</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.palette.address" resname="tx_clubmanager_domain_model_location.palette.address">
+      <trans-unit id="tx_clubmanager_domain_model_location.palette.address" resname="tx_clubmanager_domain_model_location.palette.address" approved="yes">
         <source>Address</source>
-        <target state="translated">Anschrift</target>
+        <target state="final">Anschrift</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.palette.person" resname="tx_clubmanager_domain_model_location.palette.person">
+      <trans-unit id="tx_clubmanager_domain_model_location.palette.person" resname="tx_clubmanager_domain_model_location.palette.person" approved="yes">
         <source>Contact person</source>
-        <target state="translated">Ansprechpartner</target>
+        <target state="final">Ansprechpartner</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.hidden" resname="tx_clubmanager_domain_model_location.hidden">
+      <trans-unit id="tx_clubmanager_domain_model_location.hidden" resname="tx_clubmanager_domain_model_location.hidden" approved="yes">
         <source>Hidden</source>
-        <target state="translated">Versteckt</target>
+        <target state="final">Versteckt</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.slug" resname="tx_clubmanager_domain_model_location.slug">
+      <trans-unit id="tx_clubmanager_domain_model_location.slug" resname="tx_clubmanager_domain_model_location.slug" approved="yes">
         <source>URL fragment</source>
-        <target state="translated">URL-Fragment</target>
+        <target state="final">URL-Fragment</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.title" resname="tx_clubmanager_domain_model_location.title">
+      <trans-unit id="tx_clubmanager_domain_model_location.title" resname="tx_clubmanager_domain_model_location.title" approved="yes">
         <source>Academic title</source>
-        <target state="translated">Akademischer Titel</target>
+        <target state="final">Akademischer Titel</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.firstname" resname="tx_clubmanager_domain_model_location.firstname">
+      <trans-unit id="tx_clubmanager_domain_model_location.firstname" resname="tx_clubmanager_domain_model_location.firstname" approved="yes">
         <source>First name</source>
-        <target state="translated">Vorname</target>
+        <target state="final">Vorname</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.midname" resname="tx_clubmanager_domain_model_location.midname">
+      <trans-unit id="tx_clubmanager_domain_model_location.midname" resname="tx_clubmanager_domain_model_location.midname" approved="yes">
         <source>Middle name</source>
-        <target state="translated">Mittelname</target>
+        <target state="final">Mittelname</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.lastname" resname="tx_clubmanager_domain_model_location.lastname">
+      <trans-unit id="tx_clubmanager_domain_model_location.lastname" resname="tx_clubmanager_domain_model_location.lastname" approved="yes">
         <source>Last name</source>
-        <target state="translated">Nachname</target>
+        <target state="final">Nachname</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.info" resname="tx_clubmanager_domain_model_location.info">
+      <trans-unit id="tx_clubmanager_domain_model_location.info" resname="tx_clubmanager_domain_model_location.info" approved="yes">
         <source>Additional information</source>
-        <target state="translated">Zusatzinformation</target>
+        <target state="final">Zusatzinformation</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.company" resname="tx_clubmanager_domain_model_location.company">
+      <trans-unit id="tx_clubmanager_domain_model_location.company" resname="tx_clubmanager_domain_model_location.company" approved="yes">
         <source>Company</source>
-        <target state="translated">Firma</target>
+        <target state="final">Firma</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.street" resname="tx_clubmanager_domain_model_location.street">
+      <trans-unit id="tx_clubmanager_domain_model_location.street" resname="tx_clubmanager_domain_model_location.street" approved="yes">
         <source>Street, number</source>
-        <target state="translated">Straße, Hausnummer</target>
+        <target state="final">Straße, Hausnummer</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.add_address_info" resname="tx_clubmanager_domain_model_location.add_address_info">
+      <trans-unit id="tx_clubmanager_domain_model_location.add_address_info" resname="tx_clubmanager_domain_model_location.add_address_info" approved="yes">
         <source>Address suffix</source>
-        <target state="translated">Adresszusatz</target>
+        <target state="final">Adresszusatz</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.zip" resname="tx_clubmanager_domain_model_location.zip">
+      <trans-unit id="tx_clubmanager_domain_model_location.zip" resname="tx_clubmanager_domain_model_location.zip" approved="yes">
         <source>Zip</source>
-        <target state="translated">PLZ</target>
+        <target state="final">PLZ</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.city" resname="tx_clubmanager_domain_model_location.city">
+      <trans-unit id="tx_clubmanager_domain_model_location.city" resname="tx_clubmanager_domain_model_location.city" approved="yes">
         <source>City</source>
-        <target state="translated">Stadt</target>
+        <target state="final">Stadt</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.latitude" resname="tx_clubmanager_domain_model_location.latitude">
+      <trans-unit id="tx_clubmanager_domain_model_location.latitude" resname="tx_clubmanager_domain_model_location.latitude" approved="yes">
         <source>Latitude</source>
-        <target state="translated">Breitengrad</target>
+        <target state="final">Breitengrad</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.longitude" resname="tx_clubmanager_domain_model_location.longitude">
+      <trans-unit id="tx_clubmanager_domain_model_location.longitude" resname="tx_clubmanager_domain_model_location.longitude" approved="yes">
         <source>Longitude</source>
-        <target state="translated">Längengrad</target>
+        <target state="final">Längengrad</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.search_gps_coordinates" resname="tx_clubmanager_domain_model_location.search_gps_coordinates">
+      <trans-unit id="tx_clubmanager_domain_model_location.search_gps_coordinates" resname="tx_clubmanager_domain_model_location.search_gps_coordinates" approved="yes">
         <source>Search GPS coordinates</source>
-        <target state="translated">GPS Koordinaten suchen</target>
+        <target state="final">GPS Koordinaten suchen</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.country" resname="tx_clubmanager_domain_model_location.country">
+      <trans-unit id="tx_clubmanager_domain_model_location.country" resname="tx_clubmanager_domain_model_location.country" approved="yes">
         <source>Country</source>
-        <target state="translated">Land</target>
+        <target state="final">Land</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.state" resname="tx_clubmanager_domain_model_location.state">
+      <trans-unit id="tx_clubmanager_domain_model_location.state" resname="tx_clubmanager_domain_model_location.state" approved="yes">
         <source>State</source>
-        <target state="translated">Bundesland</target>
+        <target state="final">Bundesland</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.image" resname="tx_clubmanager_domain_model_location.image">
+      <trans-unit id="tx_clubmanager_domain_model_location.image" resname="tx_clubmanager_domain_model_location.image" approved="yes">
         <source>Image</source>
-        <target state="translated">Bild</target>
+        <target state="final">Bild</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.category" resname="tx_clubmanager_domain_model_location.category">
+      <trans-unit id="tx_clubmanager_domain_model_location.category" resname="tx_clubmanager_domain_model_location.category" approved="yes">
         <source>Category</source>
-        <target state="translated">Kategorie</target>
+        <target state="final">Kategorie</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_location.socialmedia" resname="tx_clubmanager_domain_model_location.socialmedia">
+      <trans-unit id="tx_clubmanager_domain_model_location.socialmedia" resname="tx_clubmanager_domain_model_location.socialmedia" approved="yes">
         <source>Social media</source>
-        <target state="translated">Social Media</target>
+        <target state="final">Social Media</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.youtube_video" resname="tx_clubmanager_domain_model_location.youtube_video">
         <source>Youtube Video ID</source>
         <target state="needs-translation">Youtube Video ID</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_user" resname="tx_clubmanager_domain_model_user">
+      <trans-unit id="tx_clubmanager_domain_model_user" resname="tx_clubmanager_domain_model_user" approved="yes">
         <source>User</source>
-        <target state="translated">Benutzer</target>
+        <target state="final">Benutzer</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_user.password" resname="tx_clubmanager_domain_model_user.password">
+      <trans-unit id="tx_clubmanager_domain_model_user.password" resname="tx_clubmanager_domain_model_user.password" approved="yes">
         <source>Password (Empty = Regenerate + Email to user)</source>
-        <target state="translated">Passwort (Leeren = Neugenerierung + E-Mail an Benutzer)</target>
+        <target state="final">Passwort (Leeren = Neugenerierung + E-Mail an Benutzer)</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_user.lastreminderemailsent" resname="tx_clubmanager_domain_model_user.lastreminderemailsent">
+      <trans-unit id="tx_clubmanager_domain_model_user.lastreminderemailsent" resname="tx_clubmanager_domain_model_user.lastreminderemailsent" approved="yes">
         <source>First login reminder email</source>
-        <target state="translated">Erinnerungs-E-Mail zur ersten Anmeldung</target>
+        <target state="final">Erinnerungs-E-Mail zur ersten Anmeldung</target>
       </trans-unit>
-      <trans-unit id="fe_users.tx_extbase_type.Tx_clubmanager_User" resname="fe_users.tx_extbase_type.Tx_clubmanager_User">
+      <trans-unit id="fe_users.tx_extbase_type.Tx_clubmanager_User" resname="fe_users.tx_extbase_type.Tx_clubmanager_User" approved="yes">
         <source>clubmanager user</source>
-        <target state="translated">clubmanager Benutzer</target>
+        <target state="final">clubmanager Benutzer</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_category" resname="tx_clubmanager_domain_model_category">
+      <trans-unit id="tx_clubmanager_domain_model_category" resname="tx_clubmanager_domain_model_category" approved="yes">
         <source>Category</source>
-        <target state="translated">Kategorie</target>
+        <target state="final">Kategorie</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_category.title" resname="tx_clubmanager_domain_model_category.title">
+      <trans-unit id="tx_clubmanager_domain_model_category.title" resname="tx_clubmanager_domain_model_category.title" approved="yes">
         <source>Title</source>
-        <target state="translated">Titel</target>
+        <target state="final">Titel</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_category.description" resname="tx_clubmanager_domain_model_category.description">
+      <trans-unit id="tx_clubmanager_domain_model_category.description" resname="tx_clubmanager_domain_model_category.description" approved="yes">
         <source>Description</source>
-        <target state="translated">Beschreibung</target>
+        <target state="final">Beschreibung</target>
       </trans-unit>
-      <trans-unit id="sys_category.tx_extbase_type.Tx_clubmanager_Category" resname="sys_category.tx_extbase_type.Tx_clubmanager_Category">
+      <trans-unit id="sys_category.tx_extbase_type.Tx_clubmanager_Category" resname="sys_category.tx_extbase_type.Tx_clubmanager_Category" approved="yes">
         <source>clubmanager category</source>
-        <target state="translated">clubmanager Kategorie</target>
+        <target state="final">clubmanager Kategorie</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_country" resname="tx_clubmanager_domain_model_country">
+      <trans-unit id="tx_clubmanager_domain_model_country" resname="tx_clubmanager_domain_model_country" approved="yes">
         <source>Country</source>
-        <target state="translated">Land</target>
+        <target state="final">Land</target>
       </trans-unit>
-      <trans-unit id="static_countries.tx_extbase_type.Tx_clubmanager_Country" resname="static_countries.tx_extbase_type.Tx_clubmanager_Country">
+      <trans-unit id="static_countries.tx_extbase_type.Tx_clubmanager_Country" resname="static_countries.tx_extbase_type.Tx_clubmanager_Country" approved="yes">
         <source>clubmanager country</source>
-        <target state="translated">clubmanager Land</target>
+        <target state="final">clubmanager Land</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_praxis" resname="tx_clubmanager_domain_model_member.alt_praxis">
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_praxis" resname="tx_clubmanager_domain_model_member.alt_praxis" approved="yes">
         <source>Practice / Clinic name</source>
-        <target state="translated">Praxis / Klinikname</target>
+        <target state="final">Praxis / Klinikname</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_street" resname="tx_clubmanager_domain_model_member.alt_street">
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_street" resname="tx_clubmanager_domain_model_member.alt_street" approved="yes">
         <source>Street</source>
-        <target state="translated">Strasse</target>
+        <target state="final">Strasse</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_zip" resname="tx_clubmanager_domain_model_member.alt_zip">
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_zip" resname="tx_clubmanager_domain_model_member.alt_zip" approved="yes">
         <source>Zip</source>
-        <target state="translated">PLZ</target>
+        <target state="final">PLZ</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_city" resname="tx_clubmanager_domain_model_member.alt_city">
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_city" resname="tx_clubmanager_domain_model_member.alt_city" approved="yes">
         <source>City</source>
-        <target state="translated">Stadt</target>
+        <target state="final">Stadt</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_country" resname="tx_clubmanager_domain_model_member.alt_country">
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_country" resname="tx_clubmanager_domain_model_member.alt_country" approved="yes">
         <source>Country</source>
-        <target state="translated">Land</target>
+        <target state="final">Land</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.palette_alt_address" resname="tx_clubmanager_domain_model_member.palette_alt_address">
+      <trans-unit id="tx_clubmanager_domain_model_member.palette_alt_address" resname="tx_clubmanager_domain_model_member.palette_alt_address" approved="yes">
         <source>Alternative billing address</source>
-        <target state="translated">Alternative Rechnungsadresse</target>
+        <target state="final">Alternative Rechnungsadresse</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task" resname="tx_clubmanager_domain_model_mail_task">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task" resname="tx_clubmanager_domain_model_mail_task" approved="yes">
         <source>Email Task</source>
-        <target state="translated">E-Mail Task</target>
+        <target state="final">E-Mail Task</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.mail_to" resname="tx_clubmanager_domain_model_mail_task.mail_to">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.mail_to" resname="tx_clubmanager_domain_model_mail_task.mail_to" approved="yes">
         <source>Email To</source>
-        <target state="translated">E-Mail To</target>
+        <target state="final">E-Mail To</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.mail_from" resname="tx_clubmanager_domain_model_mail_task.mail_from">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.mail_from" resname="tx_clubmanager_domain_model_mail_task.mail_from" approved="yes">
         <source>Email From</source>
-        <target state="translated">E-Mail From</target>
+        <target state="final">E-Mail From</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.generator_class" resname="tx_clubmanager_domain_model_mail_task.generator_class">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.generator_class" resname="tx_clubmanager_domain_model_mail_task.generator_class" approved="yes">
         <source>Email Generator Class</source>
-        <target state="translated">E-Mail Generator Class</target>
+        <target state="final">E-Mail Generator Class</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.generator_arguments" resname="tx_clubmanager_domain_model_mail_task.generator_arguments">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.generator_arguments" resname="tx_clubmanager_domain_model_mail_task.generator_arguments" approved="yes">
         <source>Email Generator Arguments</source>
-        <target state="translated">E-Mail Generator Arguments</target>
+        <target state="final">E-Mail Generator Arguments</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.processed_time" resname="tx_clubmanager_domain_model_mail_task.processed_time">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.processed_time" resname="tx_clubmanager_domain_model_mail_task.processed_time" approved="yes">
         <source>Last processing</source>
-        <target state="translated">Letzte Verarbeitung</target>
+        <target state="final">Letzte Verarbeitung</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.error_time" resname="tx_clubmanager_domain_model_mail_task.error_time">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.error_time" resname="tx_clubmanager_domain_model_mail_task.error_time" approved="yes">
         <source>Last time of error</source>
-        <target state="translated">Letzter Fehlerzeitpunkt</target>
+        <target state="final">Letzter Fehlerzeitpunkt</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.error_message" resname="tx_clubmanager_domain_model_mail_task.error_message">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.error_message" resname="tx_clubmanager_domain_model_mail_task.error_message" approved="yes">
         <source>Error message</source>
-        <target state="translated">Fehlermeldung</target>
+        <target state="final">Fehlermeldung</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.open_tries" resname="tx_clubmanager_domain_model_mail_task.open_tries">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.open_tries" resname="tx_clubmanager_domain_model_mail_task.open_tries" approved="yes">
         <source>Open attempts for delivery</source>
-        <target state="translated">Offenen Versuche für Zustellung</target>
+        <target state="final">Offenen Versuche für Zustellung</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state" resname="tx_clubmanager_domain_model_mail_task.send_state">
         <source>Status</source>
         <target state="needs-translation">Status</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state.0" resname="tx_clubmanager_domain_model_mail_task.send_state.0">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state.0" resname="tx_clubmanager_domain_model_mail_task.send_state.0" approved="yes">
         <source>Will be sent</source>
-        <target state="translated">Wird versendet</target>
+        <target state="final">Wird versendet</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state.1" resname="tx_clubmanager_domain_model_mail_task.send_state.1">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state.1" resname="tx_clubmanager_domain_model_mail_task.send_state.1" approved="yes">
         <source>Processing completed</source>
-        <target state="translated">Verarbeitung abgeschlossen</target>
+        <target state="final">Verarbeitung abgeschlossen</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state.2" resname="tx_clubmanager_domain_model_mail_task.send_state.2">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state.2" resname="tx_clubmanager_domain_model_mail_task.send_state.2" approved="yes">
         <source>Not shipped</source>
-        <target state="translated">Nicht versendet</target>
+        <target state="final">Nicht versendet</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.priority_level" resname="tx_clubmanager_domain_model_mail_task.priority_level">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.priority_level" resname="tx_clubmanager_domain_model_mail_task.priority_level" approved="yes">
         <source>Priority</source>
-        <target state="translated">Priorität</target>
+        <target state="final">Priorität</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_mail_task.priority_level.0" resname="tx_clubmanager_domain_model_mail_task.priority_level.0">
         <source>Minimal</source>
@@ -523,21 +523,21 @@
         <source>Medium</source>
         <target state="needs-translation">Medium</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_mail_task.priority_level.10" resname="tx_clubmanager_domain_model_mail_task.priority_level.10">
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.priority_level.10" resname="tx_clubmanager_domain_model_mail_task.priority_level.10" approved="yes">
         <source>High</source>
-        <target state="translated">Hoch</target>
+        <target state="final">Hoch</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_socialmedia" resname="tx_clubmanager_domain_model_socialmedia">
+      <trans-unit id="tx_clubmanager_domain_model_socialmedia" resname="tx_clubmanager_domain_model_socialmedia" approved="yes">
         <source>Social media</source>
-        <target state="translated">Social Media</target>
+        <target state="final">Social Media</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_socialmedia.url" resname="tx_clubmanager_domain_model_socialmedia.url">
         <source>Url</source>
         <target state="needs-translation">Url</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_socialmedia.type" resname="tx_clubmanager_domain_model_socialmedia.type">
+      <trans-unit id="tx_clubmanager_domain_model_socialmedia.type" resname="tx_clubmanager_domain_model_socialmedia.type" approved="yes">
         <source>Type</source>
-        <target state="translated">Typ</target>
+        <target state="final">Typ</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_socialmedia.type.0" resname="tx_clubmanager_domain_model_socialmedia.type.0">
         <source>Facebook</source>
