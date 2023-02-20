@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns:t3="http://typo3.org/schemas/xliff" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" original="messages" datatype="plaintext" product-name="clubmanager" date="2023-02-16T17:43:36+01:00" target-language="ko">
+    <header/>
+    <body>
+      <trans-unit id="task.MemberLoginReminderTask.title" resname="task.MemberLoginReminderTask.title">
+        <source>Reminder email</source>
+        <target state="needs-translation">Reminder email</target>
+      </trans-unit>
+      <trans-unit id="task.MemberLoginReminderTask.description" resname="task.MemberLoginReminderTask.description">
+        <source>Reminder email to members who have never registered before</source>
+        <target state="needs-translation">Reminder email to members who have never registered before</target>
+      </trans-unit>
+      <trans-unit id="task.MemberLoginReminderTask.arg.MIN_DAY_PERIOD" resname="task.MemberLoginReminderTask.arg.MIN_DAY_PERIOD">
+        <source>Days until reminder</source>
+        <target state="needs-translation">Days until reminder</target>
+      </trans-unit>
+      <trans-unit id="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST" resname="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST">
+        <source>List of PID's for members, comma-separated (e.g. '147,55,99', blank for all).</source>
+        <target state="needs-translation">List of PID's for members, comma-separated (e.g. '147,55,99', blank for all).</target>
+      </trans-unit>
+      <trans-unit id="task.MailServiceTask.title" resname="task.MailServiceTask.title">
+        <source>Email service</source>
+        <target state="needs-translation">Email service</target>
+      </trans-unit>
+      <trans-unit id="task.MailServiceTask.description" resname="task.MailServiceTask.description">
+        <source>Service for sending e-mails</source>
+        <target state="needs-translation">Service for sending e-mails</target>
+      </trans-unit>
+      <trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg">
+        <source>Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </source>
+        <target state="needs-translation">Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </target>
+      </trans-unit>
+      <trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS" resname="task.MailServiceTask.arg.MAX_NUM_MAILS">
+        <source>Maximum number of emails per run</source>
+        <target state="needs-translation">Maximum number of emails per run</target>
+      </trans-unit>
+      <trans-unit id="task.general.errors.invalid_value" resname="task.general.errors.invalid_value">
+        <source>Invalid value for field: %1</source>
+        <target state="needs-translation">Invalid value for field: %1</target>
+      </trans-unit>
+      <trans-unit id="content_element.citieslist" resname="content_element.citieslist">
+        <source>City overview</source>
+        <target state="needs-translation">City overview</target>
+      </trans-unit>
+      <trans-unit id="content_element.citieslist.description" resname="content_element.citieslist.description">
+        <source>Output of the city overview</source>
+        <target state="needs-translation">Output of the city overview</target>
+      </trans-unit>
+      <trans-unit id="content_element.city" resname="content_element.city">
+        <source>Locations per city</source>
+        <target state="needs-translation">Locations per city</target>
+      </trans-unit>
+      <trans-unit id="content_element.city.description" resname="content_element.city.description">
+        <source>Output of the locations for a city</source>
+        <target state="needs-translation">Output of the locations for a city</target>
+      </trans-unit>
+      <trans-unit id="content_element.member" resname="content_element.member">
+        <source>Member single view</source>
+        <target state="needs-translation">Member single view</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.description" resname="content_element.member.description">
+        <source>Detail output of a member</source>
+        <target state="needs-translation">Detail output of a member</target>
+      </trans-unit>
+      <trans-unit id="content_element.location" resname="content_element.location">
+        <source>Location single output</source>
+        <target state="needs-translation">Location single output</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.description" resname="content_element.location.description">
+        <source>Detail output of a location</source>
+        <target state="needs-translation">Detail output of a location</target>
+      </trans-unit>
+      <trans-unit id="content_element.locationlist" resname="content_element.locationlist">
+        <source>Location list</source>
+        <target state="needs-translation">Location list</target>
+      </trans-unit>
+      <trans-unit id="content_element.locationlist.description" resname="content_element.locationlist.description">
+        <source>List of all locations</source>
+        <target state="needs-translation">List of all locations</target>
+      </trans-unit>
+      <trans-unit id="content_element.memberlist" resname="content_element.memberlist">
+        <source>List of members</source>
+        <target state="needs-translation">List of members</target>
+      </trans-unit>
+      <trans-unit id="content_element.memberlist.description" resname="content_element.memberlist.description">
+        <source>List of all members</source>
+        <target state="needs-translation">List of all members</target>
+      </trans-unit>
+      <trans-unit id="storagesettings" resname="storagesettings">
+        <source>Settings</source>
+        <target state="needs-translation">Settings</target>
+      </trans-unit>
+      <trans-unit id="storagesettings.detail_city_page" resname="storagesettings.detail_city_page">
+        <source>City overview page</source>
+        <target state="needs-translation">City overview page</target>
+      </trans-unit>
+      <trans-unit id="storagesettings.detail_member_page" resname="storagesettings.detail_member_page">
+        <source>Members page</source>
+        <target state="needs-translation">Members page</target>
+      </trans-unit>
+      <trans-unit id="backend_main_module_name" resname="backend_main_module_name">
+        <source>Clubmanager</source>
+        <target state="needs-translation">Clubmanager</target>
+      </trans-unit>
+      <trans-unit id="bem-toolbox.edit" resname="bem-toolbox.edit">
+        <source>Edit</source>
+        <target state="needs-translation">Edit</target>
+      </trans-unit>
+      <trans-unit id="bem-toolbox.delete" resname="bem-toolbox.delete">
+        <source>Delete</source>
+        <target state="needs-translation">Delete</target>
+      </trans-unit>
+      <trans-unit id="mlang_tabs_tab_memberlist" resname="mlang_tabs_tab_memberlist">
+        <source>List of members</source>
+        <target state="needs-translation">List of members</target>
+      </trans-unit>
+      <trans-unit id="mlang_tabs_tab_mailtasks" resname="mlang_tabs_tab_mailtasks">
+        <source>Mailjournal</source>
+        <target state="needs-translation">Mailjournal</target>
+      </trans-unit>
+      <trans-unit id="mlang_tabs_tab_settlements" resname="mlang_tabs_tab_settlements">
+        <source>Billing</source>
+        <target state="needs-translation">Billing</target>
+      </trans-unit>
+      <trans-unit id="mlang_tabs_tab_membershipstatistics" resname="mlang_tabs_tab_membershipstatistics">
+        <source>Statistics</source>
+        <target state="needs-translation">Statistics</target>
+      </trans-unit>
+      <trans-unit id="mlang_tabs_tab_events" resname="mlang_tabs_tab_events">
+        <source>Events</source>
+        <target state="needs-translation">Events</target>
+      </trans-unit>
+      <trans-unit id="bem.apiCall.flash.error.title" resname="bem.apiCall.flash.error.title">
+        <source>Error</source>
+        <target state="needs-translation">Error</target>
+      </trans-unit>
+      <trans-unit id="module.title" resname="module.title">
+        <source>Quicko - The Clubmanager</source>
+        <target state="needs-translation">Quicko - The Clubmanager</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.title" resname="module.memberlist.title">
+        <source>Member list module</source>
+        <target state="needs-translation">Member list module</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.lead_intro" resname="module.memberlist.lead_intro">
+        <source>The member list module is part of the clubmanager_pro extension.</source>
+        <target state="needs-translation">The member list module is part of the clubmanager_pro extension.</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.lead_full" resname="module.memberlist.lead_full">
+        <source>Your club already has %d members with %d locations.</source>
+        <target state="needs-translation">Your club already has %d members with %d locations.</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.lead_none" resname="module.memberlist.lead_none">
+        <source>Have you finished setting up the club manager? No members were found.</source>
+        <target state="needs-translation">Have you finished setting up the club manager? No members were found.</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.subtitle" resname="module.memberlist.subtitle">
+        <source>Clubmanager Pro</source>
+        <target state="needs-translation">Clubmanager Pro</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.features.title" resname="module.memberlist.features.title">
+        <source>Features</source>
+        <target state="needs-translation">Features</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.features.1" resname="module.memberlist.features.1">
+        <source>Backend module for member management</source>
+        <target state="needs-translation">Backend module for member management</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.features.2" resname="module.memberlist.features.2">
+        <source>Mail journal module for mail task management</source>
+        <target state="needs-translation">Mail journal module for mail task management</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.features.3" resname="module.memberlist.features.3">
+        <source>Dynamic registration process for new members via web form</source>
+        <target state="needs-translation">Dynamic registration process for new members via web form</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.features.4" resname="module.memberlist.features.4">
+        <source>Automated cancellation process for members</source>
+        <target state="needs-translation">Automated cancellation process for members</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.features.5" resname="module.memberlist.features.5">
+        <source>Prioritization of members (e.g. for advertising purposes)</source>
+        <target state="needs-translation">Prioritization of members (e.g. for advertising purposes)</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.tip" resname="module.memberlist.tip">
+        <source>Tip</source>
+        <target state="needs-translation">Tip</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.tip.text" resname="module.memberlist.tip.text">
+        <source>Have a look at `Quicko - Clubmanager Pro` for more information about `ext:clubmanager_pro`.</source>
+        <target state="needs-translation">Have a look at `Quicko - Clubmanager Pro` for more information about `ext:clubmanager_pro`.</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.tip.link.text" resname="module.memberlist.tip.link.text">
+        <source>More Information</source>
+        <target state="needs-translation">More Information</target>
+      </trans-unit>
+      <trans-unit id="module.memberlist.tip.link.url" resname="module.memberlist.tip.link.url">
+        <source>https://quicko.software/en/modules/pro/</source>
+        <target state="needs-translation">https://quicko.software/en/modules/pro/</target>
+      </trans-unit>
+      <trans-unit id="module.mailtasks.title" resname="module.mailtasks.title">
+        <source>Mailjournal Module</source>
+        <target state="needs-translation">Mailjournal Module</target>
+      </trans-unit>
+      <trans-unit id="module.mailtasks.lead_intro" resname="module.mailtasks.lead_intro">
+        <source>The mail journal module is part of the clubmanager_pro extension. Keep track of the mails sent by the system.</source>
+        <target state="needs-translation">The mail journal module is part of the clubmanager_pro extension. Keep track of the mails sent by the system.</target>
+      </trans-unit>
+      <trans-unit id="module.mailtasks.lead_full" resname="module.mailtasks.lead_full">
+        <source>Your club has already sent %d mails to %d members.</source>
+        <target state="needs-translation">Your club has already sent %d mails to %d members.</target>
+      </trans-unit>
+      <trans-unit id="module.mailtasks.lead_none" resname="module.mailtasks.lead_none">
+        <source>Have you finished setting up the club manager? No mails to members were found.</source>
+        <target state="needs-translation">Have you finished setting up the club manager? No mails to members were found.</target>
+      </trans-unit>
+      <trans-unit id="module.billing.title" resname="module.billing.title">
+        <source>Billing module</source>
+        <target state="needs-translation">Billing module</target>
+      </trans-unit>
+      <trans-unit id="module.billing.lead_intro" resname="module.billing.lead_intro">
+        <source>The billing module is part of the clubmanager_billing extension.</source>
+        <target state="needs-translation">The billing module is part of the clubmanager_billing extension.</target>
+      </trans-unit>
+      <trans-unit id="module.billing.subtitle" resname="module.billing.subtitle">
+        <source>Clubmanager Billing</source>
+        <target state="needs-translation">Clubmanager Billing</target>
+      </trans-unit>
+      <trans-unit id="module.billing.features.title" resname="module.billing.features.title">
+        <source>Features</source>
+        <target state="needs-translation">Features</target>
+      </trans-unit>
+      <trans-unit id="module.billing.features.1" resname="module.billing.features.1">
+        <source>Extension of member management with bank data</source>
+        <target state="needs-translation">Extension of member management with bank data</target>
+      </trans-unit>
+      <trans-unit id="module.billing.features.2" resname="module.billing.features.2">
+        <source>Set up different contributions and payment frequency</source>
+        <target state="needs-translation">Set up different contributions and payment frequency</target>
+      </trans-unit>
+      <trans-unit id="module.billing.features.3" resname="module.billing.features.3">
+        <source>One-time admission fee possible</source>
+        <target state="needs-translation">One-time admission fee possible</target>
+      </trans-unit>
+      <trans-unit id="module.billing.features.4" resname="module.billing.features.4">
+        <source>Collect membership fees: Submit collection file for house bank</source>
+        <target state="needs-translation">Collect membership fees: Submit collection file for house bank</target>
+      </trans-unit>
+      <trans-unit id="module.billing.features.5" resname="module.billing.features.5">
+        <source>Invoice dispatch via e-mail</source>
+        <target state="needs-translation">Invoice dispatch via e-mail</target>
+      </trans-unit>
+      <trans-unit id="module.billing.features.6" resname="module.billing.features.6">
+        <source>Invoice retrieval in personalized login area</source>
+        <target state="needs-translation">Invoice retrieval in personalized login area</target>
+      </trans-unit>
+      <trans-unit id="module.billing.features.7" resname="module.billing.features.7">
+        <source>Search functions</source>
+        <target state="needs-translation">Search functions</target>
+      </trans-unit>
+      <trans-unit id="module.billing.tip" resname="module.billing.tip">
+        <source>Tip</source>
+        <target state="needs-translation">Tip</target>
+      </trans-unit>
+      <trans-unit id="module.billing.tip.text" resname="module.billing.tip.text">
+        <source>Have a look at `Quicko - Clubmanager Billing` for more information about `ext:clubmanager_billing`.</source>
+        <target state="needs-translation">Have a look at `Quicko - Clubmanager Billing` for more information about `ext:clubmanager_billing`.</target>
+      </trans-unit>
+      <trans-unit id="module.billing.tip.link.text" resname="module.billing.tip.link.text">
+        <source>More Information</source>
+        <target state="needs-translation">More Information</target>
+      </trans-unit>
+      <trans-unit id="module.billing.tip.link.url" resname="module.billing.tip.link.url">
+        <source>https://quicko.software/en/modules/billing/</source>
+        <target state="needs-translation">https://quicko.software/en/modules/billing/</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.title" resname="module.calendar.title">
+        <source>Event module</source>
+        <target state="needs-translation">Event module</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.lead_intro" resname="module.calendar.lead_intro">
+        <source>The event module is part of the clubmanager_calendar and complementary to the clubmanager_conference extension.</source>
+        <target state="needs-translation">The event module is part of the clubmanager_calendar and complementary to the clubmanager_conference extension.</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.subtitle" resname="module.calendar.subtitle">
+        <source>Club Manager Calendar and Club Manager Conference</source>
+        <target state="needs-translation">Club Manager Calendar and Club Manager Conference</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.features.title" resname="module.calendar.features.title">
+        <source>Features</source>
+        <target state="needs-translation">Features</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.features.1" resname="module.calendar.features.1">
+        <source>Appointment scheduling (`ext:clubmanager_calendar`)</source>
+        <target state="needs-translation">Appointment scheduling (`ext:clubmanager_calendar`)</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.features.2" resname="module.calendar.features.2">
+        <source>Booking appointments for members (`ext:clubmanager_calendar`)</source>
+        <target state="needs-translation">Booking appointments for members (`ext:clubmanager_calendar`)</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.features.3" resname="module.calendar.features.3">
+        <source>Event Management (`ext:clubmanager_conference`)</source>
+        <target state="needs-translation">Event Management (`ext:clubmanager_conference`)</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.features.4" resname="module.calendar.features.4">
+        <source>Bookings with costs  (`ext:clubmanager_conference`)</source>
+        <target state="needs-translation">Bookings with costs  (`ext:clubmanager_conference`)</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.features.5" resname="module.calendar.features.5">
+        <source>More to come</source>
+        <target state="needs-translation">More to come</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.tip" resname="module.calendar.tip">
+        <source>Tip</source>
+        <target state="needs-translation">Tip</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.tip.text" resname="module.calendar.tip.text">
+        <source>More information about `ext:clubmanager_calendar` and  `ext:clubmanager_conference` is coming soon.</source>
+        <target state="needs-translation">More information about `ext:clubmanager_calendar` and  `ext:clubmanager_conference` is coming soon.</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.tip.link.text" resname="module.calendar.tip.link.text">
+        <source>See all our clubmanager modules</source>
+        <target state="needs-translation">See all our clubmanager modules</target>
+      </trans-unit>
+      <trans-unit id="module.calendar.tip.link.url" resname="module.calendar.tip.link.url">
+        <source>https://quicko.software/en/modules/</source>
+        <target state="needs-translation">https://quicko.software/en/modules/</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.title" resname="module.statistics.title">
+        <source>Statistics module</source>
+        <target state="needs-translation">Statistics module</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.lead_intro" resname="module.statistics.lead_intro">
+        <source>The statistics module is part of the clubmanager_statistics extension.</source>
+        <target state="needs-translation">The statistics module is part of the clubmanager_statistics extension.</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.subtitle" resname="module.statistics.subtitle">
+        <source>Clubmanager Statistics</source>
+        <target state="needs-translation">Clubmanager Statistics</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.features.title" resname="module.statistics.features.title">
+        <source>Features</source>
+        <target state="needs-translation">Features</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.features.1" resname="module.statistics.features.1">
+        <source>Membership development statistics</source>
+        <target state="needs-translation">Membership development statistics</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.features.2" resname="module.statistics.features.2">
+        <source>Visitor analysis</source>
+        <target state="needs-translation">Visitor analysis</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.features.3" resname="module.statistics.features.3">
+        <source>More to come</source>
+        <target state="needs-translation">More to come</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.features.4" resname="module.statistics.features.4">
+        <source>More to come</source>
+        <target state="needs-translation">More to come</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.tip" resname="module.statistics.tip">
+        <source>Tip</source>
+        <target state="needs-translation">Tip</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.tip.text" resname="module.statistics.tip.text">
+        <source>More information about `ext:clubmanager_statistics` is coming soon.</source>
+        <target state="needs-translation">More information about `ext:clubmanager_statistics` is coming soon.</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.tip.link.text" resname="module.statistics.tip.link.text">
+        <source>See all our clubmanager modules</source>
+        <target state="needs-translation">See all our clubmanager modules</target>
+      </trans-unit>
+      <trans-unit id="module.statistics.tip.link.url" resname="module.statistics.tip.link.url">
+        <source>https://quicko.software/en/modules/</source>
+        <target state="needs-translation">https://quicko.software/en/modules/</target>
+      </trans-unit>
+      <trans-unit id="module.info" resname="module.info">
+        <source>Note</source>
+        <target state="needs-translation">Note</target>
+      </trans-unit>
+      <trans-unit id="module.info.text" resname="module.info.text">
+        <source>Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</source>
+        <target state="needs-translation">Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</target>
+      </trans-unit>
+      <trans-unit id="module.info.link.text" resname="module.info.link.text">
+        <source>Submit request now</source>
+        <target state="needs-translation">Submit request now</target>
+      </trans-unit>
+      <trans-unit id="module.info.link.url" resname="module.info.link.url">
+        <source>https://quicko.software/en/contact-us/</source>
+        <target state="needs-translation">https://quicko.software/en/contact-us/</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
