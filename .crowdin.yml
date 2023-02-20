@@ -1,8 +1,5 @@
 files:
   - source: /Resources/Private/Language/
     ignore:
-      - /Resources/Private/Language/Backup/
-      - /Resources/Private/Language/de.locallang.xlf
-      - /Resources/Private/Language/de.locallang_be.xlf
-      - /Resources/Private/Language/de.locallang_db.xlf
+      - /Resources/Private/Language/Overrides/
     translation: /%original_path%/%two_letters_code%.%original_file_name%
