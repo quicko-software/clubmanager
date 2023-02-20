@@ -73,7 +73,7 @@
       </trans-unit>
       <trans-unit id="mail.footer.copyright" resname="mail.footer.copyright">
         <source>© 2023 </source>
-        <target state="needs-translation">© 2023 </target>
+        <target state="translated">© 2023 </target>
       </trans-unit>
       <trans-unit id="mail.footer.imprint" resname="mail.footer.imprint">
         <source>Legal notice</source>
