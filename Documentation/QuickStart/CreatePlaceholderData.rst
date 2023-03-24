@@ -47,6 +47,8 @@ Run upgrade wizard
 
 1000 member records with associated location and frontend user record were created.
 In addition, system categories were created for sorting of member and site records.
+The system categories will be created on the root page of your pagetree. You can
+transfer them afterwards to your "Sys Categories Storage".
 
 .. note::
 
