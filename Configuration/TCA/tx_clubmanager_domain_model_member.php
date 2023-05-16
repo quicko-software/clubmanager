@@ -20,7 +20,7 @@ return [
             'starttime' => 'starttime',
             'endtime'   => 'endtime',
         ],
-        'searchFields' => 'searchfield,ident,email,phone,title,firstname,midname,lastname,company,street,zip,city,iban,bic,account,alt_billing_name,alt_billing_street,alt_billing_zip,alt_billing_city,customfield1,customfield2,customfield3,customfield4,customfield5',
+        'searchFields' => 'searchfield,ident,email,phone,telefax,title,firstname,midname,lastname,company,street,zip,city,iban,bic,account,alt_billing_name,alt_billing_street,alt_billing_zip,alt_billing_city,customfield1,customfield2,customfield3,customfield4,customfield5,customfield5',
         'iconfile'     => 'EXT:clubmanager/Resources/Public/Icons/member.svg',
     ],
     'types'     => [
@@ -36,7 +36,7 @@ return [
                     --palette--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.palette.account; bank_account,
                     --palette--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.palette.alt_address; alt_address,
                 --div--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category, categories,
-                --div--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.tab.customfields, customfield1, customfield2, customfield3, customfield4, customfield5,
+                --div--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.tab.customfields, customfield1, customfield2, customfield3, customfield4, customfield5, customfield6,
 		        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, hidden, crdate',
         ],
     ],
@@ -48,13 +48,13 @@ return [
                 state, level, --linebreak--,
                 reduced_rate, cancellation_wish, --linebreak--,
                 starttime, endtime,--linebreak--,
-                email, phone, --linebreak--,
+                email, phone, telefax,--linebreak--,
                 feuser
             '
         ],
         'member' => [
             'showitem' => '
-                person_type, --linebreak--,
+                person_type, nationality,--linebreak--,
                 salutation, title, --linebreak--,
                 firstname, midname, --linebreak--, 
                 lastname,  dateofbirth
@@ -177,6 +177,15 @@ return [
                 'eval'       => 'required',
             ],
         ],
+        'nationality' => [
+            'exclude' => true,
+            'label'   => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.nationality',
+            'config'  => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim',
+            ],
+        ],
 
         'salutation' => [
             'exclude' => true,
@@ -196,7 +205,7 @@ return [
         ],
 
 
-        'title'            => [
+        'title' => [
             'exclude' => true,
             'label'   => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.title',
             'config'  => [
@@ -258,7 +267,7 @@ return [
             'label'   => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.email',
             'config'  => [
                 'type' => 'input',
-                'size' => 30,
+                'size' => 20,
                 'eval' => 'trim,email',
             ],
         ],
@@ -267,7 +276,16 @@ return [
             'label'   => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.phone',
             'config'  => [
                 'type' => 'input',
-                'size' => 30,
+                'size' => 20,
+                'eval' => 'trim',
+            ],
+        ],
+        'telefax'          => [
+            'exclude' => true,
+            'label'   => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.telefax',
+            'config'  => [
+                'type' => 'input',
+                'size' => 20,
                 'eval' => 'trim',
             ],
         ],
@@ -606,6 +624,14 @@ return [
         'customfield5' => [
             'exclude' => true,
             'label'   => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.customfield5',
+            'config'  => [
+                'type' => 'input',
+                'eval' => 'trim',
+            ],
+        ],
+        'customfield6' => [
+            'exclude' => true,
+            'label'   => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.customfield6',
             'config'  => [
                 'type' => 'input',
                 'eval' => 'trim',

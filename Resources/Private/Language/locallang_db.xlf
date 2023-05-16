@@ -60,6 +60,9 @@
 			<trans-unit id="tx_clubmanager_domain_model_member.person_type.juridical" resname="tx_clubmanager_domain_model_member.person_type.juridical">
 				<source>Legal entity (company, association, etc.)</source>
 			</trans-unit>
+            <trans-unit id="tx_clubmanager_domain_model_member.nationality" resname="tx_clubmanager_domain_model_member.nationality">
+                <source>Nationality</source>
+            </trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.salutation" resname="tx_clubmanager_domain_model_member.salutation">
 				<source>Salutation</source>
 			</trans-unit>
@@ -80,6 +83,9 @@
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.phone" resname="tx_clubmanager_domain_model_member.phone">
 				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.telefax" resname="tx_clubmanager_domain_model_member.telefax">
+				<source>Telefax</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.title" resname="tx_clubmanager_domain_model_member.title">
 				<source>Academic title</source>
@@ -212,6 +218,9 @@
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.customfield5" resname="tx_clubmanager_domain_model_member.customfield5">
 				<source>Additional field 5</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.customfield6" resname="tx_clubmanager_domain_model_member.customfield6">
+				<source>Additional field 6</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location">
 				<source>Location</source>
