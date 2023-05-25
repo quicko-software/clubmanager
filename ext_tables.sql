@@ -26,6 +26,7 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 	street varchar(255) DEFAULT '' NOT NULL,
 	zip varchar(255) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
+    federal_state int(11) unsigned DEFAULT '0',
 	country int(11) unsigned DEFAULT '0',
 	
 	ident varchar(255) DEFAULT '' NOT NULL,

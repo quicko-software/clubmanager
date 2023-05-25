@@ -65,7 +65,7 @@ return [
                 company, add_address_info, --linebreak--,
                 street, --linebreak--,
                 zip, city, --linebreak--,
-                country, --linebreak--,
+                country, federal_state
             '
         ],
         'bank_account' => [
@@ -338,6 +338,18 @@ return [
                 'default'             => 54,
                 'minitems'            => 0,
                 'maxitems'            => 1,
+            ],
+        ],
+        'federal_state'       => [
+            'exclude' => 0,
+            'label'   => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.federal_state',
+            'config'  => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => \Quicko\Clubmanager\Domain\Helper\States::getStates(),
+                'size'       => 1,
+                'minitems'   => 0,
+                'maxitems'   => 1,
             ],
         ],
 

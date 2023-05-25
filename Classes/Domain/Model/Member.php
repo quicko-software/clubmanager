@@ -10,6 +10,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 
 use Quicko\Clubmanager\Domain\Model\FrontendUser;
 use Quicko\Clubmanager\Domain\Model\Country;
+use Quicko\Clubmanager\Domain\Helper\States;
 
 class Member extends AbstractEntity
 {
@@ -172,6 +173,11 @@ class Member extends AbstractEntity
      * @var \string
      */
     protected $city = '';
+
+    /**
+     * @var \int
+     */
+    protected $federalState;
 
     /**
      * @var Country
@@ -406,6 +412,26 @@ class Member extends AbstractEntity
     public function setCountry(Country $country)
     {
         $this->country = $country;
+    }
+
+    public function getFederalState()
+    {
+        return $this->federalState;
+    }
+
+    public function setFederalState($federalState)
+    {
+        $this->federalState = $federalState;
+    }
+
+    public function getFederalStateName() : string {
+        $states = States::getStates();
+        foreach($states as $stateArray) {
+            if($stateArray[1] == $this->federalState) {
+                return $stateArray[0];
+            }
+        }
+        return "";
     }
 
     public function getCompany()

@@ -151,6 +151,10 @@
 				<source>Country</source>
 				<target>Land</target>
 			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.federal_state" resname="tx_clubmanager_domain_model_member.federal_state">
+				<source>Federal state</source>
+				<target>Bundesland</target>
+			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.ident" resname="tx_clubmanager_domain_model_member.ident">
 				<source>Membership number</source>
 				<target>Mitgliedsnummer</target>
