@@ -257,7 +257,7 @@ return [
                 'type' => 'input',
                 'default' => 0,
                 'size' => 30,
-                'eval' => 'datetime,int',
+                'eval' => 'date,int',
                 'renderType' => 'inputDateTime',
             ]
         ],
