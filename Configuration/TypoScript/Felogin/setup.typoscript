@@ -1,9 +1,9 @@
-//FELOGIN
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/setup.typoscript">
+// FELOGIN
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/setup.typoscript" condition="extension.isLoaded('felogin') == 1">
 
 plugin.tx_felogin_login.view.templateRootPaths.10 = EXT:clubmanager/Resources/Private/Extensions/Felogin/Templates/
 
-//LOGIN ON EVERY PAGE
+// LOGIN ON EVERY PAGE
 lib.login >
 lib.login = COA_INT
 lib.login {
@@ -19,7 +19,7 @@ lib.login {
     }
 }
 
-//SHOW MODAL ON PAGE LOGIN ON LOAD
+// SHOW MODAL ON PAGE LOGIN ON LOAD
 [page["uid"] == {$styles.content.loginform.loginFormPid}]
     lib.login >
     lib.login = USER
@@ -30,7 +30,7 @@ lib.login {
 
         settings < plugin.tx_felogin_login.settings
         settings {
-            //pages = 57
+            // pages = 57
         }
     }
     page {
@@ -40,7 +40,7 @@ lib.login {
     }
 [END]
 
-//If USER IS LOGGED IN
+// If USER IS LOGGED IN
 [frontend.user.isLoggedIn]
     lib.login >
     lib.login = COA_INT
@@ -58,7 +58,7 @@ lib.login {
                     parameter = {$styles.content.loginform.memberProfilePage}
                 }
             }
-            //OUTCOMMENTED BECAUSE ext:clubmanager HAS NO INDIVIDUAL PROFILE SUPPORT --> SEE https://quicko.software/clubmanager_pro FOR MORE
+            // OUTCOMMENTED BECAUSE ext:clubmanager HAS NO INDIVIDUAL PROFILE SUPPORT --> SEE https:// quicko.software/clubmanager_pro FOR MORE
             10 >
             20 = TEXT
             20 {
@@ -75,7 +75,7 @@ lib.login {
     }
 [end]
 
-//CHANGE LOCALIZATION TO YOUR NEEDS
+// CHANGE LOCALIZATION TO YOUR NEEDS
 plugin.tx_felogin_login {
     _LOCAL_LANG.de  {
         welcome_header =
@@ -126,7 +126,7 @@ Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s.
 
 Mit freundlichen Grüßen,
 Ihr Quicko - Der Clubmanager
-https://quicko.software
+https:// quicko.software
         )
         forgot_validate_reset_password_html (
 Ihr neues Quicko-Passwort
@@ -138,7 +138,7 @@ diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Si
 Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s. Sollten Sie den Link bis dahin nicht besucht haben, müssen Sie ein neues Passwort anfordern.
 Mit freundlichen Grüßen,
 Ihr Quicko - Der Clubmanager
-https://quicko.software
+https:// quicko.software
         )
         forgot_validate_reset_password_plaintext (
 Ihr neues Quicko-Passwort
@@ -153,7 +153,7 @@ Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s.
 
 Mit freundlichen Grüßen,
 Ihr Quicko - Der Clubmanager
-https://quicko.software
+https:// quicko.software
         )
     }
     default {
