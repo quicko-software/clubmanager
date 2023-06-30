@@ -263,6 +263,10 @@
         <source>Phone:</source>
         <target state="final">Telefon:</target>
       </trans-unit>
+      <trans-unit id="content_element.location.label.telefax" resname="content_element.location.label.telefax">
+        <source>Telefax:</source>
+        <target state="needs-translation">Telefax:</target>
+      </trans-unit>
       <trans-unit id="content_element.location.label.mobile" resname="content_element.location.label.mobile" approved="yes">
         <source>Mobile:</source>
         <target state="final">Mobil:</target>
