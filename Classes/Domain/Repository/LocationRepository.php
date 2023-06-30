@@ -26,6 +26,18 @@ class LocationRepository extends Repository
     )->execute();
   }
 
+  public function findByUidWithoutStorageRestrictions($uid) 
+  {
+    $query = $this->createQuery();
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    return $query->matching(
+      $query->logicalAnd(
+        $query->equals('uid', $uid),
+      )
+    )->execute();
+  }
+
   public function findByCity($cityName)
   {
     $query = $this->createQuery();
@@ -233,4 +245,6 @@ class LocationRepository extends Repository
     $query = $this->createQueryByMemberUidWithHidden($memberUid, 1);
     return $query->execute();
   }
+
+
 }

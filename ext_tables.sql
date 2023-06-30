@@ -18,6 +18,7 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 	midname varchar(255) DEFAULT '' NOT NULL,
 	lastname varchar(255) DEFAULT '' NOT NULL,
 	dateofbirth bigint(20) DEFAULT '0' NOT NULL,
+	nationality varchar(255) DEFAULT '' NOT NULL,
 	cancellation_wish int(11) unsigned DEFAULT '0',
 	reduced_rate int(11) unsigned DEFAULT '0',
 	company varchar(255) DEFAULT '' NOT NULL,
@@ -25,12 +26,14 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 	street varchar(255) DEFAULT '' NOT NULL,
 	zip varchar(255) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
+    federal_state int(11) unsigned DEFAULT '0',
 	country int(11) unsigned DEFAULT '0',
 	
 	ident varchar(255) DEFAULT '' NOT NULL,
 	state int(11) DEFAULT '0' NOT NULL,
 	email varchar(255) DEFAULT '' NOT NULL,
 	phone varchar(255) DEFAULT '' NOT NULL,
+	telefax varchar(255) DEFAULT '' NOT NULL,
 	feuser int(11) unsigned DEFAULT '0',
 
 	iban varchar(255) DEFAULT '' NOT NULL,
@@ -54,6 +57,7 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 	customfield3 varchar(255) DEFAULT '' NOT NULL,
 	customfield4 varchar(255) DEFAULT '' NOT NULL,
 	customfield5 varchar(255) DEFAULT '' NOT NULL,
+	customfield6 varchar(255) DEFAULT '' NOT NULL,
 
 	categories int(11) DEFAULT '0' NOT NULL,
 
