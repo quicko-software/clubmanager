@@ -5,7 +5,7 @@ ul.cities {
 }
 
 .cities li {
-  float: left;
+  display: inline-block;
   white-space: nowrap;
   width: 33%;
   list-style: none;

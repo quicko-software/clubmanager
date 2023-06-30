@@ -247,6 +247,10 @@
 				<source>Phone:</source>
 				<target>Telefon:</target>
 			</trans-unit>
+			<trans-unit id="content_element.location.label.telefax" resname="content_element.location.label.telefax">
+				<source>Telefax:</source>
+				<target>Telefax:</target>
+			</trans-unit>
 			<trans-unit id="content_element.location.label.mobile" resname="content_element.location.label.mobile">
 				<source>Mobile:</source>
 				<target>Mobil:</target>

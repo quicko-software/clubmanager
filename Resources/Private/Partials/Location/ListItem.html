@@ -204,40 +204,33 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-2 col-lg-3">
-                    <f:if condition="{location.member.categories}">
-                        <f:for each="{location.member.categories}" as="category">
-                            <f:if condition="{category.uid}==7">
-                                <div class="text-end p-3">
-                                    <a href="{f:uri.resource(path: 'Images/quicko-badge.png', extensionName: 'clubmanager')}" class="lightbox"
-                                       data-plugin-options="{'type':'image'}">
-                                        <img src="{f:uri.resource(path: 'Images/quicko-badge.png', extensionName: 'clubmanager')}"
-                                             alt="Siegel-Vorstandsmitglied: {location.title} {location.firstname} {location.lastname}"
-                                             class="img-fluid">
-                                    </a>
-                                </div>
-                            </f:if>
-                            <f:if condition="{category.uid}==8">
-                                <div class="text-end p-3">
-                                    <a href="{f:uri.resource(path: 'Images/quicko-badge.png', extensionName: 'clubmanager')}" class="lightbox"
-                                       data-plugin-options="{'type':'image'}">
-                                        <img src="{f:uri.resource(path: 'Images/quicko-badge.png', extensionName: 'clubmanager')}"
-                                             alt="Siegel-Trainer: {location.title} {location.firstname} {location.lastname}"
-                                             class="img-fluid">
-                                    </a>
-                                </div>
-                            </f:if>
-                            <f:if condition="{category.uid}==9">
-                                <div class="text-end p-3">
-                                    <a href="{f:uri.resource(path: 'Images/quicko-badge.png', extensionName: 'clubmanager')}" class="lightbox"
-                                       data-plugin-options="{'type':'image'}">
-                                        <img src="{f:uri.resource(path: 'Images/quicko-badge.png', extensionName: 'clubmanager')}"
-                                             alt="Siegel-Zertifizierter Therapeut: {location.title} {location.firstname} {location.lastname}"
-                                             class="img-fluid">
-                                    </a>
-                                </div>
-                            </f:if>
-                        </f:for>
-                    </f:if>
+                    <div class="row">
+                        <f:if condition="{location.member.categories}">
+                            <f:for each="{location.member.categories}" as="category">
+                                <f:if condition="{category.uid}==13">
+                                    <div class="col-6 col-md-12 col-lg-6 text-center pb-3">
+                                        <img src="{f:uri.resource(path: 'Badges/Quicko-LizenzBadge-Dummy-A.svg', extensionName: 'clubmanager')}"
+                                                 alt="Siegel-Vorstandsmitglied: {location.title} {location.firstname} {location.lastname}"
+                                                 class="img-fluid" width="150px" height="150px">
+                                    </div>
+                                </f:if>
+                                <f:if condition="{category.uid}==14">
+                                    <div class="col-6 col-md-12 col-lg-6 text-center pb-3">
+                                        <img src="{f:uri.resource(path: 'Badges/Quicko-LizenzBadge-Dummy-B.svg', extensionName: 'clubmanager')}"
+                                                 alt="Siegel-Trainer: {location.title} {location.firstname} {location.lastname}"
+                                                 class="img-fluid" width="150px" height="150px">
+                                    </div>
+                                </f:if>
+                                <f:if condition="{category.uid}==15">
+                                    <div class="col-6 col-md-12 col-lg-6 text-center pb-3">
+                                        <img src="{f:uri.resource(path: 'Badges/Quicko-LizenzBadge-Dummy-C.svg', extensionName: 'clubmanager')}"
+                                                 alt="Siegel-Zertifizierter Therapeut: {location.title} {location.firstname} {location.lastname}"
+                                                 class="img-fluid" width="150px" height="150px">
+                                    </div>
+                                </f:if>
+                            </f:for>
+                        </f:if>
+                    </div>
                 </div>
 
                 <div class="card-footer row g-0">

@@ -54,7 +54,7 @@ page {
 			text = <a href="https://quicko.software" rel="noopener" target="_blank">QUiCKO - Der Clubmanager</a> - entwickelt von <a href="https://www.wirkwerk.com" rel="noopener" target="_blank">WirkWerk</a> & <a href="https://www.codemacher.de" rel="noopener" target="_blank">Codemacher UG</a>.
 		}
 
-		//Cookieman is used
+		//Cookieman is used so BOOTSTRAP PACKAGE cookieconsent is not needed
 		cookieconsent.enable = 0
 	}
 
@@ -69,19 +69,6 @@ page {
 			trackingID =
 		}
 	}
-}
-
-##############################
-## BOOTSTRAP PACKAGE CONFIG ##
-##############################
-config {
-	compressJs = {$config.compression}
-	compressCss = {$config.compression}
-	concatenateJs = {$config.compression}
-	concatenateCss = {$config.compression}
-	headerComment = quicko.software - TYPO3 Vereinsmanagement seit 2022
-
-	removeDefaultJS = external
 }
 
 #########################

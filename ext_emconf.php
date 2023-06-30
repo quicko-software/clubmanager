@@ -8,13 +8,14 @@ $EM_CONF[$_EXTKEY] = [
 	'author_company' => 'Quicko - The Clubmanager',
 	'state' => 'stable',
 	'clearCacheOnLoad' => 1,
-	'version' => '1.0.3',
+	'version' => '1.0.6',
 	'constraints' => [
 		'depends' => [
 			'typo3' => '11.5.0-11.5.99',
 			'static_info_tables' => '11.5.0-11.5.99'
 		],
 		'suggests' => [
+            'vhs' => '6.1.0-6.1.99',
             'felogin' => '11.5.0-11.5.99',
             'bootstrap_package' => '12.0.0-12.0.99',
             'cookieman' => '2.14.0-2.14.99'

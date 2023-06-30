@@ -3,6 +3,14 @@
 ####################
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager/Configuration/TypoScript/Bootstrap_package/constants.typoscript" condition="extension.isLoaded('bootstrap_package') == 1">
 
+##############
+### CONFIG ###
+##############
+config {
+	# cat=clubmanager: config/150/190; type=string; label=Header Comment
+	headerComment = Quicko - Der Clubmanager: TYPO3 Vereins-, Verbands- und Clubmanagement - https://quicko.software
+}
+
 #############################
 ### CLUBMANAGER CONSTANTS ###
 #############################
