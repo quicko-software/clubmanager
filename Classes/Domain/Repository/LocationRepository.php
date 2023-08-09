@@ -35,7 +35,7 @@ class LocationRepository extends Repository
       $query->logicalAnd(
         $query->equals('uid', $uid),
       )
-    )->execute();
+    )->execute()->getFirst();
   }
 
   public function findByCity($cityName)
