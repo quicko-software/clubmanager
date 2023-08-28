@@ -112,6 +112,7 @@ class CategoryRepository extends Repository
 
   public function buildTreeWithParent($elements, int $parentId)
   {
+    $tree = [];
     foreach ($elements as $element) {
       if ($element->getUid() == $parentId) {
         $children = $this->buildTree($elements, $element->getUid());
