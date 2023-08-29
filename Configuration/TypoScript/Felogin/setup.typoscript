@@ -117,40 +117,28 @@ plugin.tx_felogin_login {
 Ihr neues Quicko-Passwort
 Ihre Tester-ID: %s
 
-Guten Tag,
-
-diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Sie versendet. Bitte klicken Sie auf folgenden Link.
-%s
-
+Sehr geehrtes Quicko-Mitglied,
+diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Sie versendet.
+Bitte klicken Sie auf folgenden Link: %s
 Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s. Sollten Sie den Link bis dahin nicht besucht haben, müssen Sie ein neues Passwort anfordern.
-
-Mit freundlichen Grüßen,
-Quicko - Der Clubmanager
         )
         forgot_validate_reset_password_html (
 Ihr neues Quicko-Passwort
 Ihre Tester-ID: %s
 
 Sehr geehrtes Quicko-Mitglied,
-diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Sie versendet. Bitte klicken Sie auf folgenden Link.
-%s
+diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Sie versendet.
+Bitte klicken Sie auf folgenden Link: %s
 Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s. Sollten Sie den Link bis dahin nicht besucht haben, müssen Sie ein neues Passwort anfordern.
-Mit freundlichen Grüßen,
-Quicko - Der Clubmanager
         )
         forgot_validate_reset_password_plaintext (
 Ihr neues Quicko-Passwort
 Ihre Tester-ID: %s
 
-Guten Tag,
-
-diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Sie versendet. Bitte klicken Sie auf folgenden Link.
-%s
-
+Sehr geehrtes Quicko-Mitglied,
+diese E-Mail haben wir aufgrund Ihrer Bitte, Ihr Passwort zurückzusetzen, an Sie versendet.
+Bitte klicken Sie auf folgenden Link: %s
 Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s. Sollten Sie den Link bis dahin nicht besucht haben, müssen Sie ein neues Passwort anfordern.
-
-Mit freundlichen Grüßen,
-Quicko - Der Clubmanager
         )
     }
     default {
