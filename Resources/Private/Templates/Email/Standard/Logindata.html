@@ -37,9 +37,19 @@
 
                                             <f:translate key="mail.logindata.access.title" extensionName="clubmanager"/> <br/>
                                             <strong><f:translate key="mail.logindata.access.number" extensionName="clubmanager"/></strong> {member.ident}<br/>
-
-                                            <a href="{recoveryLink}"><f:translate key="mail.logindata.link.recovery" extensionName="clubmanager"/></a> <br/>
-
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" role="presentation" style="border:none;border-radius:24px;cursor:auto;padding:10px 25px;background-color: {backgroundColor}" valign="middle">
+                                        <a href="{recoveryLink}" style="background-color: {backgroundColor};color:#ffffff;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
+                                            <f:translate key="mail.logindata.link.recovery" extensionName="clubmanager"/>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:30px">
+                                        <p>
                                             <f:translate key="mail.logindata.link.recovery.validuntil" extensionName="clubmanager"/> {passwordRecoveryLifeTime->f:format.date(format: '%d.%m.%Y %H:%M')} <br/><br/>
 
                                             <a href="{loginLink}"><f:translate key="mail.logindata.link.login" extensionName="clubmanager"/></a>
