@@ -72,7 +72,24 @@ class MemberRepository extends Repository
     return $query->execute();
   }
 
-  public function findAllActiveInPid($pid)
+  public function findAllCanceleddWithWrongState()
+  {
+    $query = $this->createQuery();
+    $query->getQuerySettings()->setRespectStoragePage(false);
+    $query->getQuerySettings()->setIgnoreEnableFields(true);
+    $query->matching(
+      $query->logicalAnd(
+        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_CANCELLED),
+        $query->logicalOr(
+          $query->equals('endtime', NULL),
+          $query->equals('endtime', 0)
+        )
+      ),
+    );
+    return $query->execute();
+  }
+
+  public function findAllActiveInPid($pid,$startDate)
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
@@ -80,7 +97,11 @@ class MemberRepository extends Repository
     $query->matching(
       $query->logicalAnd(
         $query->equals('pid', $pid),
-        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+        $query->logicalOr(
+          $query->equals('endtime', NULL),
+          $query->equals('endtime', 0),
+          $query->lessThan('endtime', $startDate),
+        )
       )
     );
     return $query->execute();
