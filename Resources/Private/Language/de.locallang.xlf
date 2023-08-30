@@ -67,6 +67,10 @@
         <source>Log in to the members area here.</source>
         <target state="final">Loggen Sie sich hier in den Mitgliederbereich ein.</target>
       </trans-unit>
+      <trans-unit id="mail.footer.url" resname="mail.footer.url">
+        <source>https://quicko.software/</source>
+        <target state="needs-translation">https://quicko.software/</target>
+      </trans-unit>
       <trans-unit id="mail.footer.linktext" resname="mail.footer.linktext" approved="yes">
         <source>Quicko - The Clubmanager</source>
         <target state="final">Quicko - Der Clubmanager</target>
