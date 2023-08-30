@@ -1,3 +1,8 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:variable name="linkColor" value="#1C8FC7"/>
+<f:variable name="backgroundColor" value="#34495e"/>
+
 <style>
  
   img {
@@ -95,7 +100,7 @@
   }
 
   h1 {
-    font-size: 35px;
+    font-size: 24px;
     font-weight: 300;
     text-align: center;
   }
@@ -117,7 +122,7 @@
   }
 
   a {
-    color: #3498db;
+    color: {linkColor};
     text-decoration: underline; 
   }
 
@@ -136,10 +141,10 @@
   }
     .btn a {
       background-color: #ffffff;
-      border: solid 1px #3498db;
+      border: solid 1px {linkColor};
       border-radius: 5px;
       box-sizing: border-box;
-      color: #3498db;
+      color: {linkColor};
       cursor: pointer;
       display: inline-block;
       font-size: 14px;
@@ -150,12 +155,12 @@
   }
 
   .btn-primary table td {
-    background-color: #3498db; 
+    background-color: {linkColor};
   }
 
   .btn-primary a {
-    background-color: #3498db;
-    border-color: #3498db;
+    background-color: {linkColor};
+    border-color: {linkColor};
     color: #ffffff; 
   }
 
@@ -285,11 +290,11 @@
       line-height: inherit;
     }
     .btn-primary table td:hover {
-      background-color: #34495e !important; 
+      background-color: {backgroundColor} !important;
     }
     .btn-primary a:hover {
-      background-color: #34495e !important;
-      border-color: #34495e !important; 
+      background-color: {backgroundColor} !important;
+      border-color: {backgroundColor} !important;
     } 
   }
 

@@ -51,6 +51,9 @@
 			<trans-unit id="mail.logindata.link.login" resname="mail.logindata.link.login">
 				<source>Log in to the members area here.</source>
 			</trans-unit>
+			<trans-unit id="mail.footer.url" resname="mail.footer.url">
+				<source>https://quicko.software/</source>
+			</trans-unit>
 			<trans-unit id="mail.footer.linktext" resname="mail.footer.linktext">
 				<source>Quicko - The Clubmanager</source>
 			</trans-unit>
