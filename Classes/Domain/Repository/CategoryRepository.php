@@ -40,10 +40,10 @@ class CategoryRepository extends Repository
   {
     $query = $this->createQuery();
     $object = $query->matching(
-      $query->logicalAnd(
+      $query->logicalAnd([
         $query->equals('title', $name),
         $query->equals('parent', $parentUid)
-      )
+      ])
     )->execute()->getFirst();
 
     if ($object === null) {

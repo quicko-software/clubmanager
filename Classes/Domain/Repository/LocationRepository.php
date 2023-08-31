@@ -42,10 +42,10 @@ class LocationRepository extends Repository
   {
     $query = $this->createQuery();
     return $query->matching(
-      $query->logicalAnd(
+      $query->logicalAnd([
         $query->equals('city', $cityName),
         $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
-      )
+      ])
     )->execute();
   }
 
@@ -155,10 +155,10 @@ class LocationRepository extends Repository
 
     $query = $this->createQuery();
     $query->matching(
-      $query->logicalAnd(
+      $query->logicalAnd([
         $query->in('zip', $zipList),
         $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
-      )
+      ])
     );
 
     return $query->execute();
@@ -207,9 +207,9 @@ class LocationRepository extends Repository
   {
     $query = $this->createQuery();
     $query->matching(
-      $query->logicalAnd(
+      $query->logicalAnd([
         $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
-      )
+      ])
     );
     if($sorting != null) {
       $query->setOrderings($sorting);
@@ -224,12 +224,12 @@ class LocationRepository extends Repository
     $querySettings = $query->getQuerySettings();
     $querySettings->setIgnoreEnableFields(true);
     $query->matching(
-      $query->logicalAnd(
+      $query->logicalAnd([
         [
           $query->equals('member', $memberUid), 
           $query->equals('kind', $kind)
         ]
-      )
+      ])
     );
    
     return $query;
