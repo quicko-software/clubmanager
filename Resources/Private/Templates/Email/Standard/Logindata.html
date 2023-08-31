@@ -8,68 +8,93 @@
     </f:else>
 </f:if>
 <f:render partial="Header" arguments="{title:'Logindata'}" />
+
 <body>
-<span class="preheader">
-    <f:translate key="mail.logindata.preheader" extensionName="clubmanager"/>
-</span>
-<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body" style="background-color: {backgroundColor}">
-    <tr>
-        <td>&nbsp;</td>
-        <td class="container">
-            <div class="content">
-                <table role="presentation" class="main">
-                    <tr>
-                        <td class="wrapper">
-                            <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td>
-                                        <f:image src="{typo3.systemConfiguration.backend.loginLogo}" absolute="1" alt="{typo3.systemConfiguration.backend.loginLogoAlt}" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-top:30px">
-                                        <h1>
-                                            <f:translate key="mail.logindata.title" extensionName="clubmanager"/>
-                                        </h1>
-                                        <p>
-                                            <f:translate key="mail.logindata.welcome" extensionName="clubmanager"/> {member.firstname} {member.lastname}! <br/><br/>
-                                            <f:translate key="mail.logindata.text" extensionName="clubmanager"/> <br/><br/>
+    <span class="preheader">
+        <f:translate key="mail.logindata.preheader" extensionName="clubmanager" />
+    </span>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body"
+        style="background-color: {backgroundColor}">
+        <tr>
+            <td>&nbsp;</td>
+            <td class="container">
+                <div class="content">
+                    <table role="presentation" class="main">
+                        <tr>
+                            <td class="wrapper">
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                    <f:if condition="{typo3.systemConfiguration.backend.loginLogo}">
+                                        <tr>
+                                            <td>
+                                                <f:image src="{typo3.systemConfiguration.backend.loginLogo}"
+                                                    absolute="1"
+                                                    alt="{typo3.systemConfiguration.backend.loginLogoAlt}" />
+                                            </td>
+                                        </tr>
+                                    </f:if>
 
-                                            <f:translate key="mail.logindata.access.title" extensionName="clubmanager"/> <br/>
-                                            <strong><f:translate key="mail.logindata.access.number" extensionName="clubmanager"/></strong> {member.ident}<br/>
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center" role="presentation" style="border:none;border-radius:24px;cursor:auto;padding:10px 25px;background-color: {backgroundColor}" valign="middle">
-                                        <a href="{recoveryLink}" style="background-color: {backgroundColor};color:#ffffff;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
-                                            <f:translate key="mail.logindata.link.recovery" extensionName="clubmanager"/>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-top:30px">
-                                        <p>
-                                            <f:translate key="mail.logindata.link.recovery.validuntil" extensionName="clubmanager"/> {passwordRecoveryLifeTime->f:format.date(format: '%d.%m.%Y %H:%M')} <br/><br/>
+                                    <tr>
+                                        <td style="padding-top:30px">
+                                            <h1>
+                                                <f:translate key="mail.logindata.title" extensionName="clubmanager" />
+                                            </h1>
+                                            <p>
+                                                <f:translate key="mail.logindata.welcome" extensionName="clubmanager" />
+                                                <f:if condition="{member.title}">{member.title} </f:if>{member.firstname} {member.lastname}! <br /><br />
+                                                <f:translate key="mail.logindata.text" extensionName="clubmanager" />
+                                                <br /><br />
 
-                                            <a href="{loginLink}"><f:translate key="mail.logindata.link.login" extensionName="clubmanager"/></a>
-                                        </p>
+                                                <f:translate key="mail.logindata.access.title"
+                                                    extensionName="clubmanager" /> <br />
+                                                <strong>
+                                                    <f:translate key="mail.logindata.access.number"
+                                                        extensionName="clubmanager" />
+                                                </strong> {member.ident}<br />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" role="presentation"
+                                            style="border:none;border-radius:24px;cursor:auto;padding:10px 25px;background-color: {backgroundColor}"
+                                            valign="middle">
+                                            <a href="{recoveryLink}"
+                                                style="background-color: {backgroundColor};color:#ffffff;Margin:0;text-decoration:none;text-transform:none;"
+                                                target="_blank">
+                                                <f:translate key="mail.logindata.link.recovery"
+                                                    extensionName="clubmanager" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top:30px">
+                                            <p>
+                                                <f:translate key="mail.logindata.link.recovery.validuntil"
+                                                    extensionName="clubmanager" />
+                                                {passwordRecoveryLifeTime->f:format.date(format: '%d.%m.%Y %H:%M')}
+                                                <br /><br />
 
-                                        <f:render partial="Benefit" arguments="{_all}"/>
+                                                <a href="{loginLink}">
+                                                    <f:translate key="mail.logindata.link.login"
+                                                        extensionName="clubmanager" />
+                                                </a>
+                                            </p>
 
-                                        <f:render partial="Signature" arguments="{_all}"/>
+                                            <f:render partial="Benefit" arguments="{_all}" />
 
-                                    </td>
-                                </tr>
-                                <f:render partial="Footer" arguments="{_all}"/>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </td>
-        <td>&nbsp;</td>
-    </tr>
-</table>
+                                            <f:render partial="Signature" arguments="{_all}" />
+
+                                        </td>
+                                    </tr>
+                                    <f:render partial="Footer" arguments="{_all}" />
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
 </body>
+
 </html>

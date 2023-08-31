@@ -19,10 +19,10 @@ class MemberRepository extends Repository
     $query = $this->createQuery();
     $this->disableQueryRestrictions($query);
     $query->matching(
-      $query->logicalAnd(
+      $query->logicalAnd([
         $query->equals('feuser.username', $feUserName),
         $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
-      )
+      ])
     );
 
     $member = $query->execute()->getFirst();
@@ -58,14 +58,14 @@ class MemberRepository extends Repository
     $query->getQuerySettings()->setRespectStoragePage(false);
     $query->getQuerySettings()->setIgnoreEnableFields(true);
     $query->matching(
-      $query->logicalAnd(
+      $query->logicalAnd([
         $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
         $query->lessThanOrEqual('endtime', $refDate),
         $query->greaterThan('endtime', 0),
         $query->logicalNot(
           $query->equals('endtime', null)
-        )        
-      ),
+        )
+      ]),
 
     );
 
@@ -78,32 +78,36 @@ class MemberRepository extends Repository
     $query->getQuerySettings()->setRespectStoragePage(false);
     $query->getQuerySettings()->setIgnoreEnableFields(true);
     $query->matching(
-      $query->logicalAnd(
+      $query->logicalAnd([
         $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_CANCELLED),
         $query->logicalOr(
-          $query->equals('endtime', NULL),
-          $query->equals('endtime', 0)
+          [
+            $query->equals('endtime', NULL),
+            $query->equals('endtime', 0)
+          ]
         )
-      ),
+      ]),
     );
     return $query->execute();
   }
 
-  public function findAllActiveInPid($pid,$startDate)
+  public function findAllActiveInPid($pid, $endDate)
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
-    $query->getQuerySettings()->setEnableFieldsToBeIgnored(array('endtime','starttime'));
+    $query->getQuerySettings()->setEnableFieldsToBeIgnored(array('endtime', 'starttime'));
     $query->matching(
-      $query->logicalAnd(
+      $query->logicalAnd([
         $query->equals('pid', $pid),
-        $query->logicalOr(
+        $query->logicalOr([
           $query->equals('endtime', NULL),
           $query->equals('endtime', 0),
-          $query->lessThan('endtime', $startDate),
-        )
-      )
+          $query->lessThanOrEqual('endtime', $endDate)
+        ]),
+        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+      ])
     );
+
     return $query->execute();
   }
 
@@ -162,10 +166,10 @@ class MemberRepository extends Repository
     $query->matching(
       $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
     );
-    if($sorting != null) {
+    if ($sorting != null) {
       $query->setOrderings($sorting);
     }
-    
+
     return $query->execute();
   }
 
