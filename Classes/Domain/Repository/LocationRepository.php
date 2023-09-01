@@ -26,7 +26,7 @@ class LocationRepository extends Repository
     )->execute();
   }
 
-  public function findByUidWithoutStorageRestrictions($uid) 
+  public function findByUidWithoutStorageRestrictions($uid)
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
@@ -211,7 +211,7 @@ class LocationRepository extends Repository
         $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
       ])
     );
-    if($sorting != null) {
+    if ($sorting != null) {
       $query->setOrderings($sorting);
     }
     $result = $query->execute();
@@ -224,14 +224,14 @@ class LocationRepository extends Repository
     $querySettings = $query->getQuerySettings();
     $querySettings->setIgnoreEnableFields(true);
     $query->matching(
-      $query->logicalAnd([
+      $query->logicalAnd(
         [
-          $query->equals('member', $memberUid), 
+          $query->equals('member', $memberUid),
           $query->equals('kind', $kind)
         ]
-      ])
+      )
     );
-   
+
     return $query;
   }
 
@@ -245,6 +245,4 @@ class LocationRepository extends Repository
     $query = $this->createQueryByMemberUidWithHidden($memberUid, 1);
     return $query->execute();
   }
-
-
 }
