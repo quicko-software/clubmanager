@@ -39,7 +39,7 @@
                                             </h1>
                                             <p>
                                                 <f:translate key="mail.reminder.welcome" extensionName="clubmanager" />
-                                                {member.firstname} {member.lastname}! <br /><br />
+                                                <f:if condition="{member.title}">{member.title} </f:if>{member.firstname} {member.lastname}! <br /><br />
                                                 <f:translate key="mail.reminder.text" extensionName="clubmanager" />
                                                 <br /><br />
 
