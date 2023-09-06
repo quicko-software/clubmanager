@@ -435,7 +435,7 @@ return [
             'config'      => [
                 'type'        => 'input',
                 'size'        => 30,
-                'eval'        => 'trim,required'
+                'eval'        => 'trim,required,' . \Quicko\Clubmanager\Evaluation\IbanEvaluation::class
             ],
         ],
         'bic'              => [
@@ -445,7 +445,7 @@ return [
             'config'      => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required',
+                'eval' => 'trim,required,' . \Quicko\Clubmanager\Evaluation\BicEvaluation::class
             ],
         ],
         'account'          => [
