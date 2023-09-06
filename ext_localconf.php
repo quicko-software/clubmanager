@@ -11,8 +11,10 @@ use Quicko\Clubmanager\Controller\MemberController;
 use Quicko\Clubmanager\Controller\CitiesController;
 use Quicko\Clubmanager\Controller\LocationController;
 use Quicko\Clubmanager\Domain\Model\Plugin;
+use Quicko\Clubmanager\Evaluation\BicEvaluation;
 use Quicko\Clubmanager\Utils\PluginRegisterFacade;
 use Quicko\Clubmanager\Utils\LogUtils;
+use Quicko\Clubmanager\Evaluation\IbanEvaluation;
 
 call_user_func(function () {
 
@@ -21,6 +23,9 @@ call_user_func(function () {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['PersistedTester'] = \Quicko\Clubmanager\Routing\Aspect\PersistedTester::class;
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['SanitizeValue'] = \Quicko\Clubmanager\Routing\Aspect\SanitizeValue::class;
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['SanitizeValueUidMapper'] = \Quicko\Clubmanager\Routing\Aspect\SanitizeValueUidMapper::class;
+
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][IbanEvaluation::class] = '';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][BicEvaluation::class] = '';
 
     $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
     // Only include page.tsconfig if TYPO3 version is below 12 so that it is not imported twice.
