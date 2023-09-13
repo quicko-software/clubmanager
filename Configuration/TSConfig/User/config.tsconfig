@@ -1,6 +1,6 @@
-//-----------------------------------------------------------//
+// -----------------------------------------------------------//
 // Clubmanager Member Config
-//-----------------------------------------------------------//
+// -----------------------------------------------------------//
 page.TCEFORM.tx_clubmanager_domain_model_member {
     starttime.disabled = 0
     endtime.disabled = 0
@@ -39,9 +39,9 @@ page.TCEFORM.tx_clubmanager_domain_model_member {
     categories.disabled = 0
 }
 
-//-----------------------------------------------------------//
+// -----------------------------------------------------------//
 // Clubmanager Location Config
-//-----------------------------------------------------------//
+// -----------------------------------------------------------//
 page.TCEFORM.tx_clubmanager_domain_model_location {
     salutation.disabled = 0
     title.disabled = 0
@@ -65,9 +65,9 @@ page.TCEFORM.tx_clubmanager_domain_model_location {
     youtubeVideoUrl.disabled = 0
 }
 
-//-----------------------------------------------------------//
+// -----------------------------------------------------------//
 // Override for Admin-Users
-//-----------------------------------------------------------//
+// -----------------------------------------------------------//
 [backend.user.isAdmin]
-    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager_template/Configuration/TsConfig/User/admin.tsconfig">
+    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager/Configuration/TsConfig/User/admin.tsconfig">
 [END]
