@@ -1,7 +1,5 @@
-[![Latest Stable Version](http://poser.pugx.org/quicko/clubmanager/v)](https://packagist.org/packages/quicko/clubmanager)
+[![Latest Stable Version](https://poser.pugx.org/quicko/clubmanager/v)](https://packagist.org/packages/quicko/clubmanager)
 [![TYPO3 11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
-[![Total Downloads](http://poser.pugx.org/quicko/clubmanager/downloads)](https://extensions.typo3.org/extension/clubmanager)
-[![Monthly Downloads](http://poser.pugx.org/quicko/clubmanager/d/monthly)](https://extensions.typo3.org/extension/clubmanager)
 
 ==================================================
 TYPO3 extension 'clubmanager'
