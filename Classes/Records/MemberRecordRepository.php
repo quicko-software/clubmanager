@@ -49,7 +49,10 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
         'member',
         'fe_users',
         'fe_users',
-        $queryBuilder->expr()->eq('fe_users.clubmanager_member', $queryBuilder->quoteIdentifier('member.uid'))
+        $queryBuilder->expr()->and(
+          $queryBuilder->expr()->eq('fe_users.clubmanager_member', $queryBuilder->quoteIdentifier('member.uid')),
+          $queryBuilder->expr()->eq('fe_users.deleted', 0),
+        )
       );
     return $queryBuilder;
   }
