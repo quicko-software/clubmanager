@@ -19,18 +19,4 @@ use SJBR\StaticInfoTables\Domain\Model\Country as SysCountry;
 
 class Country extends SysCountry
 {
-    /**
-     * Returns the shortNameLL.
-     *
-     * @return \string $shortNameLL
-     */
-    public function getShortNameLL()
-    {
-        $L = $GLOBALS['TSFE']->sys_language_uid;
-        if ($L < 1) {
-            return $this->getShortNameLocal();
-        } else {
-            return $this->getShortNameEn();
-        }
-    }
 }
