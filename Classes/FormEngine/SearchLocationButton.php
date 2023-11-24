@@ -3,6 +3,7 @@
 namespace Quicko\Clubmanager\FormEngine;
 
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Form\Element\InputTextElement;
 
@@ -16,7 +17,7 @@ class SearchLocationButton extends InputTextElement
    *
    * @return array As defined in initializeResultArray() of AbstractNode
    */
-  public function render()
+  public function render(): array
   {
     $array = parent::render();
 
@@ -36,7 +37,8 @@ class SearchLocationButton extends InputTextElement
       $this->data['tableName'],
       $iconFactory->getIcon('apps-toolbar-menu-search')
     );
-    $array['requireJsModules'][] = 'TYPO3/CMS/Clubmanager/SearchLocation';
+    // TODO:t3v12 Backend Location search geolocation button -> js console error, 2023-11-24 stephanw
+    $array['requireJsModules'][] = JavaScriptModuleInstruction::create('TYPO3/CMS/Clubmanager/SearchLocation');
 
     return $array;
   }
