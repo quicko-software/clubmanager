@@ -116,9 +116,9 @@ return [
                 'type'       => 'select',
                 'renderType' => 'selectSingle',
                 'items'      => [
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.other', \Quicko\Clubmanager\Domain\Model\Member::SALUTATION_OTHER],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.male', \Quicko\Clubmanager\Domain\Model\Member::SALUTATION_MALE],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.female', \Quicko\Clubmanager\Domain\Model\Member::SALUTATION_FEMALE],
+                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.0', \Quicko\Clubmanager\Domain\Model\Member::SALUTATION_OTHER],
+                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.1', \Quicko\Clubmanager\Domain\Model\Member::SALUTATION_MALE],
+                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.2', \Quicko\Clubmanager\Domain\Model\Member::SALUTATION_FEMALE],
                 ],
                 'size'       => 1,
                 'maxitems'   => 1,

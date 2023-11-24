@@ -87,19 +87,19 @@
 				<source>Salutation</source>
 				<target>Anrede</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.salutation.other" resname="tx_clubmanager_domain_model_member.salutation.other">
-				<source>General</source>
-				<target>Allgemein</target>
+			<trans-unit id="tx_clubmanager_domain_model_member.salutation.0" resname="tx_clubmanager_domain_model_member.salutation.0">
+				<source>Company</source>
+				<target>Firma</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.salutation.male" resname="tx_clubmanager_domain_model_member.salutation.male">
+			<trans-unit id="tx_clubmanager_domain_model_member.salutation.1" resname="tx_clubmanager_domain_model_member.salutation.1">
 				<source>Mr.</source>
 				<target>Herr</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.salutation.female" resname="tx_clubmanager_domain_model_member.salutation.female">
+			<trans-unit id="tx_clubmanager_domain_model_member.salutation.2" resname="tx_clubmanager_domain_model_member.salutation.2">
 				<source>Ms.</source>
 				<target>Frau</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.salutation.divers" resname="tx_clubmanager_domain_model_member.salutation.divers">
+			<trans-unit id="tx_clubmanager_domain_model_member.salutation.3" resname="tx_clubmanager_domain_model_member.salutation.3">
 				<source>Divers</source>
 				<target>Divers</target>
 			</trans-unit>
@@ -243,21 +243,25 @@
 				<source>Membership status</source>
 				<target>Status der Mitgliedschaft</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.state.unset" resname="tx_clubmanager_domain_model_member.state.unset">
+			<trans-unit id="tx_clubmanager_domain_model_member.state.0" resname="tx_clubmanager_domain_model_member.state.0">
 				<source>Not set</source>
 				<target>Nicht gesetzt</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.state.applied" resname="tx_clubmanager_domain_model_member.state.applied">
+			<trans-unit id="tx_clubmanager_domain_model_member.state.1" resname="tx_clubmanager_domain_model_member.state.1">
 				<source>Requested</source>
 				<target>Beantragt</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.state.active" resname="tx_clubmanager_domain_model_member.state.active">
+			<trans-unit id="tx_clubmanager_domain_model_member.state.2" resname="tx_clubmanager_domain_model_member.state.2">
 				<source>Active</source>
 				<target>Aktiv</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.state.suspended" resname="tx_clubmanager_domain_model_member.state.suspended">
+			<trans-unit id="tx_clubmanager_domain_model_member.state.3" resname="tx_clubmanager_domain_model_member.state.3">
 				<source>Resting</source>
 				<target>Ruhend</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.state.4" resname="tx_clubmanager_domain_model_member.state.4">
+				<source>Cancelled</source>
+				<target>Gekündigt</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info">
 				<source>Address suffix</source>
@@ -270,10 +274,6 @@
 			<trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate">
 				<source>Reduced membership</source>
 				<target>Ermäßigte Mitgliedschaft</target>
-			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.state.cancelled" resname="tx_clubmanager_domain_model_member.state.cancelled">
-				<source>Cancelled</source>
-				<target>Gekündigt</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.customfield1" resname="tx_clubmanager_domain_model_member.customfield1">
 				<source>Additional field 1</source>

@@ -43,5 +43,12 @@
   }
 }
 
+ul.license.list-inline {
+  margin-bottom: 0 !important;
+}
+.license .list-inline-item:not(:last-child)::after, ul.license.list-inline > li:not(:last-child)::after {
+  content: " • ";
+}
+
 .typo3-messages, .signin-form ul {list-style:none;padding:0;margin:0;}
 .typo3-messages p {margin:0;}

@@ -72,7 +72,7 @@
         </f:if>
 
         <f:link.action action="detail" arguments="{location:location}" pluginName="location" controller="Location"
-                       pageUid="{settings.detailLocationPage}" class="btn {f:if(condition: '{location.member.level} == 0', then: 'btn-default')}{f:if(condition: '{location.member.level} == 10', then: 'btn-primary')}{f:if(condition: '{location.member.level} == 20', then: 'btn-secondary')}{f:if(condition: '{location.member.level} == 30', then: 'btn-tertiary')}">
+                       pageUid="{settings.detailLocationPage}" class="btn btn-{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'primary')}{f:if(condition: '{location.member.level} == 20', then: 'secondary')}{f:if(condition: '{location.member.level} == 30', then: 'tertiary')}">
             <f:if condition="{location.kind} == 0">
                 <f:then>
                     {f:translate(key:'content_element.location.main.detail.button',extensionName:'clubmanager')}

@@ -79,13 +79,12 @@ class CategoryRepository extends Repository
     $result = [];
     if ($children->count() > 0) {
       foreach ($children as $child) {
-        $childElem = $child->getUid();
         $subChildren = $this->getFlatChildrenList([$child->getUid()]);
 
         if ($subChildren) {
           $result = array_merge($result, $subChildren);
         }
-        $result[] = $childElem;
+        $result[] = $child;
       }
     }
     return $result;

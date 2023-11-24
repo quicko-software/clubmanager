@@ -1,238 +1,220 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<div class="card {f:if(condition: '{location.member.level} == 10', then: 'border-color-primary')}{f:if(condition: '{location.member.level} == 20', then: 'border-color-secondary')}{f:if(condition: '{location.member.level} == 30', then: 'border-color-tertiary')}" itemscope itemtype="http://schema.org/LocalBusiness" id="location-{location.uid}">
-    <div class="card-header text-uppercase row g-0">
-        <div class="col-sm-6">
+<f:if condition="{location.kind}==0">
+    <f:then>
+        <div class="card border-color-{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'primary')}{f:if(condition: '{location.member.level} == 20', then: 'secondary')}{f:if(condition: '{location.member.level} == 30', then: 'tertiary')}" itemscope itemtype="http://schema.org/LocalBusiness" id="location-{location.uid}">
             <f:if condition="{location.member.categories}">
-                <f:for each="{location.member.categories}" as="category" key="key" iteration="filterIterator">
-                    <f:if condition="{filterIterator.index}>0">
+                <f:for each="{location.member.categories}" as="memberCategory" iteration="memberIterator">
+                    <f:if condition="{memberCategory.uid} == 13 || {memberCategory.uid} == 14 || {memberCategory.uid} == 15 ">
+                        <f:variable name="hasLicense" value="TRUE" />
+                    </f:if>
+                </f:for>
+                <f:if condition="{hasLicense}">
+                    <div class="card-header">
+                        <ul class="license list-inline">
+                            <f:for each="{location.member.categories}" as="memberCategory" iteration="memberIterator">
+                                <f:if condition="{memberCategory.uid}==13">
+                                    <li class="list-inline-item">{f:translate(key:'content_element.member.license.badgeA',extensionName:'clubmanager')}</li>
+                                </f:if>
+                                <f:if condition="{memberCategory.uid}==14">
+                                    <li class="list-inline-item">{f:translate(key:'content_element.member.license.badgeB',extensionName:'clubmanager')}</li>
+                                </f:if>
+                                <f:if condition="{memberCategory.uid}==15">
+                                    <li class="list-inline-item">{f:translate(key:'content_element.member.license.badgeC',extensionName:'clubmanager')}</li>
+                                </f:if>
+                            </f:for>
+                        </ul>
+                    </div>
+                </f:if>
+            </f:if>
+    </f:then>
+    <f:else>
+        <div class="card border-color-default" itemscope itemtype="http://schema.org/LocalBusiness" id="location-{location.uid}">
+    </f:else>
+</f:if>
+
+    <header class="card-header row g-0">
+        <div class="col-sm-6">
+            <span class="h2 salutation">
+                {salutationName}
+            </span>
+            <span class="h2 font-weight-bold mb-0 pt-0 mt-0" itemprop="name">
+                <f:if condition="{location.title}">
+                    <span class="title">{location.title} </span>
+                </f:if>
+                <span class="firstname">{location.firstname} </span>
+                <f:if condition="{location.middlename}">
+                    <span class="title">{location.middlename} </span>
+                </f:if>
+                <span class="lastname">{location.lastname}</span>
+            </span>
+
+            <f:if condition="{location.categories}">
+                <f:then>
+                    <p class="text-1 mb-0">
+                        <strong>
+                            <f:for each="{location.categories}" as="locationCategory" key="key" iteration="filterIterator">
+                                <f:if condition="{filterIterator.index}>0">
+                                    <f:then>
+                                        &bull; {locationCategory.title}
+                                    </f:then>
+                                    <f:else>
+                                        {locationCategory.title}
+                                    </f:else>
+                                </f:if>
+                            </f:for>
+                        </strong>
+                    </p>
+                </f:then>
+                <f:else>
+                    <f:if condition="{location.member.categories}">
+                        <p class="text-1 mb-0">
+                            <strong>
+                                <f:for each="{location.member.categories}" as="category" key="key" iteration="filterIterator">
+                                    <f:if condition="{filterIterator.index}>0">
+                                        <f:then>
+                                            &bull; {category.title}
+                                        </f:then>
+                                        <f:else>
+                                            {category.title}
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
+                            </strong>
+                        </p>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </div>
+
+        <div class="col-sm-6 text-end">
+            <f:if condition="{location.kind}==0">
+                <f:then>
+                    <span class="level btn btn-{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'primary')}{f:if(condition: '{location.member.level} == 20', then: 'secondary')}{f:if(condition: '{location.member.level} == 30', then: 'tertiary')}">
+                        {levelName}
+                    </span>
+                </f:then>
+                <f:else>
+                    <span class="level text-info">
+                        {f:translate(key:'content_element.member.label.subLocation',extensionName:'clubmanager')}
+                    </span>
+                </f:else>
+            </f:if>
+        </div>
+    </header>
+
+    <div class="row g-0" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+        <div class="col-sm-4 col-md-3" itemprop="photo">
+            <f:if condition="{location.image}">
+                <f:then>
+                    <f:image
+                            class="location-image img-fluid"
+                            alt="{location.title} {location.firstname} {location.lastname}"
+                            image="{location.image}"
+                            width="300c"
+                            height="300c"/>
+                </f:then>
+                <f:else>
+                    <f:image
+                            class="location-image img-fluid"
+                            alt="{location.title} {location.firstname} {location.lastname}"
+                            src="{f:uri.resource(path: 'Images/placeholder-{location.salutation}.png',extensionName:'clubmanager')}"
+                            width="300c"
+                            height="300c"/>
+                </f:else>
+            </f:if>
+        </div>
+        <div class="col-sm-8 col-md-5">
+            <div class="card-body pt-3 pb-3">
+                <f:if condition="{location.company}">
+                    <h3 class="card-title mb-1 text-4 font-weight-bold">
+                        <span class="company" itemprop="parentOrganization">{location.company}</span>
+                    </h3>
+                </f:if>
+                <p class="card-text mb-2">
+                    <span class="street" itemprop="streetAddress">{location.street}</span><br/>
+                    <span class="zip" itemprop="postalCode">{location.zip} </span>
+                    <span class="city" itemprop="addressLocality">{location.city}</span><br/>
+                    <span class="country" itemprop="addressCountry">{location.country.shortNameLocal}</span>
+                </p>
+
+                <f:if condition="{location.phone || location.mobile || location.fax || location.email || location.url}">
+                    <p class="card-text mb-2">
+                        <f:if condition="{location.phone}">
+                            {f:translate(key:'content_element.location.label.phone',extensionName:'clubmanager')} <span class="phone" itemprop="telephone"><a href="tel:{location.phone}">{location.phone}</a></span>
+                            <br/>
+                        </f:if>
+                        <f:if condition="{location.mobile}">
+                            {f:translate(key:'content_element.location.label.mobile',extensionName:'clubmanager')}
+                            <span class="mobile" itemprop="mobile">
+                                <a href="tel:{location.mobile}">{location.mobile}</a>
+                            </span>
+                            <br/>
+                        </f:if>
+                        <f:if condition="{location.fax}">
+                            {f:translate(key:'content_element.location.label.fax',extensionName:'clubmanager')}
+                            <span class="fax" itemprop="faxNumber">
+                                {location.fax}
+                            </span>
+                            <br/>
+                        </f:if>
+                        <f:if condition="{location.email}">
+                            {f:translate(key:'content_element.location.label.email',extensionName:'clubmanager')} <br class="d-none d-sm-block d-md-none"/>
+                            <span itemprop="email">
+                                <f:link.email email="{location.email}"/>
+                            </span>
+                            <br/>
+                        </f:if>
+                        <f:if condition="{location.website}">
+                            {f:translate(key:'content_element.location.label.website',extensionName:'clubmanager')} <br class="d-none d-sm-block d-md-none"/>
+                            <span itemprop="url">
+                                <f:link.external uri="{location.website}" class="external-link url" defaultScheme="https">{location.website}</f:link.external>
+                            </span><br/>
+                        </f:if>
+                    </p>
+                </f:if>
+
+                <p class="card-text mb-2">
+                    <f:if condition="{location.company}">
                         <f:then>
-                            &bull; {category.title}
+                            <a href="http://maps.google.com/?q={location.company},{location.street},{location.zip},{location.city}" target="_blank">
+                                {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}
+                            </a>
                         </f:then>
                         <f:else>
-                            {category.title}
+                            <a href="http://maps.google.com/?q={location.street},{location.zip},{location.city}" target="_blank">
+                                {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}
+                            </a>
                         </f:else>
+                    </f:if>
+
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 text-center">
+            <f:if condition="{location.member.categories}">
+                <f:for each="{location.member.categories}" as="category">
+                    <f:if condition="{category.uid}==13">
+                        <img src="{f:uri.resource(path: 'Badges/Quicko-LizenzBadge-Dummy-A.svg', extensionName: 'clubmanager')}"
+                             alt="{f:translate(key:'content_element.member.license.badgeA',extensionName:'clubmanager')}: {location.title} {location.firstname} {location.lastname}"
+                             class="img-fluid p-3" width="150px" height="150px">
+                    </f:if>
+                    <f:if condition="{category.uid}==14">
+                        <img src="{f:uri.resource(path: 'Badges/Quicko-LizenzBadge-Dummy-B.svg', extensionName: 'clubmanager')}"
+                             alt="{f:translate(key:'content_element.member.license.badgeB',extensionName:'clubmanager')}: {location.title} {location.firstname} {location.lastname}"
+                             class="img-fluid p-3" width="150px" height="150px">
+                    </f:if>
+                    <f:if condition="{category.uid}==15">
+                        <img src="{f:uri.resource(path: 'Badges/Quicko-LizenzBadge-Dummy-C.svg', extensionName: 'clubmanager')}"
+                             alt="{f:translate(key:'content_element.member.license.badgeC',extensionName:'clubmanager')}: {location.title} {location.firstname} {location.lastname}"
+                             class="img-fluid p-3" width="150px" height="150px">
                     </f:if>
                 </f:for>
             </f:if>
         </div>
-        <div class="col-sm-6 text-end">
-            <span class="level btn {f:if(condition: '{location.member.level} == 0', then: 'btn-default')}{f:if(condition: '{location.member.level} == 10', then: 'btn-primary')}{f:if(condition: '{location.member.level} == 20', then: 'btn-secondary')}{f:if(condition: '{location.member.level} == 30', then: 'btn-tertiary')}">
-                <f:if condition="{location.member.level} == 0">
-                    <f:then>
-                        {f:translate(key:'content_element.member.level.basic',extensionName:'clubmanager')}
-                    </f:then>
-                    <f:else if="{location.member.level} == 10">
-                        {f:translate(key:'content_element.member.level.bronze',extensionName:'clubmanager')}
-                    </f:else>
-                    <f:else if="{location.member.level} == 20">
-                        {f:translate(key:'content_element.member.level.silver',extensionName:'clubmanager')}
-                    </f:else>
-                    <f:else if="{location.member.level} == 30">
-                        {f:translate(key:'content_element.member.level.gold',extensionName:'clubmanager')}
-                    </f:else>
-                </f:if>
-            </span>
-        </div>
-    </div>
 
-    <header class="card-header">
-        <span class="h2 salutation">
-            <f:if condition="{location.salutation} == 0">
-                <f:then>
-                    {f:translate(key:'content_element.member.salutation.company',extensionName:'clubmanager')}
-                </f:then>
-                <f:else if="{location.salutation} == 1">
-                    {f:translate(key:'content_element.member.salutation.male',extensionName:'clubmanager')}
-                </f:else>
-                <f:else if="{location.salutation} == 2">
-                    {f:translate(key:'content_element.member.salutation.female',extensionName:'clubmanager')}
-                </f:else>
-                <f:else if="{location.salutation} == 3">
-                    {f:translate(key:'content_element.member.salutation.divers',extensionName:'clubmanager')}
-                </f:else>
-            </f:if>
-        </span>
-        <span class="h2 font-weight-bold mb-0 pt-0 mt-0" itemprop="name">
-            <f:if condition="{location.title}">
-                <span class="title">{location.title} </span>
-            </f:if>
-            <span class="firstname">{location.firstname} </span>
-            <f:if condition="{location.middlename}">
-                <span class="title">{location.middlename} </span>
-            </f:if>
-            <span class="lastname">{location.lastname}</span>
-        </span>
-
-        <f:if condition="{location.kind}==0">
-            <p class="font-weight-bold text-primary text-1 mb-0">
-                <f:if condition="{location.categories}">
-                    <f:for each="{location.categories}" as="category" key="key" iteration="filterIterator">
-                        <f:if condition="{filterIterator.index}>0">
-                            <f:then>
-                                &bull; {category.title}
-                            </f:then>
-                            <f:else>
-                                {category.title}
-                            </f:else>
-                        </f:if>
-                    </f:for>
-                </f:if>
-            </p>
-        </f:if>
-
-        <f:if condition="{location.kind}==1">
-            <p class="font-weight-bold text-primary text-uppercase mb-0">
-                <strong>{f:translate(key:'content_element.member.label.subLocation',extensionName:'clubmanager')}</strong>
-                <f:if condition="{location.category}">
-                    <f:for each="{location.category}" as="category" key="key" iteration="filterIterator">
-                        &bull; {category.title}
-                    </f:for>
-                </f:if>
-            </p>
-        </f:if>
-    </header>
-
-    <div class="row g-0" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
         <f:if condition="{location.kind}==0">
             <f:then>
-                <div class="col-sm-4 col-md-3 col-lg-4" itemprop="photo">
-                    <f:if condition="{location.image}">
-                        <f:then>
-                            <f:image
-                                    class="location-image img-fluid"
-                                    alt="{location.title} {location.firstname} {location.lastname}"
-                                    image="{location.image}"
-                                    width="300c"
-                                    height="300c"/>
-                        </f:then>
-                        <f:else>
-                            <f:if condition="{location.salutation}==1">
-                                <f:then>
-                                    <f:image
-                                            class="location-image img-fluid"
-                                            alt="{location.title} {location.firstname} {location.lastname}"
-                                            src="{f:uri.resource(path: 'Images/placeholder-m.png',extensionName:'clubmanager')}"
-                                            width="300c"
-                                            height="300c"/>
-                                </f:then>
-                                <f:else if="{location.salutation}==2">
-                                    <f:image
-                                            class="location-image img-fluid"
-                                            alt="{location.title} {location.firstname} {location.lastname}"
-                                            src="{f:uri.resource(path: 'Images/placeholder-f.png',extensionName:'clubmanager')}"
-                                            width="300c"
-                                            height="300c"/>
-                                </f:else>
-                                <f:else>
-                                    <f:image
-                                            class="location-image img-fluid"
-                                            alt="{location.title} {location.firstname} {location.lastname}"
-                                            src="{f:uri.resource(path: 'Images/placeholder-d.png',extensionName:'clubmanager')}"
-                                            width="300c"
-                                            height="300c"/>
-                                </f:else>
-                            </f:if>
-                        </f:else>
-                    </f:if>
-                </div>
-                <div class="col-sm-8 col-md-6 col-lg-5">
-                    <div class="card-body pt-3 pb-3">
-                        <f:if condition="{location.company}">
-                            <h3 class="card-title mb-1 text-4 font-weight-bold">
-                                <span class="company" itemprop="parentOrganization">{location.company}</span>
-                            </h3>
-                        </f:if>
-                        <p class="card-text mb-2">
-                            <span class="street" itemprop="streetAddress">{location.street}</span><br/>
-                            <span class="zip" itemprop="postalCode">{location.zip} </span>
-                            <span class="city" itemprop="addressLocality">{location.city}</span><br/>
-                            <span class="country" itemprop="addressCountry">{location.country.shortNameLocal}</span>
-                        </p>
-
-                        <f:if condition="{location.phone || location.mobile || location.fax || location.email || location.url}">
-                            <p class="card-text mb-2">
-                                <f:if condition="{location.phone}">
-                                    {f:translate(key:'content_element.location.label.phone',extensionName:'clubmanager')} <span class="phone" itemprop="telephone"><a href="tel:{location.phone}">{location.phone}</a></span>
-                                    <br/>
-                                </f:if>
-                                <f:if condition="{location.mobile}">
-                                    {f:translate(key:'content_element.location.label.mobile',extensionName:'clubmanager')}
-                                    <span class="mobile" itemprop="mobile">
-                                        <a href="tel:{location.mobile}">{location.mobile}</a>
-                                    </span>
-                                    <br/>
-                                </f:if>
-                                <f:if condition="{location.fax}">
-                                    {f:translate(key:'content_element.location.label.fax',extensionName:'clubmanager')}
-                                    <span class="fax" itemprop="faxNumber">
-                                        {location.fax}
-                                    </span>
-                                    <br/>
-                                </f:if>
-                                <f:if condition="{location.email}">
-                                    {f:translate(key:'content_element.location.label.email',extensionName:'clubmanager')} <br class="d-none d-sm-block d-md-none"/>
-                                    <span itemprop="email">
-                                        <f:link.email email="{location.email}"/>
-                                    </span>
-                                    <br/>
-                                </f:if>
-                                <f:if condition="{location.website}">
-                                    {f:translate(key:'content_element.location.label.website',extensionName:'clubmanager')} <br class="d-none d-sm-block d-md-none"/>
-                                    <span itemprop="url">
-                                        <f:link.external uri="{location.website}" class="external-link url" defaultScheme="https">{location.website}</f:link.external>
-                                    </span><br/>
-                                </f:if>
-                            </p>
-                        </f:if>
-
-                        <p class="card-text mb-2">
-                            <f:if condition="{location.company}">
-                                <f:then>
-                                    <a href="http://maps.google.com/?q={location.company},{location.street},{location.zip},{location.city}" target="_blank">
-                                        {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}
-                                    </a>
-                                </f:then>
-                                <f:else>
-                                    <a href="http://maps.google.com/?q={location.street},{location.zip},{location.city}" target="_blank">
-                                        {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}
-                                    </a>
-                                </f:else>
-                            </f:if>
-
-                        </p>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-2 col-lg-3">
-                    <div class="row">
-                        <f:if condition="{location.member.categories}">
-                            <f:for each="{location.member.categories}" as="category">
-                                <f:if condition="{category.uid}==13">
-                                    <div class="col-6 col-md-12 col-lg-6 text-center pb-3">
-                                        <img src="{f:uri.resource(path: 'Badges/Quicko-LizenzBadge-Dummy-A.svg', extensionName: 'clubmanager')}"
-                                                 alt="Siegel-Vorstandsmitglied: {location.title} {location.firstname} {location.lastname}"
-                                                 class="img-fluid" width="150px" height="150px">
-                                    </div>
-                                </f:if>
-                                <f:if condition="{category.uid}==14">
-                                    <div class="col-6 col-md-12 col-lg-6 text-center pb-3">
-                                        <img src="{f:uri.resource(path: 'Badges/Quicko-LizenzBadge-Dummy-B.svg', extensionName: 'clubmanager')}"
-                                                 alt="Siegel-Trainer: {location.title} {location.firstname} {location.lastname}"
-                                                 class="img-fluid" width="150px" height="150px">
-                                    </div>
-                                </f:if>
-                                <f:if condition="{category.uid}==15">
-                                    <div class="col-6 col-md-12 col-lg-6 text-center pb-3">
-                                        <img src="{f:uri.resource(path: 'Badges/Quicko-LizenzBadge-Dummy-C.svg', extensionName: 'clubmanager')}"
-                                                 alt="Siegel-Zertifizierter Therapeut: {location.title} {location.firstname} {location.lastname}"
-                                                 class="img-fluid" width="150px" height="150px">
-                                    </div>
-                                </f:if>
-                            </f:for>
-                        </f:if>
-                    </div>
-                </div>
-
                 <div class="card-footer row g-0">
                     <div class="col-sm-6">
                         <f:link.action action="detail"
@@ -241,135 +223,76 @@
                                        pluginName="location"
                                        controller="Location"
                                        pageUid="{settings.detailLocationPage}"
-                                       class="btn {f:if(condition: '{location.member.level} == 0', then: 'btn-default')}{f:if(condition: '{location.member.level} == 10', then: 'btn-primary')}{f:if(condition: '{location.member.level} == 20', then: 'btn-secondary')}{f:if(condition: '{location.member.level} == 30', then: 'btn-tertiary')}">
+                                       class="{f:if(condition: '{location.member.subLocations} > 0', then: 'mb-3')} btn btn-{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'primary')}{f:if(condition: '{location.member.level} == 20', then: 'secondary')}{f:if(condition: '{location.member.level} == 30', then: 'tertiary')}">
                             {f:translate(key:'content_element.location.main.detail.button',extensionName:'clubmanager')}
                         </f:link.action>
                     </div>
 
                     <div class="col-sm-6">
                         <f:if condition="{location.member.subLocations} > 0">
-                            <p class="text-end">
-                                <strong>{f:translate(key:'content_element.member.label.subLocation',extensionName:'clubmanager')}</strong><br/>
-                                <f:for each="{location.member.subLocations}" as="child">
-                                    <span itemprop="subOrganization">
-                                        <f:link.action action="detail" arguments="{location:child}"
+                            <div class="text-end">
+                                <f:for each="{location.member.subLocations}" as="child" iteration="childIterator">
+                                    <div class="{f:if(condition: '{childIterator.isLast}', then: ' ', else: 'pb-3')}"  itemprop="subOrganization">
+                                        <f:link.action action="detail"
+                                                       arguments="{location:child}"
                                                        extensionName="clubmanager"
-                                                       pluginName="location" controller="Location"
-                                                       pageUid="{settings.detailLocationPage}">
+                                                       pluginName="location"
+                                                       controller="Location"
+                                                       pageUid="{settings.detailLocationPage}"
+                                                       class="btn btn-default">
+                                            <strong>{childIterator.cycle}. {f:translate(key:'content_element.member.label.subLocation',extensionName:'clubmanager')}:</strong>
                                             <f:if condition="{child.company}">
-                                                {child.company} -
+                                                <f:then>
+                                                    {child.company} -
+                                                </f:then>
+                                                <f:else>
+                                                    {child.title} {child.firstname} {child.lastname} -
+                                                </f:else>
                                             </f:if>
-                                            {child.zip} {child.city}
+                                            {child.zip} {child.zip} {child.city}
                                         </f:link.action>
-                                    </span><br/>
+                                    </div>
                                 </f:for>
-                            </p>
+                            </div>
                         </f:if>
                     </div>
                 </div>
             </f:then>
             <f:else>
-                <div class="col-lg-6">
-                    <div class="card-body">
-                        <f:if condition="{location.company}">
-                            <h3 class="card-title mb-1 text-4 font-weight-bold">
-                                <span class="company" itemprop="parentOrganization">{location.company}</span>
-                            </h3>
-                        </f:if>
-                        <p class="card-text mb-2">
-                            <span class="street" itemprop="streetAddress">{location.street}</span><br/>
-                            <span class="zip" itemprop="postalCode">{location.zip} </span>
-                            <span class="city" itemprop="addressLocality">{location.city}</span><br/>
-                            <span class="country" itemprop="addressCountry">{location.country.shortNameLocal}</span>
-                        </p>
-
-                        <p class="card-text mb-2">
-                            <f:if condition="{location.company}">
-                                <f:then>
-                                    <a href="http://maps.google.com/?q={location.company}" target="_blank">
-                                        {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}
-                                    </a>
-                                </f:then>
-                                <f:else>
-                                    <a href="http://maps.google.com/?q={location.street},{location.zip},{location.city}" target="_blank">
-                                        {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}
-                                    </a>
-                                </f:else>
-                            </f:if>
-
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card-body">
-                        <f:if condition="{location.phone || location.mobile || location.fax || location.email || location.url}">
-                            <p class="card-text mb-2">
-                                <f:if condition="{location.phone}">
-                                    {f:translate(key:'content_element.location.label.phone',extensionName:'clubmanager')} <span class="phone" itemprop="telephone"><a href="tel:{location.phone}">{location.phone}</a></span>
-                                    <br/>
-                                </f:if>
-                                <f:if condition="{location.mobile}">
-                                    {f:translate(key:'content_element.location.label.mobile',extensionName:'clubmanager')}
-                                    <span class="mobile" itemprop="mobile">
-                                        <a href="tel:{location.mobile}">{location.mobile}</a>
-                                    </span>
-                                    <br/>
-                                </f:if>
-                                <f:if condition="{location.fax}">
-                                    {f:translate(key:'content_element.location.label.fax',extensionName:'clubmanager')}
-                                    <span class="fax" itemprop="faxNumber">
-                                        {location.fax}
-                                    </span>
-                                    <br/>
-                                </f:if>
-                                <f:if condition="{location.email}">
-                                    {f:translate(key:'content_element.location.label.email',extensionName:'clubmanager')} <br class="d-none d-sm-block d-md-none"/>
-                                    <span itemprop="email">
-                                        <f:link.email email="{location.email}"/>
-                                    </span>
-                                    <br/>
-                                </f:if>
-                                <f:if condition="{location.website}">
-                                    {f:translate(key:'content_element.location.label.website',extensionName:'clubmanager')} <br class="d-none d-sm-block d-md-none"/>
-                                    <span itemprop="url">
-                                        <f:link.external uri="{location.website}" class="external-link url" defaultScheme="https">{location.website}</f:link.external>
-                                    </span><br/>
-                                </f:if>
-                            </p>
-                        </f:if>
-                    </div>
-                </div>
-
                 <div class="card-footer row g-0">
                     <div class="col-sm-6">
                         <f:link.action action="detail"
-                                       arguments="{location:child}"
+                                       arguments="{location:location}"
                                        extensionName="clubmanager"
                                        pluginName="location"
                                        controller="Location"
                                        pageUid="{settings.detailLocationPage}"
-                                       class="btn {f:if(condition: '{location.member.level} == 0', then: 'btn-default')}{f:if(condition: '{location.member.level} == 10', then: 'btn-primary')}{f:if(condition: '{location.member.level} == 20', then: 'btn-secondary')}{f:if(condition: '{location.member.level} == 30', then: 'btn-tertiary')}">
+                                       class="mb-3 btn btn-default">
                             {f:translate(key:'content_element.location.sub.detail.button',extensionName:'clubmanager')}
                         </f:link.action>
                     </div>
 
                     <div class="col-sm-6">
-                        <p class="text-end">
-                            <strong>{f:translate(key:'content_element.member.label.mainLocation',extensionName:'clubmanager')}</strong><br/>
-                            <span itemprop="subOrganization">
+                        <div class="text-end">
                                 <f:link.action action="detail"
                                                arguments="{location:location.member.mainLocation}"
                                                extensionName="clubmanager"
                                                pluginName="location"
                                                controller="Location"
-                                               pageUid="{settings.detailLocationPage}">
+                                               pageUid="{settings.detailLocationPage}"
+                                               class="btn btn-{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'primary')}{f:if(condition: '{location.member.level} == 20', then: 'secondary')}{f:if(condition: '{location.member.level} == 30', then: 'tertiary')}">
+                                    <strong>{f:translate(key:'content_element.member.label.mainLocation',extensionName:'clubmanager')}:</strong>
                                     <f:if condition="{location.member.mainLocation.company}">
-                                        {location.member.mainLocation.company} -
+                                        <f:then>
+                                            {location.member.mainLocation.company} -
+                                        </f:then>
+                                        <f:else>
+                                            {location.member.mainLocation.title} {location.member.mainLocation.firstname} {location.member.mainLocation.lastname} -
+                                        </f:else>
                                     </f:if>
                                     {location.member.mainLocation.zip} {location.member.mainLocation.city}
                                 </f:link.action>
-                            </span><br/>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </f:else>

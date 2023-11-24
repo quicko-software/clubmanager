@@ -6,20 +6,7 @@
             <f:link.action action="detail" arguments="{location:member.mainLocation}" pluginName="member" controller="Member"
                            pageUid="{settings.detailMemberPage}">
                 <span class="salutation">
-                    <f:if condition="{member.salutation} == 0">
-                        <f:then>
-                            {f:translate(key:'content_element.member.salutation.company',extensionName:'clubmanager')}
-                        </f:then>
-                        <f:else if="{member.salutation} == 1">
-                            {f:translate(key:'content_element.member.salutation.male',extensionName:'clubmanager')}
-                        </f:else>
-                        <f:else if="{member.salutation} == 2">
-                            {f:translate(key:'content_element.member.salutation.female',extensionName:'clubmanager')}
-                        </f:else>
-                        <f:else if="{member.salutation} == 3">
-                            {f:translate(key:'content_element.member.salutation.divers',extensionName:'clubmanager')}
-                        </f:else>
-                    </f:if>
+                    {salutationName}
                 </span>
                 <f:if condition="{member.title}">
                     <span class="title">{member.title}</span>&nbsp;
@@ -65,26 +52,7 @@
                 <f:if condition="{member.state} > 0">
                     <span class="statelabel">{f:translate(key:'content_element.member.label.state',extensionName:'clubmanager')}</span>
                 </f:if>
-                <f:if condition="{member.state} == 0">
-                    <f:then>
-                        <span class="state"> {f:translate(key:'content_element.member.state.unset',extensionName:'clubmanager')}</span>
-                    </f:then>
-                    <f:else if="{member.state} == 1">
-                        <span class="state"> {f:translate(key:'content_element.member.state.applied',extensionName:'clubmanager')}</span>
-                    </f:else>
-                    <f:else if="{member.state} == 2">
-                        <span class="state"> {f:translate(key:'content_element.member.state.active',extensionName:'clubmanager')}</span>
-                    </f:else>
-                    <f:else if="{member.state} == 3">
-                        <span class="state"> {f:translate(key:'content_element.member.state.suspended',extensionName:'clubmanager')}</span>
-                    </f:else>
-                    <f:else if="{member.state} == 4">
-                        <span class="state"> {f:translate(key:'content_element.member.state.cancellation_wish',extensionName:'clubmanager')}</span>
-                    </f:else>
-                    <f:else if="{member.state} == 5">
-                        <span class="state"> {f:translate(key:'content_element.member.state.cancelled',extensionName:'clubmanager')}</span>
-                    </f:else>
-                </f:if>
+                <span class="state"> {stateName}</span>
                 <br />
             </f:comment>
 
@@ -92,21 +60,8 @@
             <span class="levellabel btn btn-default">
                 {f:translate(key:'content_element.member.label.level',extensionName:'clubmanager')}
             </span>
-            <span class="level btn {f:if(condition: '{member.level} == 0', then: 'btn-default')}{f:if(condition: '{member.level} == 10', then: 'btn-primary')}{f:if(condition: '{member.level} == 20', then: 'btn-secondary')}{f:if(condition: '{member.level} == 30', then: 'btn-tertiary')}">
-                <f:if condition="{member.level} == 0">
-                    <f:then>
-                        {f:translate(key:'content_element.member.level.basic',extensionName:'clubmanager')}
-                    </f:then>
-                    <f:else if="{member.level} == 10">
-                        {f:translate(key:'content_element.member.level.bronze',extensionName:'clubmanager')}
-                    </f:else>
-                    <f:else if="{member.level} == 20">
-                        {f:translate(key:'content_element.member.level.silver',extensionName:'clubmanager')}
-                    </f:else>
-                    <f:else if="{member.level} == 30">
-                        {f:translate(key:'content_element.member.level.gold',extensionName:'clubmanager')}
-                    </f:else>
-                </f:if>
+            <span class="level btn btn-{f:if(condition: '{member.level} == 0', then: 'default')}{f:if(condition: '{member.level} == 10', then: 'primary')}{f:if(condition: '{member.level} == 20', then: 'secondary')}{f:if(condition: '{member.level} == 30', then: 'tertiary')}">
+                {levelName}
             </span>
         </div>
 
@@ -115,7 +70,7 @@
             <span class="email"><f:link.email email="{member.email}"/></span>
         </p>
         <f:link.action action="detail" arguments="{location:member.mainLocation}" pluginName="member" controller="Member"
-                       pageUid="{settings.detailMemberPage}" class="btn {f:if(condition: '{member.level} == 0', then: 'btn-default')}{f:if(condition: '{member.level} == 10', then: 'btn-primary')}{f:if(condition: '{member.level} == 20', then: 'btn-secondary')}{f:if(condition: '{member.level} == 30', then: 'btn-tertiary')}">
+                       pageUid="{settings.detailMemberPage}" class="btn btn-{f:if(condition: '{member.level} == 0', then: 'default')}{f:if(condition: '{member.level} == 10', then: 'primary')}{f:if(condition: '{member.level} == 20', then: 'secondary')}{f:if(condition: '{member.level} == 30', then: 'tertiary')}">
             {f:translate(key:'content_element.member.detail.button',extensionName:'clubmanager')}
         </f:link.action>
     </div>
