@@ -2,6 +2,7 @@
 
 namespace Quicko\Clubmanager\FormEngine;
 
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -37,8 +38,14 @@ class SearchLocationButton extends InputTextElement
       $this->data['tableName'],
       $iconFactory->getIcon('apps-toolbar-menu-search')
     );
-    // TODO:t3v12 Backend Location search geolocation button -> js console error, 2023-11-24 stephanw
-    $array['requireJsModules'][] = JavaScriptModuleInstruction::create('TYPO3/CMS/Clubmanager/SearchLocation');
+
+    if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 12) {
+      $array['requireJsModules'][] = 'TYPO3/CMS/Clubmanager/SearchLocation';
+    }
+    else {
+      // TODO:t3v12 Backend Location search geolocation button -> js console error, 2023-11-24 stephanw
+      $array['requireJsModules'][] = JavaScriptModuleInstruction::create('TYPO3/CMS/Clubmanager/SearchLocation');
+    }
 
     return $array;
   }

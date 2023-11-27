@@ -7,7 +7,8 @@ return [
     'ctrl' => [
         'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_location',
         'label' => 'lastname,firstname,company,city',
-        'label_alt' => 'lastname,firstname,company,city',
+        'label_alt' => 'lastname,firstname,company,street,zip,city',
+        'label_alt_force' => true,
         'hideTable' => true, // displayed inline within member
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
