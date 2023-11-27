@@ -13,14 +13,19 @@ use TYPO3\CMS\Backend\Form\Element\InputTextElement;
  */
 class SearchLocationButton extends InputTextElement
 {
+
+
+
   /**
-   * 
-   *
    * @return array As defined in initializeResultArray() of AbstractNode
    */
   public function render(): array
   {
-    $array = parent::render();
+    $array = $this->mergeChildReturnIntoExistingResult(
+      $this->initializeResultArray(), 
+      $this->renderFieldInformation(),
+      false
+    );
 
     $mapping = $this->data['parameterArray']['fieldConf']['config']['mapping'];
     $target = $this->data['parameterArray']['fieldConf']['config']['target'];
@@ -44,7 +49,7 @@ class SearchLocationButton extends InputTextElement
     }
     else {
       // TODO:t3v12 Backend Location search geolocation button -> js console error, 2023-11-24 stephanw
-      $array['requireJsModules'][] = JavaScriptModuleInstruction::create('TYPO3/CMS/Clubmanager/SearchLocation');
+      // $array['requireJsModules'][] = JavaScriptModuleInstruction::create('TYPO3/CMS/Clubmanager/SearchLocation');
     }
 
     return $array;
