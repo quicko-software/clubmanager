@@ -129,7 +129,7 @@
 			</trans-unit>
 			<trans-unit id="content_element.member.label.category" resname="content_element.member.label.category">
 				<source>Member Category:</source>
-				<target>Mitglied-Kategorie:</target>
+				<target>Mitglieds-Kategorie:</target>
 			</trans-unit>
 			<trans-unit id="content_element.member.standard.category" resname="content_element.member.standard.category">
 				<source>Without</source>

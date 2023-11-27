@@ -136,8 +136,8 @@
 				<target>Geburtsdatum</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.street" resname="tx_clubmanager_domain_model_member.street">
-				<source>Street</source>
-				<target>Straße</target>
+				<source>Street, number</source>
+				<target>Straße/Hausnummer</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.zip" resname="tx_clubmanager_domain_model_member.zip">
 				<source>Zip</source>
@@ -160,8 +160,8 @@
 				<target>Mitgliedsnummer</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.company" resname="tx_clubmanager_domain_model_member.company">
-				<source>Company</source>
-				<target>Firma</target>
+				<source>Name/Company</source>
+				<target>Name/Firma</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.level" resname="tx_clubmanager_domain_model_member.level">
 				<source>Level</source>
@@ -220,8 +220,8 @@
 				<target>Name</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.alt_billing_street" resname="tx_clubmanager_domain_model_member.alt_billing_street">
-				<source>Street</source>
-				<target>Straße</target>
+				<source>Street, number</source>
+				<target>Straße/Hausnummer</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.alt_billing_zip" resname="tx_clubmanager_domain_model_member.alt_billing_zip">
 				<source>Zip</source>
@@ -456,8 +456,8 @@
 				<target>Praxis / Klinikname</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.alt_street" resname="tx_clubmanager_domain_model_member.alt_street">
-				<source>Street</source>
-				<target>Strasse</target>
+				<source>Street, number</source>
+				<target>Straße/Hausnummer</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.alt_zip" resname="tx_clubmanager_domain_model_member.alt_zip">
 				<source>Zip</source>

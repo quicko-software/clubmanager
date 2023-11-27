@@ -103,7 +103,7 @@
 				<source>Date of birth</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.street" resname="tx_clubmanager_domain_model_member.street">
-				<source>Street</source>
+				<source>Street, number</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.zip" resname="tx_clubmanager_domain_model_member.zip">
 				<source>Zip</source>
@@ -121,7 +121,7 @@
 				<source>Membership number</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.company" resname="tx_clubmanager_domain_model_member.company">
-				<source>Company</source>
+				<source>Name/Company</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.level" resname="tx_clubmanager_domain_model_member.level">
 				<source>Level</source>
@@ -166,7 +166,7 @@
 				<source>Name</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.alt_billing_street" resname="tx_clubmanager_domain_model_member.alt_billing_street">
-				<source>Street</source>
+				<source>Street, number</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.alt_billing_zip" resname="tx_clubmanager_domain_model_member.alt_billing_zip">
 				<source>Zip</source>
@@ -343,7 +343,7 @@
 				<source>Practice / Clinic name</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.alt_street" resname="tx_clubmanager_domain_model_member.alt_street">
-				<source>Street</source>
+				<source>Street, number</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.alt_zip" resname="tx_clubmanager_domain_model_member.alt_zip">
 				<source>Zip</source>
