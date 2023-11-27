@@ -42,7 +42,7 @@ define(['jquery', 'TYPO3/CMS/Core/Ajax/AjaxRequest'], function ($, AjaxRequest) 
             var dataId = "data[" + tableName + "][" + uid + "][" + key + "]";
             var input = $("[data-formengine-input-name='" + dataId + "']");
             input.val(data[value]);
-            TBE_EDITOR.fieldChanged(tableName, uid, key, dataId);
+            input.trigger('change');
           }
           top.TYPO3.Notification.success('Fertig.');
         } else {
