@@ -58,13 +58,14 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
         $queryBuilder->expr()->eq('table_name', $queryBuilder->createNamedParameter($this->tableName)),
         $queryBuilder->expr()->eq('column_name', $queryBuilder->createNamedParameter($this->columnName))
       );
-      if($originalValue != null) {
-        $queryBuilder->andWhere(
-          $queryBuilder->expr()->eq('original_value', $queryBuilder->createNamedParameter($originalValue))
-        );
-      }
-      $count = $queryBuilder->execute()->fetchColumn(0);
-    return $count > 0;
+    if($originalValue != null) {
+      $queryBuilder->andWhere(
+        $queryBuilder->expr()->eq('original_value', $queryBuilder->createNamedParameter($originalValue))
+      );
+    }
+
+    $count = $queryBuilder->execute()->fetchOne();
+    return $count === false ? false : $count > 0;
   }
 
   /**
@@ -73,15 +74,17 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
   protected function isValueIsValidInOrginalTable(string $value): bool
   {
     $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->tableName);
-    $count = $queryBuilder
+    $queryResult = $queryBuilder
       ->count($this->columnName)
       ->from($this->tableName)
       ->where(
         $queryBuilder->expr()->eq($this->columnName, $queryBuilder->createNamedParameter($value)),
       )
       ->execute()
-      ->fetchColumn(0);
-    return $count > 0;
+    ;
+
+    $count = $queryBuilder->execute()->fetchOne();
+    return $count === false ? false : $count > 0;
   }
 
   /**
@@ -119,7 +122,7 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
   protected function getMappedValue(string $value): ?string
   {
     $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->tableName);
-    $originalValue = $queryBuilder
+    $queryResult = $queryBuilder
       ->select('original_value')
       ->from('tx_clubmanager_sanitizevalue_mapping')
       ->where(
@@ -128,8 +131,12 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
         $queryBuilder->expr()->eq('column_name', $queryBuilder->createNamedParameter($this->columnName))
       )
       ->execute()
-      ->fetchColumn(0);
-    return $originalValue;
+      ->fetchOne()
+    ;
+    if (false === $queryResult) {
+      return null;
+    }
+    return $queryResult;
   }
 
   /**

@@ -2,7 +2,7 @@
 <f:layout name="Default" />
 <f:section name="Main">
     <ul class="cities">
-        <f:for each="{cities->v:iterator.sort(order: 'ASC', sortBy: 'name')}" as="city" iteration="iterator">
+        <f:for each="{cities}" as="city" iteration="iterator">
             <li>
                 <f:link.action action="detail" arguments="{city:city.name}" pluginName="city"
                                pageUid="{settings.detailCityPage}">

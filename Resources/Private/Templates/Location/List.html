@@ -2,7 +2,7 @@
 <f:layout name="Default"/>
 <f:section name="Main">
     <div class="row">
-        <f:for as="location" each="{paginator.paginatedItems}">
+        <f:for each="{paginator.paginatedItems}" as="location">
             <div class="col-12 mb-5">
                 <f:render partial="Location/ListItem" arguments="{_all}"/>
             </div>

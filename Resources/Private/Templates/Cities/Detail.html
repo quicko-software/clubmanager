@@ -2,7 +2,7 @@
 <f:layout name="Default" />
 <f:section name="Main">
     <h2>{f:translate(key:'content_element.cities.header',extensionName:'clubmanager')} {city}</h2>
-    <f:for each="{locations->v:iterator.sort(order: 'ASC', sortBy: 'lastname')}" as="location" iteration="iterator">
+    <f:for each="{locations}" as="location" iteration="iterator">
         <div class="col-12 mb-5">
             <f:render partial="Location/ListItem" arguments="{_all}"/>
         </div>

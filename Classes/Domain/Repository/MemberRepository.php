@@ -19,10 +19,10 @@ class MemberRepository extends Repository
     $query = $this->createQuery();
     $this->disableQueryRestrictions($query);
     $query->matching(
-      $query->logicalAnd([
+      $query->logicalAnd(
         $query->equals('feuser.username', $feUserName),
         $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
-      ])
+      )
     );
 
     $member = $query->execute()->getFirst();
@@ -58,15 +58,14 @@ class MemberRepository extends Repository
     $query->getQuerySettings()->setRespectStoragePage(false);
     $query->getQuerySettings()->setIgnoreEnableFields(true);
     $query->matching(
-      $query->logicalAnd([
+      $query->logicalAnd(
         $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
         $query->lessThanOrEqual('endtime', $refDate),
         $query->greaterThan('endtime', 0),
         $query->logicalNot(
           $query->equals('endtime', null)
         )
-      ]),
-
+      ),
     );
 
     return $query->execute();
