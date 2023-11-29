@@ -77,15 +77,13 @@ class MemberRepository extends Repository
     $query->getQuerySettings()->setRespectStoragePage(false);
     $query->getQuerySettings()->setIgnoreEnableFields(true);
     $query->matching(
-      $query->logicalAnd([
+      $query->logicalAnd(
         $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_CANCELLED),
         $query->logicalOr(
-          [
-            $query->equals('endtime', NULL),
-            $query->equals('endtime', 0)
-          ]
+          $query->equals('endtime', NULL),
+          $query->equals('endtime', 0)
         )
-      ]),
+      ),
     );
     return $query->execute();
   }
@@ -98,11 +96,11 @@ class MemberRepository extends Repository
     $query->matching(
       $query->logicalAnd([
         $query->equals('pid', $pid),
-        $query->logicalOr([
+        $query->logicalOr(
           $query->equals('endtime', NULL),
           $query->equals('endtime', 0),
           $query->lessThanOrEqual('endtime', $endDate)
-        ]),
+        ),
         $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
       ])
     );
