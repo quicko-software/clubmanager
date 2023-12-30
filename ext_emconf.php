@@ -17,7 +17,7 @@ $EM_CONF[$_EXTKEY] = [
 		'suggests' => [
             'vhs' => '7.0.1-7.0.99',
             'cms-felogin' => '11.5.0-12.4.99',
-            'bootstrap_package' => '12.0.0-12.0.99',
+            'bootstrap_package' => '12.0.0-14.0.99',
             'cookieman' => '2.14.0-2.14.99'
 		],
         'conflicts' => [
