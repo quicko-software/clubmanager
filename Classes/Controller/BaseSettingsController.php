@@ -23,6 +23,12 @@ class BaseSettingsController extends ActionController
         }        
         if(empty($this->settings["detailLocationPage"])) {
             $this->settings["detailLocationPage"] = $config->get('clubmanager', 'defaultDetailLocationPage');
-        }      
+        }
+        if(empty($this->settings["uidCategoryMember"])) {
+            $this->settings["uidCategoryMember"] = $config->get('clubmanager', 'uidCategoryMember');
+        }
+        if(empty($this->settings["uidCategoryLocation"])) {
+            $this->settings["uidCategoryLocation"] = $config->get('clubmanager', 'uidCategoryLocation');
+        }
     }
 }

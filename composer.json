@@ -24,7 +24,7 @@
   "suggest": {
     "fluidtypo3/vhs": "^6",
     "typo3/cms-felogin": "^11.5",
-    "bk2k/bootstrap-package": "^12.0",
+    "bk2k/bootstrap-package": "^14.0",
     "dmind/cookieman": "^2.14"
   }
 }

@@ -54,7 +54,7 @@ page {
 			text = <a href="https://quicko.software" rel="noopener" target="_blank">QUiCKO - Der Clubmanager</a> - entwickelt von <a href="https://www.wirkwerk.com" rel="noopener" target="_blank">WirkWerk</a> & <a href="https://www.codemacher.de" rel="noopener" target="_blank">Codemacher UG</a>.
 		}
 
-		//Cookieman is used so BOOTSTRAP PACKAGE cookieconsent is not needed
+		// Cookieman is used so BOOTSTRAP PACKAGE cookieconsent is not needed
 		cookieconsent.enable = 0
 	}
 
@@ -87,8 +87,16 @@ plugin.bootstrap_package {
 		cssSourceMapping = 0
 		// BOOTSTRAP SCSS CONSTANTS
 		scss {
-			primary = #0288D1
-			secondary = #FFEB3B
+			// Basic-Status
+			default = #222222
+			// Links, Buttons
+			primary = #1D90C7
+			// Bronze-Status
+			secondary = #a08d51
+			// Silber-Status
+			tertiary = #C0C0C0
+			// Gold-Status
+			quaternary = #FFD700
 			breadcrumb-bg = #FFFFFF
 			cookieconsent-bg = #F2F2F2
 			footer-sections = (content:(background: #0288D1, color: #ffffff, link-color: #FFEB3B), meta:(background: #ffffff, color: $body-color, link-color: #0288D1))

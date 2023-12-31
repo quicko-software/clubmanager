@@ -11,6 +11,14 @@
 //
 // Borders
 // --------------------------------------------------
+.border-color-default {
+  border-color: $border-color-default;
+  border-top-width:$border-top-width;
+  a:not(.btn) {
+    color: $default;
+  }
+}
+
 .border-color-primary {
   border-color: $border-color-primary;
   border-top-width:$border-top-width;
@@ -41,6 +49,13 @@
   a:not(.btn) {
     color: $quaternary;
   }
+}
+
+ul.license.list-inline {
+  margin-bottom: 0 !important;
+}
+.license .list-inline-item:not(:last-child)::after, ul.license.list-inline > li:not(:last-child)::after {
+  content: " • ";
 }
 
 .typo3-messages, .signin-form ul {list-style:none;padding:0;margin:0;}

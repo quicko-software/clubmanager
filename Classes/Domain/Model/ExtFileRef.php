@@ -32,18 +32,6 @@ class ExtFileRef extends \TYPO3\CMS\Extbase\Domain\Model\FileReference {
   }
 
   /**
-   * @return \TYPO3\CMS\Core\Resource\FileReference
-   */
-  public function getOriginalResource() {
-    if ($this->originalResource === NULL) {
-        $this->originalResource = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getFileReferenceObject(
-            $this->getUid()
-        );
-    }
-    return $this->originalResource;
-  }
-
-  /**
    * This is the magic function - give it a sys file. 
    * 
    * @param \TYPO3\CMS\Core\Resource\File $falFile
@@ -51,7 +39,6 @@ class ExtFileRef extends \TYPO3\CMS\Extbase\Domain\Model\FileReference {
    */
   public function setFile(\TYPO3\CMS\Core\Resource\File $falFile) {
     $this->originalFileIdentifier = $falFile->getUid();
-    // $this->uidLocal = $this->originalFileIdentifier;
   }
 
   public function getOriginalFileIdentifier() {

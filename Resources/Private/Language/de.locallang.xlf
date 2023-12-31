@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns:t3="http://typo3.org/schemas/xliff" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" original="EXT:clubmanager/Resources/Private/Language/locallang.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T16:57:51+01:00">
+	<file source-language="en" target-language="de" original="EXT:clubmanager/Resources/Private/Language/locallang.xlf" datatype="plaintext" product-name="clubmanager" date="2023-11-16T16:57:52+01:00">
 		<header></header>
 		<body>
 			<trans-unit id="statictextmailgenerator.label" resname="statictextmailgenerator.label">
@@ -123,25 +123,13 @@
 				<source>Log in to the members area here.</source>
 				<target>Loggen Sie sich hier in den Mitgliederbereich ein.</target>
 			</trans-unit>
-			<trans-unit id="content_element.member.salutation.male" resname="content_element.member.salutation.male">
-				<source>Mr.</source>
-				<target>Herr</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.salutation.female" resname="content_element.member.salutation.female">
-				<source>Ms.</source>
-				<target>Frau</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.salutation.company" resname="content_element.member.salutation.company">
-				<source>Company</source>
-				<target>Firma</target>
-			</trans-unit>
 			<trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
 				<source>Membership number:</source>
 				<target>Mitgliedsnummer:</target>
 			</trans-unit>
 			<trans-unit id="content_element.member.label.category" resname="content_element.member.label.category">
 				<source>Member Category:</source>
-				<target>Mitglied-Kategorie:</target>
+				<target>Mitglieds-Kategorie:</target>
 			</trans-unit>
 			<trans-unit id="content_element.member.standard.category" resname="content_element.member.standard.category">
 				<source>Without</source>
@@ -151,33 +139,9 @@
 				<source>Membership Status:</source>
 				<target>Mitgliedsstatus:</target>
 			</trans-unit>
-			<trans-unit id="content_element.member.state.unset" resname="content_element.member.state.unset">
-				<source>Not set</source>
-				<target>Nicht gesetzt</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.state.applied" resname="content_element.member.state.applied">
-				<source>Requested</source>
-				<target>Beantragt</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.state.active" resname="content_element.member.state.active">
-				<source>Active</source>
-				<target>Aktiv</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.state.suspended" resname="content_element.member.state.suspended">
-				<source>Resting</source>
-				<target>Ruhend</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.state.cancelled" resname="content_element.member.state.cancelled">
-				<source>Cancelled</source>
-				<target>Gekündigt</target>
-			</trans-unit>
 			<trans-unit id="content_element.member.label.level" resname="content_element.member.label.level">
 				<source>Type of membership:</source>
 				<target>Art der Mitgliedschaft:</target>
-			</trans-unit>
-			<trans-unit id="content_element.member.level.silver" resname="content_element.member.level.silver">
-				<source>Silver</source>
-				<target>Silber</target>
 			</trans-unit>
 			<trans-unit id="content_element.member.label.reducedRate" resname="content_element.member.label.reducedRate">
 				<source>Reduced membership:</source>
@@ -230,6 +194,18 @@
 			<trans-unit id="content_element.member.detail.button" resname="content_element.member.detail.button">
 				<source>Member details</source>
 				<target>Mitglied-Detailansicht</target>
+			</trans-unit>
+			<trans-unit id="content_element.member.license.badgeA" resname="content_element.member.license.badgeA">
+				<source>Licenseholder A</source>
+				<target>Lizenzhalter A</target>
+			</trans-unit>
+			<trans-unit id="content_element.member.license.badgeB" resname="content_element.member.license.badgeB">
+				<source>Licenseholder B</source>
+				<target>Lizenzhalter B</target>
+			</trans-unit>
+			<trans-unit id="content_element.member.license.badgeC" resname="content_element.member.license.badgeC">
+				<source>Licenseholder C</source>
+				<target>Lizenzhalter C</target>
 			</trans-unit>
 			<trans-unit id="content_element.location.label.category" resname="content_element.location.label.category">
 				<source>Location Category:</source>
