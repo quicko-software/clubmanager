@@ -5,9 +5,6 @@
 
     <div class="row">
         <f:for each="{paginator.paginatedItems}" as="location">
-            <f:variable name="levelName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.{location.member.level}')}"/>
-            <f:variable name="salutationName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.{location.salutation}')}"/>
-
             <div class="col-12 mb-5">
                 <f:render partial="Location/ListItem" arguments="{_all}"/>
             </div>
