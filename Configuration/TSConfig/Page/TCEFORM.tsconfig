@@ -12,7 +12,7 @@ TCEFORM {
                 // default = LLL:EXT:clubmanager/Resources/Private/Language/Backend.xlf:salutation.default
             }
             addItems {
-                3 = LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.divers
+                3 = LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.3
             }
         }
         // customfield1 {
@@ -27,7 +27,7 @@ TCEFORM {
                 // default = LLL:EXT:clubmanager/Resources/Private/Language/Backend.xlf:salutation.default
             }
             addItems {
-                3 = LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.divers
+                3 = LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.3
             }
         }
     }

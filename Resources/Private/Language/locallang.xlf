@@ -93,18 +93,6 @@
 			<trans-unit id="mail.reminder.link.login" resname="mail.reminder.link.login">
 				<source>Log in to the members area here.</source>
 			</trans-unit>
-			<trans-unit id="content_element.member.salutation.male" resname="content_element.member.salutation.male">
-				<source>Mr.</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.salutation.female" resname="content_element.member.salutation.female">
-				<source>Ms.</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.salutation.company" resname="content_element.member.salutation.company">
-				<source>Company</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.salutation.divers" resname="content_element.member.salutation.divers">
-				<source>Divers</source>
-			</trans-unit>
 			<trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
 				<source>Membership number:</source>
 			</trans-unit>
@@ -117,35 +105,8 @@
 			<trans-unit id="content_element.member.label.state" resname="content_element.member.label.state">
 				<source>Membership Status:</source>
 			</trans-unit>
-			<trans-unit id="content_element.member.state.unset" resname="content_element.member.state.unset">
-				<source>Not set</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.state.applied" resname="content_element.member.state.applied">
-				<source>Requested</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.state.active" resname="content_element.member.state.active">
-				<source>Active</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.state.suspended" resname="content_element.member.state.suspended">
-				<source>Resting</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.state.cancelled" resname="content_element.member.state.cancelled">
-				<source>Cancelled</source>
-			</trans-unit>
 			<trans-unit id="content_element.member.label.level" resname="content_element.member.label.level">
 				<source>Type of membership:</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.level.basic" resname="content_element.member.level.basic">
-				<source>Basic</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.level.bronze" resname="content_element.member.level.bronze">
-				<source>Bronze</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.level.silver" resname="content_element.member.level.silver">
-				<source>Silver</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.level.gold" resname="content_element.member.level.gold">
-				<source>Gold</source>
 			</trans-unit>
 			<trans-unit id="content_element.member.label.reducedRate" resname="content_element.member.label.reducedRate">
 				<source>Reduced membership:</source>
@@ -185,6 +146,15 @@
 			</trans-unit>
 			<trans-unit id="content_element.member.detail.button" resname="content_element.member.detail.button">
 				<source>Member details</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.license.badgeA" resname="content_element.member.license.badgeA">
+				<source>Licenseholder A</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.license.badgeB" resname="content_element.member.license.badgeB">
+				<source>Licenseholder B</source>
+			</trans-unit>
+			<trans-unit id="content_element.member.license.badgeC" resname="content_element.member.license.badgeC">
+				<source>Licenseholder C</source>
 			</trans-unit>
 			<trans-unit id="content_element.location.label.category" resname="content_element.location.label.category">
 				<source>Location Category:</source>
