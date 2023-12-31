@@ -123,22 +123,6 @@
         <source>Log in to the members area here.</source>
         <target state="needs-translation">Log in to the members area here.</target>
       </trans-unit>
-      <trans-unit id="content_element.member.salutation.male" resname="content_element.member.salutation.male">
-        <source>Mr.</source>
-        <target state="needs-translation">Mr.</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.salutation.female" resname="content_element.member.salutation.female">
-        <source>Ms.</source>
-        <target state="needs-translation">Ms.</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.salutation.company" resname="content_element.member.salutation.company">
-        <source>Company</source>
-        <target state="needs-translation">Company</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.salutation.divers" resname="content_element.member.salutation.divers">
-        <source>Divers</source>
-        <target state="needs-translation">Divers</target>
-      </trans-unit>
       <trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
         <source>Membership number:</source>
         <target state="needs-translation">Membership number:</target>
@@ -155,45 +139,9 @@
         <source>Membership Status:</source>
         <target state="needs-translation">Membership Status:</target>
       </trans-unit>
-      <trans-unit id="content_element.member.state.unset" resname="content_element.member.state.unset">
-        <source>Not set</source>
-        <target state="needs-translation">Not set</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.state.applied" resname="content_element.member.state.applied">
-        <source>Requested</source>
-        <target state="needs-translation">Requested</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.state.active" resname="content_element.member.state.active">
-        <source>Active</source>
-        <target state="needs-translation">Active</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.state.suspended" resname="content_element.member.state.suspended">
-        <source>Resting</source>
-        <target state="needs-translation">Resting</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.state.cancelled" resname="content_element.member.state.cancelled">
-        <source>Cancelled</source>
-        <target state="needs-translation">Cancelled</target>
-      </trans-unit>
       <trans-unit id="content_element.member.label.level" resname="content_element.member.label.level">
         <source>Type of membership:</source>
         <target state="needs-translation">Type of membership:</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.level.basic" resname="content_element.member.level.basic">
-        <source>Basic</source>
-        <target state="needs-translation">Basic</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.level.bronze" resname="content_element.member.level.bronze">
-        <source>Bronze</source>
-        <target state="needs-translation">Bronze</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.level.silver" resname="content_element.member.level.silver">
-        <source>Silver</source>
-        <target state="needs-translation">Silver</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.level.gold" resname="content_element.member.level.gold">
-        <source>Gold</source>
-        <target state="needs-translation">Gold</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.reducedRate" resname="content_element.member.label.reducedRate">
         <source>Reduced membership:</source>
@@ -246,6 +194,18 @@
       <trans-unit id="content_element.member.detail.button" resname="content_element.member.detail.button">
         <source>Member details</source>
         <target state="needs-translation">Member details</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.license.badgeA" resname="content_element.member.license.badgeA">
+        <source>Licenseholder A</source>
+        <target state="needs-translation">Licenseholder A</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.license.badgeB" resname="content_element.member.license.badgeB">
+        <source>Licenseholder B</source>
+        <target state="needs-translation">Licenseholder B</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.license.badgeC" resname="content_element.member.license.badgeC">
+        <source>Licenseholder C</source>
+        <target state="needs-translation">Licenseholder C</target>
       </trans-unit>
       <trans-unit id="content_element.location.label.category" resname="content_element.location.label.category">
         <source>Location Category:</source>
