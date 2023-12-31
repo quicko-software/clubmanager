@@ -10,9 +10,9 @@ lib.login {
     10 = TEXT
     10 {
         wrap = <div class="ms-md-5 my-3 text-end"> | </div>
-        value = <span class="btn btn-primary d-block">{$styles.content.loginform.label.login}</span>
+        value = {$styles.content.loginform.label.login}
         typolink {
-            ATagParams = class="text-white"
+            ATagParams = class="btn btn-primary d-block text-white"
             enable = 1
             parameter = {$styles.content.loginform.loginFormPid}
         }
@@ -51,9 +51,9 @@ lib.login {
             10 = TEXT
             10 {
                 wrap = <div class="col"> | </div>
-                value = <span class="btn btn-success d-block">{$styles.content.loginform.label.profile}</span>
+                value = {$styles.content.loginform.label.profile}
                 typolink {
-                    ATagParams = class="text-white"
+                    ATagParams = class="btn btn-success d-block text-white"
                     enable = 1
                     parameter = {$styles.content.loginform.memberProfilePage}
                 }
@@ -63,9 +63,9 @@ lib.login {
             20 = TEXT
             20 {
                 wrap = <div class="col"> | </div>
-                value = <span class="btn btn-danger d-block">{$styles.content.loginform.label.logout}</span>
+                value = {$styles.content.loginform.label.logout}
                 typolink {
-                    ATagParams = class="text-white"
+                    ATagParams = class="btn btn-danger d-block text-white"
                     enable = 1
                     parameter = {$styles.content.loginform.redirectPageLogout}
                     additionalParams = &logintype=logout
