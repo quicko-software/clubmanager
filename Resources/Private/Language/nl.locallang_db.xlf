@@ -87,19 +87,19 @@
         <source>Salutation</source>
         <target state="needs-translation">Salutation</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.salutation.other" resname="tx_clubmanager_domain_model_member.salutation.other">
-        <source>General</source>
-        <target state="needs-translation">General</target>
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.0" resname="tx_clubmanager_domain_model_member.salutation.0">
+        <source>Company</source>
+        <target state="needs-translation">Company</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.salutation.male" resname="tx_clubmanager_domain_model_member.salutation.male">
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.1" resname="tx_clubmanager_domain_model_member.salutation.1">
         <source>Mr.</source>
         <target state="needs-translation">Mr.</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.salutation.female" resname="tx_clubmanager_domain_model_member.salutation.female">
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.2" resname="tx_clubmanager_domain_model_member.salutation.2">
         <source>Ms.</source>
         <target state="needs-translation">Ms.</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.salutation.divers" resname="tx_clubmanager_domain_model_member.salutation.divers">
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.3" resname="tx_clubmanager_domain_model_member.salutation.3">
         <source>Divers</source>
         <target state="needs-translation">Divers</target>
       </trans-unit>
@@ -136,8 +136,8 @@
         <target state="needs-translation">Date of birth</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.street" resname="tx_clubmanager_domain_model_member.street">
-        <source>Street</source>
-        <target state="needs-translation">Street</target>
+        <source>Street, number</source>
+        <target state="needs-translation">Street, number</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.zip" resname="tx_clubmanager_domain_model_member.zip">
         <source>Zip</source>
@@ -160,8 +160,8 @@
         <target state="needs-translation">Membership number</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.company" resname="tx_clubmanager_domain_model_member.company">
-        <source>Company</source>
-        <target state="needs-translation">Company</target>
+        <source>Name/Company</source>
+        <target state="needs-translation">Name/Company</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.level" resname="tx_clubmanager_domain_model_member.level">
         <source>Level</source>
@@ -220,8 +220,8 @@
         <target state="needs-translation">Name</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_street" resname="tx_clubmanager_domain_model_member.alt_billing_street">
-        <source>Street</source>
-        <target state="needs-translation">Street</target>
+        <source>Street, number</source>
+        <target state="needs-translation">Street, number</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_zip" resname="tx_clubmanager_domain_model_member.alt_billing_zip">
         <source>Zip</source>
@@ -243,21 +243,25 @@
         <source>Membership status</source>
         <target state="needs-translation">Membership status</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.unset" resname="tx_clubmanager_domain_model_member.state.unset">
+      <trans-unit id="tx_clubmanager_domain_model_member.state.0" resname="tx_clubmanager_domain_model_member.state.0">
         <source>Not set</source>
         <target state="needs-translation">Not set</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.applied" resname="tx_clubmanager_domain_model_member.state.applied">
+      <trans-unit id="tx_clubmanager_domain_model_member.state.1" resname="tx_clubmanager_domain_model_member.state.1">
         <source>Requested</source>
         <target state="needs-translation">Requested</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.active" resname="tx_clubmanager_domain_model_member.state.active">
+      <trans-unit id="tx_clubmanager_domain_model_member.state.2" resname="tx_clubmanager_domain_model_member.state.2">
         <source>Active</source>
         <target state="needs-translation">Active</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.suspended" resname="tx_clubmanager_domain_model_member.state.suspended">
+      <trans-unit id="tx_clubmanager_domain_model_member.state.3" resname="tx_clubmanager_domain_model_member.state.3">
         <source>Resting</source>
         <target state="needs-translation">Resting</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.state.4" resname="tx_clubmanager_domain_model_member.state.4">
+        <source>Cancelled</source>
+        <target state="needs-translation">Cancelled</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info">
         <source>Address suffix</source>
@@ -270,10 +274,6 @@
       <trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate">
         <source>Reduced membership</source>
         <target state="needs-translation">Reduced membership</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.state.cancelled" resname="tx_clubmanager_domain_model_member.state.cancelled">
-        <source>Cancelled</source>
-        <target state="needs-translation">Cancelled</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.customfield1" resname="tx_clubmanager_domain_model_member.customfield1">
         <source>Additional field 1</source>
@@ -456,8 +456,8 @@
         <target state="needs-translation">Practice / Clinic name</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_street" resname="tx_clubmanager_domain_model_member.alt_street">
-        <source>Street</source>
-        <target state="needs-translation">Street</target>
+        <source>Street, number</source>
+        <target state="needs-translation">Street, number</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_zip" resname="tx_clubmanager_domain_model_member.alt_zip">
         <source>Zip</source>
