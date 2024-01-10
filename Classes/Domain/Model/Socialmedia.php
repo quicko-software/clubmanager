@@ -5,7 +5,7 @@ namespace Quicko\Clubmanager\Domain\Model;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use Quicko\Clubmanager\Domain\Model\Location;
 
-class SocialMedia extends AbstractEntity
+class Socialmedia extends AbstractEntity
 {
     const TYPE_FACEBOOK = 0;
     const TYPE_INSTAGRAM = 1;
