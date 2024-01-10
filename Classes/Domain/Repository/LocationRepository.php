@@ -2,16 +2,23 @@
 
 namespace Quicko\Clubmanager\Domain\Repository;
 
+use Quicko\Clubmanager\Domain\Model\Location;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
+/**
+ * @extends Repository<Location>
+ */
 class LocationRepository extends Repository
 {
   use PersistAndRefetchTrait;
 
+  /**
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
+   */
   public function findByUidWithHidden($uid)
   {
     $query = $this->createQuery();
@@ -238,7 +245,7 @@ class LocationRepository extends Repository
   }
 
   /**
-   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
+   * @return ?Location
    */
   public function findMainLocByMemberUidWithHidden(int $memberUid)
   {
@@ -248,7 +255,7 @@ class LocationRepository extends Repository
   }
 
   /**
-   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Location>|object[]
    */
   public function findSubLocsByMemberUidWithHidden(int $memberUid)
   {

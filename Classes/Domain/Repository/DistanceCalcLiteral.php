@@ -4,12 +4,12 @@ namespace Quicko\Clubmanager\Domain\Repository;
 
 class DistanceCalcLiteral
 {
-  ///
-  /// Get a select literal calculating the distance of geo coords.
-  /// The names of the geo coord columns are 'latitude' and 'longitude',
-  /// the coord name parameters are ':lat' and ':lng' (for value binding).
-  ///
-  public static function getSql($tableName)
+  // /
+  // / Get a select literal calculating the distance of geo coords.
+  // / The names of the geo coord columns are 'latitude' and 'longitude',
+  // / the coord name parameters are ':lat' and ':lng' (for value binding).
+  // /
+  public static function getSql(string $tableName): string
   {
     return <<<END_OF_STRING
       DEGREES(

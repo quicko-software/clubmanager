@@ -14,14 +14,14 @@ class MemberRepository extends Repository
 {
   use PersistAndRefetchTrait;
 
-  public function findByFeUserName($feUserName)
+  public function findByFeUserName($feUserName) : ?Member
   {
     $query = $this->createQuery();
     $this->disableQueryRestrictions($query);
     $query->matching(
       $query->logicalAnd(
         $query->equals('feuser.username', $feUserName),
-        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+        $query->equals('state', Member::STATE_ACTIVE),
       )
     );
 
@@ -29,7 +29,7 @@ class MemberRepository extends Repository
     return $member;
   }
 
-  public function findByFeUserNameWithHiddenLocations(LocationRepository $locationRepository, $feUserName)
+  public function findByFeUserNameWithHiddenLocations(LocationRepository $locationRepository, string $feUserName) : ?Member
   {
     /** @var Member $member */
     $member = $this->findByFeUserName($feUserName);
@@ -44,7 +44,7 @@ class MemberRepository extends Repository
     return $member;
   }
 
-  protected function disableQueryRestrictions(QueryInterface $query)
+  protected function disableQueryRestrictions(QueryInterface $query) : void
   {
     $querySettings = $query->getQuerySettings();
     $querySettings
@@ -52,6 +52,9 @@ class MemberRepository extends Repository
       ->setRespectStoragePage(false);
   }
 
+  /**
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[] 
+   */
   public function findAllEndedWithWrongState(\DateTime $refDate)
   {
     $query = $this->createQuery();
@@ -59,7 +62,7 @@ class MemberRepository extends Repository
     $query->getQuerySettings()->setIgnoreEnableFields(true);
     $query->matching(
       $query->logicalAnd(
-        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+        $query->equals('state', Member::STATE_ACTIVE),
         $query->lessThanOrEqual('endtime', $refDate),
         $query->greaterThan('endtime', 0),
         $query->logicalNot(
@@ -71,6 +74,9 @@ class MemberRepository extends Repository
     return $query->execute();
   }
 
+    /**
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[] 
+   */
   public function findAllCanceleddWithWrongState()
   {
     $query = $this->createQuery();
@@ -78,7 +84,7 @@ class MemberRepository extends Repository
     $query->getQuerySettings()->setIgnoreEnableFields(true);
     $query->matching(
       $query->logicalAnd(
-        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_CANCELLED),
+        $query->equals('state', Member::STATE_CANCELLED),
         $query->logicalOr(
           $query->equals('endtime', NULL),
           $query->equals('endtime', 0)
@@ -101,7 +107,7 @@ class MemberRepository extends Repository
           $query->equals('endtime', 0),
           $query->lessThanOrEqual('endtime', $endDate)
         ),
-        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+        $query->equals('state', Member::STATE_ACTIVE),
       ])
     );
 

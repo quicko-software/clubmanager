@@ -14,9 +14,7 @@ class CitiesController extends BaseSettingsController
   public function listAction(): ResponseInterface
   {
     $this->setDefaultSettingsIfRequired();
-
     $cities = $this->locationRepository->findCities();
-
     $this->view->assign('cities', $cities);
 
     return $this->htmlResponse();

@@ -34,7 +34,7 @@ class LengthEvaluator
   {
     if (strlen((string) $value) < 3) {
       $set = false;
-
+      /** @var FlashMessage $message*/
       $message = GeneralUtility::makeInstance(
         FlashMessage::class,
         'Der Wert im ident Feld entspricht nicht den Vorgaben (mindestens 3 Zeichen) - bitte tätigen Sie die Eingabe erneut.',

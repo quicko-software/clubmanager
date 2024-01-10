@@ -4,42 +4,40 @@ namespace Quicko\Clubmanager\Updates;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use Symfony\Component\Console\Output\OutputInterface;
-use TYPO3\CMS\Install\Updates\ChattyInterface;
-use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
-use TYPO3\CMS\Install\Updates\ConfirmableInterface;
-use TYPO3\CMS\Install\Updates\Confirmation;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-
 use Quicko\Clubmanager\Domain\Repository\CategoryRepository;
 use Quicko\Clubmanager\Domain\Repository\CountryRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\DummyData\DummyMemberFactory;
 use Quicko\Clubmanager\DummyData\DummyValues;
-use Quicko\Clubmanager\Utils\TypoScriptUtils;
-
+use Symfony\Component\Console\Output\OutputInterface;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Updates\ChattyInterface;
+use TYPO3\CMS\Install\Updates\ConfirmableInterface;
+use TYPO3\CMS\Install\Updates\Confirmation;
+use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Install\Updates\ReferenceIndexUpdatedPrerequisite;
+use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, LoggerAwareInterface, ConfirmableInterface
 {
-  const IDENTIFIER = 'cubmanager_createDummyDataWizard';
-
   use LoggerAwareTrait;
+  public const IDENTIFIER = 'cubmanager_createDummyDataWizard';
 
-  private $memberRepo = null;
-  protected $output;
+  private MemberRepository $memberRepo;
+  protected OutputInterface $output;
 
-  protected $connectionPool;
+  protected ConnectionPool $connectionPool;
 
-  /**
-   * @var Confirmation
-   */
-  protected $confirmation;
+  protected Confirmation $confirmation;
 
   public function __construct()
   {
+    /* @phpstan-ignore-next-line */
     $this->connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+    /* @phpstan-ignore-next-line */
     $this->memberRepo = GeneralUtility::makeInstance(MemberRepository::class);
     $this->confirmation = new Confirmation(
       'Really generate placeholder data?',
@@ -51,55 +49,41 @@ class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, 
     );
   }
 
-
   /**
-   * Return a confirmation message instance
-   *
-   * @return Confirmation
+   * Return a confirmation message instance.
    */
   public function getConfirmation(): Confirmation
   {
     return $this->confirmation;
   }
 
-
-
   public function setOutput(OutputInterface $output): void
   {
     $this->output = $output;
   }
 
-  /**
-   * @return string
-   */
   public function getIdentifier(): string
   {
     return self::IDENTIFIER;
   }
 
-  /**
-   * @return string
-   */
   public function getTitle(): string
   {
     return 'Create member placeholder data for clubmanager extension';
   }
 
-  /**
-   * @return string
-   */
   public function getDescription(): string
   {
     return 'WARNING: The following tables will be truncated: sys_category, fe_users, fe_groups, tx_clubmanager_domain_model_member, tx_clubmanager_domain_model_location. Do NOT set to "Yes" if you could lose data!';
   }
 
-  private function getConnection()
+  private function getConnection(): Connection
   {
     // works on other tables as well
     return $this->connectionPool->getConnectionForTable('tx_clubmanager_domain_model_member');
   }
 
-  private function removeFormerlyCreatedNewData()
+  private function removeFormerlyCreatedNewData(): void
   {
     $this->getConnection()->executeStatement('TRUNCATE TABLE tx_clubmanager_domain_model_member;');
     $this->getConnection()->executeStatement('TRUNCATE TABLE tx_clubmanager_domain_model_location;');
@@ -120,9 +104,11 @@ class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, 
     // $this->getConnection()->executeStatement("DELETE FROM fe_users WHERE username like '--import-generated-%'");
   }
 
-  private function getDestinationPid()
+  private function getDestinationPid(): mixed
   {
+    /** @var ExtensionConfiguration $extConf */
     $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class);
+
     return $extConf->get(
       'clubmanager',
       'storagePid'
@@ -131,13 +117,15 @@ class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, 
 
   private function createDummyData(): bool
   {
+    /** @var CategoryRepository $categoryRepository */
     $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
     $this->createCategories($categoryRepository);
     $countryRepository = GeneralUtility::makeInstance(CountryRepository::class);
     $pid = $this->getDestinationPid();
 
     if ($pid === null || empty($pid)) {
-      $this->output->writeln("The default storage pid is not defined.");
+      $this->output->writeln('The default storage pid is not defined.');
+
       return false;
     }
 
@@ -150,29 +138,24 @@ class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, 
       $this->memberRepo->add($dummyMemberFactory->createMember());
     }
     $this->memberRepo->persistAll();
+
     return true;
   }
 
-  private function createCategories($categoryRepository)
+  private function createCategories(CategoryRepository $categoryRepository): void
   {
     foreach (DummyValues::CATEGORIES as $categoryNamePath) {
       $categoryRepository->getOrCreateByNamePath($categoryNamePath);
     }
   }
 
-  /**
-   * @return bool
-   */
   public function executeUpdate(): bool
   {
-
     $this->removeFormerlyCreatedNewData();
+
     return $this->createDummyData();
   }
 
-  /**
-   * @return bool
-   */
   public function updateNecessary(): bool
   {
     return true;

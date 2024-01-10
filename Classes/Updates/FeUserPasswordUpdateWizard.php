@@ -4,35 +4,30 @@ namespace Quicko\Clubmanager\Updates;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Quicko\Clubmanager\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use \Quicko\Clubmanager\Domain\Repository\FrontendUserRepository;
-
+use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Install\Updates\ReferenceIndexUpdatedPrerequisite;
+use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 class FeUserPasswordUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
 {
-  const IDENTIFIER = 'clubmanager_feUserPasswordUpdateWizard';
-  const MAX_EXEC_TIME_SECONDS = 50;
-
   use LoggerAwareTrait;
+  public const IDENTIFIER = 'clubmanager_feUserPasswordUpdateWizard';
+  public const MAX_EXEC_TIME_SECONDS = 50;
 
   private ?FrontendUserRepository $userRepo = null;
 
-  /**
-   *
-   * @return string
-   */
   public function getIdentifier(): string
   {
     return self::IDENTIFIER;
   }
 
   /**
-   * Return the speaking name of this wizard
-   *
-   * @return string
+   * Return the speaking name of this wizard.
    */
   public function getTitle(): string
   {
@@ -40,9 +35,7 @@ class FeUserPasswordUpdateWizard implements UpgradeWizardInterface, LoggerAwareI
   }
 
   /**
-   * Return the description for this wizard
-   *
-   * @return string
+   * Return the description for this wizard.
    */
   public function getDescription(): string
   {
@@ -50,15 +43,14 @@ class FeUserPasswordUpdateWizard implements UpgradeWizardInterface, LoggerAwareI
     $desc = "Alte Klartext-Passwörter neu als Hash verschlüsseln,
       damit die Anmeldung mit Typo3 V.10.4 möglich ist.
       ($count Datensätze betroffen)";
+
     return $desc;
   }
 
   /**
-   * Execute the update
+   * Execute the update.
    *
    * Called when a wizard reports that an update is necessary
-   *
-   * @return bool
    */
   public function executeUpdate(): bool
   {
@@ -67,17 +59,19 @@ class FeUserPasswordUpdateWizard implements UpgradeWizardInterface, LoggerAwareI
     $numStillUnconverted = $this->updateFeuserPasswordHash();
     $this->logger->notice("end updateFeuserPasswordHash (runid = $runId)");
     $this->logger->notice("status updateFeuserPasswordHash (runid = $runId): still $numStillUnconverted to convert");
+
     return $numStillUnconverted === 0;
   }
 
-  private function getUserWithUnhashedPassword() {
+  private function getUserWithUnhashedPassword(): array
+  {
     $result = [];
 
     $userList = $this->getUserRepo()->findAllIncludingDisabled();
     foreach ($userList as $user) {
       $oldPassword = $user->getPassword();
       $isProbablyHashed = (substr($oldPassword, 0, 1) === '$') && (strlen($oldPassword) > 6);
-      if (! $isProbablyHashed) {
+      if (!$isProbablyHashed) {
         $result[] = $user;
       }
     }
@@ -85,37 +79,49 @@ class FeUserPasswordUpdateWizard implements UpgradeWizardInterface, LoggerAwareI
     return $result;
   }
 
-  private function isTimeToStop($startTimeInSec) {
+  private function isTimeToStop(int $startTimeInSec): bool
+  {
     $delta = time() - $startTimeInSec;
+
     return $delta >= self::MAX_EXEC_TIME_SECONDS;
   }
 
-  private function getUserRepo() {
+  private function getUserRepo(): FrontendUserRepository
+  {
     if (!$this->userRepo) {
-      $this->userRepo = GeneralUtility::makeInstance(FrontendUserRepository::class);
+      /** @var FrontendUserRepository $frontendUserRepository */
+      $frontendUserRepository = GeneralUtility::makeInstance(FrontendUserRepository::class);
+      $this->userRepo = $frontendUserRepository;
     }
+
     return $this->userRepo;
   }
 
-  private function saveUser($user) {
+  private function saveUser(DomainObjectInterface $user): void
+  {
     $this->getUserRepo()->update($user);
-    GeneralUtility::makeInstance(PersistenceManager::class)->persistAll();
+    /** @var PersistenceManager $persistenceManager */
+    $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
+    $persistenceManager->persistAll();
   }
 
-  private function updateFeuserPasswordHash() {
+  private function updateFeuserPasswordHash(): int
+  {
     $userListToConvert = $this->getUserWithUnhashedPassword();
-    $hasher = GeneralUtility::makeInstance(PasswordHashFactory::class)->getDefaultHashInstance('FE');
+    /** @var PasswordHashFactory $passwordHashFactory */
+    $passwordHashFactory = GeneralUtility::makeInstance(PasswordHashFactory::class);
+    $hasher = $passwordHashFactory->getDefaultHashInstance('FE');
 
     $countConverted = 0;
     $startTimeInSec = time();
-    
+
     foreach ($userListToConvert as $user) {
       $oldPassword = $user->getPassword();
       $hashedPassword = $hasher->getHashedPassword($oldPassword);
       $user->setPassword($hashedPassword);
       $this->saveUser($user);
 
-      $countConverted += 1;
+      ++$countConverted;
       if ($this->isTimeToStop($startTimeInSec)) {
         break;
       }
@@ -135,11 +141,12 @@ class FeUserPasswordUpdateWizard implements UpgradeWizardInterface, LoggerAwareI
   public function updateNecessary(): bool
   {
     $hasUserWithUnhashedPassword = (count($this->getUserWithUnhashedPassword()) > 0);
+
     return $hasUserWithUnhashedPassword;
   }
 
   /**
-   * Returns an array of class names of prerequisite classes
+   * Returns an array of class names of prerequisite classes.
    *
    * This way a wizard can define dependencies like "database up-to-date" or
    * "reference index updated"

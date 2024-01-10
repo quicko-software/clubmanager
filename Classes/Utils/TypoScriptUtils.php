@@ -2,20 +2,19 @@
 
 namespace Quicko\Clubmanager\Utils;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use RuntimeException;
 use TYPO3\CMS\Core\TypoScript\TemplateService;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
 
 class TypoScriptUtils
 {
-
-  public static function extractTypoScriptValue(array $typoScriptArray, string $dotPath) {
-
+  public static function extractTypoScriptValue(array $typoScriptArray, string $dotPath): ?array
+  {
+    /** @var TypoScriptService $typoScriptService */
     $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
-    $typoScriptSettingsWithoutDots = $typoScriptService->convertTypoScriptArrayToPlainArray($typoScriptArray); 
+    $typoScriptSettingsWithoutDots = $typoScriptService->convertTypoScriptArrayToPlainArray($typoScriptArray);
 
     $pathParts = explode('.', $dotPath);
     $numParts = count($pathParts);
@@ -24,13 +23,14 @@ class TypoScriptUtils
       $part = $pathParts[$i];
       if (!array_key_exists($part, $result)) {
         return null;
-      } 
+      }
       $result = $result[$part];
     }
-    return $result;    
+
+    return $result;
   }
 
-  public static function getTypoScriptValueForPage($dotPath, $pageId)
+  public static function getTypoScriptValueForPage(string $dotPath, int $pageId): ?array
   {
     /** @var TemplateService $template */
     $template = GeneralUtility::makeInstance(TemplateService::class);
@@ -42,8 +42,10 @@ class TypoScriptUtils
     $rootline = [];
     if ($pageId > 0) {
       try {
-        $rootline = GeneralUtility::makeInstance(RootlineUtility::class, $pageId)->get();
-      } catch (\RuntimeException $e) {
+        /** @var RootlineUtility $rootlineUtility */
+        $rootlineUtility = GeneralUtility::makeInstance(RootlineUtility::class, $pageId);
+        $rootline = $rootlineUtility->get();
+      } catch (RuntimeException $e) {
         $rootline = [];
       }
     }
@@ -51,6 +53,6 @@ class TypoScriptUtils
     $template->runThroughTemplates($rootline, 0);
     $template->generateConfig();
 
-    return TypoScriptUtils::extractTypoScriptValue($template->setup,$dotPath); 
+    return TypoScriptUtils::extractTypoScriptValue($template->setup, $dotPath);
   }
 }

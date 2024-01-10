@@ -9,6 +9,9 @@ use Quicko\Clubmanager\Domain\Model\Category;
 use Quicko\Clubmanager\Domain\Repository\PersistAndRefetchTrait;
 use Quicko\Clubmanager\Utils\SlugUtil;
 
+/**
+ * @extends Repository<Category>
+ */
 class CategoryRepository extends Repository
 {
   use PersistAndRefetchTrait;
@@ -36,7 +39,7 @@ class CategoryRepository extends Repository
     return $deepestCategory;
   }
 
-  private function getOrCreateCategory($name, $parentUid)
+  private function getOrCreateCategory(string $name, int $parentUid)
   {
     $query = $this->createQuery();
     $object = $query->matching(
