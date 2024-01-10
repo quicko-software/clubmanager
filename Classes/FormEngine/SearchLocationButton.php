@@ -3,22 +3,22 @@
 namespace Quicko\Clubmanager\FormEngine;
 
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Form\Element\InputTextElement;
 
-/**
- * 
- */
 class SearchLocationButton extends InputTextElement
 {
   /**
-   * 
-   *
    * @return array As defined in initializeResultArray() of AbstractNode
    */
-  public function render()
+  public function render(): array
   {
-    $array = parent::render();
+    $array = $this->mergeChildReturnIntoExistingResult(
+      $this->initializeResultArray(), 
+      $this->renderFieldInformation(),
+      false
+    );
 
     $mapping = $this->data['parameterArray']['fieldConf']['config']['mapping'];
     $target = $this->data['parameterArray']['fieldConf']['config']['target'];
@@ -36,7 +36,8 @@ class SearchLocationButton extends InputTextElement
       $this->data['tableName'],
       $iconFactory->getIcon('apps-toolbar-menu-search')
     );
-    $array['requireJsModules'][] = 'TYPO3/CMS/Clubmanager/SearchLocation';
+
+    $array['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/Clubmanager/SearchLocation');
 
     return $array;
   }

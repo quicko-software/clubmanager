@@ -14,14 +14,19 @@ class SanitizeValueUidMapper extends SanitizeValue
   protected function getTableValue(string $value): ?string
   {
     $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->tableName);
-    return $queryBuilder
+    $queryResult = $queryBuilder
       ->select($this->columnName)
       ->from($this->tableName)
       ->where(
         $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($value)),
       )
       ->execute()
-      ->fetchColumn(0);
+      ->fetchOne()
+    ;
+    if (false === $queryResult) {
+      return null;
+    }
+    return $queryResult;
   }
 
   /**
@@ -30,14 +35,19 @@ class SanitizeValueUidMapper extends SanitizeValue
   protected function getTableUid(string $value): ?string
   {
     $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->tableName);
-    return $queryBuilder
+    $queryResult = $queryBuilder
       ->select('uid')
       ->from($this->tableName)
       ->where(
         $queryBuilder->expr()->eq($this->columnName, $queryBuilder->createNamedParameter($value)),
       )
       ->execute()
-      ->fetchColumn(0);
+      ->fetchOne()
+    ;
+    if (false === $queryResult) {
+      return null;
+    }
+    return $queryResult;
   }  
 
   /**
