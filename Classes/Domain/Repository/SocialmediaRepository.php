@@ -2,12 +2,9 @@
 
 namespace Quicko\Clubmanager\Domain\Repository;
 
-use TYPO3\CMS\Extbase\Persistence\Repository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
-
-use Quicko\Clubmanager\Domain\Repository\PersistAndRefetchTrait;
-
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class SocialmediaRepository extends Repository
 {
@@ -19,5 +16,4 @@ class SocialmediaRepository extends Repository
     $querySettings->setRespectStoragePage(false);
     $this->setDefaultQuerySettings($querySettings);
   }
-
 }

@@ -2,23 +2,22 @@
 
 namespace Quicko\Clubmanager\Domain\Repository;
 
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-
-use Quicko\Clubmanager\Domain\Repository\StoragePids;
-
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class LocationRepository extends Repository
 {
+  use PersistAndRefetchTrait;
 
   public function findByUidWithHidden($uid)
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
     $querySettings->setIgnoreEnableFields(true);
+
     return $query->matching(
       $query->logicalAnd(
         $query->equals('uid', $uid),
@@ -31,6 +30,7 @@ class LocationRepository extends Repository
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
     $querySettings->setRespectStoragePage(false);
+
     return $query->matching(
       $query->logicalAnd(
         $query->equals('uid', $uid),
@@ -41,14 +41,14 @@ class LocationRepository extends Repository
   public function findByCity($cityName)
   {
     $query = $this->createQuery();
+
     return $query->matching(
       $query->logicalAnd([
         $query->equals('city', $cityName),
-        $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
+        $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
       ])
     )->execute();
   }
-
 
   public function findCities()
   {
@@ -77,9 +77,9 @@ class LocationRepository extends Repository
       ->groupBy('tx_clubmanager_domain_model_location.city')
       ->orderBy('name')
       ->execute();
+
     return $rows;
   }
-
 
   public function findCategories()
   {
@@ -116,7 +116,6 @@ class LocationRepository extends Repository
     return $rows;
   }
 
-
   public function findCountries()
   {
     $table = 'tx_clubmanager_domain_model_location';
@@ -137,14 +136,14 @@ class LocationRepository extends Repository
       ->groupBy('c.cn_short_local')
       ->orderBy('counter', 'DESC')
       ->execute();
+
     return $rows;
   }
-
 
   /**
    * Find all active member with a location that has a zip code
    * as given in the $zipList .
-   * 
+   *
    * @param array $zipList the list of allowed zips as string array, e.g. ['06120','06110','99712']
    */
   public function findWithZipCode($zipList)
@@ -157,25 +156,24 @@ class LocationRepository extends Repository
     $query->matching(
       $query->logicalAnd([
         $query->in('zip', $zipList),
-        $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
+        $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
       ])
     );
 
     return $query->execute();
   }
 
-
   /**
    * Finds all members that have locations with a maximal distance
    * of $radiusKm to the given center $coords .
    *
-   * @param array $coords the coordinates as array, e.g. ['latitude' => 51.123, 'longitude' => 11.456 ]
-   * @param int $radiusKm the max distance of the member location to the given $coords
+   * @param array $coords   the coordinates as array, e.g. ['latitude' => 51.123, 'longitude' => 11.456 ]
+   * @param int   $radiusKm the max distance of the member location to the given $coords
    */
   public function findAround($coords, $radiusKm)
   {
     $query = $this->createQuery();
-    $distanceLiteral = DistanceCalcLiteral::getSql("tx_clubmanager_domain_model_location");
+    $distanceLiteral = DistanceCalcLiteral::getSql('tx_clubmanager_domain_model_location');
     $sql = <<<EOS
       SELECT tx_clubmanager_domain_model_location.* FROM tx_clubmanager_domain_model_location
       JOIN tx_clubmanager_domain_model_member
@@ -195,26 +193,26 @@ class LocationRepository extends Repository
       ':lng' => $coords['longitude'],
       ':radiusKm' => $radiusKm,
       ':state' => \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE,
-      ':pid' => implode(',', StoragePids::getList())
+      ':pid' => implode(',', StoragePids::getList()),
     ]);
     $result = $query->execute();
 
     return $result;
   }
 
-
-  public function findPublicActive(?array $sorting = null)
+  public function findPublicActive(array $sorting = null)
   {
     $query = $this->createQuery();
     $query->matching(
       $query->logicalAnd([
-        $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
+        $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
       ])
     );
     if ($sorting != null) {
       $query->setOrderings($sorting);
     }
     $result = $query->execute();
+
     return $result;
   }
 
@@ -227,7 +225,7 @@ class LocationRepository extends Repository
       $query->logicalAnd(
         [
           $query->equals('member', $memberUid),
-          $query->equals('kind', $kind)
+          $query->equals('kind', $kind),
         ]
       )
     );
@@ -235,14 +233,23 @@ class LocationRepository extends Repository
     return $query;
   }
 
-  public function findMainLocByMemberUidWithHidden($memberUid)
+  /**
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
+   */
+  public function findMainLocByMemberUidWithHidden(int $memberUid)
   {
     $query = $this->createQueryByMemberUidWithHidden($memberUid, 0);
+
     return $query->execute()->getFirst();
   }
-  public function findSubLocsByMemberUidWithHidden($memberUid)
+
+  /**
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
+   */
+  public function findSubLocsByMemberUidWithHidden(int $memberUid)
   {
     $query = $this->createQueryByMemberUidWithHidden($memberUid, 1);
+
     return $query->execute();
   }
 }
