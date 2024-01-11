@@ -7,13 +7,14 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class SanitizeValueUidMapper extends SanitizeValue
 {
-
-    /**
-   * map uid to value
+  /**
+   * map uid to value.
    */
   protected function getTableValue(string $value): ?string
   {
-    $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->tableName);
+    /** @var ConnectionPool $connectionPool */
+    $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+    $queryBuilder = $connectionPool->getQueryBuilderForTable($this->tableName);
     $queryResult = $queryBuilder
       ->select($this->columnName)
       ->from($this->tableName)
@@ -26,11 +27,12 @@ class SanitizeValueUidMapper extends SanitizeValue
     if (false === $queryResult) {
       return null;
     }
+
     return $queryResult;
   }
 
   /**
-   * map value to uid
+   * map value to uid.
    */
   protected function getTableUid(string $value): ?string
   {
@@ -47,26 +49,27 @@ class SanitizeValueUidMapper extends SanitizeValue
     if (false === $queryResult) {
       return null;
     }
-    return $queryResult;
-  }  
 
-  /**
-   * {@inheritdoc}
-   */
+    return $queryResult;
+  }
+
   public function resolve(string $sanitizedValue): ?string
   {
     $value = SanitizeValue::resolve($sanitizedValue);
-    if(!$value) return null;
+    if (!$value) {
+      return null;
+    }
+
     return $this->getTableUid($value);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function generate(string $originalValue): ?string
   {
     $originalValue = $this->getTableValue($originalValue);
-    if(!$originalValue) return null;
+    if (!$originalValue) {
+      return null;
+    }
+
     return SanitizeValue::generate($originalValue);
   }
 }

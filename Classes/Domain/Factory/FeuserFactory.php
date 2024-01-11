@@ -3,7 +3,7 @@
 namespace Quicko\Clubmanager\Domain\Factory;
 
 use Quicko\Clubmanager\Domain\Model\FrontendUser;
-use Quicko\Clubmanager\Domain\Model\FrontendUserGroupRepository;
+use Quicko\Clubmanager\Domain\Repository\FrontendUserGroupRepository;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -47,8 +47,11 @@ class FeuserFactory
     return $digitString;
   }
 
-  private static function getFrontendUserGroupRepository() : FrontendUserGroupRepository
+  private static function getFrontendUserGroupRepository(): FrontendUserGroupRepository
   {
-    return GeneralUtility::makeInstance(FrontendUserGroupRepository::class);
+    /** @var FrontendUserGroupRepository $frontendUserGroupRepository */
+    $frontendUserGroupRepository = GeneralUtility::makeInstance(FrontendUserGroupRepository::class);
+
+    return $frontendUserGroupRepository;
   }
 }

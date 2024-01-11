@@ -6,7 +6,6 @@ namespace Quicko\Clubmanager\Domain\Repository;
  * To be used as a 'mixin' in Extbase Repository-classes.
  * Adds member functions to persist domain objects immediately.
  *
- * @template T of \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface
  */
 trait PersistAndRefetchTrait
 {
@@ -21,19 +20,18 @@ trait PersistAndRefetchTrait
   }
 
   /**
-   * @param object $domainObject
+   * @param \TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject $domainObject
    *
-   * @phpstan-param T $domainObject
-   *
-   * @return object|null The matching object if found, otherwise NULL
-   *
-   * @phpstan-return T|null
+   * TODO: types
+   * @phpstan-ignore-next-line
    */
   public function persistAndRefetch($domainObject)
   {
     if (is_null($domainObject->getUid())) {
+      /** @phpstan-ignore-next-line */
       $this->add($domainObject);
     } else {
+      /** @phpstan-ignore-next-line */
       $this->update($domainObject);
     }
     $this->persistAll();

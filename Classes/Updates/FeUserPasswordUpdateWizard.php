@@ -4,10 +4,10 @@ namespace Quicko\Clubmanager\Updates;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use Quicko\Clubmanager\Domain\Model\FrontendUser;
 use Quicko\Clubmanager\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\ReferenceIndexUpdatedPrerequisite;
@@ -97,7 +97,7 @@ class FeUserPasswordUpdateWizard implements UpgradeWizardInterface, LoggerAwareI
     return $this->userRepo;
   }
 
-  private function saveUser(DomainObjectInterface $user): void
+  private function saveUser(FrontendUser $user): void
   {
     $this->getUserRepo()->update($user);
     /** @var PersistenceManager $persistenceManager */

@@ -133,10 +133,11 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @param \int $minDaysSinceLastEmail
-   * @param \array $memberPidList list of pids where to look for members, e.g. [12,488,7] or null
+   * @param int $minDaysSinceLastEmail
+   * @param array $memberPidList list of pids where to look for members, e.g. [12,488,7] or null
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|Member[]
    */
-  public function findMemberRoRemind($minDaysSinceLastEmail, $memberPidList)
+  public function findMemberRoRemind(int $minDaysSinceLastEmail, array $memberPidList)
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();

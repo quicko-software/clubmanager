@@ -2,52 +2,48 @@
 
 namespace Quicko\Clubmanager\Routing\Aspect;
 
+use Doctrine\DBAL\Result;
+use InvalidArgumentException;
+use Quicko\Clubmanager\Utils\SlugUtil;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Routing\Aspect\MappableAspectInterface;
 use TYPO3\CMS\Core\Routing\Aspect\StaticMappableAspectInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-use Quicko\Clubmanager\Utils\SlugUtil;
-
-
 class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInterface
 {
+  protected string $tableName;
+
+  protected string $columnName;
 
   /**
-   * @var string
-   */
-  protected $tableName;
-
-  /**
-   * @var string
-   */
-  protected $columnName;
-
-  /**
-   * @param array $settings
-   * @throws \InvalidArgumentException
+   * @throws InvalidArgumentException
    */
   public function __construct(array $settings)
   {
-    $this->tableName = $settings['tableName'] ?? "";
-    $this->columnName = $settings['columnName'] ?? "";
+    $this->tableName = $settings['tableName'] ?? '';
+    $this->columnName = $settings['columnName'] ?? '';
   }
 
-  /** 
-   * Get the configured QueryBuilder
-  */
-  protected function getQueryBuilder()
+  /**
+   * Get the configured QueryBuilder.
+   */
+  protected function getQueryBuilder(): QueryBuilder
   {
-    $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_clubmanager_sanitizevalue_mapping');
+    /** @var ConnectionPool $connectionPool */
+    $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+    $queryBuilder = $connectionPool->getQueryBuilderForTable('tx_clubmanager_sanitizevalue_mapping');
     $queryBuilder->getRestrictions()
       ->removeAll();
+
     return $queryBuilder;
   }
 
   /**
    * Exists a mapping already?
    */
-  protected function isSanitizedValueMappingExists(string $sanitizedValue,?string $originalValue = null): bool
+  protected function isSanitizedValueMappingExists(string $sanitizedValue, string $originalValue = null): bool
   {
     $queryBuilder = $this->getQueryBuilder();
     $queryBuilder
@@ -58,13 +54,15 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
         $queryBuilder->expr()->eq('table_name', $queryBuilder->createNamedParameter($this->tableName)),
         $queryBuilder->expr()->eq('column_name', $queryBuilder->createNamedParameter($this->columnName))
       );
-    if($originalValue != null) {
+    if ($originalValue != null) {
       $queryBuilder->andWhere(
         $queryBuilder->expr()->eq('original_value', $queryBuilder->createNamedParameter($originalValue))
       );
     }
+    /** @var Result $result */
+    $result = $queryBuilder->execute();
+    $count = $result->fetchOne();
 
-    $count = $queryBuilder->execute()->fetchOne();
     return $count === false ? false : $count > 0;
   }
 
@@ -73,7 +71,10 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
    */
   protected function isValueIsValidInOrginalTable(string $value): bool
   {
-    $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->tableName);
+    /** @var ConnectionPool $connectionPool */
+    $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+    $queryBuilder = $connectionPool->getQueryBuilderForTable($this->tableName);
+    /** @var Result $queryResult */
     $queryResult = $queryBuilder
       ->count($this->columnName)
       ->from($this->tableName)
@@ -83,14 +84,15 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
       ->execute()
     ;
 
-    $count = $queryBuilder->execute()->fetchOne();
+    $count = $queryResult->fetchOne();
+
     return $count === false ? false : $count > 0;
   }
 
   /**
-   * save the mapping
+   * save the mapping.
    */
-  protected function storeSanitiedValueMapping(string $originalValue, string $sanitizedValue)
+  protected function storeSanitiedValueMapping(string $originalValue, string $sanitizedValue): void
   {
     $queryBuilder = $this->getQueryBuilder();
     $queryBuilder
@@ -99,29 +101,34 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
         'original_value' => $originalValue,
         'sanitized_value' => $sanitizedValue,
         'table_name' => $this->tableName,
-        'column_name' => $this->columnName
+        'column_name' => $this->columnName,
       ])
       ->execute();
   }
 
   /**
-   * make the sanitizedValue unique
+   * make the sanitizedValue unique.
    */
-  protected function makeSanitizedValueUnique($sanitizedValue) {
+  protected function makeSanitizedValueUnique(string $sanitizedValue): string
+  {
     $ct = 1;
     $originalSanitizedValue = $sanitizedValue;
-    while($this->isSanitizedValueMappingExists($sanitizedValue)) {
-      $sanitizedValue = $originalSanitizedValue . "-" . $ct++;
+    while ($this->isSanitizedValueMappingExists($sanitizedValue)) {
+      $sanitizedValue = $originalSanitizedValue . '-' . $ct++;
     }
+
     return $sanitizedValue;
   }
 
   /**
-   * search the orginial value in the db
+   * search the orginial value in the db.
    */
   protected function getMappedValue(string $value): ?string
   {
-    $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($this->tableName);
+    /** @var ConnectionPool $connectionPool */
+    $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+    $queryBuilder = $connectionPool->getQueryBuilderForTable($this->tableName);
+    /** @phpstan-ignore-next-line */
     $queryResult = $queryBuilder
       ->select('original_value')
       ->from('tx_clubmanager_sanitizevalue_mapping')
@@ -136,34 +143,33 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
     if (false === $queryResult) {
       return null;
     }
+
     return $queryResult;
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function resolve(string $sanitizedValue): ?string
   {
     $originalValue = $this->getMappedValue($sanitizedValue);
-    if(!$originalValue) $originalValue = $sanitizedValue;
+    if (!$originalValue) {
+      $originalValue = $sanitizedValue;
+    }
+
     return $this->isValueIsValidInOrginalTable($originalValue) ? $originalValue : null;
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function generate(string $originalValue): ?string
   {
     $sanitizedValue = SlugUtil::sanitizeParameter($originalValue);
     if ($sanitizedValue != $originalValue) {
-      if (!$this->isSanitizedValueMappingExists($sanitizedValue,$originalValue)
+      if (!$this->isSanitizedValueMappingExists($sanitizedValue, $originalValue)
       && $this->isValueIsValidInOrginalTable($originalValue)) {
         $sanitizedValue = $this->makeSanitizedValueUnique($sanitizedValue);
         $this->storeSanitiedValueMapping($originalValue, $sanitizedValue);
       }
-    } else if(!$this->isValueIsValidInOrginalTable($originalValue)) {
-        return null;
+    } elseif (!$this->isValueIsValidInOrginalTable($originalValue)) {
+      return null;
     }
+
     return $sanitizedValue;
   }
 }
