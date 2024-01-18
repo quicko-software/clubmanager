@@ -10,7 +10,7 @@ use TYPO3\CMS\Core\Utility\RootlineUtility;
 
 class TypoScriptUtils
 {
-  public static function extractTypoScriptValue(array $typoScriptArray, string $dotPath): ?array
+  public static function extractTypoScriptValue(array $typoScriptArray, string $dotPath): mixed
   {
     /** @var TypoScriptService $typoScriptService */
     $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
@@ -30,7 +30,7 @@ class TypoScriptUtils
     return $result;
   }
 
-  public static function getTypoScriptValueForPage(string $dotPath, int $pageId): ?array
+  public static function getTypoScriptValueForPage(string $dotPath, int $pageId): mixed
   {
     /** @var TemplateService $template */
     $template = GeneralUtility::makeInstance(TemplateService::class);
