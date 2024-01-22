@@ -14,7 +14,7 @@ lib.login {
         typolink {
             ATagParams = class="btn btn-primary d-block text-white"
             enable = 1
-            parameter = {$styles.content.loginform.loginFormPid}
+            parameter = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
         }
     }
 }
