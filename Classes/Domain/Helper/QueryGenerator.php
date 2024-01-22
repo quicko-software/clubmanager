@@ -2,28 +2,23 @@
 
 namespace Quicko\Clubmanager\Domain\Helper;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use PDO;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryHelper;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class QueryGenerator
 {
-
   /**
-   * Recursively fetch all descendants of a given page
+   * Recursively fetch all descendants of a given page.
    *
    * @param int $id uid of the page
-   * @param int $depth
-   * @param int $begin
-   * @param string $permClause
+   *
    * @return array array of descendant pages
    */
-  public function getTreeList($id, $depth, $begin = 0, $permClause = '')
+  public function getTreeList(int $id, int $depth, int $begin = 0, string $permClause = ''): array
   {
-    $depth = (int)$depth;
-    $begin = (int)$begin;
-    $id = (int)$id;
     if ($id < 0) {
       $id = abs($id);
     }
@@ -37,7 +32,7 @@ class QueryGenerator
       $queryBuilder->select('uid')
         ->from('pages')
         ->where(
-          $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT)),
+          $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($id, PDO::PARAM_INT)),
           $queryBuilder->expr()->eq('sys_language_uid', 0)
         )
         ->orderBy('uid');
@@ -51,10 +46,11 @@ class QueryGenerator
         }
         if ($depth > 1) {
           $theSubList = $this->getTreeList($row['uid'], $depth - 1, $begin - 1, $permClause);
-          $theList = array_merge($theList, $theSubList); 
+          $theList = array_merge($theList, $theSubList);
         }
       }
     }
+
     return $theList;
   }
 }

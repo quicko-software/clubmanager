@@ -2,15 +2,15 @@
 
 namespace Quicko\Clubmanager\Utils;
 
-use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use Quicko\Clubmanager\Controller\Backend\AdvertisingController;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 class BackendModuleHelper
 {
-  public static function removeAdertisingModule($moduleName)
+  public static function removeAdertisingModule(string $moduleName): void
   {
-    $key = "Clubmanager" . ucfirst($moduleName);
-    $fullkey = "clubmanager_" . $key;
+    $key = 'Clubmanager' . ucfirst($moduleName);
+    $fullkey = 'clubmanager_' . $key;
 
     unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extbase']['extensions']['Clubmanager']['modules'][$fullkey]);
     unset($GLOBALS['TBE_MODULES']['_configuration'][$fullkey]);
@@ -23,7 +23,7 @@ class BackendModuleHelper
     $GLOBALS['TBE_MODULES']['clubmanager'] = implode(',', $clubmanagerEntries);
   }
 
-  public static function addAdvertisingModule($moduleName)
+  public static function addAdvertisingModule(string $moduleName): void
   {
     ExtensionUtility::registerModule(
       'clubmanager',
@@ -31,7 +31,7 @@ class BackendModuleHelper
       $moduleName,
       '',
       [
-        AdvertisingController::class => $moduleName
+        AdvertisingController::class => $moduleName,
       ],
       [
         'access' => 'user,group',

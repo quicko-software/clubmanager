@@ -8,8 +8,8 @@ class MemberUidArguments extends BaseMailGeneratorArguments
   /**
    * memberUid
    *
-   * @var \integer
+   * @var int
    */
-  public $memberUid;
+  public int $memberUid;
 
 }

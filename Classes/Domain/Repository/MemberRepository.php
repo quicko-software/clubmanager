@@ -14,22 +14,22 @@ class MemberRepository extends Repository
 {
   use PersistAndRefetchTrait;
 
-  public function findByFeUserName($feUserName)
+  public function findByFeUserName($feUserName) : ?Member
   {
     $query = $this->createQuery();
     $this->disableQueryRestrictions($query);
     $query->matching(
-      $query->logicalAnd([
+      $query->logicalAnd(
         $query->equals('feuser.username', $feUserName),
-        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
-      ])
+        $query->equals('state', Member::STATE_ACTIVE),
+      )
     );
 
     $member = $query->execute()->getFirst();
     return $member;
   }
 
-  public function findByFeUserNameWithHiddenLocations(LocationRepository $locationRepository, $feUserName)
+  public function findByFeUserNameWithHiddenLocations(LocationRepository $locationRepository, string $feUserName) : ?Member
   {
     /** @var Member $member */
     $member = $this->findByFeUserName($feUserName);
@@ -44,7 +44,7 @@ class MemberRepository extends Repository
     return $member;
   }
 
-  protected function disableQueryRestrictions(QueryInterface $query)
+  protected function disableQueryRestrictions(QueryInterface $query) : void
   {
     $querySettings = $query->getQuerySettings();
     $querySettings
@@ -52,41 +52,44 @@ class MemberRepository extends Repository
       ->setRespectStoragePage(false);
   }
 
+  /**
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[] 
+   */
   public function findAllEndedWithWrongState(\DateTime $refDate)
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
     $query->getQuerySettings()->setIgnoreEnableFields(true);
     $query->matching(
-      $query->logicalAnd([
-        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+      $query->logicalAnd(
+        $query->equals('state', Member::STATE_ACTIVE),
         $query->lessThanOrEqual('endtime', $refDate),
         $query->greaterThan('endtime', 0),
         $query->logicalNot(
           $query->equals('endtime', null)
         )
-      ]),
-
+      ),
     );
 
     return $query->execute();
   }
 
+    /**
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[] 
+   */
   public function findAllCanceleddWithWrongState()
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
     $query->getQuerySettings()->setIgnoreEnableFields(true);
     $query->matching(
-      $query->logicalAnd([
-        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_CANCELLED),
+      $query->logicalAnd(
+        $query->equals('state', Member::STATE_CANCELLED),
         $query->logicalOr(
-          [
-            $query->equals('endtime', NULL),
-            $query->equals('endtime', 0)
-          ]
+          $query->equals('endtime', NULL),
+          $query->equals('endtime', 0)
         )
-      ]),
+      ),
     );
     return $query->execute();
   }
@@ -99,12 +102,12 @@ class MemberRepository extends Repository
     $query->matching(
       $query->logicalAnd([
         $query->equals('pid', $pid),
-        $query->logicalOr([
+        $query->logicalOr(
           $query->equals('endtime', NULL),
           $query->equals('endtime', 0),
           $query->lessThanOrEqual('endtime', $endDate)
-        ]),
-        $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+        ),
+        $query->equals('state', Member::STATE_ACTIVE),
       ])
     );
 
@@ -130,10 +133,11 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @param \int $minDaysSinceLastEmail
-   * @param \array $memberPidList list of pids where to look for members, e.g. [12,488,7] or null
+   * @param int $minDaysSinceLastEmail
+   * @param array $memberPidList list of pids where to look for members, e.g. [12,488,7] or null
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|Member[]
    */
-  public function findMemberRoRemind($minDaysSinceLastEmail, $memberPidList)
+  public function findMemberRoRemind(int $minDaysSinceLastEmail, array $memberPidList)
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();

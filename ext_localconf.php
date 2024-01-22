@@ -27,9 +27,8 @@ call_user_func(function () {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][IbanEvaluation::class] = '';
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][BicEvaluation::class] = '';
 
-    $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
     // Only include page.tsconfig if TYPO3 version is below 12 so that it is not imported twice.
-    if ($versionInformation->getMajorVersion() < 12) {
+    if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 12) {
         ExtensionManagementUtility::addPageTSConfig('@import "EXT:clubmanager/Configuration/page.tsconfig"');
     }
 

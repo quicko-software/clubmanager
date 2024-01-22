@@ -2,15 +2,16 @@
 
 namespace Quicko\Clubmanager\ViewHelpers;
 
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use Quicko\Clubmanager\Domain\Repository\CountryRepository;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class CountryListViewHelper extends AbstractViewHelper
 {
   /**
    * countryRepository.
    *
-   * @var \Quicko\Clubmanager\Domain\Repository\CountryRepository
+   * @var CountryRepository
+   *
    * @TYPO3\CMS\Extbase\Annotation\Inject
    */
   protected $countryRepository;
@@ -21,12 +22,10 @@ class CountryListViewHelper extends AbstractViewHelper
   }
 
   /**
-   * Returns the country by uid
-   *
-   * @return string
+   * Returns the country by uid.
    */
-  public function render()
+  public function render(): mixed
   {
-      return $this->countryRepository->findAll();
+    return $this->countryRepository->findAll();
   }
 }
