@@ -1,5 +1,9 @@
 page {
-    includeJSFooter {
+    includeJSFooterlibs {
+        clubmanager_jquery = EXT:clubmanager/Resources/Public/JavaScript/lib/jquery/jquery-3.7.1.min.js
+    }
+
+    includeJSFooter {                
         clubmanager = EXT:clubmanager/Resources/Public/JavaScript/Main.js
         smoothscroll = EXT:clubmanager/Resources/Public/JavaScript/SmoothScroll.js
     }
