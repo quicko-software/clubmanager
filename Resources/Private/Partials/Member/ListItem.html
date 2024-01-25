@@ -1,9 +1,11 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
+<f:variable name="levelColors" value="{f:if(condition: '{member.level} == 0', then: 'default')}{f:if(condition: '{member.level} == 10', then: 'secondary')}{f:if(condition: '{member.level} == 20', then: 'tertiary')}{f:if(condition: '{member.level} == 30', then: 'quaternary')}"/>
+
 <div class="card" id="member-{member.uid}">
     <header class="card-header">
         <div class="h3">
-            <f:link.action action="detail" arguments="{location:member.mainLocation}" pluginName="member" controller="Member"
+            <f:link.action action="detail" arguments="{member:member}" pluginName="member" controller="Member"
                            pageUid="{settings.detailMemberPage}">
                 <span class="salutation">
                     {salutationName}
@@ -60,7 +62,7 @@
             <span class="levellabel btn btn-default">
                 {f:translate(key:'content_element.member.label.level',extensionName:'clubmanager')}
             </span>
-            <span class="level btn btn-{f:if(condition: '{member.level} == 0', then: 'default')}{f:if(condition: '{member.level} == 10', then: 'primary')}{f:if(condition: '{member.level} == 20', then: 'secondary')}{f:if(condition: '{member.level} == 30', then: 'tertiary')}">
+            <span class="level btn btn-{levelColors}">
                 {levelName}
             </span>
         </div>
@@ -71,7 +73,7 @@
         </p>
 
         <f:link.action action="detail" arguments="{member:member}" pluginName="member" controller="Member"
-                       pageUid="{settings.detailMemberPage}" class="btn btn-{f:if(condition: '{member.level} == 0', then: 'default')}{f:if(condition: '{member.level} == 10', then: 'primary')}{f:if(condition: '{member.level} == 20', then: 'secondary')}{f:if(condition: '{member.level} == 30', then: 'tertiary')}">
+                       pageUid="{settings.detailMemberPage}" class="btn btn-{levelColors}">
             {f:translate(key:'content_element.member.detail.button',extensionName:'clubmanager')}
         </f:link.action>
 

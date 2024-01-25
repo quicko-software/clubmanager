@@ -135,6 +135,9 @@
 			<trans-unit id="content_element.member.label.route" resname="content_element.member.label.route">
 				<source>Route planning</source>
 			</trans-unit>
+			<trans-unit id="content_element.member.label.noLocation" resname="content_element.member.label.noLocation">
+				<source>No location specified yet</source>
+			</trans-unit>
 			<trans-unit id="content_element.member.label.mainLocation" resname="content_element.member.label.mainLocation">
 				<source>Head office</source>
 			</trans-unit>

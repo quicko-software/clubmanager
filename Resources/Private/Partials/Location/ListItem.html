@@ -2,10 +2,11 @@
 
 <f:variable name="levelName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.{location.member.level}')}"/>
 <f:variable name="salutationName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.{location.salutation}')}"/>
+<f:variable name="levelColors" value="{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'secondary')}{f:if(condition: '{location.member.level} == 20', then: 'tertiary')}{f:if(condition: '{location.member.level} == 30', then: 'quaternary')}"/>
 
 <f:if condition="{location.kind}==0">
     <f:then>
-        <div class="card border-color-{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'secondary')}{f:if(condition: '{location.member.level} == 20', then: 'tertiary')}{f:if(condition: '{location.member.level} == 30', then: 'quaternary')}" itemscope itemtype="http://schema.org/LocalBusiness" id="location-{location.uid}">
+        <div class="card border-color-{levelColors}" itemscope itemtype="http://schema.org/LocalBusiness" id="location-{location.uid}">
             <f:if condition="{location.member.categories}">
                 <f:for each="{location.member.categories}" as="memberCategory" iteration="memberIterator">
                     <f:if condition="{memberCategory.uid} == 13 || {memberCategory.uid} == 14 || {memberCategory.uid} == 15 ">
@@ -93,7 +94,7 @@
         <div class="col-sm-6 text-end">
             <f:if condition="{location.kind}==0">
                 <f:then>
-                    <span class="level btn btn-{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'secondary')}{f:if(condition: '{location.member.level} == 20', then: 'tertiary')}{f:if(condition: '{location.member.level} == 30', then: 'quaternary')}">
+                    <span class="level btn btn-{levelColors}">
                         {levelName}
                     </span>
                 </f:then>
