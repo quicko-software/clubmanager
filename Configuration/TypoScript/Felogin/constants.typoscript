@@ -8,7 +8,7 @@ styles.content.loginform {
     // changed to german format
     dateFormat = d-m-Y H:i
 
-    pid = {$plugin.tx_clubmanager.settings.fe_users_storagePid}
+    pid = {$plugin.tx_clubmanager.settings.feUsersStoragePid}
     emailFrom =
     emailFromName =
     replyToEmail =
