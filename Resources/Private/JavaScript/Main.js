@@ -1,4 +1,7 @@
+
+import $ from 'jquery';
 import ContentBlocker from "./ContentBlocker";
+
 $(function () {
   ContentBlocker.mount();
 });
