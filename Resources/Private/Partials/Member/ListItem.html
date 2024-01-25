@@ -69,10 +69,12 @@
             <span class="phone"><a href="tel:{member.phone}">{member.phone}</a></span><br />
             <span class="email"><f:link.email email="{member.email}"/></span>
         </p>
-        <f:link.action action="detail" arguments="{location:member.mainLocation}" pluginName="member" controller="Member"
+
+        <f:link.action action="detail" arguments="{member:member}" pluginName="member" controller="Member"
                        pageUid="{settings.detailMemberPage}" class="btn btn-{f:if(condition: '{member.level} == 0', then: 'default')}{f:if(condition: '{member.level} == 10', then: 'primary')}{f:if(condition: '{member.level} == 20', then: 'secondary')}{f:if(condition: '{member.level} == 30', then: 'tertiary')}">
             {f:translate(key:'content_element.member.detail.button',extensionName:'clubmanager')}
         </f:link.action>
+
     </div>
 </div>
 

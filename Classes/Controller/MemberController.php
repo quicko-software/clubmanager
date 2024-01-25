@@ -19,9 +19,10 @@ class MemberController extends BaseSettingsController
   public function detailAction(Member $member = null, Location $location = null): ResponseInterface
   {
     $this->setDefaultSettingsIfRequired();
-    if ($member) {
+
+    if ($member != null) {
       $this->view->assign('member', $member);
-    } else if ($location) {
+    } else if ($location != null) {
       $this->view->assign('member', $location->getMember());
     }
 
