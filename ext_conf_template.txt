@@ -11,7 +11,7 @@ defaultDetailMemberPage =
 # cat=basic/enable; type=int; label=UID of the default location detail page
 defaultDetailLocationPage = 
 # cat=FE-User-Login; type=int; label=UID of the Default fe_users storage page
-fe_users_storagePid = 
+feUsersStoragePid =
 # cat=FE-User-Login; type=int; label=UID of the Default fe_users login page
 feUsersLoginPid = 
 # cat=FE-User-Login; type=int; label=UID of the default target page after logout

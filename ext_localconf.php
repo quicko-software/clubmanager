@@ -127,7 +127,7 @@ call_user_func(function () {
     $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class);
     $fe_users_storagePid = $extConf->get(
         'clubmanager',
-        'fe_users_storagePid'
+        'feUsersStoragePid'
     );
     
     ExtensionManagementUtility::addPageTSConfig(

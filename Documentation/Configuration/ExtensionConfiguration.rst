@@ -101,10 +101,10 @@ Fe-user-login
 
 .. _extensionConfigurationFeUsersStorage:
 
-UID of the Default fe_users storage page `fe_users_storagePid`
+UID of the Default fe_users storage page `feUsersStoragePid`
 -----------------------------------------------------
 
-.. confval:: fe_users_storagePid
+.. confval:: feUsersStoragePid
 
    :type: int
    :Default: 0
