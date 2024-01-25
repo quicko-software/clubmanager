@@ -5,7 +5,7 @@ page {
 
     includeJSFooter {                
         clubmanager = EXT:clubmanager/Resources/Public/JavaScript/Main.js
-        smoothscroll = EXT:clubmanager/Resources/Public/JavaScript/SmoothScroll.js
+        // smoothscroll = EXT:clubmanager/Resources/Public/JavaScript/SmoothScroll.js
     }
 
     includeCSS {
