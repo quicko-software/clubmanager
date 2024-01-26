@@ -56,9 +56,8 @@ class MailServiceTask extends AbstractTask
     return $result;
   }
 
-  private function handleError(array $item, Exception $e): void
+  private function handleError(array $item, Throwable $e): void
   {
-    $this->logException($e);
     $openTries = intval($item['open_tries']) - 1;
     $send_state = $item['send_state'];
     if ($openTries <= 0) {
