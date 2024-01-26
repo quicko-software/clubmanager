@@ -26,6 +26,8 @@ call_user_func(function () {
       
     ];
 
+    $GLOBALS['TCA']['fe_users']['columns']['password']['config']['required'] = 0;
+    
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users', $fields);
   
 });
