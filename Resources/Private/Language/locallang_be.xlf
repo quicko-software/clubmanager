@@ -84,6 +84,9 @@
 			<trans-unit id="bem-toolbox.delete" resname="bem-toolbox.delete">
 				<source>Delete</source>
 			</trans-unit>
+			<trans-unit id="bem-toolbox.selectall" resname="bem-toolbox.selectall">
+				<source>Select all</source>
+			</trans-unit>				
 			<trans-unit id="mlang_tabs_tab_memberlist" resname="mlang_tabs_tab_memberlist">
 				<source>List of members</source>
 			</trans-unit>

@@ -10,6 +10,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 
 use Quicko\Clubmanager\Domain\Model\FrontendUser;
 use Quicko\Clubmanager\Domain\Model\Country;
+use Quicko\Clubmanager\Domain\Model\Location;
 use Quicko\Clubmanager\Domain\Helper\States;
 
 class Member extends AbstractEntity
@@ -95,14 +96,14 @@ class Member extends AbstractEntity
     protected $account;
 
     /**
-     * @var \Quicko\Clubmanager\Domain\Model\Location
+     * @var ?Location
      * @Lazy
      * @Cascade("remove")
      */
     protected $mainLocation;
 
     /**
-     * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Location>
+     * @var ObjectStorage<Location>
      * @Lazy
      * @Cascade("remove")
      */
@@ -520,7 +521,7 @@ class Member extends AbstractEntity
     }
 
     /**
-     * @param \Quicko\Clubmanager\Domain\Model\Location $mainLocation
+     * @param ?Location $mainLocation
      * @return void
      */
     public function setMainLocation($mainLocation)

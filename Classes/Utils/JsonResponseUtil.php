@@ -2,12 +2,10 @@
 
 namespace Quicko\Clubmanager\Utils;
 
-use TYPO3\CMS\Core\Http\JsonResponse;
-
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-
 use Psr\Http\Message\ResponseInterface;
-
+use Throwable;
+use TYPO3\CMS\Core\Http\JsonResponse;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 //
 // For usage in backend controllers.
@@ -18,8 +16,7 @@ class JsonResponseUtil
   {
     try {
       return $actionLikeFunction();
-    }
-    catch (\Throwable $e) {
+    } catch (Throwable $e) {
       return self::returnWithFlashMessage(
         null,
         500,
@@ -37,24 +34,23 @@ class JsonResponseUtil
     mixed $data,
     int $statusCode,
     ?string $messageType,
-    ?string $messageTitle, 
-    ?string $messageText 
-  ): ResponseInterface
-  {
+    ?string $messageTitle,
+    ?string $messageText
+  ): ResponseInterface {
     return new JsonResponse([
       'flash' => [
         'messageType' => $messageType,
         'messageTitle' => $messageTitle,
         'messageText' => $messageText,
       ],
-      'data' => $data
+      'data' => $data,
     ], $statusCode);
   }
 
   public static function returnWithoutFlash(mixed $data, int $statusCode): ResponseInterface
   {
     return new JsonResponse([
-      'data' => $data
+      'data' => $data,
     ], $statusCode);
   }
 }

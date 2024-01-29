@@ -8,6 +8,7 @@
     <f:variable name="levelName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.{member.level}')}"/>
     <f:variable name="salutationName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.{member.salutation}')}"/>
     <f:variable name="stateName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.{member.state}')}"/>
+    <f:variable name="levelColors" value="{f:if(condition: '{member.level} == 0', then: 'default')}{f:if(condition: '{member.level} == 10', then: 'secondary')}{f:if(condition: '{member.level} == 20', then: 'tertiary')}{f:if(condition: '{member.level} == 30', then: 'quaternary')}"/>
 
     <div class="row mb-5 pb-3">
         <div class="col-sm-12 col-md-6">
@@ -76,7 +77,7 @@
                         <span class="levellabel btn btn-default">
                             {f:translate(key:'content_element.member.label.level',extensionName:'clubmanager')}
                         </span>
-                        <span class="level btn btn-{f:if(condition: '{member.level} == 0', then: 'default')}{f:if(condition: '{member.level} == 10', then: 'primary')}{f:if(condition: '{member.level} == 20', then: 'secondary')}{f:if(condition: '{member.level} == 30', then: 'tertiary')}">
+                        <span class="level btn btn-{levelColors}">
                 {levelName}
             </span>
                     </div>
@@ -143,10 +144,17 @@
         <div class="col-sm-12 col-md-6">
             <div class="card">
                 <f:if condition="{member.mainLocation}">
-                    <div class="card-header">
-                        <span class="h4">{f:translate(key:'content_element.member.label.mainLocation',extensionName:'clubmanager')}</span>
-                    </div>
-                    <f:render partial="Location/MemberItem" arguments="{location:member.mainlocation}"/>
+                    <f:then>
+                        <div class="card-header">
+                            <span class="h4">{f:translate(key:'content_element.member.label.mainLocation',extensionName:'clubmanager')}</span>
+                        </div>
+                        <f:render partial="Location/MemberItem" arguments="{location:member.mainlocation}"/>
+                    </f:then>
+                    <f:else>
+                        <div class="card-header">
+                            <span class="h4">{f:translate(key:'content_element.member.label.noLocation',extensionName:'clubmanager')}</span>
+                        </div>
+                    </f:else>
                 </f:if>
                 <f:if condition="{member.subLocations -> f:count()}">
                     <div class="card-header">

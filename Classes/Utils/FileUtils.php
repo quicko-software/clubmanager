@@ -6,14 +6,17 @@ use TYPO3\CMS\Core\Core\Environment;
 
 class FileUtils
 {
-  public static function generateTempFilename($prefix = "temp",$ext = ".tmp"): string
+  public static function generateTempFilename(string $prefix = 'temp', string $ext = '.tmp'): string
   {
     $varPath = Environment::getVarPath();
-    $filename = "";
+    $filename = '';
     while (true) {
-      $filename = $varPath . "/" . uniqid($prefix, true) . $ext;
-      if (!file_exists($filename)) break;
+      $filename = $varPath . '/' . uniqid($prefix, true) . $ext;
+      if (!file_exists($filename)) {
+        break;
+      }
     }
+
     return $filename;
   }
 }

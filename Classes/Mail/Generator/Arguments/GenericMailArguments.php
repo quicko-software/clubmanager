@@ -2,73 +2,56 @@
 
 namespace Quicko\Clubmanager\Mail\Generator\Arguments;
 
-
 class GenericMailArguments extends MemberUidArguments
 {
+    /**
+     * Label.
+     */
+    public string $label;
 
-  /**
-   * Label
-   *
-   * @var \string
-   */
-  public $label;
+    /**
+     * MailTo.
+     */
+    public string $mailTo;
 
-  /**
-   * MailTo
-   *
-   * @var \string
-   */
-  public $mailTo;
+    /**
+     * MailToName.
+     */
+    public string $mailToName;
 
-  /**
-   * MailToName
-   *
-   * @var \string
-   */
-  public $mailToName;
+    /**
+     * subject.
+     */
+    public string $subject;
 
-  /**
-   * subject
-   *
-   * @var \string
-   */
-  public $subject;   
+    /**
+     * configRefPid.
+     *
+     * @var ?int
+     */
+    public ?int $configRefPid;
 
-  /**
-   * configRefPid
-   *
-   * @var ?\integer
-   */
-  public $configRefPid;
+    /**
+     * TemplateName.
+     */
+    public string $templateName;
 
+    /**
+     * FluidVars.
+     *
+     * @var ?array
+     */
+    public array $fluidVars;
 
-  /**
-   * TemplateName
-   *
-   * @var \string
-   */
-  public $templateName;
+    /**
+     * Attachments.
+     *
+     * @var ?array
+     */
+    public array $attachments;
 
-  /**
-   * FluidVars
-   *
-   * @var ?\array
-   */
-  public $fluidVars;
-
-
-   /**
-   * Attachments
-   *
-   * @var ?\array
-   */
-  public $attachments;
-
-  /**
-   * deleteAttachmentsAfterSend
-   *
-   * @var boolean
-   */
-  public $deleteAttachmentsAfterSend = false;
-
+    /**
+     * deleteAttachmentsAfterSend.
+     */
+    public bool $deleteAttachmentsAfterSend = false;
 }

@@ -1,22 +1,9 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
 
-<f:if condition="{cookieWarning}">
-    <f:render partial="CookieWarning"/>
-</f:if>
-
-<f:if condition="{onSubmit}">
-    <f:then>
-        <f:form target="_top" fieldNamePrefix="" action="login" onsubmit="{onSubmit}" additionalAttributes="{spellcheck: 'false'}">
-            <f:render section="content" arguments="{_all}"/>
-        </f:form>
-    </f:then>
-    <f:else>
-        <f:form target="_top" fieldNamePrefix="" action="login" additionalAttributes="{spellcheck: 'false'}">
-            <f:render section="content" arguments="{_all}"/>
-        </f:form>
-    </f:else>
-</f:if>
+<f:form target="_top" fieldNamePrefix="" action="login" requestToken="{requestToken}" additionalAttributes="{spellcheck: 'false'}">
+    <f:render section="content" arguments="{_all}"/>
+</f:form>
 
 <f:if condition="{settings.showForgotPassword}">
     <f:link.action action="recovery" controller="PasswordRecovery">
@@ -57,7 +44,6 @@
                         </f:if>
 
                         <f:flashMessages/>
-
 
                         <div class="mb-3">
                             <label for="InputUsername" class="form-label">

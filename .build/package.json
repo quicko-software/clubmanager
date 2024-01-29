@@ -25,6 +25,7 @@
   "dependencies": {
     "bootstrap-icons": "^1.10.3",
     "css-minimizer-webpack-plugin": "^4.2.2",
+    "jquery": "^3.7.1",
     "resolve-url-loader": "^5.0.0"
   }
 }

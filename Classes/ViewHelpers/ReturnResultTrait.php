@@ -8,9 +8,10 @@ namespace Quicko\Clubmanager\ViewHelpers;
 // the with 'as' specified variable name and returns the children's rendering.
 // Otherwise, it returns the result directly.
 //
-trait ReturnResultTrait {
-  
-  private function registerReturnAsArgument() {
+trait ReturnResultTrait
+{
+  private function registerReturnAsArgument(): void
+  {
     $this->registerArgument(
       'as',
       'string',
@@ -19,17 +20,18 @@ trait ReturnResultTrait {
     );
   }
 
-  private function returnResult($result) {
+  private function returnResult(mixed $result): mixed
+  {
     $as = $this->arguments['as'];
-    if (! $as) {
+    if (!$as) {
       return $result;
     }
 
-    if ($this->templateVariableContainer->exists($as) === TRUE) {
+    if ($this->templateVariableContainer->exists($as) === true) {
       $this->templateVariableContainer->remove($as);
     }
     $this->templateVariableContainer->add($as, $result);
-    
+
     return $this->renderChildren();
   }
 }
