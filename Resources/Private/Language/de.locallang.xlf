@@ -179,6 +179,10 @@
         <source>Route planning</source>
         <target state="final">Routenplanung</target>
       </trans-unit>
+      <trans-unit id="content_element.member.label.noLocation" resname="content_element.member.label.noLocation" approved="yes">
+        <source>No location specified yet</source>
+        <target state="final">Bisher kein Standort angegeben</target>
+      </trans-unit>
       <trans-unit id="content_element.member.label.mainLocation" resname="content_element.member.label.mainLocation" approved="yes">
         <source>Head office</source>
         <target state="final">Hauptsitz</target>
