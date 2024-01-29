@@ -56,15 +56,17 @@ class MailServiceTask extends AbstractTask
     return $result;
   }
 
-  private function handleError(array $item, string $e): void
+  private function handleError(array $item, Throwable $e): void
   {
     $openTries = intval($item['open_tries']) - 1;
     $send_state = $item['send_state'];
     if ($openTries <= 0) {
       $send_state = Task::SEND_STATE_STOPPED;
     }
+    $errorMessage = $e . "\n------------------------PREVIOUS MESSAGE------------------------\n" . $item['error_message'];
+    $errorMessage = substr($errorMessage, 0, 64000).' [...]';
     $this->getTaskRepo()->update([$item['uid']], [
-      'error_message' => $e . "\n------------------------PREVIOUS MESSAGE------------------------\n" . $item['error_message'],
+      'error_message' => $errorMessage,
       'error_time' => date('Y-m-d H:i:s'),
       'processed_time' => date('Y-m-d H:i:s'),
       'open_tries' => $openTries,

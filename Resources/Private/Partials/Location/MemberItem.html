@@ -1,5 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
+<f:variable name="levelColors" value="{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'secondary')}{f:if(condition: '{location.member.level} == 20', then: 'tertiary')}{f:if(condition: '{location.member.level} == 30', then: 'quaternary')}"/>
+
 <div class="row g-0">
     <div class="card-body pt-3 pb-3">
         <f:if condition="{location.company}">
@@ -72,7 +74,7 @@
         </f:if>
 
         <f:link.action action="detail" arguments="{location:location}" pluginName="location" controller="Location"
-                       pageUid="{settings.detailLocationPage}" class="btn btn-{f:if(condition: '{location.member.level} == 0', then: 'default')}{f:if(condition: '{location.member.level} == 10', then: 'primary')}{f:if(condition: '{location.member.level} == 20', then: 'secondary')}{f:if(condition: '{location.member.level} == 30', then: 'tertiary')}">
+                       pageUid="{settings.detailLocationPage}" class="btn btn-{levelColors}">
             <f:if condition="{location.kind} == 0">
                 <f:then>
                     {f:translate(key:'content_element.location.main.detail.button',extensionName:'clubmanager')}

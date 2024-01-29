@@ -47,28 +47,90 @@ These are added manually in the :file:`config.yaml`:
      ClubmanagerCity:
        type: Extbase
        extension: Clubmanager
+       limitToPages:
+         - /*YOUR PIDS HERE */
        plugin: City
-       # routes and aspects will follow here
+       routes:
+         -
+           routePath: '/{city}'
+           _controller: 'Cities::detail'
+           _arguments:
+             city: city
+       aspects:
+         city:
+         type: SanitizeValue
+         tableName: tx_clubmanager_domain_model_location
+         columnName: city
      ClubmanagerMember:
        type: Extbase
        extension: Clubmanager
+       limitToPages:
+         - /*YOUR PIDS HERE */
        plugin: Member
-       # routes and aspects will follow here
+       routes:
+         -
+           routePath: '/{ident}'
+           _controller: 'Member::detail'
+           _arguments:
+             ident: member
+       aspects:
+         ident:
+           type: PersistedAliasMapper
+           tableName: tx_clubmanager_domain_model_member
+           routeFieldName: ident
      ClubmanagerMemberList:
        type: Extbase
        extension: Clubmanager
+       limitToPages:
+         - /*YOUR PIDS HERE */
        plugin: MemberList
-       # routes and aspects will follow here
+       routes:
+         -
+           routePath: '/page/{currentPage}'
+           _controller: 'Member::list'
+           _arguments:
+             currentPage: currentPage
+       defaultController: 'Member::list'
+       defaults:
+         currentPage: ''
+       aspects:
+         currentPage:
+           type: StaticRangeMapper
+           start: '1'
+           end: '100'
      ClubmanagerLocation:
        type: Extbase
        extension: Clubmanager
        plugin: Location
-       # routes and aspects will follow here
+       routes:
+         -
+           routePath: '/{location}'
+           _controller: 'Location::detail'
+           _arguments:
+             location: location
+       aspects:
+         location:
+           type: PersistedAliasMapper
+           tableName: tx_clubmanager_domain_model_location
+           routeFieldName: slug
      ClubmanagerLocationList:
        type: Extbase
        extension: Clubmanager
        plugin: LocationList
-       # routes and aspects will follow here
+       routes:
+         -
+           routePath: '/page/{currentPage}'
+           _controller: 'Location::list'
+           _arguments:
+             currentPage: currentPage
+       defaultController: 'Location::list'
+       defaults:
+         currentPage: ''
+       aspects:
+         currentPage:
+           type: StaticRangeMapper
+           start: '1'
+           end: '100'
 
 .. tip::
 

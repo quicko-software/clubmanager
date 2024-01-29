@@ -1,14 +1,12 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/constants.typoscript" condition="extension.isLoaded('felogin') == 1">
 
-// plugin.tx_felogin_login.view.templateRootPath = EXT:clubmanager/Resources/Private/Extensions/Felogin/Templates/
-
 styles.content.loginform {
     showForgotPasswordLink = 1
     showLogoutFormAfterLogin = 1
     // changed to german format
     dateFormat = d-m-Y H:i
 
-    pid = {$plugin.tx_clubmanager.settings.fe_users_storagePid}
+    pid = {$plugin.tx_clubmanager.settings.feUsersStoragePid}
     emailFrom =
     emailFromName =
     replyToEmail =

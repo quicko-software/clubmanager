@@ -348,8 +348,7 @@ return [
                     'maxitems' => 1,
                     'foreign_match_fields' => [
                         'fieldname' => 'image',
-                        'tablenames' => 'tx_clubmanager_domain_model_location',
-                        'table_local' => 'sys_file',
+                        'tablenames' => 'tx_clubmanager_domain_model_location'
                     ],
                 ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']

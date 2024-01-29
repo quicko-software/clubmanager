@@ -2,6 +2,7 @@
 
 namespace Quicko\Clubmanager\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -152,12 +153,12 @@ class MemberRepository extends Repository
       $query->equals('feuser.lastlogin', 0), // that never logged in
       $query->lessThan('feuser.lastreminderemailsent', $xDaysAgoSec), // and who got their last reminder at least X days ago
     ];
-    if ($memberPidList) {
+    if (is_array($memberPidList) && count($memberPidList) > 0) {
       $constraints[] = $query->in('pid', $memberPidList);
     }
 
     $result = $query->matching(
-      $query->logicalAnd($constraints)
+      $query->logicalAnd(...$constraints)
     )
       ->execute();
     return $result;

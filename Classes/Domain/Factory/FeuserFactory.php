@@ -23,7 +23,7 @@ class FeuserFactory
     /** @var ExtensionConfiguration $extensionConfiguration */
     $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
     /** @var int $pid */
-    $pid = $extensionConfiguration->get('clubmanager', 'fe_users_storagePid');
+    $pid = $extensionConfiguration->get('clubmanager', 'feUsersStoragePid');
     $user->setPid($pid);
     $user->setUsername($usernamePrefix . self::getUniqueNumberString());
     $user->setPassword('' . self::getUniqueNumberString());

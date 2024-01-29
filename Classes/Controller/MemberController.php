@@ -4,6 +4,7 @@ namespace Quicko\Clubmanager\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Quicko\Clubmanager\Domain\Model\Location;
+use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
@@ -15,10 +16,13 @@ class MemberController extends BaseSettingsController
     $this->memberRepository = $memberRepository;
   }
 
-  public function detailAction(Location $location = null): ResponseInterface
+  public function detailAction(Member $member = null, Location $location = null): ResponseInterface
   {
     $this->setDefaultSettingsIfRequired();
-    if ($location) {
+
+    if ($member != null) {
+      $this->view->assign('member', $member);
+    } else if ($location != null) {
       $this->view->assign('member', $location->getMember());
     }
 

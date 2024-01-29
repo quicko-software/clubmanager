@@ -1,7 +1,16 @@
 // FELOGIN
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/setup.typoscript" condition="extension.isLoaded('felogin') == 1">
 
-plugin.tx_felogin_login.view.templateRootPaths.10 = EXT:clubmanager/Resources/Private/Extensions/Felogin/Templates/
+[compatVersion("11.5")]
+    plugin.tx_felogin_login.view.templateRootPaths.10 = EXT:clubmanager/Resources/Private/Extensions/Felogin/V11/Templates/
+[compatVersion("12.4")]
+    plugin.tx_felogin_login {
+        view.templateRootPaths.10 = EXT:clubmanager/Resources/Private/Extensions/Felogin/Templates/
+        settings {
+            pages = {$plugin.tx_clubmanager.settings.feUsersStoragePid}
+        }
+    }
+[END]
 
 // LOGIN ON EVERY PAGE
 lib.login >
@@ -20,7 +29,7 @@ lib.login {
 }
 
 // SHOW MODAL ON PAGE LOGIN ON LOAD
-[page["uid"] == {$styles.content.loginform.loginFormPid}]
+[page["uid"] == {$plugin.tx_clubmanager.settings.feUsersLoginPid}]
     lib.login >
     lib.login = USER
     lib.login {
@@ -109,7 +118,7 @@ plugin.tx_felogin_login {
         newpassword_label1 = Neues Passwort
         newpassword_label2 = Passwort wiederholen
 
-        loginFormPid = {$styles.content.loginform.loginFormPid}
+        loginFormPid = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
 
         password_recovery_link = Passwort jetzt zurücksetzen
 

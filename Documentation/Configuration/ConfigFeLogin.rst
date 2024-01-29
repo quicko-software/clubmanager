@@ -96,7 +96,7 @@ Important global configuration
 
 #. Choose :guilabel:`clubmanager` and then Tab :guilabel:`Fe-user-login`.
 
-#. Set the uid where your fe_users should be stored > :guilabel:`fe_users_storagePid`
+#. Set the uid where your fe_users should be stored > :guilabel:`feUsersStoragePid`
 
 #. Set the uid of your default fe_users group  > :guilabel:`defaultFeUserGroupUid`
 
