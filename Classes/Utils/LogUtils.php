@@ -71,8 +71,8 @@ class LogUtils
     self::log($className, self::DEBUG, $msg);
   }
 
-  private static ?Logger $logger;
-
+  private static ?Logger $logger = null;
+  
   private static function log(string $className, string $logLevel, string $msg): void
   {
     self::getLogger($className)->log($logLevel, $msg);

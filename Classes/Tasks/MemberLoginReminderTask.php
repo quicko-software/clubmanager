@@ -24,7 +24,7 @@ class MemberLoginReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
   {
     $MIN_DAY_PERIOD = intval($this->getArg('MIN_DAY_PERIOD'));
     $MEMBER_PID_LIST = trim((string)$this->getArg('MEMBER_PID_LIST'));
-    $member_pid_list = $MEMBER_PID_LIST ? explode(',', $MEMBER_PID_LIST) : null; // explode on an empty string yields an array with one empty string element -> bad
+    $member_pid_list = $MEMBER_PID_LIST ? explode(',', $MEMBER_PID_LIST) : []; // explode on an empty string yields an array with one empty string element -> bad
 
     $memberRepo = $this->getMemberRepo();
     $memberList = $memberRepo->findMemberRoRemind($MIN_DAY_PERIOD, $member_pid_list);
