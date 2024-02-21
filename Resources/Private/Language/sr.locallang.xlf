@@ -179,6 +179,10 @@
         <source>Route planning</source>
         <target state="needs-translation">Route planning</target>
       </trans-unit>
+      <trans-unit id="content_element.member.label.noLocation" resname="content_element.member.label.noLocation">
+        <source>No location specified yet</source>
+        <target state="needs-translation">No location specified yet</target>
+      </trans-unit>
       <trans-unit id="content_element.member.label.mainLocation" resname="content_element.member.label.mainLocation">
         <source>Head office</source>
         <target state="needs-translation">Head office</target>
