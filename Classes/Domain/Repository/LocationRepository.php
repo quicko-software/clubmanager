@@ -172,7 +172,6 @@ class LocationRepository extends Repository
         $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
       )
     );
-
     return $query->execute();
   }
 
@@ -188,7 +187,7 @@ class LocationRepository extends Repository
     $query = $this->createQuery();
     $distanceLiteral = DistanceCalcLiteral::getSql('tx_clubmanager_domain_model_location');
     $sql = <<<EOS
-      SELECT tx_clubmanager_domain_model_location.* FROM tx_clubmanager_domain_model_location
+      SELECT tx_clubmanager_domain_model_location.* , $distanceLiteral as distance FROM tx_clubmanager_domain_model_location
       JOIN tx_clubmanager_domain_model_member
       ON tx_clubmanager_domain_model_location.member = tx_clubmanager_domain_model_member.uid
       WHERE (
@@ -200,6 +199,7 @@ class LocationRepository extends Repository
         AND tx_clubmanager_domain_model_member.state = :state
         AND tx_clubmanager_domain_model_location.pid in (:pid)
       )
+      ORDER BY distance, tx_clubmanager_domain_model_location.lastname
       EOS;
     $query->statement($sql, [
       ':lat' => $coords['latitude'],
