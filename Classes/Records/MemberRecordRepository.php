@@ -33,6 +33,7 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
         'member.company',
         'member.city',
         'member.email',
+        'member.level',
         'countries.cn_short_local AS country',
         'fe_users.email AS fe_users_email',
         'fe_users.uid AS fe_users_uid',
