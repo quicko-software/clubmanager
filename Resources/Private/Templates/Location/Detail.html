@@ -193,11 +193,11 @@
                 <p class="card-text mb-2">
                     <f:if condition="{location.company}">
                         <f:then>
-                            <a href="http://maps.google.com/?q={location.company},{location.street},{location.zip},{location.city}"
+                            <a href="https://maps.google.com/?q={location.company},{location.street},{location.zip},{location.city}"
                                target="_blank">{f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}</a>
                         </f:then>
                         <f:else>
-                            <a href="http://maps.google.com/?q={location.street},{location.zip},{location.city}"
+                            <a href="https://maps.google.com/?q={location.street},{location.zip},{location.city}"
                                target="_blank">{f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}</a>
                         </f:else>
                     </f:if>
@@ -246,7 +246,7 @@
                     <div class="col-sm-6">
                         <a href="javascript:history.back()">
                             <div class="btn btn-default">
-                                Zurück
+                                {f:translate(key:'content_element.member.label.back',extensionName:'clubmanager')}
                             </div>
                         </a>
                     </div>
@@ -282,7 +282,7 @@
                     <div class="col-sm-6">
                         <a href="javascript:history.back()">
                             <div class="btn btn-default">
-                                Zurück
+                                {f:translate(key:'content_element.member.label.back',extensionName:'clubmanager')}
                             </div>
                         </a>
                     </div>
