@@ -61,6 +61,8 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 
 	categories int(11) DEFAULT '0' NOT NULL,
 
+	club_function text NULL,
+
 	KEY state (state),
 	KEY alt_billing_country (alt_billing_country),
 	key memberstate (uid,state)

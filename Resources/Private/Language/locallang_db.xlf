@@ -225,6 +225,9 @@
 			<trans-unit id="tx_clubmanager_domain_model_member.customfield6" resname="tx_clubmanager_domain_model_member.customfield6">
 				<source>Additional field 6</source>
 			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.club_function" resname="tx_clubmanager_domain_model_member.club_function">
+				<source>Function</source>
+			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location">
 				<source>Location</source>
 			</trans-unit>
