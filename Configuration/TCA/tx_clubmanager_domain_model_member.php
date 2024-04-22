@@ -19,7 +19,7 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'searchfield,ident,email,phone,telefax,title,firstname,midname,lastname,company,street,zip,city,iban,bic,account,alt_billing_name,alt_billing_street,alt_billing_zip,alt_billing_city,club_function,customfield1,customfield2,customfield3,customfield4,customfield5,customfield5',
+        'searchFields' => 'searchfield,ident,email,phone,telefax,title,firstname,midname,lastname,company,street,zip,city,iban,bic,account,alt_billing_name,alt_billing_street,alt_billing_zip,alt_billing_city,club_function,found_via,customfield1,customfield2,customfield3,customfield4,customfield5,customfield5',
         'iconfile' => 'EXT:clubmanager/Resources/Public/Icons/member.svg',
     ],
     'types' => [
@@ -34,7 +34,7 @@ return [
                     --palette--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.palette.account; bank_account,
                     --palette--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.palette.alt_address; alt_address,
                 --div--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category, categories,
-                --div--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.tab.customfields, club_function, customfield1, customfield2, customfield3, customfield4, customfield5, customfield6,
+                --div--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.tab.customfields, club_function, found_via, customfield1, customfield2, customfield3, customfield4, customfield5, customfield6,
 		        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, hidden, crdate',
         ],
     ],
@@ -653,5 +653,22 @@ return [
                 'eval' => 'trim',
             ],
         ],
+        'found_via' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.found_via',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.found_via.0', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_UNKOWN],
+                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.found_via.10', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_RECOMMENDATION],
+                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.found_via.20', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_SOCIALMEDIA],
+                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.found_via.30', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_PRESS],
+                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.found_via.40', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_MISC],
+                ],
+                'size' => 1,
+                'maxitems' => 1,
+            ],
+        ],        
     ],
 ];

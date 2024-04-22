@@ -30,6 +30,12 @@ class Member extends AbstractEntity
   public const LEVEL_SILVER = 20;
   public const LEVEL_GOLD = 30;
 
+  public const FOUND_VIA_UNKOWN = 0;
+  public const FOUND_VIA_RECOMMENDATION = 10;
+  public const FOUND_VIA_SOCIALMEDIA = 20;
+  public const FOUND_VIA_PRESS = 30;
+  public const FOUND_VIA_MISC = 40;
+
   /**
    * @var ?DateTime
    */
@@ -272,6 +278,11 @@ class Member extends AbstractEntity
   protected $clubFunction;
 
   /**
+   * @var int
+   */
+  protected $foundVia;
+
+  /**
    * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Category>
    *
    * @Lazy
@@ -406,7 +417,7 @@ class Member extends AbstractEntity
 
   public function getCountry(): ?Country
   {
-    /** @phpstan-ignore-next-line */
+    /* @phpstan-ignore-next-line */
     if ($this->country instanceof LazyLoadingProxy) {
       /** @var Country|null $resolvedValue */
       $resolvedValue = $this->country->_loadRealInstance();
@@ -518,7 +529,7 @@ class Member extends AbstractEntity
 
   public function getMainLocation(): ?Location
   {
-    /** @phpstan-ignore-next-line */
+    /* @phpstan-ignore-next-line */
     if ($this->mainLocation instanceof LazyLoadingProxy) {
       /** @var Location|null $resolvedValue */
       $resolvedValue = $this->mainLocation->_loadRealInstance();
@@ -599,7 +610,7 @@ class Member extends AbstractEntity
 
   public function getAltBillingCountry(): ?Country
   {
-    /** @phpstan-ignore-next-line */
+    /* @phpstan-ignore-next-line */
     if ($this->altBillingCountry instanceof LazyLoadingProxy) {
       /** @var Country|null $resolvedValue */
       $resolvedValue = $this->altBillingCountry->_loadRealInstance();
@@ -831,6 +842,16 @@ class Member extends AbstractEntity
   public function setClubFunction(string $clubFunction): void
   {
     $this->clubFunction = $clubFunction;
+  }
+
+  public function setFoundVia(int $foundVia): void
+  {
+    $this->foundVia = $foundVia;
+  }
+
+  public function getFoundVia(): int
+  {
+    return $this->foundVia;
   }
 
   /**
