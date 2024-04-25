@@ -67,7 +67,7 @@ class Member extends AbstractEntity
   protected $state = self::STATE_UNSET;
 
   /**
-   * @var FrontendUser|LazyLoadingProxy|null
+   * @var mixed
    *
    * @Lazy
    *
