@@ -123,6 +123,10 @@
         <source>Log in to the members area here.</source>
         <target state="needs-translation">Log in to the members area here.</target>
       </trans-unit>
+      <trans-unit id="content_element.member.label.clubfunction" resname="content_element.member.label.clubfunction">
+        <source>Member function:</source>
+        <target state="needs-translation">Member function:</target>
+      </trans-unit>
       <trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
         <source>Membership number:</source>
         <target state="needs-translation">Membership number:</target>
