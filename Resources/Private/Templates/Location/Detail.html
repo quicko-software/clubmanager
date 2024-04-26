@@ -11,7 +11,7 @@
 
     <f:if condition="{location.kind}==0">
         <f:then>
-            <div class="card border-color-{levelColors}" itemscope itemtype="http://schema.org/LocalBusiness" id="location-{location.uid}">
+            <div class="card border-color-{levelColors}" itemscope itemtype="https://schema.org/LocalBusiness" id="location-{location.uid}">
                 <f:if condition="{location.member.categories}">
                     <f:for each="{location.member.categories}" as="memberCategory" iteration="memberIterator">
                         <f:if condition="{memberCategory.uid} == 13 || {memberCategory.uid} == 14 || {memberCategory.uid} == 15 ">
@@ -43,20 +43,25 @@
     </f:if>
 
     <header class="card-header row g-0">
-        <div class="col-sm-6">
+        <div class="col-sm-10">
         <span class="h2 salutation">
             {salutationName}
         </span>
             <span class="h2 font-weight-bold mb-0 pt-0 mt-0" itemprop="name">
-            <f:if condition="{location.title}">
-                <span class="title">{location.title} </span>
-            </f:if>
-            <span class="firstname">{location.firstname} </span>
-            <f:if condition="{location.middlename}">
-                <span class="title">{location.middlename} </span>
-            </f:if>
-            <span class="lastname">{location.lastname}</span>
-        </span>
+                <f:if condition="{location.title}">
+                    <span class="title">{location.title} </span>
+                </f:if>
+                    <span class="firstname">{location.firstname} </span>
+                <f:if condition="{location.middlename}">
+                    <span class="title">{location.middlename} </span>
+                </f:if>
+                    <span class="lastname">{location.lastname}</span>
+            </span>
+            <span class="h2 font-weight-bold mb-0 pt-0 mt-0">
+                <f:if condition="{location.member.clubFunction}">
+                    - <span class="function">{location.member.clubFunction}</span>
+                </f:if>
+            </span>
 
             <f:if condition="{location.categories}">
                 <f:then>
@@ -96,7 +101,7 @@
             </f:if>
         </div>
 
-        <div class="col-sm-6 text-end">
+        <div class="col-sm-2 text-end">
             <f:if condition="{location.kind}==0">
                 <f:then>
                 <span class="level btn btn-{levelColors}">

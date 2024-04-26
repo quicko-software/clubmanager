@@ -225,6 +225,31 @@
 			<trans-unit id="tx_clubmanager_domain_model_member.customfield6" resname="tx_clubmanager_domain_model_member.customfield6">
 				<source>Additional field 6</source>
 			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.club_function" resname="tx_clubmanager_domain_model_member.club_function">
+				<source>Function</source>
+			</trans-unit>
+
+			
+			<trans-unit id="tx_clubmanager_domain_model_member.found_via" resname="tx_clubmanager_domain_model_member.found_via">
+				<source>How did you find out about us</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.found_via.0" resname="tx_clubmanager_domain_model_member.found_via.0">
+				<source>Unkown</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.found_via.10" resname="tx_clubmanager_domain_model_member.found_via.10">
+				<source>Recommendation</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.found_via.20" resname="tx_clubmanager_domain_model_member.found_via.20">
+				<source>Social media</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.found_via.30" resname="tx_clubmanager_domain_model_member.found_via.30">
+				<source>Press</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.found_via.40" resname="tx_clubmanager_domain_model_member.found_via.40">
+				<source>Misc</source>
+			</trans-unit>												
+			
+
 			<trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location">
 				<source>Location</source>
 			</trans-unit>

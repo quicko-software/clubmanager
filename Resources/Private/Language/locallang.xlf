@@ -93,6 +93,9 @@
 			<trans-unit id="mail.reminder.link.login" resname="mail.reminder.link.login">
 				<source>Log in to the members area here.</source>
 			</trans-unit>
+			<trans-unit id="content_element.member.label.clubfunction" resname="content_element.member.label.clubfunction">
+				<source>Member function:</source>
+			</trans-unit>
 			<trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
 				<source>Membership number:</source>
 			</trans-unit>
