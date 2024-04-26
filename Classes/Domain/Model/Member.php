@@ -81,17 +81,17 @@ class Member extends AbstractEntity
   protected $directDebit = 0;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $iban;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $bic;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $account;
 
@@ -114,22 +114,22 @@ class Member extends AbstractEntity
   protected $subLocations;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $altBillingName;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $altBillingStreet;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $altBillingZip;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $altBillingCity;
 
@@ -141,42 +141,42 @@ class Member extends AbstractEntity
   protected $altBillingCountry;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $ident = '';
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $title;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $firstname = '';
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $midname = '';
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $lastname = '';
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $zip = '';
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $street = '';
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $city = '';
 
@@ -193,22 +193,22 @@ class Member extends AbstractEntity
   protected $country;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $email;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $phone;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $telefax;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $company;
 
@@ -228,7 +228,7 @@ class Member extends AbstractEntity
   protected $level;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $addAddressInfo;
 
@@ -238,42 +238,42 @@ class Member extends AbstractEntity
   protected $dateofbirth;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $nationality;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $customfield1;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $customfield2;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $customfield3;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $customfield4;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $customfield5;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $customfield6;
 
   /**
-   * @var string
+   * @var ?string
    */
   protected $clubFunction;
 
@@ -295,12 +295,12 @@ class Member extends AbstractEntity
     $this->subLocations = new ObjectStorage();
   }
 
-  public function getIdent(): string
+  public function getIdent(): ?string
   {
     return $this->ident;
   }
 
-  public function setIdent(string $ident): void
+  public function setIdent(?string $ident): void
   {
     $this->ident = $ident;
   }
@@ -335,82 +335,82 @@ class Member extends AbstractEntity
     return $this->salutation;
   }
 
-  public function getTitle(): string
+  public function getTitle(): ?string
   {
     return $this->title;
   }
 
-  public function setTitle(string $title): void
+  public function setTitle(?string $title): void
   {
     $this->title = $title;
   }
 
-  public function getFirstname(): string
+  public function getFirstname(): ?string
   {
     return $this->firstname;
   }
 
-  public function setFirstname(string $firstname): void
+  public function setFirstname(?string $firstname): void
   {
     $this->firstname = $firstname;
   }
 
-  public function getMidname(): string
+  public function getMidname(): ?string
   {
     return $this->midname;
   }
 
-  public function setMidname(string $midname): void
+  public function setMidname(?string $midname): void
   {
     $this->midname = $midname;
   }
 
-  public function getLastname(): string
+  public function getLastname(): ?string
   {
     return $this->lastname;
   }
 
-  public function setLastname(string $lastname): void
+  public function setLastname(?string $lastname): void
   {
     $this->lastname = $lastname;
   }
 
-  public function getZip(): string
+  public function getZip(): ?string
   {
     return $this->zip;
   }
 
-  public function setZip(string $zip): void
+  public function setZip(?string $zip): void
   {
     $this->zip = $zip;
   }
 
-  public function getStreet(): string
+  public function getStreet(): ?string
   {
     return $this->street;
   }
 
-  public function setStreet(string $street): void
+  public function setStreet(?string $street): void
   {
     $this->street = $street;
   }
 
-  public function getCity(): string
+  public function getCity(): ?string
   {
     return $this->city;
   }
 
-  public function setCity(string $city): void
+  public function setCity(?string $city): void
   {
     $this->city = $city;
   }
 
-  public function getNationality(): string
+  public function getNationality(): ?string
   {
     return $this->nationality;
   }
 
-  public function setNationality(string $nationality): void
+  public function setNationality(?string $nationality): void
   {
     $this->nationality = $nationality;
   }
@@ -445,7 +445,7 @@ class Member extends AbstractEntity
     $this->federalState = $federalState;
   }
 
-  public function getFederalStateName(): string
+  public function getFederalStateName(): ?string
   {
     $states = States::getStates();
     foreach ($states as $stateArray) {
@@ -457,72 +457,72 @@ class Member extends AbstractEntity
     return '';
   }
 
-  public function getCompany(): string
+  public function getCompany(): ?string
   {
     return $this->company;
   }
 
-  public function setCompany(string $company): void
+  public function setCompany(?string $company): void
   {
     $this->company = $company;
   }
 
-  public function getEmail(): string
+  public function getEmail(): ?string
   {
     return $this->email;
   }
 
-  public function setEmail(string $email): void
+  public function setEmail(?string $email): void
   {
     $this->email = $email;
   }
 
-  public function getPhone(): string
+  public function getPhone(): ?string
   {
     return $this->phone;
   }
 
-  public function setPhone(string $phone): void
+  public function setPhone(?string $phone): void
   {
     $this->phone = $phone;
   }
 
-  public function getTelefax(): string
+  public function getTelefax(): ?string
   {
     return $this->telefax;
   }
 
-  public function setTelefax(string $telefax): void
+  public function setTelefax(?string $telefax): void
   {
     $this->telefax = $telefax;
   }
 
-  public function getIban(): string
+  public function getIban(): ?string
   {
     return $this->iban;
   }
 
-  public function setIban(string $iban): void
+  public function setIban(?string $iban): void
   {
     $this->iban = $iban;
   }
 
-  public function getBic(): string
+  public function getBic(): ?string
   {
     return $this->bic;
   }
 
-  public function setBic(string $bic): void
+  public function setBic(?string $bic): void
   {
     $this->bic = $bic;
   }
 
-  public function getAccount(): string
+  public function getAccount(): ?string
   {
     return $this->account;
   }
 
-  public function setAccount(string $account): void
+  public function setAccount(?string $account): void
   {
     $this->account = $account;
   }
@@ -568,42 +568,42 @@ class Member extends AbstractEntity
     $this->subLocations = $subLocations;
   }
 
-  public function getAltBillingName(): string
+  public function getAltBillingName(): ?string
   {
     return $this->altBillingName;
   }
 
-  public function setAltBillingName(string $altBillingName): void
+  public function setAltBillingName(?string $altBillingName): void
   {
     $this->altBillingName = $altBillingName;
   }
 
-  public function getAltBillingStreet(): string
+  public function getAltBillingStreet(): ?string
   {
     return $this->altBillingStreet;
   }
 
-  public function setAltBillingStreet(string $altBillingStreet): void
+  public function setAltBillingStreet(?string $altBillingStreet): void
   {
     $this->altBillingStreet = $altBillingStreet;
   }
 
-  public function getAltBillingZip(): string
+  public function getAltBillingZip(): ?string
   {
     return $this->altBillingZip;
   }
 
-  public function setAltBillingZip(string $altBillingZip): void
+  public function setAltBillingZip(?string $altBillingZip): void
   {
     $this->altBillingZip = $altBillingZip;
   }
 
-  public function getAltBillingCity(): string
+  public function getAltBillingCity(): ?string
   {
     return $this->altBillingCity;
   }
 
-  public function setAltBillingCity(string $altBillingCity): void
+  public function setAltBillingCity(?string $altBillingCity): void
   {
     $this->altBillingCity = $altBillingCity;
   }
@@ -709,12 +709,12 @@ class Member extends AbstractEntity
     return $this->level;
   }
 
-  public function setAddAddressInfo(string $addAddressInfo): void
+  public function setAddAddressInfo(?string $addAddressInfo): void
   {
     $this->addAddressInfo = $addAddressInfo;
   }
 
-  public function getAddAddressInfo(): string
+  public function getAddAddressInfo(): ?string
   {
     return $this->addAddressInfo;
   }
@@ -774,72 +774,72 @@ class Member extends AbstractEntity
     $this->directDebit = $directDebit;
   }
 
-  public function getCustomfield1(): string
+  public function getCustomfield1(): ?string
   {
     return $this->customfield1;
   }
 
-  public function setCustomfield1(string $customfield1): void
+  public function setCustomfield1(?string $customfield1): void
   {
     $this->customfield1 = $customfield1;
   }
 
-  public function getCustomfield2(): string
+  public function getCustomfield2(): ?string
   {
     return $this->customfield2;
   }
 
-  public function setCustomfield2(string $customfield2): void
+  public function setCustomfield2(?string $customfield2): void
   {
     $this->customfield2 = $customfield2;
   }
 
-  public function getCustomfield3(): string
+  public function getCustomfield3(): ?string
   {
     return $this->customfield3;
   }
 
-  public function setCustomfield3(string $customfield3): void
+  public function setCustomfield3(?string $customfield3): void
   {
     $this->customfield3 = $customfield3;
   }
 
-  public function getCustomfield4(): string
+  public function getCustomfield4(): ?string
   {
     return $this->customfield4;
   }
 
-  public function setCustomfield4(string $customfield4): void
+  public function setCustomfield4(?string $customfield4): void
   {
     $this->customfield4 = $customfield4;
   }
 
-  public function getCustomfield5(): string
+  public function getCustomfield5(): ?string
   {
     return $this->customfield5;
   }
 
-  public function setCustomfield5(string $customfield5): void
+  public function setCustomfield5(?string $customfield5): void
   {
     $this->customfield5 = $customfield5;
   }
 
-  public function getCustomfield6(): string
+  public function getCustomfield6(): ?string
   {
     return $this->customfield6;
   }
 
-  public function setCustomfield6(string $customfield6): void
+  public function setCustomfield6(?string $customfield6): void
   {
     $this->customfield6 = $customfield6;
   }
 
-  public function getClubFunction(): string
+  public function getClubFunction(): ?string
   {
     return $this->clubFunction;
   }
 
-  public function setClubFunction(string $clubFunction): void
+  public function setClubFunction(?string $clubFunction): void
   {
     $this->clubFunction = $clubFunction;
   }
