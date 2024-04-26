@@ -123,6 +123,10 @@
 				<source>Log in to the members area here.</source>
 				<target>Loggen Sie sich hier in den Mitgliederbereich ein.</target>
 			</trans-unit>
+			<trans-unit id="content_element.member.label.clubfunction" resname="content_element.member.label.clubfunction">
+				<source>Member function:</source>
+				<target>Mitgliedsfunktion:</target>
+			</trans-unit>
 			<trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
 				<source>Membership number:</source>
 				<target>Mitgliedsnummer:</target>
