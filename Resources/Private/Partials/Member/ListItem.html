@@ -17,6 +17,12 @@
             </f:link.action>
         </div>
 
+        <f:if condition="{member.clubFunction}">
+            <div class="h5">
+                <span class="functionlabel">{f:translate(key:'content_element.member.label.clubfunction',extensionName:'clubmanager')}</span>
+                <span class="title">{member.clubFunction}</span>&nbsp;
+            </div>
+        </f:if>
         <div class="h4">
             <f:if condition="{member.ident}">
                 <span class="identlabel">{f:translate(key:'content_element.member.label.ident',extensionName:'clubmanager')}</span>&nbsp;<span class="ident">{member.ident}</span>
