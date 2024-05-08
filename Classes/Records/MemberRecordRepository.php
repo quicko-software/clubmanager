@@ -2,21 +2,13 @@
 
 namespace Quicko\Clubmanager\Records;
 
-use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-
-
-use Quicko\Clubmanager\Records\BaseRecordRepository;
-
+use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class MemberRecordRepository extends BaseRecordRepository implements SingletonInterface
 {
-
-  /**
-   * @var string
-   */
   protected string $table = 'tx_clubmanager_domain_model_member';
 
   protected function createSelect(): QueryBuilder
@@ -39,7 +31,7 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
         'fe_users.uid AS fe_users_uid',
         'fe_users.pid AS fe_users_pid',
       )
-      ->from($this->table, "member")
+      ->from($this->table, 'member')
       ->leftJoin(
         'member',
         'static_countries',
@@ -55,6 +47,7 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
           $queryBuilder->expr()->eq('fe_users.deleted', 0),
         )
       );
+
     return $queryBuilder;
   }
 
@@ -70,6 +63,7 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
       ->fetchAssociative();
   }
 
+
   public function findRecursively($pid)
   {
     $pids = $this->getTreePids($pid);
@@ -78,17 +72,18 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
     $queryBuilder->andWhere($queryBuilder->expr()->eq('member.deleted', 0))
       ->andWhere($queryBuilder->expr()->in('member.pid', $queryBuilder->createNamedParameter($pids, Connection::PARAM_INT_ARRAY)))
       ->orderBy('member.ident', 'DESC');
+
     return $queryBuilder
       ->execute()
       ->fetchAllAssociative();
   }
 
-
   protected function getTreePids($rootPid): array
   {
     $depth = 999999;
     $queryGenerator = GeneralUtility::makeInstance(\Quicko\Clubmanager\Domain\Helper\QueryGenerator::class);
-    $childPids = $queryGenerator->getTreeList($rootPid, $depth, 0, 1); //Will be a string like 1,2,3
+    $childPids = $queryGenerator->getTreeList($rootPid, $depth, 0, 1); // Will be a string like 1,2,3
+
     return $childPids;
   }
 }
