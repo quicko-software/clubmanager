@@ -283,6 +283,22 @@
         <source>Invalid field</source>
         <target state="needs-translation">Invalid field</target>
       </trans-unit>
+      <trans-unit id="member.salutation.0" resname="member.salutation.0">
+        <source>Good day %s,</source>
+        <target state="needs-translation">Good day %s,</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.1" resname="member.salutation.1">
+        <source>Dear Mr. %s,</source>
+        <target state="needs-translation">Dear Mr. %s,</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.2" resname="member.salutation.2">
+        <source>Dear Mrs. %s,</source>
+        <target state="needs-translation">Dear Mrs. %s,</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.3" resname="member.salutation.3">
+        <source>Good day %s,</source>
+        <target state="needs-translation">Good day %s,</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
