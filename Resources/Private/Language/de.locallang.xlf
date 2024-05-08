@@ -283,6 +283,22 @@
         <source>Invalid field</source>
         <target state="final">Ungültiges Feld</target>
       </trans-unit>
+      <trans-unit id="member.salutation.0" resname="member.salutation.0" approved="yes">
+        <source>Good day %s,</source>
+        <target state="final">Guten Tag %s,</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.1" resname="member.salutation.1" approved="yes">
+        <source>Dear Mr. %s,</source>
+        <target state="final">Sehr geehrter Herr %s,</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.2" resname="member.salutation.2" approved="yes">
+        <source>Dear Mrs. %s,</source>
+        <target state="final">Sehr geehrtere Frau %s,</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.3" resname="member.salutation.3" approved="yes">
+        <source>Good day %s,</source>
+        <target state="final">Guten Tag %s,</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
