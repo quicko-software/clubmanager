@@ -2,20 +2,16 @@
 
 namespace Quicko\Clubmanager\Domain\Repository;
 
-use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-
+use DateTime;
 use Quicko\Clubmanager\Domain\Model\Member;
-use Quicko\Clubmanager\Domain\Repository\LocationRepository;
-use Quicko\Clubmanager\Domain\Repository\PersistAndRefetchTrait;
-
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class MemberRepository extends Repository
 {
   use PersistAndRefetchTrait;
 
-  public function findByFeUserName($feUserName) : ?Member
+  public function findByFeUserName($feUserName): ?Member
   {
     $query = $this->createQuery();
     $this->disableQueryRestrictions($query);
@@ -27,10 +23,11 @@ class MemberRepository extends Repository
     );
 
     $member = $query->execute()->getFirst();
+
     return $member;
   }
 
-  public function findByFeUserNameWithHiddenLocations(LocationRepository $locationRepository, string $feUserName) : ?Member
+  public function findByFeUserNameWithHiddenLocations(LocationRepository $locationRepository, string $feUserName): ?Member
   {
     /** @var Member $member */
     $member = $this->findByFeUserName($feUserName);
@@ -42,10 +39,11 @@ class MemberRepository extends Repository
       $subLocs = $locationRepository->findSubLocsByMemberUidWithHidden($member->getUid());
       $member->setSubLocations($subLocs->toArray());
     }
+
     return $member;
   }
 
-  protected function disableQueryRestrictions(QueryInterface $query) : void
+  protected function disableQueryRestrictions(QueryInterface $query): void
   {
     $querySettings = $query->getQuerySettings();
     $querySettings
@@ -54,9 +52,9 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[] 
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
    */
-  public function findAllEndedWithWrongState(\DateTime $refDate)
+  public function findAllEndedWithWrongState(DateTime $refDate)
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
@@ -75,8 +73,8 @@ class MemberRepository extends Repository
     return $query->execute();
   }
 
-    /**
-   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[] 
+  /**
+   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
    */
   public function findAllCanceleddWithWrongState()
   {
@@ -87,11 +85,12 @@ class MemberRepository extends Repository
       $query->logicalAnd(
         $query->equals('state', Member::STATE_CANCELLED),
         $query->logicalOr(
-          $query->equals('endtime', NULL),
+          $query->equals('endtime', null),
           $query->equals('endtime', 0)
         )
       ),
     );
+
     return $query->execute();
   }
 
@@ -99,12 +98,12 @@ class MemberRepository extends Repository
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
-    $query->getQuerySettings()->setEnableFieldsToBeIgnored(array('endtime', 'starttime'));
+    $query->getQuerySettings()->setEnableFieldsToBeIgnored(['endtime', 'starttime']);
     $query->matching(
       $query->logicalAnd([
         $query->equals('pid', $pid),
         $query->logicalOr(
-          $query->equals('endtime', NULL),
+          $query->equals('endtime', null),
           $query->equals('endtime', 0),
           $query->lessThanOrEqual('endtime', $endDate)
         ),
@@ -123,19 +122,20 @@ class MemberRepository extends Repository
     // but not: ->setIgnoreEnabledFields(true) because we want all active, visible etc. user
     $constraints = [
       $query->equals('email', $email),
-      $query->equals('pid', $pid)
+      $query->equals('pid', $pid),
     ];
 
     $result = $query->matching(
       $query->logicalAnd($constraints)
     )
       ->execute();
+
     return $result;
   }
 
   /**
-   * @param int $minDaysSinceLastEmail
    * @param array $memberPidList list of pids where to look for members, e.g. [12,488,7] or null
+   *
    * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|Member[]
    */
   public function findMemberRoRemind(int $minDaysSinceLastEmail, array $memberPidList)
@@ -161,15 +161,15 @@ class MemberRepository extends Repository
       $query->logicalAnd(...$constraints)
     )
       ->execute();
+
     return $result;
   }
 
-
-  public function findActivePublic(?array $sorting = null)
+  public function findActivePublic(array $sorting = null)
   {
     $query = $this->createQuery();
     $query->matching(
-      $query->equals('state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+      $query->equals('state', Member::STATE_ACTIVE),
     );
     if ($sorting != null) {
       $query->setOrderings($sorting);
@@ -191,6 +191,28 @@ class MemberRepository extends Repository
       $query->logicalAnd($constraints)
     )
       ->execute()->getFirst();
+
+    return $result;
+  }
+
+  /**
+   * @param array<int|string> $uids
+   */
+  public function findAllByUids($uids)
+  {
+    $query = $this->createQuery();
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
+    $constraints = [
+      $query->in('uid', $uids),
+    ];
+
+    $result = $query->matching(
+      $query->logicalAnd($constraints)
+    )
+      ->execute();
+
     return $result;
   }
 }

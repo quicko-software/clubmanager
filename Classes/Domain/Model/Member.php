@@ -9,6 +9,7 @@ use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class Member extends AbstractEntity
 {
@@ -67,8 +68,6 @@ class Member extends AbstractEntity
   protected $state = self::STATE_UNSET;
 
   /**
-   * @var mixed
-   *
    * @Lazy
    *
    * @Cascade("remove")
@@ -897,5 +896,51 @@ class Member extends AbstractEntity
       $categories,
       $categoryList
     );
+  }
+
+  public function buildHtmlAddress(): string
+  {
+    $result = '';
+
+    if (!empty($this->getTitle())) {
+      $result = "{$this->getTitle()} ";
+    }
+    $country = '';
+    if ($this->getCountry()) {
+      $country = '<br>' . $this->getCountry()->getShortNameLocal();
+    }
+    $result .= "{$this->getFirstname()} {$this->getLastname()}<br>"
+            . "{$this->getStreet()}<br>"
+            . "{$this->getZip()} {$this->getCity()}"
+            . $country
+    ;
+
+    return $result;
+  }
+
+  public function buildHtmlInvoiceAdress(): string
+  {
+    if (!empty($this->getAltBillingName())) {
+      return "{$this->getAltBillingName()}<br>"
+      . "{$this->getAltBillingStreet()}<br>"
+      . "{$this->getAltBillingZip()} {$this->getAltBillingCity()}<br>"
+      . "{$this->getAltBillingCountry()->getShortNameLocal()}"
+      ;
+    } else {
+      return $this->buildHtmlAddress();
+    }
+  }
+
+  public function buildSalutation(): string
+  {
+    $fullMemberName = '';
+    $title = $this->getTitle();
+    if (!empty($title)) {
+      $fullMemberName = $title;
+    }
+    $fullMemberName .= $this->getFirstname() . '  ' . $this->getLastname();
+    $translationKey = 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:member.salutation.' . $this->getSalutation();
+
+    return LocalizationUtility::translate($translationKey, 'clubmanager', [$fullMemberName]);
   }
 }
