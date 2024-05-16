@@ -918,6 +918,31 @@ class Member extends AbstractEntity
     return $result;
   }
 
+  public function buildHtmlMainLocationAddress(): string
+  {
+    $result = '';
+    $mainLocation = $this->getMainLocation();
+    if ($mainLocation == null) {
+      return $this->buildHtmlAddress();
+    }
+
+    if (!empty($this->getTitle())) {
+      $result = "{$this->getTitle()} ";
+    }
+    $country = '';
+    if ($mainLocation->getCountry()) {
+      $country = '<br>' . $mainLocation->getCountry()->getShortNameLocal();
+    }
+    $result .= "{$mainLocation->getFirstname()} {$mainLocation->getLastname()}<br>"
+            . "{$mainLocation->getStreet()}<br>"
+            . "{$mainLocation->getZip()} {$mainLocation->getCity()}"
+            . $country
+    ;
+
+
+    return $result;
+  }
+
   public function buildHtmlInvoiceAdress(): string
   {
     if (!empty($this->getAltBillingName())) {
@@ -936,7 +961,7 @@ class Member extends AbstractEntity
     $fullMemberName = '';
     $title = $this->getTitle();
     if (!empty($title)) {
-      $fullMemberName = $title;
+      $fullMemberName = $title . ' ';
     }
     $fullMemberName .= $this->getFirstname() . '  ' . $this->getLastname();
     $translationKey = 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:member.salutation.' . $this->getSalutation();
