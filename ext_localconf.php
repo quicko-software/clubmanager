@@ -98,8 +98,8 @@ call_user_func(function () {
     PluginRegisterFacade::configureAllPlugins();
 
     
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_fe_user_email_hook'] = \Quicko\Clubmanager\Hooks\FeUserEmailHook::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_fe_user_password_hook'] = \Quicko\Clubmanager\Hooks\FeUserPasswordHook::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_fe_user_email_hook'] = \Quicko\Clubmanager\Hooks\CopyMemberEmailToFeuserHook::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_fe_user_password_hook'] = \Quicko\Clubmanager\Hooks\ResetFeuserPasswordHook::class;
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_location_lat_lng_update_hook'] = \Quicko\Clubmanager\Hooks\LocationLatLngUpdateHook::class;
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_member_starttime_hook'] = \Quicko\Clubmanager\Hooks\MemberStartTimeHook::class;
 

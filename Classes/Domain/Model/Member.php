@@ -909,11 +909,46 @@ class Member extends AbstractEntity
     if ($this->getCountry()) {
       $country = '<br>' . $this->getCountry()->getShortNameLocal();
     }
-    $result .= "{$this->getFirstname()} {$this->getLastname()}<br>"
+    $company = '';
+    if ($this->getCompany()) {
+        $company =  $this->getCompany() . '<br>';
+    }
+    $result .= $company
+            . "{$this->getFirstname()} {$this->getLastname()}<br>"
             . "{$this->getStreet()}<br>"
             . "{$this->getZip()} {$this->getCity()}"
             . $country
     ;
+
+    return $result;
+  }
+
+  public function buildHtmlMainLocationAddress(): string
+  {
+    $result = '';
+    $mainLocation = $this->getMainLocation();
+    if ($mainLocation == null) {
+      return $this->buildHtmlAddress();
+    }
+
+    if (!empty($this->getTitle())) {
+      $result = "{$this->getTitle()} ";
+    }
+    $country = '';
+    if ($mainLocation->getCountry()) {
+      $country = '<br>' . $mainLocation->getCountry()->getShortNameLocal();
+    }
+    $company = '';
+    if ($this->getCompany()) {
+      $company =  $this->getCompany() . '<br>';
+    }
+    $result .= $company
+        . "{$this->getFirstname()} {$this->getLastname()}<br>"
+        . "{$mainLocation->getStreet()}<br>"
+        . "{$mainLocation->getZip()} {$mainLocation->getCity()}"
+        . $country
+    ;
+
 
     return $result;
   }
@@ -936,7 +971,7 @@ class Member extends AbstractEntity
     $fullMemberName = '';
     $title = $this->getTitle();
     if (!empty($title)) {
-      $fullMemberName = $title;
+      $fullMemberName = $title . ' ';
     }
     $fullMemberName .= $this->getFirstname() . '  ' . $this->getLastname();
     $translationKey = 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:member.salutation.' . $this->getSalutation();
