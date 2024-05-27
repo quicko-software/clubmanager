@@ -909,7 +909,12 @@ class Member extends AbstractEntity
     if ($this->getCountry()) {
       $country = '<br>' . $this->getCountry()->getShortNameLocal();
     }
-    $result .= "{$this->getFirstname()} {$this->getLastname()}<br>"
+    $company = '';
+    if ($this->getCompany()) {
+        $company =  $this->getCompany() . '<br>';
+    }
+    $result .= $company
+            . "{$this->getFirstname()} {$this->getLastname()}<br>"
             . "{$this->getStreet()}<br>"
             . "{$this->getZip()} {$this->getCity()}"
             . $country
@@ -933,10 +938,15 @@ class Member extends AbstractEntity
     if ($mainLocation->getCountry()) {
       $country = '<br>' . $mainLocation->getCountry()->getShortNameLocal();
     }
-    $result .= "{$mainLocation->getFirstname()} {$mainLocation->getLastname()}<br>"
-            . "{$mainLocation->getStreet()}<br>"
-            . "{$mainLocation->getZip()} {$mainLocation->getCity()}"
-            . $country
+    $company = '';
+    if ($this->getCompany()) {
+      $company =  $this->getCompany() . '<br>';
+    }
+    $result .= $company
+        . "{$this->getFirstname()} {$this->getLastname()}<br>"
+        . "{$mainLocation->getStreet()}<br>"
+        . "{$mainLocation->getZip()} {$mainLocation->getCity()}"
+        . $country
     ;
 
 
