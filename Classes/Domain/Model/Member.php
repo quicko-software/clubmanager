@@ -902,19 +902,23 @@ class Member extends AbstractEntity
   {
     $result = '';
 
-    if (!empty($this->getTitle())) {
-      $result = "{$this->getTitle()} ";
+    $company = '';
+    if ($this->getCompany()) {
+      $company =  $this->getCompany() . '<br>';
     }
+
+    $title = '';
+    if ($this->getTitle()) {
+      $title =  $this->getTitle() . ' ';
+    }
+
     $country = '';
     if ($this->getCountry()) {
       $country = '<br>' . $this->getCountry()->getShortNameLocal();
     }
-    $company = '';
-    if ($this->getCompany()) {
-        $company =  $this->getCompany() . '<br>';
-    }
+
     $result .= $company
-            . "{$this->getFirstname()} {$this->getLastname()}<br>"
+            . $title . "{$this->getFirstname()} {$this->getLastname()}<br>"
             . "{$this->getStreet()}<br>"
             . "{$this->getZip()} {$this->getCity()}"
             . $country
@@ -931,8 +935,9 @@ class Member extends AbstractEntity
       return $this->buildHtmlAddress();
     }
 
-    if (!empty($this->getTitle())) {
-      $result = "{$this->getTitle()} ";
+    $title = '';
+    if ($this->getTitle()) {
+      $title =  $this->getTitle() . ' ';
     }
     $country = '';
     if ($mainLocation->getCountry()) {
@@ -943,7 +948,7 @@ class Member extends AbstractEntity
       $company =  $this->getCompany() . '<br>';
     }
     $result .= $company
-        . "{$this->getFirstname()} {$this->getLastname()}<br>"
+        . $title . "{$this->getFirstname()} {$this->getLastname()}<br>"
         . "{$mainLocation->getStreet()}<br>"
         . "{$mainLocation->getZip()} {$mainLocation->getCity()}"
         . $country
