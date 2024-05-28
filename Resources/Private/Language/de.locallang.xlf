@@ -293,7 +293,7 @@
       </trans-unit>
       <trans-unit id="member.salutation.2" resname="member.salutation.2" approved="yes">
         <source>Dear Mrs. %s,</source>
-        <target state="final">Sehr geehrtere Frau %s,</target>
+        <target state="final">Sehr geehrte Frau %s,</target>
       </trans-unit>
       <trans-unit id="member.salutation.3" resname="member.salutation.3" approved="yes">
         <source>Good day %s,</source>
