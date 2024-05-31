@@ -45,6 +45,12 @@ class CopyMemberEmailToFeuserHook
     }
 
     foreach ($pObj->datamap['tx_clubmanager_domain_model_member'] as $uid => $memberProps) {
+      if (! array_key_exists('feuser', $memberProps)) {
+        // might happen if a new member is activated for the first time
+        // coming from MemberStartTimeHook
+        // 2024-05-27, stephanw
+        continue;
+      }
       $feuserUid = HookUtils::getRecordUid($memberProps['feuser'], $pObj);
       if (! $feuserUid) {
         continue;
