@@ -172,7 +172,7 @@ class LocationRepository extends Repository
         $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
       )
     );
-    return $query->execute();
+    return $query->execute()->toArray();
   }
 
   /**

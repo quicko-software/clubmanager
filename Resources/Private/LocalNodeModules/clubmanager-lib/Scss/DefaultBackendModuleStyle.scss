@@ -153,7 +153,9 @@ $color-seconday: #014f77;
   div.dt-button-collection {
     border-radius: 2px;
     width: auto;
-    max-width: 400px;
+    .dt-button {
+      max-width: 400px;
+    }
   }
   .tools {
     margin-bottom: 10px;

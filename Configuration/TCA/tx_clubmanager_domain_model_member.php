@@ -265,7 +265,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 20,
-                'eval' => 'trim,email',
+                'eval' => 'trim,email,unique',
             ],
         ],
         'phone' => [

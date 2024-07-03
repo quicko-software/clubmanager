@@ -51,6 +51,12 @@
 			<trans-unit id="mail.logindata.link.login" resname="mail.logindata.link.login">
 				<source>Log in to the members area here.</source>
 			</trans-unit>
+			<trans-unit id="mail.signature.text" resname="mail.signature.text">
+				<source>Best regards,</source>
+			</trans-unit>
+			<trans-unit id="mail.signature.name" resname="mail.signature.name">
+				<source>Quicko - The Clubmanager</source>
+			</trans-unit>
 			<trans-unit id="mail.footer.url" resname="mail.footer.url">
 				<source>https://quicko.software/</source>
 			</trans-unit>
@@ -58,7 +64,7 @@
 				<source>Quicko - The Clubmanager</source>
 			</trans-unit>
 			<trans-unit id="mail.footer.copyright" resname="mail.footer.copyright">
-				<source>© 2023 </source>
+				<source>© 2024 </source>
 			</trans-unit>
 			<trans-unit id="mail.footer.imprint" resname="mail.footer.imprint">
 				<source>Legal notice</source>
