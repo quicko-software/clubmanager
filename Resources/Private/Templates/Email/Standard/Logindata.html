@@ -13,10 +13,8 @@
     <span class="preheader">
         <f:translate key="mail.logindata.preheader" extensionName="clubmanager" />
     </span>
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body"
-        style="background-color: {backgroundColor}">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body" style="background-color: {backgroundColor}">
         <tr>
-            <td>&nbsp;</td>
             <td class="container">
                 <div class="content">
                     <table role="presentation" class="main">
@@ -33,7 +31,11 @@
                                             </h1>
                                             <p>
                                                 <f:translate key="mail.logindata.welcome" extensionName="clubmanager" />
-                                                <f:if condition="{member.title}">{member.title} </f:if>{member.firstname} {member.lastname}! <br /><br />
+                                                <f:if condition="{member.title}">
+                                                    {member.title}
+                                                </f:if>
+                                                {member.firstname} {member.lastname}!
+                                                <br /><br />
                                                 <f:translate key="mail.logindata.text" extensionName="clubmanager" />
                                                 <br /><br />
 
@@ -42,42 +44,16 @@
                                                 <strong>
                                                     <f:translate key="mail.logindata.access.number"
                                                         extensionName="clubmanager" />
-                                                </strong> {member.ident}<br />
-                                            </p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center" role="presentation"
-                                            style="border:none;border-radius:24px;cursor:auto;padding:10px 25px;background-color: {backgroundColor}"
-                                            valign="middle">
-                                            <a href="{recoveryLink}"
-                                                style="background-color: {backgroundColor};color:#ffffff;Margin:0;text-decoration:none;text-transform:none;"
-                                                target="_blank">
-                                                <f:translate key="mail.logindata.link.recovery"
-                                                    extensionName="clubmanager" />
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-top:30px">
-                                            <p>
-                                                <f:translate key="mail.logindata.link.recovery.validuntil"
-                                                    extensionName="clubmanager" />
-                                                {passwordRecoveryLifeTime->f:format.date(format: '%d.%m.%Y %H:%M')}
-                                                <br /><br />
-
-                                                <a href="{loginLink}">
-                                                    <f:translate key="mail.logindata.link.login"
-                                                        extensionName="clubmanager" />
-                                                </a>
+                                                </strong> {member.ident} <br />
                                             </p>
 
-                                            <f:render partial="Benefit" arguments="{_all}" />
-
-                                            <f:render partial="Signature" arguments="{_all}" />
-
                                         </td>
                                     </tr>
+                                    <f:render partial="RecoveryLink" arguments="{backgroundColor:backgroundColor,recoveryLink:recoveryLink}" />
+                                    <f:render partial="RecoveryLinkValid" arguments="{_all}" />
+                                    <f:render partial="LoginLink" arguments="{_all}" />
+                                    <f:render partial="Benefit" arguments="{_all}" />
+                                    <f:render partial="Signature" arguments="{_all}" />
                                     <f:render partial="Footer" arguments="{_all}" />
                                 </table>
                             </td>
@@ -85,7 +61,6 @@
                     </table>
                 </div>
             </td>
-            <td>&nbsp;</td>
         </tr>
     </table>
 </body>
