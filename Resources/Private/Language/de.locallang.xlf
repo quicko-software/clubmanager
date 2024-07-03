@@ -67,6 +67,14 @@
         <source>Log in to the members area here.</source>
         <target state="final">Loggen Sie sich hier in den Mitgliederbereich ein.</target>
       </trans-unit>
+      <trans-unit id="mail.signature.text" resname="mail.signature.text" approved="yes">
+        <source>Best regards,</source>
+        <target state="final">Mit freundlichen Grüßen,</target>
+      </trans-unit>
+      <trans-unit id="mail.signature.name" resname="mail.signature.name" approved="yes">
+        <source>Quicko - The Clubmanager</source>
+        <target state="final">Quicko - Der Clubmanager</target>
+      </trans-unit>
       <trans-unit id="mail.footer.url" resname="mail.footer.url" approved="yes">
         <source>https://quicko.software/</source>
         <target state="final">https://quicko.software/</target>
@@ -76,8 +84,8 @@
         <target state="final">Quicko - Der Clubmanager</target>
       </trans-unit>
       <trans-unit id="mail.footer.copyright" resname="mail.footer.copyright" approved="yes">
-        <source>© 2023 </source>
-        <target state="final">© 2023 </target>
+        <source>© 2024 </source>
+        <target state="final">© 2024 </target>
       </trans-unit>
       <trans-unit id="mail.footer.imprint" resname="mail.footer.imprint" approved="yes">
         <source>Legal notice</source>
