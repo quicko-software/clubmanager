@@ -66,8 +66,17 @@
 			<trans-unit id="mail.footer.copyright" resname="mail.footer.copyright">
 				<source>© 2024 </source>
 			</trans-unit>
-			<trans-unit id="mail.footer.imprint" resname="mail.footer.imprint">
+			<trans-unit id="mail.footer.imprint.text" resname="mail.footer.imprint.text">
 				<source>Legal notice</source>
+			</trans-unit>
+			<trans-unit id="mail.footer.imprint.url" resname="mail.footer.imprint.url">
+				<source>https://quicko.software/en/legal-notice/</source>
+			</trans-unit>
+			<trans-unit id="mail.footer.privacy.text" resname="mail.footer.privacy.text">
+				<source>Privacy policy</source>
+			</trans-unit>
+			<trans-unit id="mail.footer.privacy.url" resname="mail.footer.privacy.url">
+				<source>https://quicko.software/en/privacy-policy/</source>
 			</trans-unit>
 			<trans-unit id="mail.reminder.subject" resname="mail.reminder.subject">
 				<source>Club login reminder email</source>
