@@ -1,311 +1,260 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns:t3="http://typo3.org/schemas/xliff" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="en" original="EXT:clubmanager/Resources/Private/Language/locallang.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T16:57:51+01:00" target-language="es-ES">
+  <file source-language="en" original="EXT:clubmanager/Resources/Private/Language/locallang.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T16:57:51+01:00">
     <header/>
     <body>
       <trans-unit id="statictextmailgenerator.label" resname="statictextmailgenerator.label">
         <source>Static text mail</source>
-        <target state="needs-translation">Static text mail</target>
       </trans-unit>
       <trans-unit id="memberloginremindergenerator.label" resname="memberloginremindergenerator.label">
         <source>Member Login Reminder</source>
-        <target state="needs-translation">Member Login Reminder</target>
       </trans-unit>
       <trans-unit id="passwordrecoverygenerator.label" resname="passwordrecoverygenerator.label">
         <source>Password Set/Recovery</source>
-        <target state="needs-translation">Password Set/Recovery</target>
       </trans-unit>
       <trans-unit id="search" resname="search">
         <source>Search</source>
-        <target state="needs-translation">Search</target>
       </trans-unit>
       <trans-unit id="datatable.resetfilters" resname="datatable.resetfilters">
         <source>Reset filters</source>
-        <target state="needs-translation">Reset filters</target>
       </trans-unit>
       <trans-unit id="datatable.resettable" resname="datatable.resettable">
         <source>Reset table</source>
-        <target state="needs-translation">Reset table</target>
       </trans-unit>
       <trans-unit id="mail.logindata.subject" resname="mail.logindata.subject">
         <source>Your login data for the club</source>
-        <target state="needs-translation">Your login data for the club</target>
       </trans-unit>
       <trans-unit id="mail.logindata.title" resname="mail.logindata.title">
         <source>Your access data to the member area</source>
-        <target state="needs-translation">Your access data to the member area</target>
       </trans-unit>
       <trans-unit id="mail.logindata.preheader" resname="mail.logindata.preheader">
         <source>Your access data to the member area</source>
-        <target state="needs-translation">Your access data to the member area</target>
       </trans-unit>
       <trans-unit id="mail.logindata.welcome" resname="mail.logindata.welcome">
         <source>Hello</source>
-        <target state="needs-translation">Hello</target>
       </trans-unit>
       <trans-unit id="mail.logindata.text" resname="mail.logindata.text">
         <source>Enclosed we send you your personal access data to the member area.</source>
-        <target state="needs-translation">Enclosed we send you your personal access data to the member area.</target>
       </trans-unit>
       <trans-unit id="mail.logindata.access.title" resname="mail.logindata.access.title">
         <source>Your login data:</source>
-        <target state="needs-translation">Your login data:</target>
       </trans-unit>
       <trans-unit id="mail.logindata.access.number" resname="mail.logindata.access.number">
         <source>Membership number:</source>
-        <target state="needs-translation">Membership number:</target>
       </trans-unit>
       <trans-unit id="mail.logindata.link.recovery" resname="mail.logindata.link.recovery">
         <source>Assign password now!</source>
-        <target state="needs-translation">Assign password now!</target>
       </trans-unit>
       <trans-unit id="mail.logindata.link.recovery.validuntil" resname="mail.logindata.link.recovery.validuntil">
         <source>The link is valid until</source>
-        <target state="needs-translation">The link is valid until</target>
       </trans-unit>
       <trans-unit id="mail.logindata.link.login" resname="mail.logindata.link.login">
         <source>Log in to the members area here.</source>
-        <target state="needs-translation">Log in to the members area here.</target>
       </trans-unit>
       <trans-unit id="mail.signature.text" resname="mail.signature.text">
         <source>Best regards,</source>
-        <target state="needs-translation">Best regards,</target>
       </trans-unit>
       <trans-unit id="mail.signature.name" resname="mail.signature.name">
         <source>Quicko - The Clubmanager</source>
-        <target state="needs-translation">Quicko - The Clubmanager</target>
       </trans-unit>
       <trans-unit id="mail.footer.url" resname="mail.footer.url">
         <source>https://quicko.software/</source>
-        <target state="needs-translation">https://quicko.software/</target>
       </trans-unit>
       <trans-unit id="mail.footer.linktext" resname="mail.footer.linktext">
         <source>Quicko - The Clubmanager</source>
-        <target state="needs-translation">Quicko - The Clubmanager</target>
       </trans-unit>
       <trans-unit id="mail.footer.copyright" resname="mail.footer.copyright">
         <source>© 2024 </source>
-        <target state="needs-translation">© 2024 </target>
       </trans-unit>
-      <trans-unit id="mail.footer.imprint" resname="mail.footer.imprint">
+      <trans-unit id="mail.footer.imprint.text" resname="mail.footer.imprint.text">
         <source>Legal notice</source>
-        <target state="needs-translation">Legal notice</target>
+      </trans-unit>
+      <trans-unit id="mail.footer.imprint.url" resname="mail.footer.imprint.url">
+        <source>https://quicko.software/en/legal-notice/</source>
+      </trans-unit>
+      <trans-unit id="mail.footer.privacy.text" resname="mail.footer.privacy.text">
+        <source>Privacy policy</source>
+      </trans-unit>
+      <trans-unit id="mail.footer.privacy.url" resname="mail.footer.privacy.url">
+        <source>https://quicko.software/en/privacy-policy/</source>
       </trans-unit>
       <trans-unit id="mail.reminder.subject" resname="mail.reminder.subject">
         <source>Club login reminder email</source>
-        <target state="needs-translation">Club login reminder email</target>
       </trans-unit>
       <trans-unit id="mail.reminder.title" resname="mail.reminder.title">
         <source>Reminder e-mail of your first login in the member area</source>
-        <target state="needs-translation">Reminder e-mail of your first login in the member area</target>
       </trans-unit>
       <trans-unit id="mail.reminder.preheader" resname="mail.reminder.preheader">
         <source>Reminder e-mail of your first login in the member area</source>
-        <target state="needs-translation">Reminder e-mail of your first login in the member area</target>
       </trans-unit>
       <trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome">
         <source>Hello </source>
-        <target state="needs-translation">Hello </target>
       </trans-unit>
       <trans-unit id="mail.reminder.text" resname="mail.reminder.text">
-        <source>You have not yet registered in the members area, so we are sending you a reminder. Don't miss out on the many exciting topics in our exclusive member area!</source>
-        <target state="needs-translation">You have not yet registered in the members area, so we are sending you a reminder. Don't miss out on the many exciting topics in our exclusive member area!</target>
+        <source>You have not yet registered in the members area, so we are sending you a reminder.
+					Don't miss out on the many exciting topics in our exclusive member area!</source>
       </trans-unit>
       <trans-unit id="mail.reminder.access.title" resname="mail.reminder.access.title">
         <source>Your login data:</source>
-        <target state="needs-translation">Your login data:</target>
       </trans-unit>
       <trans-unit id="mail.reminder.access.number" resname="mail.reminder.access.number">
         <source>Membership number:</source>
-        <target state="needs-translation">Membership number:</target>
       </trans-unit>
       <trans-unit id="mail.reminder.link.recovery" resname="mail.reminder.link.recovery">
         <source>Assign password now!</source>
-        <target state="needs-translation">Assign password now!</target>
       </trans-unit>
       <trans-unit id="mail.reminder.link.recovery.validuntil" resname="mail.reminder.link.recovery.validuntil">
         <source>valid until</source>
-        <target state="needs-translation">valid until</target>
       </trans-unit>
       <trans-unit id="mail.reminder.link.login" resname="mail.reminder.link.login">
         <source>Log in to the members area here.</source>
-        <target state="needs-translation">Log in to the members area here.</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.clubfunction" resname="content_element.member.label.clubfunction">
         <source>Member function:</source>
-        <target state="needs-translation">Member function:</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
         <source>Membership number:</source>
-        <target state="needs-translation">Membership number:</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.category" resname="content_element.member.label.category">
         <source>Member Category:</source>
-        <target state="needs-translation">Member Category:</target>
       </trans-unit>
       <trans-unit id="content_element.member.standard.category" resname="content_element.member.standard.category">
         <source>Without</source>
-        <target state="needs-translation">Without</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.state" resname="content_element.member.label.state">
         <source>Membership Status:</source>
-        <target state="needs-translation">Membership Status:</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.level" resname="content_element.member.label.level">
         <source>Type of membership:</source>
-        <target state="needs-translation">Type of membership:</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.reducedRate" resname="content_element.member.label.reducedRate">
         <source>Reduced membership:</source>
-        <target state="needs-translation">Reduced membership:</target>
       </trans-unit>
       <trans-unit id="content_element.member.reducedRate.yes" resname="content_element.member.reducedRate.yes">
         <source>Yes</source>
-        <target state="needs-translation">Yes</target>
       </trans-unit>
       <trans-unit id="content_element.member.reducedRate.no" resname="content_element.member.reducedRate.no">
         <source>No</source>
-        <target state="needs-translation">No</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.starttime" resname="content_element.member.label.starttime">
         <source>Start of membership:</source>
-        <target state="needs-translation">Start of membership:</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.endtime" resname="content_element.member.label.endtime">
         <source>End of membership:</source>
-        <target state="needs-translation">End of membership:</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.cancellationWish" resname="content_element.member.label.cancellationWish">
         <source>Cancellation requested:</source>
-        <target state="needs-translation">Cancellation requested:</target>
       </trans-unit>
       <trans-unit id="content_element.member.cancellationWish.yes" resname="content_element.member.cancellationWish.yes">
         <source>Yes</source>
-        <target state="needs-translation">Yes</target>
       </trans-unit>
       <trans-unit id="content_element.member.cancellationWish.no" resname="content_element.member.cancellationWish.no">
         <source>No</source>
-        <target state="needs-translation">No</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.route" resname="content_element.member.label.route">
         <source>Route planning</source>
-        <target state="needs-translation">Route planning</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.noLocation" resname="content_element.member.label.noLocation">
         <source>No location specified yet</source>
-        <target state="needs-translation">No location specified yet</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.mainLocation" resname="content_element.member.label.mainLocation">
         <source>Head office</source>
-        <target state="needs-translation">Head office</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.subLocation" resname="content_element.member.label.subLocation">
         <source>Secondary seat</source>
-        <target state="needs-translation">Secondary seat</target>
       </trans-unit>
       <trans-unit id="content_element.member.label.back" resname="content_element.member.label.back">
         <source>Back</source>
-        <target state="needs-translation">Back</target>
       </trans-unit>
       <trans-unit id="content_element.member.detail.button" resname="content_element.member.detail.button">
         <source>Member details</source>
-        <target state="needs-translation">Member details</target>
       </trans-unit>
       <trans-unit id="content_element.member.license.badgeA" resname="content_element.member.license.badgeA">
         <source>Licenseholder A</source>
-        <target state="needs-translation">Licenseholder A</target>
       </trans-unit>
       <trans-unit id="content_element.member.license.badgeB" resname="content_element.member.license.badgeB">
         <source>Licenseholder B</source>
-        <target state="needs-translation">Licenseholder B</target>
       </trans-unit>
       <trans-unit id="content_element.member.license.badgeC" resname="content_element.member.license.badgeC">
         <source>Licenseholder C</source>
-        <target state="needs-translation">Licenseholder C</target>
       </trans-unit>
       <trans-unit id="content_element.location.label.category" resname="content_element.location.label.category">
         <source>Location Category:</source>
-        <target state="needs-translation">Location Category:</target>
       </trans-unit>
       <trans-unit id="content_element.location.standard.category" resname="content_element.location.standard.category">
         <source>Without</source>
-        <target state="needs-translation">Without</target>
       </trans-unit>
       <trans-unit id="content_element.location.main.detail.button" resname="content_element.location.main.detail.button">
         <source>Headquarters</source>
-        <target state="needs-translation">Headquarters</target>
       </trans-unit>
       <trans-unit id="content_element.location.sub.detail.button" resname="content_element.location.sub.detail.button">
         <source>Secondary seat detail view</source>
-        <target state="needs-translation">Secondary seat detail view</target>
       </trans-unit>
       <trans-unit id="content_element.location.label.phone" resname="content_element.location.label.phone">
         <source>Phone:</source>
-        <target state="needs-translation">Phone:</target>
       </trans-unit>
       <trans-unit id="content_element.location.label.telefax" resname="content_element.location.label.telefax">
         <source>Telefax:</source>
-        <target state="needs-translation">Telefax:</target>
       </trans-unit>
       <trans-unit id="content_element.location.label.mobile" resname="content_element.location.label.mobile">
         <source>Mobile:</source>
-        <target state="needs-translation">Mobile:</target>
       </trans-unit>
       <trans-unit id="content_element.location.label.fax" resname="content_element.location.label.fax">
         <source>Fax:</source>
-        <target state="needs-translation">Fax:</target>
       </trans-unit>
       <trans-unit id="content_element.location.label.email" resname="content_element.location.label.email">
         <source>Email:</source>
-        <target state="needs-translation">Email:</target>
       </trans-unit>
       <trans-unit id="content_element.location.label.website" resname="content_element.location.label.website">
         <source>Internet:</source>
-        <target state="needs-translation">Internet:</target>
       </trans-unit>
       <trans-unit id="content_element.cities.header" resname="content_element.cities.header">
         <source>All members from</source>
-        <target state="needs-translation">All members from</target>
       </trans-unit>
       <trans-unit id="content_element.contentBlocker.youtube.text" resname="content_element.contentBlocker.youtube.text">
         <source>By loading the video, you accept YouTube's privacy policy.</source>
-        <target state="needs-translation">By loading the video, you accept YouTube's privacy policy.</target>
       </trans-unit>
       <trans-unit id="content_element.contentBlocker.youtube.loadButton.text" resname="content_element.contentBlocker.youtube.loadButton.text">
         <source>Load video</source>
-        <target state="needs-translation">Load video</target>
       </trans-unit>
       <trans-unit id="content_element.contentBlocker.youtube.alwaysCheckbox.label" resname="content_element.contentBlocker.youtube.alwaysCheckbox.label">
         <source>Always unlock Youtube</source>
-        <target state="needs-translation">Always unlock Youtube</target>
       </trans-unit>
       <trans-unit id="sepa.error.invalid_user_iban" resname="sepa.error.invalid_user_iban">
         <source>No valid IBAN %s.</source>
-        <target state="needs-translation">No valid IBAN %s.</target>
       </trans-unit>
       <trans-unit id="sepa.error.invalid_user_bic" resname="sepa.error.invalid_user_bic">
         <source>No valid BIC %s</source>
-        <target state="needs-translation">No valid BIC %s</target>
       </trans-unit>
       <trans-unit id="tca.invalid_field" resname="tca.invalid_field">
         <source>Invalid field</source>
-        <target state="needs-translation">Invalid field</target>
       </trans-unit>
       <trans-unit id="member.salutation.0" resname="member.salutation.0">
         <source>Good day %s,</source>
-        <target state="needs-translation">Good day %s,</target>
       </trans-unit>
       <trans-unit id="member.salutation.1" resname="member.salutation.1">
         <source>Dear Mr. %s,</source>
-        <target state="needs-translation">Dear Mr. %s,</target>
       </trans-unit>
       <trans-unit id="member.salutation.2" resname="member.salutation.2">
         <source>Dear Mrs. %s,</source>
-        <target state="needs-translation">Dear Mrs. %s,</target>
       </trans-unit>
       <trans-unit id="member.salutation.3" resname="member.salutation.3">
         <source>Good day %s,</source>
-        <target state="needs-translation">Good day %s,</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.0" resname="tx_clubmanager_domain_model_member.found_via.0">
+        <source>Unkown</source>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.10" resname="tx_clubmanager_domain_model_member.found_via.10">
+        <source>Recommendation</source>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.20" resname="tx_clubmanager_domain_model_member.found_via.20">
+        <source>Social media</source>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.30" resname="tx_clubmanager_domain_model_member.found_via.30">
+        <source>Press</source>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.40" resname="tx_clubmanager_domain_model_member.found_via.40">
+        <source>Misc</source>
       </trans-unit>
     </body>
   </file>
