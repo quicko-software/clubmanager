@@ -307,26 +307,6 @@
         <source>How did you find out about us</source>
         <target state="final">Wie sind Sie auf uns Aufmerksam geworden</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.0" resname="tx_clubmanager_domain_model_member.found_via.0" approved="yes">
-        <source>Unkown</source>
-        <target state="final">Funktion</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.10" resname="tx_clubmanager_domain_model_member.found_via.10" approved="yes">
-        <source>Recommendation</source>
-        <target state="final">Empfehlung</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.20" resname="tx_clubmanager_domain_model_member.found_via.20" approved="yes">
-        <source>Social media</source>
-        <target state="final">Soziale Medien</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.30" resname="tx_clubmanager_domain_model_member.found_via.30" approved="yes">
-        <source>Press</source>
-        <target state="final">Presse</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.40" resname="tx_clubmanager_domain_model_member.found_via.40" approved="yes">
-        <source>Misc</source>
-        <target state="final">Sonstiges</target>
-      </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location" approved="yes">
         <source>Location</source>
         <target state="final">Standort</target>
