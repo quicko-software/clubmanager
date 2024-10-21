@@ -307,26 +307,6 @@
         <source>How did you find out about us</source>
         <target state="needs-translation">How did you find out about us</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.0" resname="tx_clubmanager_domain_model_member.found_via.0">
-        <source>Unkown</source>
-        <target state="needs-translation">Unkown</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.10" resname="tx_clubmanager_domain_model_member.found_via.10">
-        <source>Recommendation</source>
-        <target state="needs-translation">Recommendation</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.20" resname="tx_clubmanager_domain_model_member.found_via.20">
-        <source>Social media</source>
-        <target state="needs-translation">Social media</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.30" resname="tx_clubmanager_domain_model_member.found_via.30">
-        <source>Press</source>
-        <target state="needs-translation">Press</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.found_via.40" resname="tx_clubmanager_domain_model_member.found_via.40">
-        <source>Misc</source>
-        <target state="needs-translation">Misc</target>
-      </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location">
         <source>Location</source>
         <target state="needs-translation">Location</target>
