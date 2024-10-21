@@ -308,26 +308,7 @@
 				<source>How did you find out about us</source>
 				<target>Wie sind Sie auf uns Aufmerksam geworden</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.found_via.0" resname="tx_clubmanager_domain_model_member.found_via.0">
-				<source>Unkown</source>
-				<target>Funktion</target>
-			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.found_via.10" resname="tx_clubmanager_domain_model_member.found_via.10">
-				<source>Recommendation</source>
-				<target>Empfehlung</target>
-			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.found_via.20" resname="tx_clubmanager_domain_model_member.found_via.20">
-				<source>Social media</source>
-				<target>Soziale Medien</target>
-			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.found_via.30" resname="tx_clubmanager_domain_model_member.found_via.30">
-				<source>Press</source>
-				<target>Presse</target>
-			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.found_via.40" resname="tx_clubmanager_domain_model_member.found_via.40">
-				<source>Misc</source>
-				<target>Sonstiges</target>
-			</trans-unit>	
+
 
 			<trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location">
 				<source>Location</source>

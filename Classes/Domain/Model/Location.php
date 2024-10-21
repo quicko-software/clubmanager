@@ -115,7 +115,6 @@ class Location extends AbstractEntity
 
   /**
    * @var FileReference
-   * @Lazy 
    * @Cascade("remove")
    */
   protected $image = null;
