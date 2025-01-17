@@ -31,12 +31,14 @@ class Member extends AbstractEntity
   public const LEVEL_SILVER = 20;
   public const LEVEL_GOLD = 30;
 
-  public const FOUND_VIA_UNKOWN = 0;
-  public const FOUND_VIA_RECOMMENDATION = 10;
-  public const FOUND_VIA_SOCIALMEDIA = 20;
-  public const FOUND_VIA_PRESS = 30;
-  public const FOUND_VIA_MISC = 40;
-
+  public const FOUND_VIA_0 = 0;
+  public const FOUND_VIA_10 = 10;
+  public const FOUND_VIA_20 = 20;
+  public const FOUND_VIA_30 = 30;
+  public const FOUND_VIA_40 = 40;
+  public const FOUND_VIA_50 = 50;
+  public const FOUND_VIA_60 = 60;
+  public const FOUND_VIA_70 = 70;
   /**
    * @var ?DateTime
    */
