@@ -302,6 +302,18 @@
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.found_via.40"
 				resname="tx_clubmanager_domain_model_member.found_via.40">
+				<source>Courses</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.found_via.50"
+						resname="tx_clubmanager_domain_model_member.found_via.50">
+				<source>Congress</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.found_via.60"
+						resname="tx_clubmanager_domain_model_member.found_via.60">
+				<source>Friendship advertising</source>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.found_via.70"
+						resname="tx_clubmanager_domain_model_member.found_via.70">
 				<source>Misc</source>
 			</trans-unit>
 			
