@@ -88,7 +88,6 @@ class MailServiceTask extends AbstractTask
   /**
    * @return string Information to display
    *
-   * @throws \Doctrine\DBAL\DBALException|\Doctrine\DBAL\DBALException
    */
   public function getAdditionalInformation(): string
   {

@@ -2,7 +2,6 @@
 
 namespace Quicko\Clubmanager\Domain\Model;
 
-use string;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Socialmedia extends AbstractEntity

@@ -17,7 +17,7 @@ class BicEvaluation
    *
    * @return string JavaScript code for client side validation/evaluation
    */
-  public function returnFieldJS()
+  public function returnFieldJS(): string
   {
     return 'return value;';
   }
@@ -26,11 +26,11 @@ class BicEvaluation
    * Server-side validation/evaluation on saving the record
    *
    * @param string $value The field value to be evaluated
-   * @param string $is_in The "is_in" value of the field configuration from TCA
+   * @param string $isIn The "is_in" value of the field configuration from TCA
    * @param bool $set Boolean defining if the value is written to the database or not.
    * @return string Evaluated field value
    */
-  public function evaluateFieldValue($value, $is_in, &$set)
+  public function evaluateFieldValue(string $value, string $isIn, bool &$set): string
   {
     try {
       BankAccountDataHelper::sanitizeBIC($value);
@@ -52,12 +52,8 @@ class BicEvaluation
     return $parameters['value'];
   }
 
-  /**
-   * @param string $messageTitle
-   * @param string $messageText
-   * @param int $severity
-   */
-  protected function flashMessage($messageTitle, $messageText, $severity = FlashMessage::ERROR)
+
+  protected function flashMessage(string $messageTitle, string $messageText, int $severity = FlashMessage::ERROR): void
   {
     $message = GeneralUtility::makeInstance(
       FlashMessage::class,

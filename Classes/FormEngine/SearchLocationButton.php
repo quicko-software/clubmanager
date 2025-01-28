@@ -37,7 +37,8 @@ class SearchLocationButton extends InputTextElement
       $iconFactory->getIcon('apps-toolbar-menu-search')
     );
 
-    $array['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/Clubmanager/SearchLocation');
+   // $array['requireJsModules'][] = JavaScriptModuleInstruction::forRequireJS('TYPO3/CMS/Clubmanager/SearchLocation');
+    $array['javaScriptModules'][] = JavaScriptModuleInstruction::create('@quicko/clubmanager/SearchLocation.js');
 
     return $array;
   }

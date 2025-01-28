@@ -40,40 +40,39 @@ class Member extends AbstractEntity
   public const FOUND_VIA_60 = 60;
   public const FOUND_VIA_70 = 70;
 
-  protected ?DateTime $crdate;
+  protected ?DateTime $crdate = null;
 
-  protected ?DateTime $starttime;
+  protected ?DateTime $starttime = null;
 
-  protected ?DateTime $endtime;
+  protected ?DateTime $endtime = null;
 
-  protected bool $cancellationWish;
+  protected bool $cancellationWish = false;
 
-  protected bool $reducedRate;
+  protected bool $reducedRate = false;
 
   protected int $state = self::STATE_UNSET;
 
   /**
-   * 
    * @Lazy
    *
    * @Cascade("remove")
    */
-  protected FrontendUser|LazyLoadingProxy|null $feuser;
+  protected FrontendUser|LazyLoadingProxy|null $feuser = null;
 
   protected int $directDebit = 0;
 
-  protected ?string $iban;
+  protected ?string $iban= null;
 
-  protected ?string $bic;
+  protected ?string $bic = null;
 
-  protected ?string $account;
+  protected ?string $account= null;
 
   /**
    * @Lazy
    *
    * @Cascade("remove")
    */
-  protected ?Location $mainLocation;
+  protected Location|LazyLoadingProxy|null $mainLocation = null;
 
   /**
    * @var ObjectStorage<Location>
@@ -84,24 +83,24 @@ class Member extends AbstractEntity
    */
   protected ObjectStorage $subLocations;
 
-  protected ?string $altBillingName;
+  protected ?string $altBillingName = '';
 
-  protected ?string $altBillingStreet;
+  protected ?string $altBillingStreet = '';
 
-  protected ?string $altBillingZip;
+  protected ?string $altBillingZip = '';
 
-  protected ?string $altBillingCity;
+  protected ?string $altBillingCity = '';
 
   /**
    * @Lazy
    */
-  protected ?Country $altBillingCountry;
+  protected Country|LazyLoadingProxy|null $altBillingCountry = null;
 
   protected ?string $ident = '';
 
-  protected ?string $title;
+  protected ?string $title = '';
 
-  protected  ?string $firstname = '';
+  protected ?string $firstname = '';
 
   protected ?string $midname = '';
 
@@ -111,49 +110,48 @@ class Member extends AbstractEntity
 
   protected ?string $street = '';
 
-  protected  ?string $city = '';
+  protected ?string $city = '';
 
-  protected int$federalState;
+  protected int $federalState = 0;
 
   /**
-   *
    * @Lazy
    */
-  protected Country $country;
+  protected Country|LazyLoadingProxy|null $country = null;
 
-  protected ?string $email;
+  protected ?string $email = '';
 
-  protected ?string $phone;
+  protected ?string $phone = '';
 
-  protected ?string $telefax;
+  protected ?string $telefax = '';
 
-  protected ?string $company;
+  protected ?string $company = '';
 
-  protected int $personType;
+  protected int $personType = 0;
 
-  protected int $salutation;
+  protected int $salutation = 0;
 
-  protected int $level;
+  protected int $level = 0;
 
-  protected ?string $addAddressInfo;
+  protected ?string $addAddressInfo = '';
 
-  protected ?DateTime $dateofbirth;
+  protected ?DateTime $dateofbirth = null;
 
-  protected ?string $nationality;
+  protected ?string $nationality = '';
 
-  protected ?string $customfield1;
+  protected ?string $customfield1 = '';
 
-  protected ?string $customfield2;
+  protected ?string $customfield2 = '';
 
-  protected ?string $customfield3;
+  protected ?string $customfield3 = '';
 
-  protected ?string $customfield4;
+  protected ?string $customfield4 = '';
 
-  protected ?string $customfield5;
+  protected ?string $customfield5 = '';
 
-  protected ?string $customfield6;
+  protected ?string $customfield6 = '';
 
-  protected ?string $clubFunction;
+  protected ?string $clubFunction = '';
 
   protected int $foundVia;
 
@@ -292,7 +290,6 @@ class Member extends AbstractEntity
 
   public function getCountry(): ?Country
   {
-    /* @phpstan-ignore-next-line */
     if ($this->country instanceof LazyLoadingProxy) {
       /** @var Country|null $resolvedValue */
       $resolvedValue = $this->country->_loadRealInstance();
@@ -404,7 +401,6 @@ class Member extends AbstractEntity
 
   public function getMainLocation(): ?Location
   {
-    /* @phpstan-ignore-next-line */
     if ($this->mainLocation instanceof LazyLoadingProxy) {
       /** @var Location|null $resolvedValue */
       $resolvedValue = $this->mainLocation->_loadRealInstance();
@@ -485,7 +481,6 @@ class Member extends AbstractEntity
 
   public function getAltBillingCountry(): ?Country
   {
-    /* @phpstan-ignore-next-line */
     if ($this->altBillingCountry instanceof LazyLoadingProxy) {
       /** @var Country|null $resolvedValue */
       $resolvedValue = $this->altBillingCountry->_loadRealInstance();
@@ -761,8 +756,9 @@ class Member extends AbstractEntity
   public function anyLocationHasAnyCategory($categoryList): bool
   {
     $categories = [];
-    if ($this->mainLocation) {
-      $categories = array_merge($categories, $this->mainLocation->getCategories()->toArray());
+    $mainLoc = $this->getMainLocation();
+    if ($mainLoc) {
+      $categories = array_merge($categories, $mainLoc->getCategories()->toArray());
     }
     foreach ($this->subLocations as $subLocation) {
       $categories = array_merge($categories, $subLocation->getCategories()->toArray());
@@ -780,12 +776,12 @@ class Member extends AbstractEntity
 
     $company = '';
     if ($this->getCompany()) {
-      $company =  $this->getCompany() . '<br>';
+      $company = $this->getCompany() . '<br>';
     }
 
     $title = '';
     if ($this->getTitle()) {
-      $title =  $this->getTitle() . ' ';
+      $title = $this->getTitle() . ' ';
     }
 
     $country = '';
@@ -814,7 +810,7 @@ class Member extends AbstractEntity
 
     $title = '';
     if ($this->getTitle()) {
-      $title =  $this->getTitle() . ' ';
+      $title = $this->getTitle() . ' ';
     }
     $country = '';
     if ($mainLocation->getCountry()) {
@@ -822,7 +818,7 @@ class Member extends AbstractEntity
     }
     $company = '';
     if ($this->getCompany()) {
-      $company =  $this->getCompany() . '<br>';
+      $company = $this->getCompany() . '<br>';
     }
     $result .= $company
         . $title . "{$this->getFirstname()} {$this->getLastname()}<br>"
@@ -830,7 +826,6 @@ class Member extends AbstractEntity
         . "{$mainLocation->getZip()} {$mainLocation->getCity()}"
         . $country
     ;
-
 
     return $result;
   }

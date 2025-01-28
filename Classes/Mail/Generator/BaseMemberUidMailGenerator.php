@@ -11,8 +11,11 @@ use Quicko\Clubmanager\Mail\Generator\Arguments\MemberUidArguments;
 
 abstract class BaseMemberUidMailGenerator extends BaseMailGenerator
 {
-
-  private $member = null;
+  /**
+   * Summary of member
+   * @var ?array<string,mixed>
+   */
+  private ?array $member = null;
 
   public function getMailTo(BaseMailGeneratorArguments $args): string
   {
@@ -44,19 +47,26 @@ abstract class BaseMemberUidMailGenerator extends BaseMailGenerator
   }
 
 
-  protected function getMemberFromArgs(BaseMailGeneratorArguments $args)
+  /**
+   * Summary of getMemberFromArgs
+   * @param \Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments $args
+   * @return array<string,mixed>|null
+   */
+  protected function getMemberFromArgs(BaseMailGeneratorArguments $args): array|null
   {
     /** @var MemberUidArguments $memberArgs */
     $memberArgs = $args;
-    if(!$memberArgs)  {
-      return null;
-    }
+
     if ($this->member && $this->member["uid"] == $memberArgs->memberUid) {
       return $this->member;
     }
     $repo = $this->getMemberRepo();
-    $this->member = $repo->findByUid($memberArgs->memberUid);
-    return $this->member;
+    $m = $repo->findByUid($memberArgs->memberUid);
+    if($m) {
+      $this->member = $m;
+      return $m;
+    }
+    return null;
   }
 
   protected function getMemberRepo(): MemberRecordRepository

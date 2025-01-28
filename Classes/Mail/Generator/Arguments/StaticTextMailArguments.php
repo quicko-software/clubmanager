@@ -9,37 +9,32 @@ class StaticTextMailArguments extends BaseMailGeneratorArguments
   /**
    * MailTo
    *
-   * @var \string
    */
-  public $mailTo;
+  public string $mailTo;
 
   /**
    * MailToName
    *
-   * @var \string
    */
-  public $mailToName;  
+  public string $mailToName;  
 
   /**
    * configRefPid
    *
-   * @var ?\integer
    */
-  public $configRefPid;
+  public ?int $configRefPid;
 
   /**
    * subject
    *
-   * @var \string
    */
-  public $subject;  
+  public string $subject;  
 
   /**
    * text
    *
-   * @var \string
    */
-  public $text;    
+  public string $text;    
 
 
 }

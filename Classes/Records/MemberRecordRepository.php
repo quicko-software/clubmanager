@@ -51,7 +51,10 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
     return $queryBuilder;
   }
 
-  public function findByUid($uid)
+  /**
+   * @return array<string,mixed>|false
+   */
+  public function findByUid(int $uid)
   {
     $queryBuilder = $this->createSelect();
     $queryBuilder
@@ -59,12 +62,14 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
       ->andWhere($queryBuilder->expr()->eq('member.uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)));
 
     return $queryBuilder
-      ->execute()
+      ->executeQuery()
       ->fetchAssociative();
   }
 
-
-  public function findRecursively($pid)
+  /**
+   * @return array<array<string,mixed>>
+   */
+  public function findRecursively(int $pid): array
   {
     $pids = $this->getTreePids($pid);
 
@@ -74,15 +79,15 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
       ->orderBy('member.ident', 'DESC');
 
     return $queryBuilder
-      ->execute()
+      ->executeQuery()
       ->fetchAllAssociative();
   }
 
-  protected function getTreePids($rootPid): array
+  protected function getTreePids(int $rootPid): array
   {
     $depth = 999999;
     $queryGenerator = GeneralUtility::makeInstance(\Quicko\Clubmanager\Domain\Helper\QueryGenerator::class);
-    $childPids = $queryGenerator->getTreeList($rootPid, $depth, 0, 1); // Will be a string like 1,2,3
+    $childPids = $queryGenerator->getTreeList($rootPid, $depth, 0, '1'); // Will be a string like 1,2,3
 
     return $childPids;
   }

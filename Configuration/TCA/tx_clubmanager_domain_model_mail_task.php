@@ -96,7 +96,7 @@ return [
       'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_mail_task.processed_time',
       'config' => [
         'type' => 'datetime',
-        'format' => 'datetime',
+        'format' => 'date',
         'dbType' => 'datetime',
         'default' => null,
         'eval' => 'datetime',
@@ -107,7 +107,7 @@ return [
       'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_mail_task.error_time',
       'config' => [
         'type' => 'datetime',
-        'format' => 'datetime',
+        'format' => 'date',
         'dbType' => 'datetime',
         'default' => null,
         'eval' => 'datetime',

@@ -101,9 +101,9 @@ return [
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.starttime',
             'config' => [
                 'type' => 'datetime',
-                'formate' => 'date',
-                'eval' => 'int',
                 'default' => 0,
+                'eval' => 'int',
+                'format' => 'date',
             ],
             'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
@@ -113,7 +113,7 @@ return [
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.endtime',
             'config' => [
                 'type' => 'datetime',
-                'formate' => 'date',
+                'format' => 'date',
                 'eval' => 'int',
                 'default' => 0,
                 'range' => [

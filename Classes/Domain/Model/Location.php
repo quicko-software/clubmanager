@@ -53,7 +53,7 @@ class Location extends AbstractEntity
   /**
    * @Cascade("remove")
    */
-  protected FileReference $image;
+  protected ?FileReference $image;
 
   protected string $info;
 

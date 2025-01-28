@@ -15,6 +15,7 @@ class CitiesController extends BaseSettingsController
   {
     $this->setDefaultSettingsIfRequired();
     $cities = $this->locationRepository->findCities();
+
     $this->view->assign('cities', $cities);
 
     return $this->htmlResponse();

@@ -70,6 +70,7 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
 
     $repo = $this->getMemberRepo();
     $member = $repo->findByUid($passwordArgs->memberUid);
+    if(!$member) return null;
     $address_email = $member['fe_users_email'];
     $address_name = ($member['firstname'] ?? "") . ' ' . ($member['lastname'] ?? "");
 
@@ -97,7 +98,7 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
     return $fluidEmail;
   }
 
-  private function generateLoginLink(int $loginPid)
+  private function generateLoginLink(int $loginPid): string
   {
     $parameters = [];
     $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($loginPid);

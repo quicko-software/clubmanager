@@ -35,9 +35,7 @@ class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, 
 
   public function __construct()
   {
-    /* @phpstan-ignore-next-line */
     $this->connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
-    /* @phpstan-ignore-next-line */
     $this->memberRepo = GeneralUtility::makeInstance(MemberRepository::class);
     $this->confirmation = new Confirmation(
       'Really generate placeholder data?',
