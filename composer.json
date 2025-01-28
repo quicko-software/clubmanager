@@ -18,13 +18,12 @@
     }
   },
   "require": {
-    "typo3/cms-core": "^11.5 || ^12.4",
-    "sjbr/static-info-tables": "^11.5 || ^12.4"
+    "typo3/cms-core": "^12.4 || ^13.4",
+    "sjbr/static-info-tables": "^12.4 || ^13.4"
   },
   "suggest": {
     "fluidtypo3/vhs": "^7",
     "typo3/cms-felogin": "^11.5 || ^12.4",
-    "bk2k/bootstrap-package": "^14.0",
-    "dmind/cookieman": "^2.14"
+    "bk2k/bootstrap-package": "^15.0"
   }
 }

@@ -2,208 +2,126 @@
 
 namespace Quicko\Clubmanager\Domain\Model;
 
+use DateTime;
+use Quicko\Clubmanager\Domain\Helper\States;
 use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
-
-use Quicko\Clubmanager\Domain\Model\Country;
-use Quicko\Clubmanager\Domain\Helper\States;
 
 class Location extends AbstractEntity
 {
+  protected DateTime $tstamp;
+
+  protected bool $hidden;
+
+  protected Member $member;
+
+  protected string $slug;
+
+  protected int $kind;
+
+  protected int $salutation;
+
+  protected string $title;
+
+  protected string $firstname;
+
+  protected string $midname;
+
+  protected string $lastname;
+
+  protected string $company;
+
+  protected string $street;
+
+  protected string $addAddressInfo;
+
+  protected string $zip;
+
+  protected string $city;
+
+  protected int $state;
+
+  protected Country $country;
+
+  protected string $latitude;
+
+  protected string $longitude;
 
   /**
-   * @var \DateTime
-   */
-  protected $tstamp;
-
-
-  /**
-   * @var bool
-   */
-  protected $hidden;
-
-  /**
-   * @var \Quicko\Clubmanager\Domain\Model\Member
-   */
-  protected $member;
-
-  /**
-   * @var \string
-   */
-  protected $slug;
-
-  /**
-   * @var \integer
-   */
-  protected $kind;
-
-  /**
-   * @var int
-   */
-  protected $salutation;
-
-  /**
-   * @var \string
-   */
-  protected $title;
-
-  /**
-   * @var \string
-   */
-  protected $firstname;
-
-  /**
-   * @var \string
-   */
-  protected $midname;
-
-  /**
-   * @var \string
-   */
-  protected $lastname;
-
-
-  /**
-   * @var \string
-   */
-  protected $company;
-
-  /**
-   * @var \string
-   */
-  protected $street;
-
-  /**
-   * @var string
-   */
-  protected $addAddressInfo;
-
-  /**
-   * @var \string
-   */
-  protected $zip;
-
-  /**
-   * @var \string
-   */
-  protected $city;
-
-  /**
-   * @var \int
-   */
-  protected $state;
-
-  /**
-   * @var \Quicko\Clubmanager\Domain\Model\Country
-   * @Lazy
-   */
-  protected $country;
-
-  /**
-   * @var \string
-   */
-  protected $latitude;
-
-  /**
-   * @var \string
-   */
-  protected $longitude;
-
-  /**
-   * @var FileReference
    * @Cascade("remove")
    */
-  protected $image = null;
+  protected FileReference $image;
+
+  protected string $info;
 
   /**
-   * @var \string
-   */
-  protected $info;
-
-  /**
-   * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Category>
+   * @var ObjectStorage<Category>
+   *
    * @Lazy
    */
   protected $categories;
 
-  /**
-   * @var \string
-   */
-  protected $phone;
+  protected string $phone;
 
-  /**
-   * @var \string
-   */
-  protected $mobile;  
+  protected string $mobile;
 
-  /**
-   * @var \string
-   */
-  protected $fax;    
+  protected string $fax;
 
-  /**
-   * @var \string
-   */
-  protected $email;     
-  
-  /**
-   * @var \string
-   */
-  protected $website;    
+  protected string $email;
+
+  protected string $website;
 
   /**
    * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Socialmedia>
+   *
    * @Lazy
+   *
    * @Cascade("remove")
    */
   protected $socialmedia;
 
-  /**
-   * @var \string
-   */
-  protected $youtubeVideo;
+  protected string $youtubeVideo;
 
   public function __construct()
   {
     $this->initStorageObjects();
   }
 
-  protected function initStorageObjects()
+  protected function initStorageObjects(): void
   {
     $this->socialmedia = new ObjectStorage();
     $this->categories = new ObjectStorage();
   }
 
-  public function getAddAddressInfo()
+  public function getAddAddressInfo(): string
   {
     return $this->addAddressInfo;
   }
 
-  public function setAddAddressInfo($addAddressInfo)
+  public function setAddAddressInfo(string $addAddressInfo): void
   {
     $this->addAddressInfo = $addAddressInfo;
   }
 
-  public function getKind()
+  public function getKind(): int
   {
     return $this->kind;
   }
 
-  public function setKind($kind)
+  public function setKind(int $kind): void
   {
     $this->kind = $kind;
   }
 
-  public function getMember()
+  public function getMember(): Member
   {
     return $this->member;
   }
 
-  public function setMember(\Quicko\Clubmanager\Domain\Model\Member $member)
+  public function setMember(Member $member): void
   {
     $this->member = $member;
   }
@@ -213,274 +131,283 @@ class Location extends AbstractEntity
     return $this->salutation;
   }
 
-  public function setSalutation($salutation): void
+  public function setSalutation(int $salutation): void
   {
     $this->salutation = $salutation;
   }
 
-  public function getSlug()
+  public function getSlug(): string
   {
     return $this->slug;
   }
 
-  public function setSlug($slug)
+  public function setSlug(string $slug): void
   {
     $this->slug = $slug;
   }
 
-  public function getTitle()
+  public function getTitle(): string
   {
     return $this->title;
   }
 
-  public function setTitle($title)
+  public function setTitle(string $title): void
   {
     $this->title = $title;
   }
 
-  public function getFirstname()
+  public function getFirstname(): string
   {
     return $this->firstname;
   }
 
-  public function setFirstname($firstname)
+  public function setFirstname(string $firstname): void
   {
     $this->firstname = $firstname;
   }
 
-  public function getMidname()
+  public function getMidname(): string
   {
     return $this->midname;
   }
 
-  public function setMidname($midname)
+  public function setMidname(string $midname): void
   {
     $this->midname = $midname;
   }
 
-  public function getLastname()
+  public function getLastname(): string
   {
     return $this->lastname;
   }
 
-  public function setLastname($lastname)
+  public function setLastname(string $lastname): void
   {
     $this->lastname = $lastname;
   }
 
-  public function getInfo()
+  public function getInfo(): string
   {
     return $this->info;
   }
 
-  public function setInfo($info)
+  public function setInfo(string $info): void
   {
     $this->info = $info;
   }
 
-  public function getCompany()
+  public function getCompany(): string
   {
     return $this->company;
   }
 
-  public function setCompany($company)
+  public function setCompany(string $company): void
   {
     $this->company = $company;
   }
 
-  public function getStreet()
+  public function getStreet(): string
   {
     return $this->street;
   }
 
-  public function setStreet($street)
+  public function setStreet(string $street): void
   {
     $this->street = $street;
   }
 
-  public function getZip()
+  public function getZip(): string
   {
     return $this->zip;
   }
 
-  public function setZip($zip)
+  public function setZip(string $zip): void
   {
     $this->zip = $zip;
   }
 
-  public function getCity()
+  public function getCity(): string
   {
     return $this->city;
   }
 
-  public function setCity($city)
+  public function setCity(string $city): void
   {
     $this->city = $city;
   }
 
-  public function getLatitude()
+  public function getLatitude(): string
   {
     return $this->latitude;
   }
 
-  public function setLatitude($latitude)
+  public function setLatitude(string $latitude): void
   {
     $this->latitude = $latitude;
   }
 
-  public function getLongitude()
+  public function getLongitude(): string
   {
     return $this->longitude;
   }
 
-  public function setLongitude($longitude)
+  public function setLongitude(string $longitude): void
   {
     $this->longitude = $longitude;
   }
 
-  public function getImage()
+  public function getImage(): ?FileReference
   {
     return $this->image;
   }
 
-  public function setImage($image)
+  public function setImage(?FileReference $image): void
   {
     $this->image = $image;
   }
 
-  public function getPhone()
+  public function getPhone(): string
   {
     return $this->phone;
   }
 
-  public function setPhone($phone)
+  public function setPhone(string $phone): void
   {
     $this->phone = $phone;
   }
 
-  public function getMobile()
+  public function getMobile(): string
   {
     return $this->mobile;
   }
 
-  public function setMobile($mobile)
+  public function setMobile(string $mobile): void
   {
     $this->mobile = $mobile;
-  }  
+  }
 
-  public function getFax()
+  public function getFax(): string
   {
     return $this->fax;
   }
 
-  public function setFax($fax)
+  public function setFax(string $fax): void
   {
     $this->fax = $fax;
-  }  
-  
-  public function getEmail()
+  }
+
+  public function getEmail(): string
   {
     return $this->email;
   }
 
-  public function setEmail($email)
+  public function setEmail(string $email): void
   {
     $this->email = $email;
-  }  
+  }
 
-  public function getWebsite()
+  public function getWebsite(): string
   {
     return $this->website;
   }
 
-  public function setWebsite($website)
+  public function setWebsite(string $website): void
   {
     $this->website = $website;
-  }    
+  }
 
-  public function getSocialmedia()
+  /**
+   * @return ObjectStorage<Socialmedia>
+   */
+  public function getSocialmedia(): ObjectStorage
   {
     return $this->socialmedia;
   }
 
-  public function setSocialmedia(ObjectStorage $socialmedia)
+  /**
+   * @param ObjectStorage<\Quicko\Clubmanager\Domain\Model\Socialmedia> $socialmedia
+   */
+  public function setSocialmedia(ObjectStorage $socialmedia): void
   {
     $this->socialmedia = $socialmedia;
   }
 
-  public function getYoutubeVideo()
+  public function getYoutubeVideo(): string
   {
     return $this->youtubeVideo;
   }
 
-  public function setYoutubeVideo($youtubeVideo)
+  public function setYoutubeVideo(string $youtubeVideo): void
   {
     $this->youtubeVideo = $youtubeVideo;
   }
-  
-  public function getCategories()
+
+  /**
+   * Summary of getCategories.
+   *
+   * @return ObjectStorage<Category>
+   */
+  public function getCategories(): ObjectStorage
   {
     return $this->categories;
   }
 
-  public function setCategories(ObjectStorage $categories)
+  /**
+   * @param ObjectStorage<Category> $categories
+   */
+  public function setCategories(ObjectStorage $categories): void
   {
     $this->categories = $categories;
   }
 
-  public function getCountry()
+  public function getCountry(): Country|null
   {
-    if ($this->country instanceof LazyLoadingProxy) {
-      /** @var Country|null $resolvedValue */
-      $resolvedValue = $this->country->_loadRealInstance();
-      return $this->country = $resolvedValue instanceof Country
-        ? $resolvedValue
-        : null;
-    }
     return $this->country;
   }
 
-  public function setCountry(\Quicko\Clubmanager\Domain\Model\Country $country)
+  public function setCountry(Country $country): void
   {
     $this->country = $country;
   }
 
-  public function getState()
+  public function getState(): int
   {
     return $this->state;
   }
 
-  public function setState($state)
+  public function setState(int $state): void
   {
     $this->state = $state;
   }
 
-  public function getStateName() : string {
+  public function getStateName(): string
+  {
     $states = States::getStates();
-    foreach($states as $stateArray) {
-      if($stateArray[1] == $this->state) {
-        return $stateArray[0];
+    foreach ($states as $stateArray) {
+      if ($stateArray['value'] == $this->state) {
+        return $stateArray['label'];
       }
     }
-    return "";
+
+    return '';
   }
 
-  public function getTstamp()
+  public function getTstamp(): DateTime
   {
     return $this->tstamp;
   }
 
-  public function setTstamp($tstamp)
+  public function setTstamp(DateTime $tstamp): void
   {
     $this->tstamp = $tstamp;
   }
 
-  public function getHidden()
+  public function getHidden(): bool
   {
     return $this->hidden;
   }
 
-  public function setHidden($hidden)
+  public function setHidden(bool $hidden): void
   {
     $this->hidden = $hidden;
   }

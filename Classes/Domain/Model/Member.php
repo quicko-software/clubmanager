@@ -39,71 +39,41 @@ class Member extends AbstractEntity
   public const FOUND_VIA_50 = 50;
   public const FOUND_VIA_60 = 60;
   public const FOUND_VIA_70 = 70;
-  /**
-   * @var ?DateTime
-   */
-  protected $crdate;
+
+  protected ?DateTime $crdate;
+
+  protected ?DateTime $starttime;
+
+  protected ?DateTime $endtime;
+
+  protected bool $cancellationWish;
+
+  protected bool $reducedRate;
+
+  protected int $state = self::STATE_UNSET;
 
   /**
-   * @var ?DateTime
+   * 
+   * @Lazy
+   *
+   * @Cascade("remove")
    */
-  protected $starttime;
+  protected FrontendUser|LazyLoadingProxy|null $feuser;
 
-  /**
-   * @var ?DateTime
-   */
-  protected $endtime;
+  protected int $directDebit = 0;
 
-  /**
-   * @var bool
-   */
-  protected $cancellationWish;
+  protected ?string $iban;
 
-  /**
-   * @var bool
-   */
-  protected $reducedRate;
+  protected ?string $bic;
 
-  /**
-   * @var int
-   */
-  protected $state = self::STATE_UNSET;
+  protected ?string $account;
 
   /**
    * @Lazy
    *
    * @Cascade("remove")
    */
-  protected $feuser;
-
-  /**
-   * @var int
-   */
-  protected $directDebit = 0;
-
-  /**
-   * @var ?string
-   */
-  protected $iban;
-
-  /**
-   * @var ?string
-   */
-  protected $bic;
-
-  /**
-   * @var ?string
-   */
-  protected $account;
-
-  /**
-   * @var Location|null
-   *
-   * @Lazy
-   *
-   * @Cascade("remove")
-   */
-  protected $mainLocation;
+  protected ?Location $mainLocation;
 
   /**
    * @var ObjectStorage<Location>
@@ -112,183 +82,87 @@ class Member extends AbstractEntity
    *
    * @Cascade("remove")
    */
-  protected $subLocations;
+  protected ObjectStorage $subLocations;
+
+  protected ?string $altBillingName;
+
+  protected ?string $altBillingStreet;
+
+  protected ?string $altBillingZip;
+
+  protected ?string $altBillingCity;
 
   /**
-   * @var ?string
+   * @Lazy
    */
-  protected $altBillingName;
+  protected ?Country $altBillingCountry;
+
+  protected ?string $ident = '';
+
+  protected ?string $title;
+
+  protected  ?string $firstname = '';
+
+  protected ?string $midname = '';
+
+  protected ?string $lastname = '';
+
+  protected ?string $zip = '';
+
+  protected ?string $street = '';
+
+  protected  ?string $city = '';
+
+  protected int$federalState;
 
   /**
-   * @var ?string
-   */
-  protected $altBillingStreet;
-
-  /**
-   * @var ?string
-   */
-  protected $altBillingZip;
-
-  /**
-   * @var ?string
-   */
-  protected $altBillingCity;
-
-  /**
-   * @var Country|null
    *
    * @Lazy
    */
-  protected $altBillingCountry;
+  protected Country $country;
 
-  /**
-   * @var ?string
-   */
-  protected $ident = '';
+  protected ?string $email;
 
-  /**
-   * @var ?string
-   */
-  protected $title;
+  protected ?string $phone;
 
-  /**
-   * @var ?string
-   */
-  protected $firstname = '';
+  protected ?string $telefax;
 
-  /**
-   * @var ?string
-   */
-  protected $midname = '';
+  protected ?string $company;
 
-  /**
-   * @var ?string
-   */
-  protected $lastname = '';
+  protected int $personType;
 
-  /**
-   * @var ?string
-   */
-  protected $zip = '';
+  protected int $salutation;
 
-  /**
-   * @var ?string
-   */
-  protected $street = '';
+  protected int $level;
 
-  /**
-   * @var ?string
-   */
-  protected $city = '';
+  protected ?string $addAddressInfo;
 
-  /**
-   * @var int
-   */
-  protected $federalState;
+  protected ?DateTime $dateofbirth;
 
-  /**
-   * @var Country
-   *
-   * @Lazy
-   */
-  protected $country;
+  protected ?string $nationality;
 
-  /**
-   * @var ?string
-   */
-  protected $email;
+  protected ?string $customfield1;
 
-  /**
-   * @var ?string
-   */
-  protected $phone;
+  protected ?string $customfield2;
 
-  /**
-   * @var ?string
-   */
-  protected $telefax;
+  protected ?string $customfield3;
 
-  /**
-   * @var ?string
-   */
-  protected $company;
+  protected ?string $customfield4;
 
-  /**
-   * @var int
-   */
-  protected $personType;
+  protected ?string $customfield5;
 
-  /**
-   * @var int
-   */
-  protected $salutation;
+  protected ?string $customfield6;
 
-  /**
-   * @var int
-   */
-  protected $level;
+  protected ?string $clubFunction;
 
-  /**
-   * @var ?string
-   */
-  protected $addAddressInfo;
-
-  /**
-   * @var ?DateTime
-   */
-  protected $dateofbirth;
-
-  /**
-   * @var ?string
-   */
-  protected $nationality;
-
-  /**
-   * @var ?string
-   */
-  protected $customfield1;
-
-  /**
-   * @var ?string
-   */
-  protected $customfield2;
-
-  /**
-   * @var ?string
-   */
-  protected $customfield3;
-
-  /**
-   * @var ?string
-   */
-  protected $customfield4;
-
-  /**
-   * @var ?string
-   */
-  protected $customfield5;
-
-  /**
-   * @var ?string
-   */
-  protected $customfield6;
-
-  /**
-   * @var ?string
-   */
-  protected $clubFunction;
-
-  /**
-   * @var int
-   */
-  protected $foundVia;
+  protected int $foundVia;
 
   /**
    * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Category>
    *
    * @Lazy
    */
-  protected $categories;
+  protected ObjectStorage $categories;
 
   public function __construct()
   {
@@ -450,8 +324,8 @@ class Member extends AbstractEntity
   {
     $states = States::getStates();
     foreach ($states as $stateArray) {
-      if ($stateArray[1] == $this->federalState) {
-        return $stateArray[0];
+      if ($stateArray['value'] == $this->federalState) {
+        return $stateArray['label'];
       }
     }
 
@@ -915,8 +789,9 @@ class Member extends AbstractEntity
     }
 
     $country = '';
-    if ($this->getCountry()) {
-      $country = '<br>' . $this->getCountry()->getShortNameLocal();
+    $countryObject = $this->getCountry();
+    if ($countryObject) {
+      $country = '<br>' . $countryObject->getShortNameLocal();
     }
 
     $result .= $company

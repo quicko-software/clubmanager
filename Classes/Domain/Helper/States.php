@@ -2,44 +2,31 @@
 
 namespace Quicko\Clubmanager\Domain\Helper;
 
+use stdClass;
 
 class States
 {
-
-  public static function getStates() : array
+  public static function getStates(): array
   {
     return [
-      ['Außerhalb Deutschlands', '0'],
-      ['Niedersachsen', '79'],
-      ['Baden Wuerttemberg', '80'],
-      ['Bayern', '81'],
-      ['Berlin', '82'],
-      ['Brandenburg', '83'],
-      ['Bremen', '84'],
-      ['Hamburg', '85'],
-      ['Hessen', '86'],
-      ['Mecklenburg Vorpommern', '87'],
-      ['Nordrhein Westfalen', '88'],
-      ['Rheinland Pfalz', '89'],
-      ['Saarland', '90'],
-      ['Sachsen', '91'],
-      ['Sachsen Anhalt', '92'],
-      ['Schleswig Holstein', '93'],
-      ['Thueringen', '94'],
+      ['label' => 'Außerhalb Deutschlands', 'value' => '0'],
+      ['label' => 'Niedersachsen', 'value' => '79'],
+      ['label' => 'Baden Wuerttemberg', 'value' => '80'],
+      ['label' => 'Bayern', 'value' => '81'],
+      ['label' => 'Berlin', 'value' => '82'],
+      ['label' => 'Brandenburg', 'value' => '83'],
+      ['label' => 'Bremen', 'value' => '84'],
+      ['label' => 'Hamburg', 'value' => '85'],
+      ['label' => 'Hessen', 'value' => '86'],
+      ['label' => 'Mecklenburg Vorpommern', 'value' => '87'],
+      ['label' => 'Nordrhein Westfalen', 'value' => '88'],
+      ['label' => 'Rheinland Pfalz', 'value' => '89'],
+      ['label' => 'Saarland', 'value' => '90'],
+      ['label' => 'Sachsen', 'value' => '91'],
+      ['label' => 'Sachsen Anhalt', 'value' => '92'],
+      ['label' => 'Schleswig Holstein', 'value' => '93'],
+      ['label' => 'Thueringen', 'value' => '94'],
     ];
   }
 
-  public static function getStatesObjects() : array
-  {
-    $result = [];
-    $statesArray = self::getStates();
-    
-    foreach ($statesArray as $value) {
-      $object = new \stdClass();
-      $object->key = $value[1];
-      $object->value = $value[0];
-      $result[] = $object;
-    }
-    return $result;
-  }
 }

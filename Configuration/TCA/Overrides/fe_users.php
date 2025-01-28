@@ -17,10 +17,10 @@ call_user_func(function () {
         'lastreminderemailsent' => [
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_user.lastreminderemailsent',
             'config' => [
-                'type' => 'input',
+                'type' => 'datetime',
                 'default' => 0,
-                'eval' => 'datetime,int',
-                'renderType' => 'inputDateTime',
+                'eval' => 'int',
+                'format' => 'datetime',
             ]
         ]
       
