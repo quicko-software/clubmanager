@@ -25,10 +25,5 @@ use Quicko\Clubmanager\Utils\BackendModuleHelper;
       ]
     );
 
-    BackendModuleHelper::addAdvertisingModule("memberlist");
-    BackendModuleHelper::addAdvertisingModule("mailtasks");
-    BackendModuleHelper::addAdvertisingModule("settlements");
-    BackendModuleHelper::addAdvertisingModule("events");
-    BackendModuleHelper::addAdvertisingModule("membershipstatistics");
   }
 })();

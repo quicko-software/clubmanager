@@ -23,26 +23,6 @@ class BackendModuleHelper
     $GLOBALS['TBE_MODULES']['clubmanager'] = implode(',', $clubmanagerEntries);
   }
 
-  public static function addAdvertisingModule(string $moduleName): void
-  {
-    ExtensionUtility::registerModule(
-      'clubmanager',
-      'clubmanager',
-      $moduleName,
-      '',
-      [
-        AdvertisingController::class => $moduleName,
-      ],
-      [
-        'access' => 'user,group',
-        'icon' => "EXT:clubmanager/Resources/Public/Icons/be_mod_$moduleName.svg",
-        'labels' => "LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:mlang_tabs_tab_$moduleName",
-        'navigationComponentId' => 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
-        'inheritNavigationComponentFromMainModule' => false,
-      ]
-    );
-  }
-
   public static function createAdvertisingModuleDescripterV12(
     string $moduleName,
     string $beUrlSubPath

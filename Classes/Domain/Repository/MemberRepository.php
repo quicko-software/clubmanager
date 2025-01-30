@@ -126,7 +126,7 @@ class MemberRepository extends Repository
     ];
 
     $result = $query->matching(
-      $query->logicalAnd($constraints)
+      $query->logicalAnd(...$constraints)
     )
       ->execute();
 
@@ -188,7 +188,7 @@ class MemberRepository extends Repository
     ];
 
     $result = $query->matching(
-      $query->logicalAnd($constraints)
+      $query->logicalAnd(...$constraints)
     )
       ->execute()->getFirst();
 
@@ -209,7 +209,7 @@ class MemberRepository extends Repository
     ];
 
     $result = $query->matching(
-      $query->logicalAnd($constraints)
+      $query->logicalAnd(...$constraints)
     )
       ->execute();
 

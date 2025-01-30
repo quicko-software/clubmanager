@@ -63,11 +63,11 @@ class LocationLatLngUpdateHook
     /**
      * @param string      $status
      * @param string      $table
-     * @param int         $id
+     * @param string         $id
      * @param array       $fieldArray
      * @param DataHandler $pObj
      */
-    public function processDatamap_afterDatabaseOperations(string &$status, string &$table, int &$id, array &$fieldArray, DataHandler &$pObj): void
+    public function processDatamap_afterDatabaseOperations(string &$status, string &$table, string &$id, array &$fieldArray, DataHandler &$pObj): void
     {
         if ($table !== 'tx_clubmanager_domain_model_location') return;
         if ($status !== 'update' && $status !== 'new') return;

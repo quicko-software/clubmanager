@@ -87,7 +87,7 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
   {
     $depth = 999999;
     $queryGenerator = GeneralUtility::makeInstance(\Quicko\Clubmanager\Domain\Helper\QueryGenerator::class);
-    $childPids = $queryGenerator->getTreeList($rootPid, $depth, 0, '1'); // Will be a string like 1,2,3
+    $childPids = $queryGenerator->getTreeList($rootPid, $depth, 0); // Will be a string like 1,2,3
 
     return $childPids;
   }

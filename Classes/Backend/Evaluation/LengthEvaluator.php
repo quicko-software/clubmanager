@@ -30,7 +30,7 @@ class LengthEvaluator
    *
    * @return string Evaluated field value
    */
-  public function evaluateFieldValue($value, $is_in, &$set)
+  public function evaluateFieldValue($value, $is_in, &$set): string
   {
     if (strlen((string) $value) < 3) {
       $set = false;
