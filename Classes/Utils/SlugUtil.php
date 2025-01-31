@@ -88,9 +88,10 @@ class SlugUtil
     $result = $queryBuilder
         ->select('*')
         ->from($tableName)
-        ->where('uid=:uid')
-        ->setParameter(':uid', $uid)
-        ->execute();
+        ->where(
+          $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
+        )
+        ->executeQuery();
 
     $record = $result->fetchAssociative();
     if (!$record) {

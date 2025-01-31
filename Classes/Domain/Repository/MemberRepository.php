@@ -37,7 +37,10 @@ class MemberRepository extends Repository
         $member->setMainLocation($loc);
       }
       $subLocs = $locationRepository->findSubLocsByMemberUidWithHidden($member->getUid());
-      $member->setSubLocations($subLocs->toArray());
+
+      foreach ($subLocs as $subLoc) {
+        $member->getSubLocations()->attach($subLoc);
+      }
     }
 
     return $member;
