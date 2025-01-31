@@ -12,50 +12,50 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Location extends AbstractEntity
 {
-  protected DateTime $tstamp;
+  protected ?DateTime $tstamp = null;
 
-  protected bool $hidden;
+  protected bool $hidden = false;
 
-  protected Member $member;
+  protected ?Member $member = null;
 
-  protected string $slug;
+  protected string $slug = '';
 
-  protected int $kind;
+  protected int $kind = 0;
 
-  protected int $salutation;
+  protected int $salutation = 0;
 
-  protected string $title;
+  protected string $title = '';
 
-  protected string $firstname;
+  protected string $firstname = '';
 
-  protected string $midname;
+  protected string $midname = '';
 
-  protected string $lastname;
+  protected string $lastname = '';
 
-  protected string $company;
+  protected string $company = '';
 
-  protected string $street;
+  protected string $street = '';
 
-  protected string $addAddressInfo;
+  protected string $addAddressInfo = '';
 
-  protected string $zip;
+  protected string $zip = '';
 
-  protected string $city;
+  protected string $city = '';
 
-  protected int $state;
+  protected int $state = 0;
 
-  protected Country $country;
+  protected ?Country $country = null;
 
-  protected string $latitude;
+  protected string $latitude = '';
 
-  protected string $longitude;
+  protected string $longitude = '';
 
   /**
    * @Cascade("remove")
    */
-  protected ?FileReference $image;
+  protected ?FileReference $image = null;
 
-  protected string $info;
+  protected string $info = '';
 
   /**
    * @var ObjectStorage<Category>
@@ -64,15 +64,15 @@ class Location extends AbstractEntity
    */
   protected $categories;
 
-  protected string $phone;
+  protected string $phone = '';
 
-  protected string $mobile;
+  protected string $mobile = '';
 
-  protected string $fax;
+  protected string $fax = '';
 
-  protected string $email;
+  protected string $email = '';
 
-  protected string $website;
+  protected string $website = '';
 
   /**
    * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Socialmedia>
@@ -83,7 +83,7 @@ class Location extends AbstractEntity
    */
   protected $socialmedia;
 
-  protected string $youtubeVideo;
+  protected string $youtubeVideo = '';
 
   public function __construct()
   {
@@ -116,12 +116,12 @@ class Location extends AbstractEntity
     $this->kind = $kind;
   }
 
-  public function getMember(): Member
+  public function getMember(): ?Member
   {
     return $this->member;
   }
 
-  public function setMember(Member $member): void
+  public function setMember(?Member $member): void
   {
     $this->member = $member;
   }
@@ -365,7 +365,7 @@ class Location extends AbstractEntity
     return $this->country;
   }
 
-  public function setCountry(Country $country): void
+  public function setCountry(?Country $country): void
   {
     $this->country = $country;
   }
@@ -392,12 +392,12 @@ class Location extends AbstractEntity
     return '';
   }
 
-  public function getTstamp(): DateTime
+  public function getTstamp(): ?DateTime
   {
     return $this->tstamp;
   }
 
-  public function setTstamp(DateTime $tstamp): void
+  public function setTstamp(?DateTime $tstamp): void
   {
     $this->tstamp = $tstamp;
   }
