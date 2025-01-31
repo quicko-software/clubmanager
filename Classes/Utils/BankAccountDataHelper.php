@@ -23,7 +23,7 @@ class BankAccountDataHelper
       'n' => 23, 'o' => 24, 'p' => 25, 'q' => 26, 'r' => 27, 's' => 28, 't' => 29, 'u' => 30, 'v' => 31, 'w' => 32, 'x' => 33, 'y' => 34, 'z' => 35,
     ];
 
-    if (strlen($iban) != $countries[substr($iban, 0, 2)]) {
+    if (strlen($iban) != ($countries[substr($iban, 0, 2)] ?? 'dummy')) {
       return false;
     }
 
