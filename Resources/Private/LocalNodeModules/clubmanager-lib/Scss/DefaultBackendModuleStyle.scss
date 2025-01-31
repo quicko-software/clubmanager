@@ -255,7 +255,7 @@ $color-seconday: #014f77;
       border: none;
       text-shadow: none;
     }
-
+  
     &:focus:not(.disabled) {
       background: $color-primary-hover !important;
     }
@@ -291,6 +291,9 @@ $color-seconday: #014f77;
       &::before {
         content: "\F26D";
       }
+    }
+    &.dt-button-active:not(.disabled) {
+      background-color: $color-primary;
     }
   }
 
@@ -355,6 +358,7 @@ $color-seconday: #014f77;
     padding: 0;
     flex: 1;
     overflow: hidden;
+    padding: 20px;
   }
 
   div.dtsp-panesContainer {

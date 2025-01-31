@@ -14,21 +14,21 @@ class Task extends AbstractEntity
   public const PRIORITY_LEVEL_MEDIUM = 5;
   public const PRIORITY_LEVEL_HIGHT = 10;
 
-  protected int $sendState;
+  protected int $sendState = 0;
 
-  protected int $priorityLevel;
+  protected int $priorityLevel = 0;
 
-  protected string $generatorClass;
+  protected string $generatorClass = '';
 
-  protected string $generatorArguments;
+  protected string $generatorArguments = '';
 
-  protected DateTime $processedTime;
+  protected ?DateTime $processedTime = null;
 
-  protected DateTime $errorTime;
+  protected ?DateTime $errorTime = null;
 
-  protected string $errorMessage;
+  protected string $errorMessage = '';
 
-  protected int $openTries;
+  protected int $openTries = 0;
 
   public function getOpenTries(): int
   {
@@ -50,22 +50,22 @@ class Task extends AbstractEntity
     $this->errorMessage = $errorMessage;
   }
 
-  public function getErrorTime(): DateTime
+  public function getErrorTime(): ?DateTime
   {
     return $this->processedTime;
   }
 
-  public function setErrorTime(DateTime $errorTime): void
+  public function setErrorTime(?DateTime $errorTime): void
   {
     $this->errorTime = $errorTime;
   }
 
-  public function getProcessedTime(): DateTime
+  public function getProcessedTime(): ?DateTime
   {
     return $this->processedTime;
   }
 
-  public function setProcessedTime(DateTime $processedTime): void
+  public function setProcessedTime(?DateTime $processedTime): void
   {
     $this->processedTime = $processedTime;
   }
