@@ -164,6 +164,10 @@ class Member extends AbstractEntity
 
   public function __construct()
   {
+    $this->initStorageObjects();
+  }
+  protected function initStorageObjects() : void
+  {
     $this->categories = new ObjectStorage();
     $this->subLocations = new ObjectStorage();
   }

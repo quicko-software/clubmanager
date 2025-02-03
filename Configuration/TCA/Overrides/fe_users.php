@@ -27,7 +27,15 @@ call_user_func(function () {
     ];
 
     $GLOBALS['TCA']['fe_users']['columns']['password']['config']['required'] = 0;
+    $GLOBALS['TCA']['fe_users']['columns']['password']['config']['passwordPolicy'] = 'clubmanager';
     
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['passwordPolicies'] = [
+        'clubmanager' => [
+            'validators' => [
+               
+            ],
+        ],
+    ];
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users', $fields);
   
 });

@@ -1,11 +1,10 @@
 
 import Message2Notification from "./Message2Notification";
-
+import Notification from '@typo3/backend/notification.js';
 export default class BeApiCaller {
 
-  constructor(dataTableAjax, Notification) {
+  constructor(dataTableAjax) {
     this.dataTableAjax = dataTableAjax;
-    this.Notification = Notification;
   }
 
   #makeFormData(postParams) {
@@ -23,7 +22,7 @@ export default class BeApiCaller {
     }).then((response) => {
       if (response.status === 200) {
         if (okFlash) {
-          this.Notification.success(response.statusText, null, 5);
+          Notification.success(response.statusText, null, 5);
         }
         if (reloadTable) {
           this.dataTableAjax.reload();
@@ -33,11 +32,11 @@ export default class BeApiCaller {
         }
       } else {
         response.json().then((data) => {
-          Message2Notification.display(this.Notification, data);
+          Message2Notification.display(data);
         });
       }
     })
-    .catch((error) => Message2Notification.display(this.Notification, {
+    .catch((error) => Message2Notification.display({
       messageTitle: 'Internal Error',
       messageText: error
     }));
@@ -58,10 +57,10 @@ export default class BeApiCaller {
             successFunction(response);
           }
         }
-        Message2Notification.display(this.Notification, jsonData.flash);
+        Message2Notification.display(jsonData.flash);
       });
     })
-    .catch((error) => Message2Notification.display(this.Notification, {
+    .catch((error) => Message2Notification.display({
       messageTitle: 'Internal Error',
       messageText: error
     }));

@@ -52,7 +52,7 @@ class GenericMailGenerator extends BaseMemberUidMailGenerator
         $name
       ));
     }
-    if ($genericMailArguments->attachments != null) {
+    if (property_exists($genericMailArguments, 'attachments') && $genericMailArguments->attachments != null) {
       foreach ($genericMailArguments->attachments as $attachment) {
         $fluidEmail->attachFromPath($attachment['path'], $attachment['name'], $attachment['contentType']);
         if ($genericMailArguments->deleteAttachmentsAfterSend) {
