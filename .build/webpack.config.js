@@ -160,9 +160,7 @@ let entry = {
     "@typo3/backend/notification.js": "@typo3/backend/notification.js",
     jquery: 'jQuery',
   },
-  experiments: {
-    outputModule: true,
-  }
+
 };
 
 let clubmanagerModules = { ...entry };
@@ -172,8 +170,6 @@ module.exports = function (env, args) {
     Main: [path.resolve(__dirname, '../Resources/Private/JavaScript/Main.js'), path.resolve(__dirname, '../Resources/Private/Scss/main.scss')],
   };
   clubmanagerModules.output.path = path.resolve(__dirname, '../Resources/Public/JavaScript/');
-  clubmanagerModules.output.library = {
-    type: "module",
-  };
+
   return [clubmanagerModules];
 };

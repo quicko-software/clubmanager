@@ -64,11 +64,11 @@ return [
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
+                'default' => 0,
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => false,
+                        'label' => '',
+                        'invertStateDisplay' => true,
                     ],
                 ],
             ],

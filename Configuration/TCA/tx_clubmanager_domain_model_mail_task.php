@@ -30,14 +30,14 @@ return [
       'config' => [
         'type' => 'check',
         'renderType' => 'checkboxToggle',
+        'default' => 0,
         'items' => [
-          [
-            0 => '',
-            1 => '',
-            'invertStateDisplay' => true,
-          ],
+            [
+                'label' => '',
+                'invertStateDisplay' => true,
+            ],
         ],
-      ],
+    ],
     ],
     'send_state' => [
       'exclude' => 0,
