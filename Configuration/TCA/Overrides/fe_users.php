@@ -28,6 +28,11 @@ call_user_func(function () {
 
     $GLOBALS['TCA']['fe_users']['columns']['password']['config']['required'] = 0;
     $GLOBALS['TCA']['fe_users']['columns']['password']['config']['passwordPolicy'] = 'clubmanager';
+    $GLOBALS['TCA']['fe_users']['columns']['password']['config']['fieldControl'] = [
+        'passwordReset' => [
+            'renderType' => 'PasswordReset',
+        ]
+    ];
     
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['passwordPolicies'] = [
         'clubmanager' => [

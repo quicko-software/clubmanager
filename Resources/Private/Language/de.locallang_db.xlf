@@ -427,8 +427,8 @@
 				<target>Benutzer</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_user.password" resname="tx_clubmanager_domain_model_user.password">
-				<source>Password (Empty = Regenerate + Email to user)</source>
-				<target>Passwort (Leeren = Neugenerierung + E-Mail an Benutzer)</target>
+				<source>Password</source>
+				<target>Passwort</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_user.lastreminderemailsent" resname="tx_clubmanager_domain_model_user.lastreminderemailsent">
 				<source>First login reminder email</source>

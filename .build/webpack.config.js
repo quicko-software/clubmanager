@@ -167,7 +167,7 @@ let clubmanagerModules = { ...entry };
 
 module.exports = function (env, args) {
   clubmanagerModules.entry = {
-    Main: [path.resolve(__dirname, '../Resources/Private/JavaScript/Main.js'), path.resolve(__dirname, '../Resources/Private/Scss/main.scss')],
+    Main: [path.resolve(__dirname, '../Resources/Private/JavaScript/Main.js'), path.resolve(__dirname, '../Resources/Private/Scss/main.scss')]
   };
   clubmanagerModules.output.path = path.resolve(__dirname, '../Resources/Public/JavaScript/');
 

@@ -3,6 +3,7 @@
 namespace Quicko\Clubmanager\Hooks;
 
 use Quicko\Clubmanager\Domain\Model\Mail\Task;
+use Quicko\Clubmanager\FormEngine\PasswordReset;
 use Quicko\Clubmanager\Mail\Generator\Arguments\PasswordRecoveryArguments;
 use Quicko\Clubmanager\Mail\Generator\PasswordRecoveryGenerator;
 use Quicko\Clubmanager\Mail\MailQueue;
@@ -79,6 +80,11 @@ class ResetFeuserPasswordHook
     return $feuserRecord['password'] === '';
   }
 
+  private function userResetTokenIsSet(array $feuserRecord): bool
+  {
+    return $feuserRecord['password'] === PasswordReset::RESET_VALUE_TOKEN;
+  }
+
   public function processDatamap_afterAllOperations(DataHandler &$pObj): void
   {
     if (!array_key_exists('fe_users', $pObj->datamap)) {
@@ -94,7 +100,7 @@ class ResetFeuserPasswordHook
         continue;
       }
 
-      $needToReset = $this->wasPasswordCleared($feuserProps) || $this->userHasNoPasswordYet($feuserRecord);
+      $needToReset = $this->wasPasswordCleared($feuserProps) || $this->userHasNoPasswordYet($feuserRecord) || $this->userResetTokenIsSet($feuserProps);
       if (!$needToReset) {
         continue;
       }

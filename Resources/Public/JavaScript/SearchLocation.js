@@ -1,4 +1,5 @@
 import AjaxRequest from "@typo3/core/ajax/ajax-request.js";
+import FormEngine from "@typo3/backend/form-engine.js";
 import $ from 'jquery';
 
 
@@ -36,7 +37,10 @@ SearchLocation.run = function (uid, name, tableName, fieldName, mapping, target)
           var input = $("[data-formengine-input-name='" + dataId + "']");
           input.val(data[value]);
           input.trigger('change');
+          let hiddenInput = $(`input[name="${dataId}"`);
+          hiddenInput.val(data[value]);
         }
+        FormEngine.Validation.validate();
         top.TYPO3.Notification.success('Fertig.');
       } else {
         top.TYPO3.Notification.warning('Keine Daten gefunden.');
