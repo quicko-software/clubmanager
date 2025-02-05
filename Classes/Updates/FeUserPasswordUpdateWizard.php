@@ -13,6 +13,9 @@ use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\ReferenceIndexUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
+/**
+ * delete?
+ */
 class FeUserPasswordUpdateWizard implements UpgradeWizardInterface, LoggerAwareInterface
 {
   use LoggerAwareTrait;

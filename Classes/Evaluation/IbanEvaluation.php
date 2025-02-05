@@ -7,6 +7,7 @@ use Quicko\Clubmanager\Utils\BankAccountDataHelper;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
@@ -36,7 +37,7 @@ class IbanEvaluation
     try {
       BankAccountDataHelper::sanitizeIban($value);
     } catch (InvalidArgumentException $e) {
-      $this->flashMessage(LocalizationUtility::translate('tca.invalid_field', 'Clubmanager') ?? '', $e->getMessage(), AbstractMessage::ERROR);
+      $this->flashMessage(LocalizationUtility::translate('tca.invalid_field', 'Clubmanager') ?? '', $e->getMessage(), ContextualFeedbackSeverity::ERROR);
       $set = false;
     }
 
@@ -55,7 +56,7 @@ class IbanEvaluation
     return $parameters['value'];
   }
 
-  protected function flashMessage(string $messageTitle, string $messageText, int $severity = FlashMessage::ERROR): void
+  protected function flashMessage(string $messageTitle, string $messageText, ContextualFeedbackSeverity $severity = ContextualFeedbackSeverity::ERROR): void
   {
     $message = GeneralUtility::makeInstance(
       FlashMessage::class,

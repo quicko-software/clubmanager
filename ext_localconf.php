@@ -26,9 +26,6 @@ call_user_func(function () {
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][IbanEvaluation::class] = '';
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][BicEvaluation::class] = '';
 
-  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update'][Quicko\Clubmanager\Updates\FeUserPasswordUpdateWizard::IDENTIFIER] = Quicko\Clubmanager\Updates\FeUserPasswordUpdateWizard::class;
-  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update'][Quicko\Clubmanager\Updates\CreateDummyDataWizard::IDENTIFIER] = Quicko\Clubmanager\Updates\CreateDummyDataWizard::class;
-
   PluginRegisterFacade::definePlugin(new Plugin(
     'clubmanager',
     'CitiesList',

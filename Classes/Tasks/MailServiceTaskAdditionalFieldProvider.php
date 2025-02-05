@@ -2,9 +2,9 @@
 
 namespace Quicko\Clubmanager\Tasks;
 
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface;
@@ -71,7 +71,7 @@ class MailServiceTaskAdditionalFieldProvider implements AdditionalFieldProviderI
     );
     /** @var FlashMessage $message */
     $message = GeneralUtility::makeInstance(FlashMessage::class,
-      $fieldLabel ?? '', $text, AbstractMessage::ERROR, true
+      $fieldLabel ?? '', $text, ContextualFeedbackSeverity::ERROR, true
     );
     /** @var FlashMessageService $flashMessageService */
     $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);

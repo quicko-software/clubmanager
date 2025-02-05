@@ -4,6 +4,7 @@ namespace Quicko\Clubmanager\Backend\Evaluation;
 
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -34,12 +35,12 @@ class LengthEvaluator
   {
     if (strlen((string) $value) < 3) {
       $set = false;
-      /** @var FlashMessage $message*/
+      /** @var FlashMessage $message */
       $message = GeneralUtility::makeInstance(
         FlashMessage::class,
         'Der Wert im ident Feld entspricht nicht den Vorgaben (mindestens 3 Zeichen) - bitte tätigen Sie die Eingabe erneut.',
         'Error',
-        FlashMessage::ERROR
+        ContextualFeedbackSeverity::ERROR
       );
 
       $this->dispatchMessage($message);
