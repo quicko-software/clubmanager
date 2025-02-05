@@ -31,7 +31,7 @@ class MemberLoginReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
 
     LogUtils::info(__CLASS__, 'Reminder loop begin (' . count($memberList) . ' member)');
     foreach ($memberList as $member) {
-      $loginPidString = TypoScriptUtils::getTypoScriptValueForPage('plugin.tx_clubmanager.settings.feUsersLoginPid', $member->getPid());
+      $loginPidString = TypoScriptUtils::getTypoScriptValueForPage('plugin.tx_clubmanager.settings.feUsersLoginPid', $member->getPid() ?? 0);
       $loginPid = intval($loginPidString);
 
       $args = new MemberLoginReminderArguments();

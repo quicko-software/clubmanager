@@ -19,7 +19,7 @@ class Plugin
     $this->controllerActions = $controllerActions;
     $this->nonCacheableControllerActions = $nonCacheableControllerActions;
     $this->iconFileName = $iconFileName;
-    $this->wizardGroupId = $wizardGroupId;
+    $this->wizardGroupId = $wizardGroupId ?? '';
     $this->flexFormFileName = $flexFormFileName;
     $this->pluginType = $pluginType;
   }

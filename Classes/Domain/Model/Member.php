@@ -840,7 +840,7 @@ class Member extends AbstractEntity
       return "{$this->getAltBillingName()}<br>"
       . "{$this->getAltBillingStreet()}<br>"
       . "{$this->getAltBillingZip()} {$this->getAltBillingCity()}<br>"
-      . "{$this->getAltBillingCountry()->getShortNameLocal()}"
+      . "{$this->getAltBillingCountry()?->getShortNameLocal()}"
       ;
     } else {
       return $this->buildHtmlAddress();
@@ -857,6 +857,6 @@ class Member extends AbstractEntity
     $fullMemberName .= $this->getFirstname() . '  ' . $this->getLastname();
     $translationKey = 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:member.salutation.' . $this->getSalutation();
 
-    return LocalizationUtility::translate($translationKey, 'clubmanager', [$fullMemberName]);
+    return LocalizationUtility::translate($translationKey, 'clubmanager', [$fullMemberName]) ?? '';
   }
 }

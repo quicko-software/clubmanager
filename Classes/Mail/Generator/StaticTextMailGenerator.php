@@ -12,7 +12,7 @@ class StaticTextMailGenerator extends BaseMailGenerator
 {
   public function getLabel(BaseMailGeneratorArguments $args): string
   {
-    return LocalizationUtility::translate('statictextmailgenerator.label', 'clubmanager');
+    return LocalizationUtility::translate('statictextmailgenerator.label', 'clubmanager') ?? '';
   }
 
   public function getMailTo(BaseMailGeneratorArguments $args): string
@@ -30,7 +30,7 @@ class StaticTextMailGenerator extends BaseMailGenerator
     /** @var StaticTextMailArguments $simpleTextArgs */
     $simpleTextArgs = $args;
 
-    $fluidEmail = parent::createFluidMail($simpleTextArgs->configRefPid);
+    $fluidEmail = parent::createFluidMail($simpleTextArgs->configRefPid ?? 0);
     $fluidEmail->to(new Address(
       $simpleTextArgs->mailTo,
       $simpleTextArgs->mailToName

@@ -15,7 +15,7 @@ class MemberLoginReminderGenerator extends BaseMemberUidMailGenerator
 
   public function getLabel(BaseMailGeneratorArguments $args): string
   {
-    return LocalizationUtility::translate('memberloginremindergenerator.label', 'clubmanager');
+    return LocalizationUtility::translate('memberloginremindergenerator.label', 'clubmanager') ?? '';
   }
 
   public function generateFluidMail(BaseMailGeneratorArguments $args): ?FluidEmail
@@ -37,7 +37,7 @@ class MemberLoginReminderGenerator extends BaseMemberUidMailGenerator
         $address_name
       )
     )
-      ->subject(LocalizationUtility::translate('mail.reminder.subject', 'clubmanager'))
+      ->subject(LocalizationUtility::translate('mail.reminder.subject', 'clubmanager') ?? '')
       ->format('html')
       ->setTemplate('Reminder')
       ->assign('member', $member)

@@ -116,10 +116,10 @@ class DummyMemberFactory
     $location = new Location();
     $location->setPid($this->pid);
     $location->setSalutation($member->getSalutation());
-    $location->setFirstname($member->getFirstname());
-    $location->setLastname($member->getLastname());
-    $location->setTitle($member->getTitle());
-    $location->setStreet($member->getStreet());
+    $location->setFirstname($member->getFirstname() ?? '');
+    $location->setLastname($member->getLastname() ?? '');
+    $location->setTitle($member->getTitle() ?? '');
+    $location->setStreet($member->getStreet() ?? '');
     $location->setZip(strval($geoData['zip']));
     $location->setCity(strval($geoData['name']));
     $location->setCountry($member->getCountry());
@@ -163,10 +163,10 @@ class DummyMemberFactory
   {
     if (rand(1, 100) < 98) {
       $user = new FrontendUser();
-      $user->setUsername($member->getIdent());
-      $user->setFirstname($member->getFirstname());
-      $user->setLastname($member->getLastname());
-      $user->setEmail($member->getEmail());
+      $user->setUsername($member->getIdent() ?? '');
+      $user->setFirstname($member->getFirstname() ?? '');
+      $user->setLastname($member->getLastname() ?? '');
+      $user->setEmail($member->getEmail() ?? '');
       $hash_of_abc123 = '$argon2i$v=19$m=65536,t=16,p=1$LlppUWloWHQ0ajRHblk0Rg$SUAqAA2kIQ58IUon2je0y7+YZuFvqxpQ5z/QadMtIEw';
       $user->setPassword($hash_of_abc123);
       $user->setHidden(false);
@@ -201,7 +201,7 @@ class DummyMemberFactory
       : ''
     );
     $member->setLastname($this->getRandomValue(DummyValues::LASTNAMES));
-    $member->setEmail($this->toEmail($member->getFirstname(), $member->getLastname()));
+    $member->setEmail($this->toEmail($member->getFirstname() ?? '', $member->getLastname() ?? ''));
     $member->setPhone($this->generatePhone());
     $member->setZip(strval($geoData['zip']));
     $member->setStreet($this->generateStreet());

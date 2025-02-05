@@ -2,6 +2,7 @@
 
 namespace Quicko\Clubmanager\Tasks;
 
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -65,12 +66,12 @@ class MailServiceTaskAdditionalFieldProvider implements AdditionalFieldProviderI
 
     $textTemplate = LocalizationUtility::translate('LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.general.errors.invalid_value', 'clubmanager');
     $text = sprintf(
-      $textTemplate,
-      $fieldLabel,
+      $textTemplate ?? '',
+      $fieldLabel ?? '',
     );
     /** @var FlashMessage $message */
     $message = GeneralUtility::makeInstance(FlashMessage::class,
-      $fieldLabel, $text, FlashMessage::ERROR, true
+      $fieldLabel ?? '', $text, AbstractMessage::ERROR, true
     );
     /** @var FlashMessageService $flashMessageService */
     $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);

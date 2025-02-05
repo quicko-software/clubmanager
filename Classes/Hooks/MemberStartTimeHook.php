@@ -40,8 +40,8 @@ class MemberStartTimeHook
       $uid,
       '*',
     );
-    $starttime = $record['starttime'];
-    $state = $record['state'];
+    $starttime = $record['starttime'] ?? '';
+    $state = $record['state'] ?? '';
 
     if ($state == Member::STATE_ACTIVE && ($starttime == null || $starttime == 0)) {
       $updateCommand = [];

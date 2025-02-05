@@ -37,7 +37,7 @@ class GenericMailGenerator extends BaseMemberUidMailGenerator
 
     $member = $this->getMemberFromArgs($args);
 
-    $fluidEmail = parent::createFluidMail($genericMailArguments->configRefPid);
+    $fluidEmail = parent::createFluidMail($genericMailArguments->configRefPid ?? 0);
 
     $mailToParts = explode(',', $genericMailArguments->mailTo);
     $mailToNameParts = explode(',', $genericMailArguments->mailToName ?? '');
@@ -64,8 +64,11 @@ class GenericMailGenerator extends BaseMemberUidMailGenerator
     $fluidEmail->subject($genericMailArguments->subject)
       ->format('html')
       ->setTemplate($genericMailArguments->templateName);
-    foreach ($genericMailArguments->fluidVars as $key => $value) {
-      $fluidEmail->assign($key, $value);
+
+    if ($genericMailArguments->fluidVars) {
+      foreach ($genericMailArguments->fluidVars as $key => $value) {
+        $fluidEmail->assign($key, $value);
+      }
     }
     if ($member) {
       $fluidEmail->assign('member', $member);

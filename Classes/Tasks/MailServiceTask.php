@@ -100,7 +100,7 @@ class MailServiceTask extends AbstractTask
     $maxNumMails = $this->getArg('MAX_NUM_MAILS');
 
     return sprintf(
-      $message,
+      $message ?? '',
       $mailsOpen,
       $mailsWithErrors,
       $maxNumMails

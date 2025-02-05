@@ -2,6 +2,7 @@
 
 namespace Quicko\Clubmanager\Evaluation;
 
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -35,7 +36,7 @@ class BicEvaluation
     try {
       BankAccountDataHelper::sanitizeBIC($value);
     } catch (\InvalidArgumentException $e) {
-      $this->flashMessage(LocalizationUtility::translate("tca.invalid_field", "Clubmanager"), $e->getMessage(), FlashMessage::ERROR);
+      $this->flashMessage(LocalizationUtility::translate("tca.invalid_field", "Clubmanager") ?? '', $e->getMessage(), AbstractMessage::ERROR);
       $set = false;
     }
     return $value;

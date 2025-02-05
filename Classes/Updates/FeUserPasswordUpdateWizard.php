@@ -55,10 +55,10 @@ class FeUserPasswordUpdateWizard implements UpgradeWizardInterface, LoggerAwareI
   public function executeUpdate(): bool
   {
     $runId = time();
-    $this->logger->notice("start updateFeuserPasswordHash (runid = $runId)");
+    $this->logger?->notice("start updateFeuserPasswordHash (runid = $runId)");
     $numStillUnconverted = $this->updateFeuserPasswordHash();
-    $this->logger->notice("end updateFeuserPasswordHash (runid = $runId)");
-    $this->logger->notice("status updateFeuserPasswordHash (runid = $runId): still $numStillUnconverted to convert");
+    $this->logger?->notice("end updateFeuserPasswordHash (runid = $runId)");
+    $this->logger?->notice("status updateFeuserPasswordHash (runid = $runId): still $numStillUnconverted to convert");
 
     return $numStillUnconverted === 0;
   }

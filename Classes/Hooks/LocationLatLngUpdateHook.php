@@ -82,13 +82,13 @@ class LocationLatLngUpdateHook
             $uid,
             '*',
         );
-        $lat = $record['latitude'];
-        $lng = $record['longitude'];
+        $lat = $record['latitude'] ?? '';
+        $lng = $record['longitude'] ?? '';
 
         if (empty($lat) || empty($lng)) {
-            $zip = $record["zip"];
-            $city = $record["city"];
-            $street = $record["street"];
+            $zip = $record["zip"] ?? '' ;
+            $city = $record["city"] ?? '';
+            $street = $record["street"] ?? '';
             $loc = $this->getCoordinates("$zip $city, $street");
             if($loc) {
                 $this->updateLatLng($uid,$loc["lat"],$loc["lon"]);

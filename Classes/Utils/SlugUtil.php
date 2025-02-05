@@ -38,11 +38,11 @@ class SlugUtil
 
     // Convert multiple fallback characters to a single one
     if ($fallbackCharacter !== '') {
-      $slug = preg_replace('/' . preg_quote($fallbackCharacter) . '{2,}/', $fallbackCharacter, $slug);
+      $slug = preg_replace('/' . preg_quote($fallbackCharacter) . '{2,}/', $fallbackCharacter, $slug ?? '');
     }
 
     // Ensure slug is lower cased after all replacement was done
-    $slug = mb_strtolower($slug, 'utf-8');
+    $slug = mb_strtolower($slug ?? '', 'utf-8');
 
     return $slug;
   }
