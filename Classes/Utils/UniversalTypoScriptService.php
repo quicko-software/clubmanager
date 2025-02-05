@@ -19,7 +19,6 @@ use TYPO3\CMS\Frontend\Page\PageInformation;
 /**
  * Summary of UniversalTypoScriptService
  * https://stackoverflow.com/questions/77151557/typo3-templateservice-deprecation-how-to-get-plugin-typoscript-not-in-fe-cont.
- * 
  */
 class UniversalTypoScriptService
 {
@@ -27,6 +26,7 @@ class UniversalTypoScriptService
    * Summary of __construct.
    *
    * @param PhpFrontend $typoScriptCache
+   *
    * @phpstan-ignore-next-line
    */
   public function __construct(
@@ -68,9 +68,7 @@ class UniversalTypoScriptService
       );
 
       // now get the actual full TS
-      /**
-       * @phpstan-ignore-next-line
-       */
+
       $ts = $this->frontendTypoScriptFactory->createSetupConfigOrFullSetup(
         true,  // $needsFullSetup -> USER_INT
         $frontendTypoScript,
@@ -106,8 +104,8 @@ class UniversalTypoScriptService
         $rootLine = [];
       }
     }
-
-    if ($site instanceof Site && $site->isTypoScriptRoot()) {
+    /* TYPO12 vs TYPO13 type check */
+    if ($site instanceof Site && method_exists($site, 'getTypoScript') && $site->getTypoScript() !== null) {
       $rootLineUntilSite = [];
       foreach ($rootLine as $index => $rootlinePage) {
         $rootLineUntilSite[$index] = $rootlinePage;
@@ -140,7 +138,8 @@ class UniversalTypoScriptService
     foreach ($rootLine as $rootlinePage) {
       array_unshift($localRootline, $rootlinePage);
       $pageId = (int) ($rootlinePage['uid'] ?? 0);
-      if ($pageId === $site->getRootPageId() && $site->isTypoScriptRoot()) {
+      /* TYPO12 vs TYPO13 type check */
+      if ($pageId === $site->getRootPageId() && method_exists($site, 'isTypoScriptRoot') && $site->isTypoScriptRoot()) {
         break;
       }
       if ($pageId > 0 && (int) ($sysTemplateRowsIndexedByPid[$pageId]['root'] ?? 0) === 1) {
