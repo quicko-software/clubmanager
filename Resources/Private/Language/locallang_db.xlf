@@ -177,6 +177,9 @@
 			<trans-unit id="tx_clubmanager_domain_model_member.alt_billing_country" resname="tx_clubmanager_domain_model_member.alt_billing_country">
 				<source>Country</source>
 			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.alt_email" resname="tx_clubmanager_domain_model_member.alt_email">
+				<source>Alternative e-mail</source>
+			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.crdate" resname="tx_clubmanager_domain_model_member.crdate">
 				<source>Record created on</source>
 			</trans-unit>

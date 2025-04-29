@@ -96,6 +96,8 @@ class Member extends AbstractEntity
    */
   protected Country|LazyLoadingProxy|null $altBillingCountry = null;
 
+  protected ?string $altEmail;
+
   protected ?string $ident = '';
 
   protected ?string $title = '';
@@ -858,5 +860,23 @@ class Member extends AbstractEntity
     $translationKey = 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:member.salutation.' . $this->getSalutation();
 
     return LocalizationUtility::translate($translationKey, 'clubmanager', [$fullMemberName]) ?? '';
+  }
+
+  /**
+   * Get the value of altEmail
+   */
+  public function getAltEmail(): string|null
+  {
+    return $this->altEmail;
+  }
+
+  /**
+   * Set the value of altEmail
+   */
+  public function setAltEmail(string $altEmail): self
+  {
+    $this->altEmail = $altEmail;
+
+    return $this;
   }
 }

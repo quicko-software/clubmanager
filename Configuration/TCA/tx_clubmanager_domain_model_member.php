@@ -76,7 +76,8 @@ return [
             'canNotCollapse' => 1,
             'showitem' => '
 			    alt_billing_name,alt_billing_street, --linebreak--,
-                alt_billing_zip,alt_billing_city,alt_billing_country
+                alt_billing_zip,alt_billing_city,alt_billing_country, --linebreak--,
+                alt_email
 			',
         ],
     ],
@@ -594,6 +595,15 @@ return [
                 'items' => [
                     ['value' => '',  'key' => ''],
                 ],
+            ],
+        ],
+        'alt_email' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.alt_email',
+            'config' => [
+                'type' => 'email',
+                'size' => 20,
+                'eval' => 'trim',
             ],
         ],
         'customfield1' => [

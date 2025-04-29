@@ -51,6 +51,7 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 	alt_billing_zip varchar(255) DEFAULT '' NOT NULL,
 	alt_billing_city varchar(255) DEFAULT '' NOT NULL,
 	alt_billing_country int(11) unsigned DEFAULT '0',
+	alt_email varchar(255) DEFAULT '' NOT NULL,
 
 	customfield1 varchar(255) DEFAULT '' NOT NULL,
 	customfield2 varchar(255) DEFAULT '' NOT NULL,
