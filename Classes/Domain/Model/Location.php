@@ -87,10 +87,10 @@ class Location extends AbstractEntity
 
   public function __construct()
   {
-    $this->initStorageObjects();
+    $this->initializeObject();
   }
 
-  protected function initStorageObjects(): void
+  protected function initializeObject(): void
   {
     $this->socialmedia = new ObjectStorage();
     $this->categories = new ObjectStorage();
