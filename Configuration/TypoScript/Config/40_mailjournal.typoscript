@@ -1,0 +1,21 @@
+plugin.tx_mailjournal {
+	settings {
+		mailView {
+			templateRootPaths {
+				20 = EXT:clubmanager/Resources/Private/Templates/Email
+				999 = {$plugin.tx_clubmanager.mailView.templateRootPath}
+			}
+
+			partialRootPaths {
+				20 = EXT:clubmanager/Resources/Private/Partials/Email
+				999 = {$plugin.tx_clubmanager.mailView.partialRootPaths}
+			}
+
+			layoutRootPaths {
+				20 = EXT:clubmanager/Resources/Private/Layouts/Email
+				999 = {$plugin.tx_clubmanager.mailView.layoutRootPaths}
+			}	
+		}
+	}
+}
+

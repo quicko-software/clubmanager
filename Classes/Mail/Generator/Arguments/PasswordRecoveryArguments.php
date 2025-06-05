@@ -3,7 +3,7 @@
 namespace Quicko\Clubmanager\Mail\Generator\Arguments;
 
 
-class PasswordRecoveryArguments extends MemberUidArguments
+class PasswordRecoveryArguments extends GenericMemberMailArguments
 {
 
   public string $templateName;  

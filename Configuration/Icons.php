@@ -15,7 +15,7 @@ return call_user_func(function () {
       'source' => 'EXT:clubmanager/Resources/Public/Icons/icon_password-reset.svg',
     ],
   ];
-  foreach (['memberlist','mailtasks','settlements','events','membershipstatistics'] as $beModName) {
+  foreach (['memberlist', 'settlements','events','membershipstatistics'] as $beModName) {
     $result["tx-clubmanager_icon-be_mod_$beModName"] = [
       'provider' => SvgIconProvider::class,
       'source' => "EXT:clubmanager/Resources/Public/Icons/be_mod_$beModName.svg",

@@ -90,9 +90,6 @@
 			<trans-unit id="mlang_tabs_tab_memberlist" resname="mlang_tabs_tab_memberlist">
 				<source>List of members</source>
 			</trans-unit>
-			<trans-unit id="mlang_tabs_tab_mailtasks" resname="mlang_tabs_tab_mailtasks">
-				<source>Mailjournal</source>
-			</trans-unit>
 			<trans-unit id="mlang_tabs_tab_settlements" resname="mlang_tabs_tab_settlements">
 				<source>Billing</source>
 			</trans-unit>
@@ -152,18 +149,6 @@
 			</trans-unit>
 			<trans-unit id="module.memberlist.tip.link.url" resname="module.memberlist.tip.link.url">
 				<source>https://quicko.software/en/modules/pro/</source>
-			</trans-unit>
-			<trans-unit id="module.mailtasks.title" resname="module.mailtasks.title">
-				<source>Mailjournal Module</source>
-			</trans-unit>
-			<trans-unit id="module.mailtasks.lead_intro" resname="module.mailtasks.lead_intro">
-				<source>The mail journal module is part of the clubmanager_pro extension. Keep track of the mails sent by the system.</source>
-			</trans-unit>
-			<trans-unit id="module.mailtasks.lead_full" resname="module.mailtasks.lead_full">
-				<source>Your club has already sent %d mails to %d members.</source>
-			</trans-unit>
-			<trans-unit id="module.mailtasks.lead_none" resname="module.mailtasks.lead_none">
-				<source>Have you finished setting up the club manager? No mails to members were found.</source>
 			</trans-unit>
 			<trans-unit id="module.billing.title" resname="module.billing.title">
 				<source>Billing module</source>

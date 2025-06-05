@@ -2,6 +2,7 @@
 
 namespace Quicko\Clubmanager\Mail\Generator;
 
+use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Mail\FluidEmail;
@@ -12,7 +13,6 @@ use TYPO3\CMS\Core\Crypto\Random;
 use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 
 use Quicko\Clubmanager\Mail\Generator\BaseMemberUidMailGenerator;
-use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 use Quicko\Clubmanager\Mail\Generator\Arguments\PasswordRecoveryArguments;
 use Quicko\Clubmanager\Records\FeUserRecordRepository;
 use Quicko\Clubmanager\Utils\TypoScriptUtils;

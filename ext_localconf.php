@@ -114,13 +114,6 @@ call_user_func(function () {
       'additionalFields' => Quicko\Clubmanager\Tasks\MemberLoginReminderTaskAdditionalFieldProvider::class,
   ];
 
-  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\MailServiceTask::class] = [
-      'extension' => 'clubmanager',
-      'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MailServiceTask.title',
-      'description' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MailServiceTask.description',
-      'additionalFields' => Quicko\Clubmanager\Tasks\MailServiceTaskAdditionalFieldProvider::class,
-  ];
-
   $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class);
   $fe_users_storagePid = $extConf->get(
     'clubmanager',

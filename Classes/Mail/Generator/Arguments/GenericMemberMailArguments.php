@@ -2,8 +2,9 @@
 
 namespace Quicko\Clubmanager\Mail\Generator\Arguments;
 
+use Quicko\Mailjournal\Mail\Generator\Arguments\GenericMailArguments;
 
-class MemberUidArguments extends BaseMailGeneratorArguments
+class GenericMemberMailArguments extends GenericMailArguments
 {
   /**
    * memberUid

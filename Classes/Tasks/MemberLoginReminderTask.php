@@ -6,9 +6,9 @@ use LogicException;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Mail\Generator\Arguments\MemberLoginReminderArguments;
 use Quicko\Clubmanager\Mail\Generator\MemberLoginReminderGenerator;
-use Quicko\Clubmanager\Mail\MailQueue;
 use Quicko\Clubmanager\Utils\LogUtils;
 use Quicko\Clubmanager\Utils\TypoScriptUtils;
+use Quicko\Mailjournal\Mail\MailQueue;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class MemberLoginReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
