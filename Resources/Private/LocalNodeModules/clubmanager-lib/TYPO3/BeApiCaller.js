@@ -15,31 +15,36 @@ export default class BeApiCaller {
     return formData;
   }
 
-  apiCall(url, postParams, reloadTable = true, successFunction = null, okFlash = true) {
+  apiCall(url, postParams, reloadTable = true, successFunction = null) {
     fetch(url, {
       method: 'POST',
       body: this.#makeFormData(postParams),
     }).then((response) => {
+
       if (response.status === 200) {
-        if (okFlash) {
-          Notification.success(response.statusText, null, 5);
-        }
+
         if (reloadTable) {
           this.dataTableAjax.reload();
         }
         if (successFunction) {
           successFunction(response);
+
+        } else {
+          response.json().then((data) => {
+            Message2Notification.display(data);
+          });
         }
       } else {
         response.json().then((data) => {
           Message2Notification.display(data);
+
         });
       }
     })
-    .catch((error) => Message2Notification.display({
-      messageTitle: 'Internal Error',
-      messageText: error
-    }));
+      .catch((error) => Message2Notification.display({
+        messageTitle: 'Internal Error',
+        messageText: error
+      }));
   }
 
 
@@ -49,7 +54,7 @@ export default class BeApiCaller {
       body: this.#makeFormData(postParams),
     }).then((response) => {
       response.json().then((jsonData) => {
-        if (response.status === 200)  {
+        if (response.status === 200) {
           if (reloadTable) {
             this.dataTableAjax.reload();
           }
@@ -60,9 +65,9 @@ export default class BeApiCaller {
         Message2Notification.display(jsonData.flash);
       });
     })
-    .catch((error) => Message2Notification.display({
-      messageTitle: 'Internal Error',
-      messageText: error
-    }));
+      .catch((error) => Message2Notification.display({
+        messageTitle: 'Internal Error',
+        messageText: error
+      }));
   }
 }
