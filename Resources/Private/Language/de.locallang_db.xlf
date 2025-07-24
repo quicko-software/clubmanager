@@ -235,6 +235,10 @@
         <source>Country</source>
         <target state="final">Land</target>
       </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_email" resname="tx_clubmanager_domain_model_member.alt_email">
+        <source>Alternative e-mail</source>
+        <target state="translated">Alternative E-Mail</target>
+      </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.crdate" resname="tx_clubmanager_domain_model_member.crdate" approved="yes">
         <source>Record created on</source>
         <target state="final">Datensatz angelegt am</target>
@@ -423,9 +427,9 @@
         <source>User</source>
         <target state="final">Benutzer</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_user.password" resname="tx_clubmanager_domain_model_user.password" approved="yes">
-        <source>Password (Empty = Regenerate + Email to user)</source>
-        <target state="final">Passwort (Leeren = Neugenerierung + E-Mail an Benutzer)</target>
+      <trans-unit id="tx_clubmanager_domain_model_user.password" resname="tx_clubmanager_domain_model_user.password">
+        <source>Password</source>
+        <target state="translated">Passwort</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_user.lastreminderemailsent" resname="tx_clubmanager_domain_model_user.lastreminderemailsent" approved="yes">
         <source>First login reminder email</source>
