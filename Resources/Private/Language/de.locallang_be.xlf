@@ -395,9 +395,9 @@
         <source>https://quicko.software/en/contact-us/</source>
         <target state="final">https://quicko.software/kontakt/</target>
       </trans-unit>
-      <trans-unit id="password-reset.button.title" resname="password-reset.button.title">
+      <trans-unit id="password-reset.button.title" resname="password-reset.button.title" approved="yes">
         <source>Reset Password (Regenerate + Email to user)</source>
-        <target state="translated">Passwort zurücksetzen (Regenerieren + E-Mail an den Benutzer)</target>
+        <target state="final">Passwort zurücksetzen (Regenerieren + E-Mail an den Benutzer)</target>
       </trans-unit>
     </body>
   </file>
