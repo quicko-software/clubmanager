@@ -6,6 +6,7 @@
 
 <f:if condition="{location.kind}==0">
     <f:then>
+
         <div class="card border-color-{levelColors}" itemscope itemtype="http://schema.org/LocalBusiness" id="location-{location.uid}">
             <f:if condition="{location.member.categories}">
                 <f:for each="{location.member.categories}" as="memberCategory" iteration="memberIterator">
@@ -176,7 +177,13 @@
                         <f:if condition="{location.website}">
                             {f:translate(key:'content_element.location.label.website',extensionName:'clubmanager')} <br class="d-none d-sm-block d-md-none"/>
                             <span itemprop="url">
-                                <f:link.external uri="{location.website}" class="external-link url" defaultScheme="https">{location.website}</f:link.external>
+                                <f:link.external uri="{location.website}"
+                                                 class="external-link url"
+                                                 title="Zur Website von {location.title} {location.firstname} {location.lastname}. Sie verlassen unsere Website"
+                                                 defaultScheme="https"
+                                                 additionalAttributes="{rel: 'noopener noreferrer'}">
+                                    {location.website -> f:format.htmlspecialchars()}
+                                </f:link.external>
                             </span><br/>
                         </f:if>
                     </p>
@@ -185,13 +192,13 @@
                 <p class="card-text mb-2">
                     <f:if condition="{location.company}">
                         <f:then>
-                            <a href="http://maps.google.com/?q={location.company},{location.street},{location.zip},{location.city}" target="_blank">
-                                {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}
+                            <a href="http://maps.google.com/?q={location.company},{location.street},{location.zip},{location.city}" target="_blank" title="{f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')} {f:translate(key:'content_element.member.label.leaving',extensionName:'clubmanager')}">
+                                {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')} {f:translate(key:'content_element.member.label.leaving',extensionName:'clubmanager')}
                             </a>
                         </f:then>
                         <f:else>
-                            <a href="http://maps.google.com/?q={location.street},{location.zip},{location.city}" target="_blank">
-                                {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')}
+                            <a href="http://maps.google.com/?q={location.street},{location.zip},{location.city}" target="_blank" title="{f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')} {f:translate(key:'content_element.member.label.leaving',extensionName:'clubmanager')}">
+                                {f:translate(key:'content_element.member.label.route',extensionName:'clubmanager')} {f:translate(key:'content_element.member.label.leaving',extensionName:'clubmanager')}
                             </a>
                         </f:else>
                     </f:if>

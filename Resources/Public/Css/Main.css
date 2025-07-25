@@ -8245,6 +8245,10 @@ ul.cities {
   list-style: none;
 }
 
+.btn.btn-primary, .btn.btn-secondary, .btn.btn-tertiary {
+  color: #ffffff;
+}
+
 .block-content {
   --bg-opacity: .05;
   position: relative;
