@@ -7,7 +7,7 @@ use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 class MailGeneratorArgumentsSerializer
 {
 
-  public static function deserialize($json): BaseMailGeneratorArguments
+  public static function deserialize(string $json): BaseMailGeneratorArguments
   {
     $data = json_decode($json,true);
     $result = new BaseMailGeneratorArguments();
@@ -27,6 +27,7 @@ class MailGeneratorArgumentsSerializer
 
   public static function serialize(BaseMailGeneratorArguments $baseMailGeneratorArguments): string
   {
-    return json_encode($baseMailGeneratorArguments);
+    $result = json_encode($baseMailGeneratorArguments);
+    return $result ? $result : '';
   }
 }

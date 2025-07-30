@@ -17,6 +17,6 @@ class StateListViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ) {
-        return States::getStatesObjects();
+        return States::getStates();
     }
 }

@@ -7,6 +7,9 @@ use Quicko\Clubmanager\Domain\Model\Member;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
+/**
+ * @extends Repository<Member>
+ */
 class MemberRepository extends Repository
 {
   use PersistAndRefetchTrait;
@@ -37,7 +40,10 @@ class MemberRepository extends Repository
         $member->setMainLocation($loc);
       }
       $subLocs = $locationRepository->findSubLocsByMemberUidWithHidden($member->getUid());
-      $member->setSubLocations($subLocs->toArray());
+
+      foreach ($subLocs as $subLoc) {
+        $member->getSubLocations()->attach($subLoc);
+      }
     }
 
     return $member;
@@ -100,7 +106,7 @@ class MemberRepository extends Repository
     $query->getQuerySettings()->setRespectStoragePage(false);
     $query->getQuerySettings()->setEnableFieldsToBeIgnored(['endtime', 'starttime']);
     $query->matching(
-      $query->logicalAnd([
+      $query->logicalAnd(
         $query->equals('pid', $pid),
         $query->logicalOr(
           $query->equals('endtime', null),
@@ -108,7 +114,7 @@ class MemberRepository extends Repository
           $query->lessThanOrEqual('endtime', $endDate)
         ),
         $query->equals('state', Member::STATE_ACTIVE),
-      ])
+      )
     );
 
     return $query->execute();
@@ -126,7 +132,7 @@ class MemberRepository extends Repository
     ];
 
     $result = $query->matching(
-      $query->logicalAnd($constraints)
+      $query->logicalAnd(...$constraints)
     )
       ->execute();
 
@@ -188,7 +194,7 @@ class MemberRepository extends Repository
     ];
 
     $result = $query->matching(
-      $query->logicalAnd($constraints)
+      $query->logicalAnd(...$constraints)
     )
       ->execute()->getFirst();
 
@@ -209,7 +215,7 @@ class MemberRepository extends Repository
     ];
 
     $result = $query->matching(
-      $query->logicalAnd($constraints)
+      $query->logicalAnd(...$constraints)
     )
       ->execute();
 

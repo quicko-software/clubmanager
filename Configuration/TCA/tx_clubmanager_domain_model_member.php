@@ -10,7 +10,6 @@ return [
         'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'sortby' => 'sorting',
         'versioningWS' => true,
         'delete' => 'deleted',
@@ -77,7 +76,8 @@ return [
             'canNotCollapse' => 1,
             'showitem' => '
 			    alt_billing_name,alt_billing_street, --linebreak--,
-                alt_billing_zip,alt_billing_city,alt_billing_country
+                alt_billing_zip,alt_billing_city,alt_billing_country, --linebreak--,
+                alt_email
 			',
         ],
     ],
@@ -88,10 +88,10 @@ return [
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
+                'default' => 0,
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
                         'invertStateDisplay' => true,
                     ],
                 ],
@@ -101,10 +101,10 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.starttime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'date,int',
+                'type' => 'datetime',
                 'default' => 0,
+                'eval' => 'int',
+                'format' => 'date',
             ],
             'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
@@ -113,9 +113,9 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.endtime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'date,int',
+                'type' => 'datetime',
+                'format' => 'date',
+                'eval' => 'int',
                 'default' => 0,
                 'range' => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038),
@@ -129,9 +129,8 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.crdate',
             'config' => [
-                'type' => 'input',
-                'eval' => 'datetime',
-                'renderType' => 'inputDateTime',
+                'type' => 'datetime',
+                'format' => 'datetime',
                 'readOnly' => true,
             ],
         ],
@@ -167,12 +166,12 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.person_type.natural', Quicko\Clubmanager\Domain\Model\Member::PERSON_TYPE_NATURAL],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.person_type.juridical', Quicko\Clubmanager\Domain\Model\Member::PERSON_TYPE_JURIDICAL],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.person_type.natural', 'value' => Quicko\Clubmanager\Domain\Model\Member::PERSON_TYPE_NATURAL],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.person_type.juridical', 'value' => Quicko\Clubmanager\Domain\Model\Member::PERSON_TYPE_JURIDICAL],
                 ],
                 'size' => 1,
                 'maxitems' => 1,
-                'eval' => 'required',
+                'required' => true,
             ],
         ],
         'nationality' => [
@@ -192,13 +191,13 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.0', Quicko\Clubmanager\Domain\Model\Member::SALUTATION_OTHER],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.1', Quicko\Clubmanager\Domain\Model\Member::SALUTATION_MALE],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.2', Quicko\Clubmanager\Domain\Model\Member::SALUTATION_FEMALE],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.0', 'value' => Quicko\Clubmanager\Domain\Model\Member::SALUTATION_OTHER],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.1', 'value' => Quicko\Clubmanager\Domain\Model\Member::SALUTATION_MALE],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.2', 'value' => Quicko\Clubmanager\Domain\Model\Member::SALUTATION_FEMALE],
                 ],
                 'size' => 1,
                 'maxitems' => 1,
-                'eval' => 'required',
+                'required' => true,
             ],
         ],
 
@@ -251,11 +250,11 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.dateofbirth',
             'config' => [
-                'type' => 'input',
+                'type' => 'datetime',
                 'default' => 0,
                 'size' => 30,
-                'eval' => 'date,int',
-                'renderType' => 'inputDateTime',
+                'eval' => 'int',
+                'format' => 'date',
             ],
         ],
 
@@ -263,9 +262,9 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.email',
             'config' => [
-                'type' => 'input',
+                'type' => 'email',
                 'size' => 20,
-                'eval' => 'trim,email,unique',
+                'eval' => 'trim,unique',
             ],
         ],
         'phone' => [
@@ -358,11 +357,11 @@ return [
                 'renderType' => 'selectSingle',
                 'size' => 1,
                 'items' => [
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.0', Quicko\Clubmanager\Domain\Model\Member::STATE_UNSET],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.1', Quicko\Clubmanager\Domain\Model\Member::STATE_APPLIED],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.2', Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.3', Quicko\Clubmanager\Domain\Model\Member::STATE_SUSPENDED],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.4', Quicko\Clubmanager\Domain\Model\Member::STATE_CANCELLED],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.0', 'value' => Quicko\Clubmanager\Domain\Model\Member::STATE_UNSET],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.1', 'value' => Quicko\Clubmanager\Domain\Model\Member::STATE_APPLIED],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.2', 'value' => Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.3', 'value' => Quicko\Clubmanager\Domain\Model\Member::STATE_SUSPENDED],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.4', 'value' => Quicko\Clubmanager\Domain\Model\Member::STATE_CANCELLED],
                 ],
             ],
         ],
@@ -372,13 +371,13 @@ return [
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
+                'default' => 0,
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
                     ],
                 ],
-            ],
+              ],
         ],
         'reduced_rate' => [
             'exclude' => true,
@@ -388,8 +387,7 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
                     ],
                 ],
             ],
@@ -401,10 +399,10 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.0', Quicko\Clubmanager\Domain\Model\Member::LEVEL_BASE],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.10', Quicko\Clubmanager\Domain\Model\Member::LEVEL_BRONZE],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.20', Quicko\Clubmanager\Domain\Model\Member::LEVEL_SILVER],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.30', Quicko\Clubmanager\Domain\Model\Member::LEVEL_GOLD],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.0', 'value' => Quicko\Clubmanager\Domain\Model\Member::LEVEL_BASE],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.10', 'value' => Quicko\Clubmanager\Domain\Model\Member::LEVEL_BRONZE],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.20', 'value' => Quicko\Clubmanager\Domain\Model\Member::LEVEL_SILVER],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.30', 'value' => Quicko\Clubmanager\Domain\Model\Member::LEVEL_GOLD],
                 ],
                 'size' => 1,
                 'maxitems' => 1,
@@ -419,8 +417,7 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
                     ],
                 ],
             ],
@@ -432,7 +429,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required,' . Quicko\Clubmanager\Evaluation\IbanEvaluation::class,
+                'eval' => 'trim,' . Quicko\Clubmanager\Evaluation\IbanEvaluation::class,
+                'required' => true,
             ],
         ],
         'bic' => [
@@ -442,7 +440,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required,' . Quicko\Clubmanager\Evaluation\BicEvaluation::class,
+                'eval' => 'trim,' . Quicko\Clubmanager\Evaluation\BicEvaluation::class,
+                'required' => true,
             ],
         ],
         'account' => [
@@ -452,7 +451,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'feuser' => [
@@ -593,8 +593,17 @@ return [
                 'minitems' => 0,
                 'maxitems' => 1,
                 'items' => [
-                    ['', ''],
+                    ['value' => '',  'key' => ''],
                 ],
+            ],
+        ],
+        'alt_email' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.alt_email',
+            'config' => [
+                'type' => 'email',
+                'size' => 20,
+                'eval' => 'trim',
             ],
         ],
         'customfield1' => [
@@ -660,18 +669,18 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.0', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_0],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.10', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_10],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.20', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_20],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.30', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_30],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.40', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_40],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.50', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_50],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.60', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_60],
-                    ['LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.70', Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_70],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.0', 'value' => Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_0],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.10', 'value' => Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_10],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.20', 'value' => Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_20],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.30', 'value' => Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_30],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.40', 'value' => Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_40],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.50', 'value' => Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_50],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.60', 'value' => Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_60],
+                    ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:tx_clubmanager_domain_model_member.found_via.70', 'value' => Quicko\Clubmanager\Domain\Model\Member::FOUND_VIA_70],
                 ],
                 'size' => 1,
                 'maxitems' => 1,
             ],
-        ],        
+        ],
     ],
 ];

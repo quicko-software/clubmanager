@@ -24,7 +24,7 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
   
   public function getLabel(BaseMailGeneratorArguments $args): string
   {
-    return LocalizationUtility::translate('passwordrecoverygenerator.label', 'clubmanager');
+    return LocalizationUtility::translate('passwordrecoverygenerator.label', 'clubmanager') ?? '';
   }
 
   /**
@@ -69,7 +69,8 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
     $passwordArgs = $args;
 
     $repo = $this->getMemberRepo();
-    $member = $repo->findByUid($passwordArgs->memberUid);
+    $member = $repo->findByUid($passwordArgs->memberUid ?? 0);
+    if(!$member) return null;
     $address_email = $member['fe_users_email'];
     $address_name = ($member['firstname'] ?? "") . ' ' . ($member['lastname'] ?? "");
 
@@ -86,7 +87,7 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
         $address_name
       )
     )
-      ->subject(LocalizationUtility::translate('mail.logindata.subject', 'clubmanager'))
+      ->subject(LocalizationUtility::translate('mail.logindata.subject', 'clubmanager') ?? '')
       ->format('html')
       ->setTemplate($passwordArgs->templateName)
       ->assign('member', $member)
@@ -97,7 +98,7 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
     return $fluidEmail;
   }
 
-  private function generateLoginLink(int $loginPid)
+  private function generateLoginLink(int $loginPid): string
   {
     $parameters = [];
     $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($loginPid);

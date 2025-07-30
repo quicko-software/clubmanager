@@ -10,6 +10,6 @@ class MemberUidArguments extends BaseMailGeneratorArguments
    *
    * @var int
    */
-  public int $memberUid;
+  public ?int $memberUid = null;
 
 }

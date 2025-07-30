@@ -15,12 +15,12 @@ class MemberLoginReminderGenerator extends BaseMemberUidMailGenerator
 
   public function getLabel(BaseMailGeneratorArguments $args): string
   {
-    return LocalizationUtility::translate('memberloginremindergenerator.label', 'clubmanager');
+    return LocalizationUtility::translate('memberloginremindergenerator.label', 'clubmanager') ?? '';
   }
 
   public function generateFluidMail(BaseMailGeneratorArguments $args): ?FluidEmail
   {
-    /** @var MemberUidArguments $memberArgs */
+    /** @var \Quicko\Clubmanager\Mail\Generator\Arguments\MemberLoginReminderArguments $memberArgs */
     $memberArgs = $args;
 
     $member = $this->getMemberFromArgs($args);
@@ -37,7 +37,7 @@ class MemberLoginReminderGenerator extends BaseMemberUidMailGenerator
         $address_name
       )
     )
-      ->subject(LocalizationUtility::translate('mail.reminder.subject', 'clubmanager'))
+      ->subject(LocalizationUtility::translate('mail.reminder.subject', 'clubmanager') ?? '')
       ->format('html')
       ->setTemplate('Reminder')
       ->assign('member', $member)
@@ -47,7 +47,7 @@ class MemberLoginReminderGenerator extends BaseMemberUidMailGenerator
   }
 
 
-  private function generateLoginLink(int $loginPid)
+  private function generateLoginLink(int $loginPid): string
   {
     $parameters = [];
     $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($loginPid);
@@ -55,7 +55,7 @@ class MemberLoginReminderGenerator extends BaseMemberUidMailGenerator
   }
 
 
-  private function generateRecoveryLink(int $loginPid)
+  private function generateRecoveryLink(int $loginPid): string
   {
     //
     // snippet from https://various.at/news/typo3-uribuilder-im-backend-context

@@ -33,9 +33,8 @@ abstract class BaseRecordRepository
   /**
    * Updates a row
    *
-   * @param array $uid
-   * @param array $data
-   * @throws DBALException|\Doctrine\DBAL\DBALException
+   * @param array $uids
+   * @param array<string,mixed> $data
    */
   public function update(array $uids, array $data): void
   {
@@ -54,7 +53,7 @@ abstract class BaseRecordRepository
       $queryBuilder->set($column, $value);
     }
 
-    $queryBuilder->execute();
+    $queryBuilder->executeStatement();
   }
 
   public static function getExceptionTime(): int

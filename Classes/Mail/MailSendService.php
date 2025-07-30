@@ -2,21 +2,24 @@
 
 namespace Quicko\Clubmanager\Mail;
 
-use TYPO3\CMS\Core\Mail\Mailer;
-
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
-use Quicko\Clubmanager\Mail\Generator\MailGeneratorFactory;
 use Quicko\Clubmanager\Mail\Generator\Arguments\MailGeneratorArgumentsSerializer;
-
+use Quicko\Clubmanager\Mail\Generator\MailGeneratorFactory;
+use TYPO3\CMS\Core\Mail\Mailer;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class MailSendService
 {
-  public function processMailByGenerator(string $generatorClass,string $generatorJsonOptions) : bool {
+  /**
+   * @template T of object
+   *
+   * @param class-string<T> $generatorClass
+   */
+  public function processMailByGenerator(string $generatorClass, string $generatorJsonOptions): bool
+  {
     $baseMailGeneratorArguments = MailGeneratorArgumentsSerializer::deserialize($generatorJsonOptions);
     $instance = MailGeneratorFactory::createGenerator($generatorClass);
     $fluidEmail = $instance->generateFluidMail($baseMailGeneratorArguments);
-    if($fluidEmail) {
+    if ($fluidEmail) {
       /*
       TODO: SITE CONTEXT
       $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($instance->get);
@@ -34,13 +37,14 @@ class MailSendService
           ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
           ->withAttribute('normalizedParams', $normalizedParams)
           ->withAttribute('site', $site);
-      
-      $fluidEmail->setRequest($request);
-      */      
 
-      GeneralUtility::makeInstance(Mailer::class)->send($fluidEmail);    
+      $fluidEmail->setRequest($request);
+      */
+
+      GeneralUtility::makeInstance(Mailer::class)->send($fluidEmail);
     }
     $instance->cleanUp();
+
     return $fluidEmail ? true : false;
   }
 }

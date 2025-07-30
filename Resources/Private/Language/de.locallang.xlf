@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff version="1.2" xmlns:t3="http://typo3.org/schemas/xliff"
-	xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de"
-		original="EXT:clubmanager/Resources/Private/Language/locallang.xlf" datatype="plaintext"
-		product-name="clubmanager" date="2023-11-16T16:57:52+01:00">
-		<header></header>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext"
+		  original="EXT:clubmanager/Resources/Private/Language/locallang.xlf"
+		  product-name="clubmanager" date="2023-11-16T16:57:52+01:00">
+		<header/>
 		<body>
 			<trans-unit id="statictextmailgenerator.label" resname="statictextmailgenerator.label">
 				<source>Static text mail</source>
@@ -224,8 +223,13 @@
 			</trans-unit>
 			<trans-unit id="content_element.member.label.route"
 				resname="content_element.member.label.route">
-				<source>Route planning</source>
-				<target>Routenplanung</target>
+				<source>To plan your route with Google Maps.</source>
+				<target>Zur Routenplanung mit Google Maps.</target>
+			</trans-unit>
+			<trans-unit id="content_element.member.label.leaving"
+						resname="content_element.member.label.leaving">
+				<source>You are leaving our website!</source>
+				<target>Sie verlassen unsere Website!</target>
 			</trans-unit>
 			<trans-unit id="content_element.member.label.noLocation"
 				resname="content_element.member.label.noLocation">

@@ -2,26 +2,19 @@
 
 namespace Quicko\Clubmanager\Records\Mail;
 
-use TYPO3\CMS\Core\SingletonInterface;
-
-use Quicko\Clubmanager\Records\BaseRecordRepository;
 use Quicko\Clubmanager\Domain\Model\Mail\Task;
+use Quicko\Clubmanager\Records\BaseRecordRepository;
+use TYPO3\CMS\Core\SingletonInterface;
 
 class TaskRecordRepository extends BaseRecordRepository implements SingletonInterface
 {
-
-  /**
-   * @var string
-   */
   protected string $table = 'tx_clubmanager_domain_model_mail_task';
 
   /**
-   * Returns a list with open tasks with a limit
+   * Returns a list with open tasks with a limit.
    *
-   * @param int|null $limit
    * @return array
-   * @throws DBALDriverException
-   * @throws DBALException|\Doctrine\DBAL\DBALException
+   *
    */
   public function getOpenSegment(int $limit = null)
   {
@@ -34,23 +27,20 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
       ->andWhere($queryBuilder->expr()->eq('send_state', Task::SEND_STATE_WILL_SEND))
       ->orderBy('priority_level', 'DESC')
       ->addOrderBy('uid', 'ASC')
-      ;
+    ;
 
     if ($limit !== null) {
       $queryBuilder->setMaxResults($limit);
     }
 
     return $queryBuilder
-      ->execute()
+      ->executeQuery()
       ->fetchAllAssociative();
   }
 
   /**
-   * Returns current count of open mailtasks
+   * Returns current count of open mailtasks.
    *
-   * @return int
-   * @throws DBALException|\Doctrine\DBAL\DBALException
-   * @throws DBALDriverException
    */
   public function countMailsOpen(): int
   {
@@ -62,17 +52,15 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
       ->andWhere($queryBuilder->expr()->eq('hidden', 0))
       ->andWhere($queryBuilder->expr()->eq('send_state', Task::SEND_STATE_WILL_SEND))
     ;
-    return (int)$queryBuilder
-      ->execute()
+
+    return (int) $queryBuilder
+      ->executeQuery()
       ->fetchOne();
   }
 
   /**
-   * Returns current count of mail tasks with errors
+   * Returns current count of mail tasks with errors.
    *
-   * @return int
-   * @throws DBALException|\Doctrine\DBAL\DBALException
-   * @throws DBALDriverException
    */
   public function countMailsWithErrors(): int
   {
@@ -85,22 +73,13 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
       ->andWhere($queryBuilder->expr()->neq('send_state', Task::SEND_STATE_DONE))
       ->andWhere("error_message is NOT NULL AND error_message <> ''");
 
-    return (int)$queryBuilder
-      ->execute()
+    return (int) $queryBuilder
+      ->executeQuery()
       ->fetchOne();
   }
 
-
-  /**
-   * Add mail task
-   *
-   * @param DataUpdateEventInterface $event
-   * @throws DBALException|\Doctrine\DBAL\DBALException
-   * @throws AspectNotFoundException
-   */
   public function addMailTask(Task $task): void
   {
-
     $queryBuilder = $this->getQueryBuilder();
     $queryBuilder
       ->insert($this->table)
@@ -108,27 +87,24 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
         'crdate' => $this->getExceptionTime(),
         'tstamp' => $this->getExceptionTime(),
         'pid' => $task->getPid(),
-        'error_message' => $task->getErrorMessage() ?? "",
-        'send_state' => $task->getSendState() ?? 0,
+        'error_message' => $task->getErrorMessage(),
+        'send_state' => $task->getSendState(),
         'generator_class' => $task->getGeneratorClass(),
         'generator_arguments' => $task->getGeneratorArguments(),
         'processed_time' => $task->getProcessedTime(),
         'error_time' => $task->getErrorTime(),
         'open_tries' => $task->getOpenTries(),
         'priority_level' => $task->getPriorityLevel(),
-
       ])
-      ->execute();
+      ->executeStatement();
   }
 
   /**
-   * Returns a list with all tasks
+   * Returns a list with all tasks.
    *
-   * @return array
-   * @throws DBALDriverException
-   * @throws DBALException|\Doctrine\DBAL\DBALException
+   * @return array<mixed>
    */
-  public function getAll(bool $hideFinished = false)
+  public function getAll(bool $hideFinished = false): array
   {
     $queryBuilder = $this->getQueryBuilder();
     $queryBuilder
@@ -136,14 +112,14 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
       ->from($this->table)
       ->andWhere($queryBuilder->expr()->eq('deleted', 0))
       ->andWhere($queryBuilder->expr()->eq('hidden', 0))
-      ;
+    ;
 
-    if($hideFinished) {
+    if ($hideFinished) {
       $queryBuilder->andWhere($queryBuilder->expr()->neq('send_state', 1));
     }
 
     return $queryBuilder
-      ->execute()
+      ->executeQuery()
       ->fetchAllAssociative();
   }
 }

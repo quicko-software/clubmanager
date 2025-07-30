@@ -10,13 +10,13 @@ class LocationLatLngUpdateHook
     /**
      * @return DataHandler
      */
-    private function getDataHandler()
+    private function getDataHandler(): DataHandler
     {
         return GeneralUtility::makeInstance(DataHandler::class);
     }
 
 
-    private function updateLatLng($uid, $lat,$lng)
+    private function updateLatLng(int $uid, string $lat, string $lng): void
     {
         $updateCommand = [];
         $updateCommand['tx_clubmanager_domain_model_location'][$uid]['latitude'] =  $lat;
@@ -36,7 +36,7 @@ class LocationLatLngUpdateHook
        }*/
     }
 
-    protected function getCoordinates(string $address)
+    protected function getCoordinates(string $address): mixed
     {
         $url = 'https://nominatim.openstreetmap.org/search?q=' . urlencode($address) . '&format=json&limit=1';
         $ch = curl_init();
@@ -50,7 +50,7 @@ class LocationLatLngUpdateHook
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
     
-        if ($httpCode < 300 && $response) {
+        if ($httpCode < 300 && $response && $response !== true) {
             $json = json_decode($response, true);
             if (count( $json) > 0 && $json[0]) {
                 return $json[0];
@@ -63,11 +63,11 @@ class LocationLatLngUpdateHook
     /**
      * @param string      $status
      * @param string      $table
-     * @param int         $id
+     * @param string         $id
      * @param array       $fieldArray
      * @param DataHandler $pObj
      */
-    public function processDatamap_afterDatabaseOperations(&$status, &$table, &$id, &$fieldArray, &$pObj)
+    public function processDatamap_afterDatabaseOperations(string &$status, string &$table, string &$id, array &$fieldArray, DataHandler &$pObj): void
     {
         if ($table !== 'tx_clubmanager_domain_model_location') return;
         if ($status !== 'update' && $status !== 'new') return;
@@ -82,13 +82,13 @@ class LocationLatLngUpdateHook
             $uid,
             '*',
         );
-        $lat = $record['latitude'];
-        $lng = $record['longitude'];
+        $lat = $record['latitude'] ?? '';
+        $lng = $record['longitude'] ?? '';
 
         if (empty($lat) || empty($lng)) {
-            $zip = $record["zip"];
-            $city = $record["city"];
-            $street = $record["street"];
+            $zip = $record["zip"] ?? '' ;
+            $city = $record["city"] ?? '';
+            $street = $record["street"] ?? '';
             $loc = $this->getCoordinates("$zip $city, $street");
             if($loc) {
                 $this->updateLatLng($uid,$loc["lat"],$loc["lon"]);

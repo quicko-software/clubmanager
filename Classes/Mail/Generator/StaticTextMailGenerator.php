@@ -2,34 +2,35 @@
 
 namespace Quicko\Clubmanager\Mail\Generator;
 
-use Symfony\Component\Mime\Address;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Core\Mail\FluidEmail;
-
-
-
 use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 use Quicko\Clubmanager\Mail\Generator\Arguments\StaticTextMailArguments;
+use Symfony\Component\Mime\Address;
+use TYPO3\CMS\Core\Mail\FluidEmail;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class StaticTextMailGenerator extends BaseMailGenerator
 {
-
   public function getLabel(BaseMailGeneratorArguments $args): string
   {
-    return LocalizationUtility::translate('statictextmailgenerator.label', 'clubmanager');
+    return LocalizationUtility::translate('statictextmailgenerator.label', 'clubmanager') ?? '';
   }
-  
-  public function getMailTo(BaseMailGeneratorArguments $args): string {
-    return  $args->mailTo;
+
+  public function getMailTo(BaseMailGeneratorArguments $args): string
+  {
+    /**
+     * @var Arguments\GenericMailArguments $mailToargs
+     */
+    $mailToargs = $args;
+
+    return $mailToargs->mailTo;
   }
 
   public function generateFluidMail(BaseMailGeneratorArguments $args): ?FluidEmail
   {
-
     /** @var StaticTextMailArguments $simpleTextArgs */
     $simpleTextArgs = $args;
 
-    $fluidEmail =  parent::createFluidMail($simpleTextArgs->configRefPid);
+    $fluidEmail = parent::createFluidMail($simpleTextArgs->configRefPid ?? 0);
     $fluidEmail->to(new Address(
       $simpleTextArgs->mailTo,
       $simpleTextArgs->mailToName

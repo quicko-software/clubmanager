@@ -16,10 +16,8 @@ class CopyMemberEmailToFeuserHook
    */
   protected $logger;
 
-  /**
-   * @param Logger|null $logger
-   */
-  public function __construct(Logger $logger = null)
+
+  public function __construct(?Logger $logger = null)
   {
     if ($logger === null) {
       /** @var LogManager $logManager */
@@ -30,15 +28,12 @@ class CopyMemberEmailToFeuserHook
     }
   }
 
-  /**
-   * @return DataHandler
-   */
-  private function getDataHandler()
+  private function getDataHandler(): DataHandler
   {
     return GeneralUtility::makeInstance(DataHandler::class);
   }
 
-  public function processDatamap_afterAllOperations(DataHandler &$pObj)
+  public function processDatamap_afterAllOperations(DataHandler &$pObj): void
   {
     if (!array_key_exists('tx_clubmanager_domain_model_member', $pObj->datamap)) {
       return;

@@ -3,6 +3,7 @@
 namespace Quicko\Clubmanager\Utils;
 
 use RuntimeException;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TypoScript\TemplateService;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -32,6 +33,12 @@ class TypoScriptUtils
 
   public static function getTypoScriptValueForPage(string $dotPath, int $pageId): mixed
   {
+    if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() > 12) {
+      $typoScriptService = GeneralUtility::makeInstance(\Quicko\Clubmanager\Utils\UniversalTypoScriptService::class);
+      $ts = $typoScriptService->getTypoScript($pageId);
+      return TypoScriptUtils::extractTypoScriptValue($ts, $dotPath);
+    }
+
     /** @var TemplateService $template */
     $template = GeneralUtility::makeInstance(TemplateService::class);
     // do not log time-performance information

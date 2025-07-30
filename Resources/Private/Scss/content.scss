@@ -1,3 +1,6 @@
+// im .build ordner:
+// npm i
+// npm run watch
 ul.cities {
   padding: 0 0 3rem 0;
   margin-bottom: 3rem;
@@ -9,4 +12,8 @@ ul.cities {
   white-space: nowrap;
   width: 33%;
   list-style: none;
+}
+
+.btn.btn-primary, .btn.btn-secondary, .btn.btn-tertiary {
+  color: #ffffff;
 }
