@@ -129,8 +129,8 @@ CREATE TABLE tx_clubmanager_sanitizevalue_mapping (
 	table_name varchar(255) DEFAULT '' NOT NULL,
 	column_name varchar(255) DEFAULT '' NOT NULL,
 	PRIMARY KEY (uid),
-	INDEX sanitizedValueIdx (sanitized_value, table_name, column_name),
-	INDEX originalValueIdx (original_value, table_name, column_name)
+	INDEX sanitizedValueIdx (sanitized_value(191), table_name(100), column_name(100)),
+	INDEX originalValueIdx (original_value(191), table_name(100), column_name(100))
 );
 
 #
