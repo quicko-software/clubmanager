@@ -21,6 +21,8 @@
   by recalculating the max-height to a concrete pixel value
   which is required by the scroller plugin to work as intended.
 */
+import $ from 'jquery';
+
 export default class DataTableHeightFix {
 
   static mount($dataTable) {
@@ -33,9 +35,10 @@ export default class DataTableHeightFix {
   }
 
   static correct($dataTable) {
-    let $scroll = $dataTable.closest('.dataTables_scroll');
-    let $scrollBody = $scroll.find('.dataTables_scrollBody');
-    let $scrollHead = $scroll.find('.dataTables_scrollHead');
+
+    let $scroll = $dataTable.closest('.dt-scroll');
+    let $scrollBody = $scroll.find('.dt-scroll-body');
+    let $scrollHead = $scroll.find('.dt-scroll-head');
     let tableHead_height = $scrollHead.height();
     let new_max_height = ($scroll.height() - tableHead_height);
     let the_max_height = parseInt($scrollBody.css('max-height'));
@@ -43,7 +46,7 @@ export default class DataTableHeightFix {
       $scrollBody.css('width','unset');
       $scrollBody.css('height','unset');
       $scrollBody.css('max-height', new_max_height + 'px');
-      $scrollBody.css('top', tableHead_height + 'px');
+
       let scrollerPluginInstance = $dataTable.DataTable().settings()[0].oScroller;
       scrollerPluginInstance.measure();
     }

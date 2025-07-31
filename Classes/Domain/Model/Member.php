@@ -39,71 +39,40 @@ class Member extends AbstractEntity
   public const FOUND_VIA_50 = 50;
   public const FOUND_VIA_60 = 60;
   public const FOUND_VIA_70 = 70;
-  /**
-   * @var ?DateTime
-   */
-  protected $crdate;
 
-  /**
-   * @var ?DateTime
-   */
-  protected $starttime;
+  protected ?DateTime $crdate = null;
 
-  /**
-   * @var ?DateTime
-   */
-  protected $endtime;
+  protected ?DateTime $starttime = null;
 
-  /**
-   * @var bool
-   */
-  protected $cancellationWish;
+  protected ?DateTime $endtime = null;
 
-  /**
-   * @var bool
-   */
-  protected $reducedRate;
+  protected bool $cancellationWish = false;
 
-  /**
-   * @var int
-   */
-  protected $state = self::STATE_UNSET;
+  protected bool $reducedRate = false;
+
+  protected int $state = self::STATE_UNSET;
 
   /**
    * @Lazy
    *
    * @Cascade("remove")
    */
-  protected $feuser;
+  protected FrontendUser|LazyLoadingProxy|null $feuser = null;
+
+  protected int $directDebit = 0;
+
+  protected ?string $iban= null;
+
+  protected ?string $bic = null;
+
+  protected ?string $account= null;
 
   /**
-   * @var int
-   */
-  protected $directDebit = 0;
-
-  /**
-   * @var ?string
-   */
-  protected $iban;
-
-  /**
-   * @var ?string
-   */
-  protected $bic;
-
-  /**
-   * @var ?string
-   */
-  protected $account;
-
-  /**
-   * @var Location|null
-   *
    * @Lazy
    *
    * @Cascade("remove")
    */
-  protected $mainLocation;
+  protected Location|LazyLoadingProxy|null $mainLocation = null;
 
   /**
    * @var ObjectStorage<Location>
@@ -112,185 +81,94 @@ class Member extends AbstractEntity
    *
    * @Cascade("remove")
    */
-  protected $subLocations;
+  protected ObjectStorage $subLocations;
+
+  protected ?string $altBillingName = '';
+
+  protected ?string $altBillingStreet = '';
+
+  protected ?string $altBillingZip = '';
+
+  protected ?string $altBillingCity = '';
 
   /**
-   * @var ?string
-   */
-  protected $altBillingName;
-
-  /**
-   * @var ?string
-   */
-  protected $altBillingStreet;
-
-  /**
-   * @var ?string
-   */
-  protected $altBillingZip;
-
-  /**
-   * @var ?string
-   */
-  protected $altBillingCity;
-
-  /**
-   * @var Country|null
-   *
    * @Lazy
    */
-  protected $altBillingCountry;
+  protected Country|LazyLoadingProxy|null $altBillingCountry = null;
+
+  protected ?string $altEmail;
+
+  protected ?string $ident = '';
+
+  protected ?string $title = '';
+
+  protected ?string $firstname = '';
+
+  protected ?string $midname = '';
+
+  protected ?string $lastname = '';
+
+  protected ?string $zip = '';
+
+  protected ?string $street = '';
+
+  protected ?string $city = '';
+
+  protected int $federalState = 0;
 
   /**
-   * @var ?string
-   */
-  protected $ident = '';
-
-  /**
-   * @var ?string
-   */
-  protected $title;
-
-  /**
-   * @var ?string
-   */
-  protected $firstname = '';
-
-  /**
-   * @var ?string
-   */
-  protected $midname = '';
-
-  /**
-   * @var ?string
-   */
-  protected $lastname = '';
-
-  /**
-   * @var ?string
-   */
-  protected $zip = '';
-
-  /**
-   * @var ?string
-   */
-  protected $street = '';
-
-  /**
-   * @var ?string
-   */
-  protected $city = '';
-
-  /**
-   * @var int
-   */
-  protected $federalState;
-
-  /**
-   * @var Country
-   *
    * @Lazy
    */
-  protected $country;
+  protected Country|LazyLoadingProxy|null $country = null;
 
-  /**
-   * @var ?string
-   */
-  protected $email;
+  protected ?string $email = '';
 
-  /**
-   * @var ?string
-   */
-  protected $phone;
+  protected ?string $phone = '';
 
-  /**
-   * @var ?string
-   */
-  protected $telefax;
+  protected ?string $telefax = '';
 
-  /**
-   * @var ?string
-   */
-  protected $company;
+  protected ?string $company = '';
 
-  /**
-   * @var int
-   */
-  protected $personType;
+  protected int $personType = 0;
 
-  /**
-   * @var int
-   */
-  protected $salutation;
+  protected int $salutation = 0;
 
-  /**
-   * @var int
-   */
-  protected $level;
+  protected int $level = 0;
 
-  /**
-   * @var ?string
-   */
-  protected $addAddressInfo;
+  protected ?string $addAddressInfo = '';
 
-  /**
-   * @var ?DateTime
-   */
-  protected $dateofbirth;
+  protected ?DateTime $dateofbirth = null;
 
-  /**
-   * @var ?string
-   */
-  protected $nationality;
+  protected ?string $nationality = '';
 
-  /**
-   * @var ?string
-   */
-  protected $customfield1;
+  protected ?string $customfield1 = '';
 
-  /**
-   * @var ?string
-   */
-  protected $customfield2;
+  protected ?string $customfield2 = '';
 
-  /**
-   * @var ?string
-   */
-  protected $customfield3;
+  protected ?string $customfield3 = '';
 
-  /**
-   * @var ?string
-   */
-  protected $customfield4;
+  protected ?string $customfield4 = '';
 
-  /**
-   * @var ?string
-   */
-  protected $customfield5;
+  protected ?string $customfield5 = '';
 
-  /**
-   * @var ?string
-   */
-  protected $customfield6;
+  protected ?string $customfield6 = '';
 
-  /**
-   * @var ?string
-   */
-  protected $clubFunction;
+  protected ?string $clubFunction = '';
 
-  /**
-   * @var int
-   */
-  protected $foundVia;
+  protected int $foundVia;
 
   /**
    * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Category>
    *
    * @Lazy
    */
-  protected $categories;
+  protected ObjectStorage $categories;
 
   public function __construct()
+  {
+    $this->initializeObject();
+  }
+  protected function initializeObject() : void
   {
     $this->categories = new ObjectStorage();
     $this->subLocations = new ObjectStorage();
@@ -418,7 +296,6 @@ class Member extends AbstractEntity
 
   public function getCountry(): ?Country
   {
-    /* @phpstan-ignore-next-line */
     if ($this->country instanceof LazyLoadingProxy) {
       /** @var Country|null $resolvedValue */
       $resolvedValue = $this->country->_loadRealInstance();
@@ -450,8 +327,8 @@ class Member extends AbstractEntity
   {
     $states = States::getStates();
     foreach ($states as $stateArray) {
-      if ($stateArray[1] == $this->federalState) {
-        return $stateArray[0];
+      if ($stateArray['value'] == $this->federalState) {
+        return $stateArray['label'];
       }
     }
 
@@ -530,7 +407,6 @@ class Member extends AbstractEntity
 
   public function getMainLocation(): ?Location
   {
-    /* @phpstan-ignore-next-line */
     if ($this->mainLocation instanceof LazyLoadingProxy) {
       /** @var Location|null $resolvedValue */
       $resolvedValue = $this->mainLocation->_loadRealInstance();
@@ -611,7 +487,6 @@ class Member extends AbstractEntity
 
   public function getAltBillingCountry(): ?Country
   {
-    /* @phpstan-ignore-next-line */
     if ($this->altBillingCountry instanceof LazyLoadingProxy) {
       /** @var Country|null $resolvedValue */
       $resolvedValue = $this->altBillingCountry->_loadRealInstance();
@@ -887,8 +762,9 @@ class Member extends AbstractEntity
   public function anyLocationHasAnyCategory($categoryList): bool
   {
     $categories = [];
-    if ($this->mainLocation) {
-      $categories = array_merge($categories, $this->mainLocation->getCategories()->toArray());
+    $mainLoc = $this->getMainLocation();
+    if ($mainLoc) {
+      $categories = array_merge($categories, $mainLoc->getCategories()->toArray());
     }
     foreach ($this->subLocations as $subLocation) {
       $categories = array_merge($categories, $subLocation->getCategories()->toArray());
@@ -906,17 +782,18 @@ class Member extends AbstractEntity
 
     $company = '';
     if ($this->getCompany()) {
-      $company =  $this->getCompany() . '<br>';
+      $company = $this->getCompany() . '<br>';
     }
 
     $title = '';
     if ($this->getTitle()) {
-      $title =  $this->getTitle() . ' ';
+      $title = $this->getTitle() . ' ';
     }
 
     $country = '';
-    if ($this->getCountry()) {
-      $country = '<br>' . $this->getCountry()->getShortNameLocal();
+    $countryObject = $this->getCountry();
+    if ($countryObject) {
+      $country = '<br>' . $countryObject->getShortNameLocal();
     }
 
     $result .= $company
@@ -939,7 +816,7 @@ class Member extends AbstractEntity
 
     $title = '';
     if ($this->getTitle()) {
-      $title =  $this->getTitle() . ' ';
+      $title = $this->getTitle() . ' ';
     }
     $country = '';
     if ($mainLocation->getCountry()) {
@@ -947,7 +824,7 @@ class Member extends AbstractEntity
     }
     $company = '';
     if ($this->getCompany()) {
-      $company =  $this->getCompany() . '<br>';
+      $company = $this->getCompany() . '<br>';
     }
     $result .= $company
         . $title . "{$this->getFirstname()} {$this->getLastname()}<br>"
@@ -955,7 +832,6 @@ class Member extends AbstractEntity
         . "{$mainLocation->getZip()} {$mainLocation->getCity()}"
         . $country
     ;
-
 
     return $result;
   }
@@ -966,7 +842,7 @@ class Member extends AbstractEntity
       return "{$this->getAltBillingName()}<br>"
       . "{$this->getAltBillingStreet()}<br>"
       . "{$this->getAltBillingZip()} {$this->getAltBillingCity()}<br>"
-      . "{$this->getAltBillingCountry()->getShortNameLocal()}"
+      . "{$this->getAltBillingCountry()?->getShortNameLocal()}"
       ;
     } else {
       return $this->buildHtmlAddress();
@@ -983,6 +859,24 @@ class Member extends AbstractEntity
     $fullMemberName .= $this->getFirstname() . '  ' . $this->getLastname();
     $translationKey = 'LLL:EXT:clubmanager/Resources/Private/Language/locallang.xlf:member.salutation.' . $this->getSalutation();
 
-    return LocalizationUtility::translate($translationKey, 'clubmanager', [$fullMemberName]);
+    return LocalizationUtility::translate($translationKey, 'clubmanager', [$fullMemberName]) ?? '';
+  }
+
+  /**
+   * Get the value of altEmail
+   */
+  public function getAltEmail(): string|null
+  {
+    return $this->altEmail;
+  }
+
+  /**
+   * Set the value of altEmail
+   */
+  public function setAltEmail(string $altEmail): self
+  {
+    $this->altEmail = $altEmail;
+
+    return $this;
   }
 }

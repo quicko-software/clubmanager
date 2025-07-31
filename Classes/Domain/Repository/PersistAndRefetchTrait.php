@@ -36,7 +36,7 @@ trait PersistAndRefetchTrait
     }
     $this->persistAll();
     $this->clearState();
-    $domainObject = $this->findByUid($domainObject->getUid());
+    $domainObject = $this->findByUid($domainObject->getUid() ?? 0);
 
     return $domainObject;
   }

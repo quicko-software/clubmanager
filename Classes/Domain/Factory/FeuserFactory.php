@@ -17,12 +17,12 @@ class FeuserFactory
   // / * random username with given prefix
   // / * no further properties (no email and other stuff)
   // /
-  public static function createDefaultMemberFeuser($usernamePrefix)
+  public static function createDefaultMemberFeuser(string $usernamePrefix): FrontendUser
   {
     $user = new FrontendUser();
     /** @var ExtensionConfiguration $extensionConfiguration */
     $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
-    /** @var int $pid */
+    /** @var int<0, max> $pid */
     $pid = $extensionConfiguration->get('clubmanager', 'feUsersStoragePid');
     $user->setPid($pid);
     $user->setUsername($usernamePrefix . self::getUniqueNumberString());

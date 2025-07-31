@@ -19,85 +19,26 @@ use TYPO3\CMS\Extbase\Domain\Model\Category as SysCategory;
 
 class Category extends SysCategory
 {
-    /**
-     * title.
-     *
-     * @var \string
-     */
-    protected $title;
+  /**
+   * slug.
+   */
+  protected string $slug;
 
-    /**
-     * description.
-     *
-     * @var \string
-     */
-    protected $description;
+  /**
+   * Returns the slug.
+   *
+   * @return string $slug
+   */
+  public function getSlug(): string
+  {
+    return $this->slug;
+  }
 
-    /**
-     * slug.
-     *
-     * @var \string
-     */
-    protected $slug;    
-
-    /**
-     * Returns the title.
-     *
-     * @return \string $title
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Sets the title.
-     *
-     * @param \string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * Returns the description.
-     *
-     * @return \string $description
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Sets the description.
-     *
-     * @param \string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Returns the slug.
-     *
-     * @return \string $slug
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Sets the slug.
-     *
-     * @param \string $slug
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-    }  
-
+  /**
+   * Sets the slug.
+   */
+  public function setSlug(string $slug): void
+  {
+    $this->slug = $slug;
+  }
 }

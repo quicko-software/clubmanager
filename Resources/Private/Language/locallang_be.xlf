@@ -297,6 +297,11 @@
 			<trans-unit id="module.info.link.url" resname="module.info.link.url">
 				<source>https://quicko.software/en/contact-us/</source>
 			</trans-unit>
+
+			<trans-unit id="password-reset.button.title" resname="password-reset.button.title">
+				<source>Reset Password (Regenerate + Email to user)</source>
+			</trans-unit>
+			
 		</body>
 	</file>
 </xliff>

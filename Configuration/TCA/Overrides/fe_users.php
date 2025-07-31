@@ -17,17 +17,30 @@ call_user_func(function () {
         'lastreminderemailsent' => [
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_user.lastreminderemailsent',
             'config' => [
-                'type' => 'input',
+                'type' => 'datetime',
                 'default' => 0,
-                'eval' => 'datetime,int',
-                'renderType' => 'inputDateTime',
+                'eval' => 'int',
+                'format' => 'datetime',
             ]
         ]
       
     ];
 
     $GLOBALS['TCA']['fe_users']['columns']['password']['config']['required'] = 0;
+    $GLOBALS['TCA']['fe_users']['columns']['password']['config']['passwordPolicy'] = 'clubmanager';
+    $GLOBALS['TCA']['fe_users']['columns']['password']['config']['fieldControl'] = [
+        'passwordReset' => [
+            'renderType' => 'PasswordReset',
+        ]
+    ];
     
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['passwordPolicies'] = [
+        'clubmanager' => [
+            'validators' => [
+               
+            ],
+        ],
+    ];
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users', $fields);
   
 });

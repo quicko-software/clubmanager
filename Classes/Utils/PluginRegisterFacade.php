@@ -120,7 +120,7 @@ class PluginRegisterFacade
   {
     $extensionName = preg_replace('/[\s,_]+/', '', $plugin->getExtensionKey());
 
-    return strtolower($extensionName);
+    return strtolower($extensionName ?? '');
   }
 
   private static function getPluginSignature(Plugin $plugin): string

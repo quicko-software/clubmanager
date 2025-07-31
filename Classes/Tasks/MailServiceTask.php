@@ -88,7 +88,6 @@ class MailServiceTask extends AbstractTask
   /**
    * @return string Information to display
    *
-   * @throws \Doctrine\DBAL\DBALException|\Doctrine\DBAL\DBALException
    */
   public function getAdditionalInformation(): string
   {
@@ -101,7 +100,7 @@ class MailServiceTask extends AbstractTask
     $maxNumMails = $this->getArg('MAX_NUM_MAILS');
 
     return sprintf(
-      $message,
+      $message ?? '',
       $mailsOpen,
       $mailsWithErrors,
       $maxNumMails

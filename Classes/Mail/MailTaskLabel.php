@@ -9,7 +9,12 @@ use Quicko\Clubmanager\Mail\Generator\Arguments\MailGeneratorArgumentsSerializer
 
 class MailTaskLabel
 {
-   public function generateMailTaskTitle(&$parameters)
+   /**
+    * Summary of generateMailTaskTitle
+    * @param array<string,mixed> $parameters
+    * @return void
+    */
+   public function generateMailTaskTitle(&$parameters): void
    {
       $record = BackendUtility::getRecord($parameters['table'], $parameters['row']['uid']);
       $newTitle = "!!! INVALID !!!";

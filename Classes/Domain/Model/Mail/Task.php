@@ -2,236 +2,111 @@
 
 namespace Quicko\Clubmanager\Domain\Model\Mail;
 
+use DateTime;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Task extends AbstractEntity
 {
+  public const SEND_STATE_WILL_SEND = 0;
+  public const SEND_STATE_DONE = 1;
+  public const SEND_STATE_STOPPED = 2;
+  public const PRIORITY_LEVEL_MIN = 0;
+  public const PRIORITY_LEVEL_MEDIUM = 5;
+  public const PRIORITY_LEVEL_HIGHT = 10;
 
-    const SEND_STATE_WILL_SEND = 0;
-    const SEND_STATE_DONE = 1;
-    const SEND_STATE_STOPPED = 2;
+  protected int $sendState = 0;
 
-    const PRIORITY_LEVEL_MIN = 0;
-    const PRIORITY_LEVEL_MEDIUM = 5;
-    const PRIORITY_LEVEL_HIGHT = 10;
-    
-    /**
-     * sendState
-     *
-     * @var \integer
-     */
-    protected $sendState;
+  protected int $priorityLevel = 0;
 
-    /**
-     * priorityLevel
-     *
-     * @var \integer
-     */
-    protected $priorityLevel;
+  protected string $generatorClass = '';
 
-    /**
-     * generatorClass
-     *
-     * @var \string
-     */
-    protected $generatorClass;
+  protected string $generatorArguments = '';
 
+  protected ?DateTime $processedTime = null;
 
-    /**
-     * generatorArguments
-     *
-     * @var \string
-     */
-    protected $generatorArguments;
+  protected ?DateTime $errorTime = null;
 
+  protected string $errorMessage = '';
 
-    /**
-     * generatorTime
-     *
-     * @var \DateTime
-     */
-    protected $processedTime;
+  protected int $openTries = 0;
 
-    /**
-     * errorTime
-     *
-     * @var \DateTime
-     */
-    protected $errorTime;
+  public function getOpenTries(): int
+  {
+    return $this->openTries;
+  }
 
-    /**
-     * errorMessage
-     *
-     * @var \string
-     */
-    protected $errorMessage;
+  public function setOpenTries(int $openTries): void
+  {
+    $this->openTries = $openTries;
+  }
 
-    /**
-     * openTries
-     *
-     * @var \integer
-     */
-    protected $openTries;
+  public function getErrorMessage(): string
+  {
+    return $this->errorMessage;
+  }
 
+  public function setErrorMessage(string $errorMessage): void
+  {
+    $this->errorMessage = $errorMessage;
+  }
 
-    /**
-     * Returns the openTries.
-     *
-     * @return \integer $openTries
-     */
-    public function getOpenTries()
-    {
-        return $this->openTries;
-    }
+  public function getErrorTime(): ?DateTime
+  {
+    return $this->processedTime;
+  }
 
-    /**
-     * Sets the openTries.
-     *
-     * @param \integer $openTries
-     */
-    public function setOpenTries($openTries)
-    {
-        $this->openTries = $openTries;
-    }
+  public function setErrorTime(?DateTime $errorTime): void
+  {
+    $this->errorTime = $errorTime;
+  }
 
+  public function getProcessedTime(): ?DateTime
+  {
+    return $this->processedTime;
+  }
 
-    /**
-     * Returns the errorMessage.
-     *
-     * @return \string $errorTime
-     */
-    public function getErrorMessage()
-    {
-        return $this->errorMessage;
-    }
+  public function setProcessedTime(?DateTime $processedTime): void
+  {
+    $this->processedTime = $processedTime;
+  }
 
-    /**
-     * Sets the errorMessage.
-     *
-     * @param \string $errorMessage
-     */
-    public function setErrorMessage($errorMessage)
-    {
-        $this->errorMessage = $errorMessage;
-    }
+  public function getGeneratorArguments(): string
+  {
+    return $this->generatorArguments;
+  }
 
-    /**
-     * Returns the errorTime.
-     *
-     * @return \DateTime $errorTime
-     */
-    public function getErrorTime()
-    {
-        return $this->processedTime;
-    }
+  public function setGeneratorArguments(string $generatorArguments): void
+  {
+    $this->generatorArguments = $generatorArguments;
+  }
 
-    /**
-     * Sets the errorTime.
-     *
-     * @param \DateTime $errorTime
-     */
-    public function setErrorTime($errorTime)
-    {
-        $this->errorTime = $errorTime;
-    }
+  public function getGeneratorClass(): string
+  {
+    return $this->generatorClass;
+  }
 
-    /**
-     * Returns the processedTime.
-     *
-     * @return \DateTime $processedTime
-     */
-    public function getProcessedTime()
-    {
-        return $this->processedTime;
-    }
+  public function setGeneratorClass(string $generatorClass): void
+  {
+    $this->generatorClass = $generatorClass;
+  }
 
-    /**
-     * Sets the processedTime.
-     *
-     * @param \DateTime $processedTime
-     */
-    public function setProcessedTime($processedTime)
-    {
-        $this->processedTime = $processedTime;
-    }
+  public function getSendState(): int
+  {
+    return $this->sendState;
+  }
 
-    /**
-     * Returns the generatorArguments.
-     *
-     * @return \string $generatorArguments
-     */
-    public function getGeneratorArguments()
-    {
-        return $this->generatorArguments;
-    }
+  public function setSendState(int $sendState): void
+  {
+    $this->sendState = $sendState;
+  }
 
-    /**
-     * Sets the generatorArguments.
-     *
-     * @param \string $generatorArguments
-     */
-    public function setGeneratorArguments($generatorArguments)
-    {
-        $this->generatorArguments = $generatorArguments;
-    }
+  public function getPriorityLevel(): int
+  {
+    return $this->priorityLevel;
+  }
 
-    /**
-     * Returns the generatorClass.
-     *
-     * @return \string $generatorClass
-     */
-    public function getGeneratorClass()
-    {
-        return $this->generatorClass;
-    }
-
-    /**
-     * Sets the generatorClass.
-     *
-     * @param \string $generatorClass
-     */
-    public function setGeneratorClass($generatorClass)
-    {
-        $this->generatorClass = $generatorClass;
-    }
-
-    /**
-     * Returns the sendState.
-     *
-     * @return \integer $sendState
-     */
-    public function getSendState()
-    {
-        return $this->sendState;
-    }
-
-    /**
-     * Sets the sendState.
-     *
-     * @param \integer $sendState
-     */
-    public function setSendState($sendState)
-    {
-        $this->sendState = $sendState;
-    }
-
-    /**
-     * Returns the priorityLevel.
-     *
-     * @return \integer $priorityLevel
-     */
-    public function getPriorityLevel()
-    {
-        return $this->priorityLevel;
-    }
-
-    /**
-     * Sets the priorityLevel.
-     *
-     * @param \integer $priorityLevel
-     */
-    public function setPriorityLevel($priorityLevel)
-    {
-        $this->priorityLevel = $priorityLevel;
-    }
+  public function setPriorityLevel(int $priorityLevel): void
+  {
+    $this->priorityLevel = $priorityLevel;
+  }
 }

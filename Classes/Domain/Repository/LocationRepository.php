@@ -7,6 +7,7 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -17,9 +18,9 @@ class LocationRepository extends Repository
   use PersistAndRefetchTrait;
 
   /**
-   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
+   * @return QueryResultInterface|object[]
    */
-  public function findByUidWithHidden($uid)
+  public function findByUidWithHidden($uid): array|QueryResultInterface
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
@@ -32,7 +33,7 @@ class LocationRepository extends Repository
     )->execute();
   }
 
-  public function findByUidWithoutStorageRestrictions($uid)
+  public function findByUidWithoutStorageRestrictions(int $uid): Location|null
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
@@ -45,7 +46,7 @@ class LocationRepository extends Repository
     )->execute()->getFirst();
   }
 
-  public function findByCity($cityName)
+  public function findByCity(string $cityName): array|QueryResultInterface
   {
     $query = $this->createQuery();
 
@@ -89,7 +90,7 @@ class LocationRepository extends Repository
       ->groupBy('tx_clubmanager_domain_model_location.city')
       ->orderBy('name')
 
-      ->execute()->fetchAll();
+      ->executeQuery()->fetchAllAssociative();
 
     return $rows;
   }
@@ -124,7 +125,7 @@ class LocationRepository extends Repository
       )
       ->groupBy('cat.uid', 'cat.title')
       ->orderBy('counter', 'DESC')
-      ->execute();
+      ->executeQuery();
 
     return $rows;
   }
@@ -148,7 +149,7 @@ class LocationRepository extends Repository
       )
       ->groupBy('c.cn_short_local')
       ->orderBy('counter', 'DESC')
-      ->execute();
+      ->executeQuery();
 
     return $rows;
   }
@@ -172,6 +173,7 @@ class LocationRepository extends Repository
         $query->equals('member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE)
       )
     );
+
     return $query->execute()->toArray();
   }
 
@@ -182,7 +184,7 @@ class LocationRepository extends Repository
    * @param array $coords   the coordinates as array, e.g. ['latitude' => 51.123, 'longitude' => 11.456 ]
    * @param int   $radiusKm the max distance of the member location to the given $coords
    */
-  public function findAround($coords, $radiusKm)
+  public function findAround($coords, $radiusKm): array|QueryResultInterface
   {
     $query = $this->createQuery();
     $distanceLiteral = DistanceCalcLiteral::getSql('tx_clubmanager_domain_model_location');
@@ -213,7 +215,7 @@ class LocationRepository extends Repository
     return $result;
   }
 
-  public function findPublicActive(array $sorting = null)
+  public function findPublicActive(array $sorting = null): QueryResultInterface
   {
     $query = $this->createQuery();
     $query->matching(
@@ -247,7 +249,7 @@ class LocationRepository extends Repository
   /**
    * @return ?Location
    */
-  public function findMainLocByMemberUidWithHidden(int $memberUid)
+  public function findMainLocByMemberUidWithHidden(int $memberUid): Location|null
   {
     $query = $this->createQueryByMemberUidWithHidden($memberUid, 0);
 
@@ -257,7 +259,7 @@ class LocationRepository extends Repository
   /**
    * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Location>|object[]
    */
-  public function findSubLocsByMemberUidWithHidden(int $memberUid)
+  public function findSubLocsByMemberUidWithHidden(int $memberUid): array|QueryResultInterface
   {
     $query = $this->createQueryByMemberUidWithHidden($memberUid, 1);
 

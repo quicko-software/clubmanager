@@ -6,139 +6,88 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 class Plugin
 {
-
-
-  public function __construct($extensionKey, $pluginName, $controllerActions, $nonCacheableControllerActions, $iconFileName, $wizardGroupId = null, $flexFormFileName = '', $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN)
+  /**
+   * Summary of __construct.
+   *
+   * @param array<string,string> $controllerActions
+   * @param array<string,string> $nonCacheableControllerActions
+   */
+  public function __construct(string $extensionKey, string $pluginName, array $controllerActions, array $nonCacheableControllerActions, string $iconFileName, string $wizardGroupId = null, string $flexFormFileName = '', string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN)
   {
     $this->extensionKey = $extensionKey;
     $this->pluginName = $pluginName;
     $this->controllerActions = $controllerActions;
     $this->nonCacheableControllerActions = $nonCacheableControllerActions;
     $this->iconFileName = $iconFileName;
-    $this->wizardGroupId = $wizardGroupId;
+    $this->wizardGroupId = $wizardGroupId ?? '';
     $this->flexFormFileName = $flexFormFileName;
     $this->pluginType = $pluginType;
   }
+  protected string $extensionKey;
+
+  protected string $pluginName;
 
   /**
-   * @var string
-   */
-  protected $extensionKey;
-
-  /**
-   * @var string
-   */
-  protected $pluginName;
-
-  /**
-   * @var array
+   * @var array<string,string>
    */
   protected $controllerActions;
 
   /**
-   * @var array
+   * @var array<string,string>
    */
   protected $nonCacheableControllerActions;
 
-  /**
-   * @var string
-   */
-  protected $pluginType;
+  protected string $pluginType;
 
-  /**
-   * @var string
-   */
-  protected $iconFileName;
+  protected string $iconFileName;
 
-  /**
-   * @var string
-   */
-  protected $wizardGroupId;  
+  protected string $wizardGroupId;
 
-  /**
-   * @var string
-   */
-  protected $flexFormFileName;
+  protected string $flexFormFileName;
 
-
-  /**
-   * Get the value of pluginType
-   *
-   * @return  string
-   */
-  public function getPluginType()
+  public function getPluginType(): string
   {
     return $this->pluginType;
   }
 
   /**
-   * Get the value of nonCacheableControllerActions
-   *
-   * @return  array
+   * @return array<string,string>
    */
-  public function getNonCacheableControllerActions()
+  public function getNonCacheableControllerActions(): array
   {
     return $this->nonCacheableControllerActions;
   }
 
   /**
-   * Get the value of controllerActions
-   *
-   * @return  array
+   * @return array<string,string>
    */
-  public function getControllerActions()
+  public function getControllerActions(): array
   {
     return $this->controllerActions;
   }
 
-
-  /**
-   * Get the value of pluginName
-   *
-   * @return  string
-   */
-  public function getPluginName()
+  public function getPluginName(): string
   {
     return $this->pluginName;
   }
 
-  /**
-   * Get the value of extensionKey
-   *
-   * @return  string
-   */
-  public function getExtensionKey()
+  public function getExtensionKey(): string
   {
     return $this->extensionKey;
   }
-  /**
-   * Get the value of iconFileName
-   *
-   * @return  string
-   */
-  public function getIconFileName()
+
+  public function getIconFileName(): string
   {
     return $this->iconFileName;
   }
 
-  /**
-   * Get the value of flexFormFileName
-   *
-   * @return  string
-   */
-  public function getFlexFormFileName()
+  public function getFlexFormFileName(): string
   {
     return $this->flexFormFileName;
   }
 
-  /**
-   * Get the value of wizardGroupId
-   *
-   * @return  string
-   */ 
-  public function getWizardGroupId()
+  public function getWizardGroupId(): string
   {
     return $this->wizardGroupId;
   }
-
 }

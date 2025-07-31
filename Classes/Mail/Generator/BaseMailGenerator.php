@@ -10,9 +10,9 @@ use Quicko\Clubmanager\Utils\TypoScriptUtils;
 
 abstract class BaseMailGenerator {
 
-  protected $useCachedRepository;
+  protected bool $useCachedRepository;
 
-  public function __construct($useCachedRepository = false) {
+  public function __construct(bool $useCachedRepository = false) {
     $this->useCachedRepository = $useCachedRepository;
   }
 
@@ -34,8 +34,8 @@ abstract class BaseMailGenerator {
 
   public function cleanUp() :void {   }
 
-  protected function createFluidMail($configRefPid) {
-    $config = TypoScriptUtils::getTypoScriptValueForPage("plugin.tx_clubmanager.settings.mailView", $configRefPid ?? 1);
+  protected function createFluidMail(int $configRefPid): SubpathableFluidEmail {
+    $config = TypoScriptUtils::getTypoScriptValueForPage("plugin.tx_clubmanager.settings.mailView", $configRefPid);
     $fluidMail = new SubpathableFluidEmail(new TemplatePaths($config));
     // in TYPO3 V12, this is hardcoded to 'Default' - setting it
     // to 'Standard' makes the code compatible with V11 AND V12

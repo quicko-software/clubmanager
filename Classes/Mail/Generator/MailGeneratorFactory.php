@@ -8,6 +8,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class MailGeneratorFactory
 {
   /**
+   * @template T of object
+   *
+   * @param class-string<T> $className
+   *
    * @throws InvalidArgumentException
    */
   public static function createGenerator(string $className, bool $useCachedRepository = false): BaseMailGenerator
