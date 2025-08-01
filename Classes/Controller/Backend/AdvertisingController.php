@@ -9,7 +9,6 @@
 namespace Quicko\Clubmanager\Controller\Backend;
 
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -19,37 +18,38 @@ class AdvertisingController extends ActionController
   {
   }
 
-  protected function defaultAction(): ResponseInterface
-  {
-    /** @var ModuleTemplate $moduleTemplate */
-    $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-    $moduleTemplate->setContent($this->view->render());
-
-    return $this->htmlResponse($moduleTemplate->renderContent());
-  }
-
   public function memberlistAction(): ResponseInterface
   {
-    return $this->defaultAction();
+    $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+
+    return $moduleTemplate->renderResponse('Backend/Advertising/Memberlist');
   }
 
   public function mailtasksAction(): ResponseInterface
   {
-    return $this->defaultAction();
+    $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+
+    return $moduleTemplate->renderResponse('Backend/Advertising/Mailtasks');
   }
 
   public function settlementsAction(): ResponseInterface
   {
-    return $this->defaultAction();
+    $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+
+    return $moduleTemplate->renderResponse('Backend/Advertising/Settlements');
   }
 
   public function eventsAction(): ResponseInterface
   {
-    return $this->defaultAction();
+    $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+
+    return $moduleTemplate->renderResponse('Backend/Advertising/Events');
   }
 
   public function membershipstatisticsAction(): ResponseInterface
   {
-    return $this->defaultAction();
+    $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+
+    return $moduleTemplate->renderResponse('Backend/Advertising/Membershipstatistics');
   }
 }

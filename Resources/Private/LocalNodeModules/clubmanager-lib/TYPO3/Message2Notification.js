@@ -1,5 +1,6 @@
+import Notification from '@typo3/backend/notification.js';
 export default class Message2Notification {
-  static display(Notification, data) {
+  static display(data) {
     if (!data) {
       return;
     }

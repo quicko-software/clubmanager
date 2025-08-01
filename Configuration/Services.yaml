@@ -6,3 +6,6 @@ services:
 
   Quicko\Clubmanager\:
     resource: '../Classes/*'
+
+  Quicko\Clubmanager\Utils\UniversalTypoScriptService:
+    public: true

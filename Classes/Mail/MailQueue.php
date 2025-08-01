@@ -11,7 +11,7 @@ use Quicko\Clubmanager\Mail\Generator\Arguments\MailGeneratorArgumentsSerializer
 
 class MailQueue
 {
-  public static function addMailTask(string $generatorClassName, BaseMailGeneratorArguments $arguments, int $priorityLevel = Task::PRIORITY_LEVEL_MIN)
+  public static function addMailTask(string $generatorClassName, BaseMailGeneratorArguments $arguments, int $priorityLevel = Task::PRIORITY_LEVEL_MIN): void
   {
     $extConfig = GeneralUtility::makeInstance(ExtensionConfiguration::class);
     $mailTries = $extConfig->get('clubmanager','mailTries');

@@ -9,17 +9,17 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'Quicko - The Clubmanager',
     'state' => 'stable',
     'clearCacheOnLoad' => 1,
-    'version' => '1.1.10',
+    'version' => '1.2.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.5.0-12.4.99',
-            'static_info_tables' => '11.5.0-12.4.99',
+            'typo3' => '12.4.0-13.4.99',
+            'static_info_tables' => '12.4.0-13.4.99',
         ],
         'suggests' => [
+            'php' => '8.2.1-8.3.99',
             'vhs' => '7.0.1-7.0.99',
-            'cms-felogin' => '11.5.0-12.4.99',
-            'bootstrap_package' => '12.0.0-14.0.99',
-            'cookieman' => '2.14.0-2.14.99',
+            'cms-felogin' => '12.4.0-13.4.99',
+            'bootstrap_package' => '15.0.0-15.0.99',
         ],
         'conflicts' => [
         ],

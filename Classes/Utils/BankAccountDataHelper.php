@@ -23,7 +23,7 @@ class BankAccountDataHelper
       'n' => 23, 'o' => 24, 'p' => 25, 'q' => 26, 'r' => 27, 's' => 28, 't' => 29, 'u' => 30, 'v' => 31, 'w' => 32, 'x' => 33, 'y' => 34, 'z' => 35,
     ];
 
-    if (strlen($iban) != $countries[substr($iban, 0, 2)]) {
+    if (strlen($iban) != ($countries[substr($iban, 0, 2)] ?? 'dummy')) {
       return false;
     }
 
@@ -66,28 +66,28 @@ class BankAccountDataHelper
   public static function sanitizeIban(string $iban, string $ident = ''): string
   {
     $result = preg_replace('/[^A-Za-z0-9]/', '', $iban);
-    if (!BankAccountDataHelper::isValidIBAN($result)) {
+    if (!BankAccountDataHelper::isValidIBAN($result ?? '')) {
       $errorText = LocalizationUtility::translate('sepa.error.invalid_user_iban', 'Clubmanager', [$iban]);
       if (!empty($ident)) {
         $errorText .= " ($ident)";
       }
-      throw new InvalidArgumentException($errorText);
+      throw new InvalidArgumentException($errorText ?? '');
     }
 
-    return $result;
+    return $result ?? '';
   }
 
   public static function sanitizeBIC(string $bic, string $ident = ''): string
   {
     $result = preg_replace('/[^A-Za-z0-9]/', '', $bic);
-    if (!BankAccountDataHelper::isValidBIC($result)) {
+    if (!BankAccountDataHelper::isValidBIC($result ?? '')) {
       $errorText = LocalizationUtility::translate('sepa.error.invalid_user_bic', 'Clubmanager', [$bic]);
       if (!empty($ident)) {
         $errorText .= " ($ident)";
       }
-      throw new InvalidArgumentException($errorText);
+      throw new InvalidArgumentException($errorText ?? '');
     }
 
-    return $result;
+    return $result ?? '';
   }
 }

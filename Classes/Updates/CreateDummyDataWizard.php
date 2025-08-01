@@ -14,6 +14,7 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\ChattyInterface;
 use TYPO3\CMS\Install\Updates\ConfirmableInterface;
 use TYPO3\CMS\Install\Updates\Confirmation;
@@ -21,6 +22,7 @@ use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\ReferenceIndexUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
+#[UpgradeWizard('cubmanager_createDummyDataWizard')]
 class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, LoggerAwareInterface, ConfirmableInterface
 {
   use LoggerAwareTrait;
@@ -35,9 +37,7 @@ class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, 
 
   public function __construct()
   {
-    /* @phpstan-ignore-next-line */
     $this->connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
-    /* @phpstan-ignore-next-line */
     $this->memberRepo = GeneralUtility::makeInstance(MemberRepository::class);
     $this->confirmation = new Confirmation(
       'Really generate placeholder data?',

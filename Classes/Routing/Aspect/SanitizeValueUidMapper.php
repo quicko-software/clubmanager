@@ -21,7 +21,7 @@ class SanitizeValueUidMapper extends SanitizeValue
       ->where(
         $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($value)),
       )
-      ->execute()
+      ->executeQuery()
       ->fetchOne()
     ;
     if (false === $queryResult) {
@@ -43,7 +43,7 @@ class SanitizeValueUidMapper extends SanitizeValue
       ->where(
         $queryBuilder->expr()->eq($this->columnName, $queryBuilder->createNamedParameter($value)),
       )
-      ->execute()
+      ->executeQuery()
       ->fetchOne()
     ;
     if (false === $queryResult) {

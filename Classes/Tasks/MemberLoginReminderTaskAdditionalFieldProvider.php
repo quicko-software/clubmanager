@@ -12,6 +12,14 @@ use Quicko\Clubmanager\Tasks\MemberLoginReminderTask;
 
 class MemberLoginReminderTaskAdditionalFieldProvider implements AdditionalFieldProviderInterface
 {
+    /**
+     * Gets additional fields to render in the form to add/edit a task
+     *
+     * @param array $taskInfo Values of the fields from the add/edit task form
+     * @param MailServiceTask|null $task The task object being edited. Null when adding a task!
+     * @param \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule Reference to the scheduler backend module
+     * @return array A two dimensional array: array('fieldId' => array('code' => '', 'label' => '', 'cshKey' => '', 'cshLabel' => ''))
+     */
   public function getAdditionalFields(array &$taskInfo, $task, SchedulerModuleController $schedulerModule)
   {
     $VALUES = ($task !== null)
@@ -58,10 +66,14 @@ class MemberLoginReminderTaskAdditionalFieldProvider implements AdditionalFieldP
   }
 
 
-  public function saveAdditionalFields(array $submittedData, AbstractTask $task)
+  public function saveAdditionalFields(array $submittedData, AbstractTask $task): void
   {
-    $task->ARGUMENTS['MIN_DAY_PERIOD'] = $submittedData['clubmanager.MemberLoginReminderTask.MIN_DAY_PERIOD'];
-    $task->ARGUMENTS['MEMBER_PID_LIST'] = $submittedData['clubmanager.MemberLoginReminderTask.MEMBER_PID_LIST'];
+    /**
+     * @var MailServiceTask $mailTask
+     */
+    $mailTask = $task;
+    $mailTask->ARGUMENTS['MIN_DAY_PERIOD'] = $submittedData['clubmanager.MemberLoginReminderTask.MIN_DAY_PERIOD'];
+    $mailTask->ARGUMENTS['MEMBER_PID_LIST'] = $submittedData['clubmanager.MemberLoginReminderTask.MEMBER_PID_LIST'];
   }
 
 }

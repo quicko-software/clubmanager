@@ -6,30 +6,39 @@ namespace Quicko\Clubmanager\Records;
 class CachedMemberRecordRepository extends MemberRecordRepository
 {
 
+  /**
+   * @var array<array<string,mixed>>
+   */
   protected $memberCache;
 
   public function __construct() {
     $this->fillCache();
   }
   
-  public function findAll()
+  public function findAll(): array
   {
     $queryBuilder = $this->createSelect();
     $queryBuilder
       ->andWhere($queryBuilder->expr()->eq('member.deleted', 0));
 
     return $queryBuilder
-      ->execute()
+      ->executeQuery()
       ->fetchAllAssociative();
   }
 
-  public function findByUid($uid)
+  /**
+   * @return array<string,mixed>|false
+   */
+  public function findByUid(int $uid)
   {
-    if(!array_key_exists($uid, $this->memberCache)) return null;
+    if(!array_key_exists($uid, $this->memberCache)) return false;
     return $this->memberCache[$uid];
   }
 
-  public function findRecursively($pid)
+  /**
+   * @return array<array<string,mixed>>
+   */
+  public function findRecursively(int $pid): array
   {
     $pids = $this->getTreePids($pid);
 
@@ -39,11 +48,12 @@ class CachedMemberRecordRepository extends MemberRecordRepository
         $results[] = $value;
       }
     }
-    usort($results, fn($a, $b) => $a['ident'] < $b['ident']);
+    
+    usort($results, static fn($a, $b): int => $a['ident'] < $b['ident'] ? -1 : 1);
     return $results;
   }  
 
-  public function fillCache()
+  public function fillCache(): void
   {
     if (!$this->memberCache) {
       $array = $this->findAll();

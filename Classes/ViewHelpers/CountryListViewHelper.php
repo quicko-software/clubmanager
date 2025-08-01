@@ -16,7 +16,7 @@ class CountryListViewHelper extends AbstractViewHelper
    */
   protected $countryRepository;
 
-  public function injectCountryRepository(CountryRepository $countryRepository)
+  public function injectCountryRepository(CountryRepository $countryRepository): void
   {
     $this->countryRepository = $countryRepository;
   }

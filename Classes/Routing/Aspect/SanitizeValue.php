@@ -60,7 +60,7 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
       );
     }
     /** @var Result $result */
-    $result = $queryBuilder->execute();
+    $result = $queryBuilder->executeQuery();
     $count = $result->fetchOne();
 
     return $count === false ? false : $count > 0;
@@ -81,7 +81,7 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
       ->where(
         $queryBuilder->expr()->eq($this->columnName, $queryBuilder->createNamedParameter($value)),
       )
-      ->execute()
+      ->executeQuery()
     ;
 
     $count = $queryResult->fetchOne();
@@ -103,7 +103,7 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
         'table_name' => $this->tableName,
         'column_name' => $this->columnName,
       ])
-      ->execute();
+      ->executeStatement();
   }
 
   /**
@@ -128,7 +128,6 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
     /** @var ConnectionPool $connectionPool */
     $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
     $queryBuilder = $connectionPool->getQueryBuilderForTable($this->tableName);
-    /** @phpstan-ignore-next-line */
     $queryResult = $queryBuilder
       ->select('original_value')
       ->from('tx_clubmanager_sanitizevalue_mapping')
@@ -137,7 +136,7 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
         $queryBuilder->expr()->eq('table_name', $queryBuilder->createNamedParameter($this->tableName)),
         $queryBuilder->expr()->eq('column_name', $queryBuilder->createNamedParameter($this->columnName))
       )
-      ->execute()
+      ->executeQuery()
       ->fetchOne()
     ;
     if (false === $queryResult) {

@@ -3,94 +3,47 @@
 namespace Quicko\Clubmanager\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use Quicko\Clubmanager\Domain\Model\Location;
 
 class Socialmedia extends AbstractEntity
 {
-    const TYPE_FACEBOOK = 0;
-    const TYPE_INSTAGRAM = 1;
-    const TYPE_YOUTUBE = 2;
-    const TYPE_TWITTER = 3;
+  public const TYPE_FACEBOOK = 0;
+  public const TYPE_INSTAGRAM = 1;
+  public const TYPE_YOUTUBE = 2;
+  public const TYPE_TWITTER = 3;
 
-    /**
-     * type.
-     *
-     * @var \integer
-     */
-    protected $type;
+  protected int $type;
 
-    /**
-     * Url.
-     *
-     * @var \string
-     */
-    protected $url;
+  protected string $url;
 
-    /**
-     * Location.
-     *
-     * @var Location
-     */
-    protected $location;
-    
+  protected Location $location;
 
-    /**
-     * Returns the type.
-     *
-     * @return \integer $type
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
+  public function getType(): int
+  {
+    return $this->type;
+  }
 
-    /**
-     * Sets the type.
-     *
-     * @param \integer $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
+  public function setType(int $type): void
+  {
+    $this->type = $type;
+  }
 
-    /**
-     * Returns the url.
-     *
-     * @return \string $url
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
+  public function getUrl(): string
+  {
+    return $this->url;
+  }
 
-    /**
-     * Sets the url.
-     *
-     * @param \string $url
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
+  public function setUrl(string $url): void
+  {
+    $this->url = $url;
+  }
 
-        /**
-     * Returns the location.
-     *
-     * @return Location $location
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
+  public function getLocation(): Location
+  {
+    return $this->location;
+  }
 
-    /**
-     * Sets the location.
-     *
-     * @param Location $location
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-    }
+  public function setLocation(Location $location): void
+  {
+    $this->location = $location;
+  }
 }

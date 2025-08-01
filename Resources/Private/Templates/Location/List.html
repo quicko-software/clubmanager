@@ -3,15 +3,15 @@
 
 <f:section name="Main">
 
-    <div class="row">
-        <f:for each="{paginator.paginatedItems}" as="location">
-            <div class="col-12 mb-5">
-                <f:render partial="Location/ListItem" arguments="{_all}"/>
-            </div>
-        </f:for>
-    </div>
+<div class="row">
+    <f:for each="{paginator.paginatedItems}" as="location">
+        <div class="col-12 mb-5">
+            <f:render partial="Location/ListItem" arguments="{_all}"/>
+        </div>
+    </f:for>
+</div>
 
-    <f:render partial="Paging.html" arguments="{paging: paging, pages: pages, paginator: paginator}"/>
+<f:render partial="Paging.html" arguments="{paging: paging, pages: pages, paginator: paginator}"/>
 </f:section>
 
 </html>

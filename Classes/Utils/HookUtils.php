@@ -23,7 +23,7 @@ class HookUtils
     ;
   }
 
-  public static function logError(Logger $logger, string $tableName, string $uid) {
+  public static function logError(Logger $logger, string $tableName, string $uid): void {
     $logger->error(
       sprintf('Failed to process datamap for command (table=%s, uid=%s)',
         $tableName,
