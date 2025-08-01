@@ -17,7 +17,8 @@
       </trans-unit>
       <trans-unit id="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST" resname="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST" approved="yes">
         <source>List of PID's for members, comma-separated (e.g. '147,55,99', blank for all).</source>
-        <target state="final">Liste der PID's für Mitglieder, komma-separiert (z.B. '147,55,99', leer für alle)</target>
+        <target state="final">Liste der PID's für Mitglieder, komma-separiert (z.B. '147,55,99', leer
+					für alle)</target>
       </trans-unit>
       <trans-unit id="task.MailServiceTask.title" resname="task.MailServiceTask.title" approved="yes">
         <source>Email service</source>
@@ -37,7 +38,7 @@
       </trans-unit>
       <trans-unit id="task.general.errors.invalid_value" resname="task.general.errors.invalid_value" approved="yes">
         <source>Invalid value for field: %1</source>
-        <target state="final">Ungültiger Wert für Feld:  %1</target>
+        <target state="final">Ungültiger Wert für Feld: %1</target>
       </trans-unit>
       <trans-unit id="content_element.citieslist" resname="content_element.citieslist" approved="yes">
         <source>City overview</source>
@@ -157,7 +158,8 @@
       </trans-unit>
       <trans-unit id="module.memberlist.lead_none" resname="module.memberlist.lead_none" approved="yes">
         <source>Have you finished setting up the club manager? No members were found.</source>
-        <target state="final">Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mitglieder gefunden.</target>
+        <target state="final">Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mitglieder
+					gefunden.</target>
       </trans-unit>
       <trans-unit id="module.memberlist.subtitle" resname="module.memberlist.subtitle" approved="yes">
         <source>Clubmanager Pro</source>
@@ -173,7 +175,8 @@
       </trans-unit>
       <trans-unit id="module.memberlist.features.2" resname="module.memberlist.features.2" approved="yes">
         <source>Mail journal module for mail task management</source>
-        <target state="final">Mailjournal-Modul für die Verwaltung und Überwachung der vom System versendeten E-Mails</target>
+        <target state="final">Mailjournal-Modul für die Verwaltung und Überwachung der vom System versendeten
+					E-Mails</target>
       </trans-unit>
       <trans-unit id="module.memberlist.features.3" resname="module.memberlist.features.3" approved="yes">
         <source>Dynamic registration process for new members via web form</source>
@@ -193,7 +196,8 @@
       </trans-unit>
       <trans-unit id="module.memberlist.tip.text" resname="module.memberlist.tip.text" approved="yes">
         <source>Have a look at `Quicko - Clubmanager Pro` for more information about `ext:clubmanager_pro`.</source>
-        <target state="final">Unter `Quicko - Clubmanager Pro` finden Sie weitere Informationen über `ext:clubmanager_pro`.</target>
+        <target state="final">Unter `Quicko - Clubmanager Pro` finden Sie weitere Informationen über
+					`ext:clubmanager_pro`.</target>
       </trans-unit>
       <trans-unit id="module.memberlist.tip.link.text" resname="module.memberlist.tip.link.text" approved="yes">
         <source>More Information</source>
@@ -209,7 +213,8 @@
       </trans-unit>
       <trans-unit id="module.mailtasks.lead_intro" resname="module.mailtasks.lead_intro" approved="yes">
         <source>The mail journal module is part of the clubmanager_pro extension. Keep track of the mails sent by the system.</source>
-        <target state="final">Das Mailjournal-Modul ist Bestandteil der clubmanager_pro Extension. Behalten Sie den Überblick über die vom System versendeten Mails.</target>
+        <target state="final">Das Mailjournal-Modul ist Bestandteil der clubmanager_pro Extension. Behalten Sie
+					den Überblick über die vom System versendeten Mails.</target>
       </trans-unit>
       <trans-unit id="module.mailtasks.lead_full" resname="module.mailtasks.lead_full" approved="yes">
         <source>Your club has already sent %d mails to %d members.</source>
@@ -217,7 +222,8 @@
       </trans-unit>
       <trans-unit id="module.mailtasks.lead_none" resname="module.mailtasks.lead_none" approved="yes">
         <source>Have you finished setting up the club manager? No mails to members were found.</source>
-        <target state="final">Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mails an Mitglieder gefunden.</target>
+        <target state="final">Haben Sie den Clubmanager schon fertig aufgesetzt? Es wurden keine Mails an
+					Mitglieder gefunden.</target>
       </trans-unit>
       <trans-unit id="module.billing.title" resname="module.billing.title" approved="yes">
         <source>Billing module</source>
@@ -269,7 +275,8 @@
       </trans-unit>
       <trans-unit id="module.billing.tip.text" resname="module.billing.tip.text" approved="yes">
         <source>Have a look at `Quicko - Clubmanager Billing` for more information about `ext:clubmanager_billing`.</source>
-        <target state="final">Weitere Informationen zu `ext:clubmanager_billing` finden Sie unter `Quicko - Clubmanager Billing`.</target>
+        <target state="final">Weitere Informationen zu `ext:clubmanager_billing` finden Sie unter `Quicko -
+					Clubmanager Billing`.</target>
       </trans-unit>
       <trans-unit id="module.billing.tip.link.text" resname="module.billing.tip.link.text" approved="yes">
         <source>More Information</source>
@@ -285,7 +292,8 @@
       </trans-unit>
       <trans-unit id="module.calendar.lead_intro" resname="module.calendar.lead_intro" approved="yes">
         <source>The event module is part of the clubmanager_calendar and complementary to the clubmanager_conference extension.</source>
-        <target state="final">Das Veranstaltungs-Modul ist Bestandteil der clubmanager_calendar und ergänzend der clubmanager_conference Extension.</target>
+        <target state="final">Das Veranstaltungs-Modul ist Bestandteil der clubmanager_calendar und ergänzend der
+					clubmanager_conference Extension.</target>
       </trans-unit>
       <trans-unit id="module.calendar.subtitle" resname="module.calendar.subtitle" approved="yes">
         <source>Club Manager Calendar and Club Manager Conference</source>
@@ -321,7 +329,8 @@
       </trans-unit>
       <trans-unit id="module.calendar.tip.text" resname="module.calendar.tip.text" approved="yes">
         <source>More information about `ext:clubmanager_calendar` and  `ext:clubmanager_conference` is coming soon.</source>
-        <target state="final">Weitere Informationen über `ext:clubmanager_calendar` und `ext:clubmanager_conference` folgen in Kürze.</target>
+        <target state="final">Weitere Informationen über `ext:clubmanager_calendar` und
+					`ext:clubmanager_conference` folgen in Kürze.</target>
       </trans-unit>
       <trans-unit id="module.calendar.tip.link.text" resname="module.calendar.tip.link.text" approved="yes">
         <source>See all our clubmanager modules</source>
@@ -385,7 +394,8 @@
       </trans-unit>
       <trans-unit id="module.info.text" resname="module.info.text" approved="yes">
         <source>Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</source>
-        <target state="final">Fordern sie noch heute ein unverbindliches Angebot und stellen Sie ihren Verein auf zukunftsfähige Füße. `Quicko - Der Clubmanager` ist ihr verlässlicher Partner.</target>
+        <target state="final">Fordern sie noch heute ein unverbindliches Angebot und stellen Sie ihren Verein auf
+					zukunftsfähige Füße. `Quicko - Der Clubmanager` ist ihr verlässlicher Partner.</target>
       </trans-unit>
       <trans-unit id="module.info.link.text" resname="module.info.link.text" approved="yes">
         <source>Submit request now</source>
@@ -397,7 +407,7 @@
       </trans-unit>
       <trans-unit id="password-reset.button.title" resname="password-reset.button.title" approved="yes">
         <source>Reset Password (Regenerate + Email to user)</source>
-        <target state="final">Passwort zurücksetzen (Regenerieren + E-Mail an den Benutzer)</target>
+        <target state="final">Passwort zurücksetzen (Neu generieren + E-Mail an Benutzer)</target>
       </trans-unit>
     </body>
   </file>
