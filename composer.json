@@ -23,6 +23,7 @@
     "quicko/mailjournal": "@dev"
   },
   "suggest": {
+    "php": "^8.2 || ^8.3",
     "fluidtypo3/vhs": "^7",
     "typo3/cms-felogin": "^11.5 || ^12.4",
     "bk2k/bootstrap-package": "^15.0"

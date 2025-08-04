@@ -16,6 +16,7 @@ $EM_CONF[$_EXTKEY] = [
             'static_info_tables' => '12.4.0-13.4.99',
         ],
         'suggests' => [
+            'php' => '8.2.1-8.3.99',
             'vhs' => '7.0.1-7.0.99',
             'cms-felogin' => '12.4.0-13.4.99',
             'bootstrap_package' => '15.0.0-15.0.99',
