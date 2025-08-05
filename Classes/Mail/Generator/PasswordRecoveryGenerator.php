@@ -2,35 +2,19 @@
 
 namespace Quicko\Clubmanager\Mail\Generator;
 
-<<<<<<< Updated upstream
-=======
+use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 use Quicko\Clubmanager\Mail\Generator\Arguments\PasswordRecoveryArguments;
 use Quicko\Clubmanager\Records\FeUserRecordRepository;
 use Quicko\Clubmanager\Utils\ForgotPasswordHashGenerator;
 use Quicko\Clubmanager\Utils\TypoScriptUtils;
-use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
->>>>>>> Stashed changes
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Crypto\HashService;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Site\SiteFinder;
-<<<<<<< Updated upstream
-use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Crypto\Random;
-use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
-
-use Quicko\Clubmanager\Mail\Generator\BaseMemberUidMailGenerator;
-use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
-use Quicko\Clubmanager\Mail\Generator\Arguments\PasswordRecoveryArguments;
-use Quicko\Clubmanager\Records\FeUserRecordRepository;
-use Quicko\Clubmanager\Utils\TypoScriptUtils;
-=======
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\FrontendLogin\Controller\PasswordRecoveryController;
->>>>>>> Stashed changes
 
 class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
 {
@@ -64,7 +48,7 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
       $hmac = GeneralUtility::hmac($forgotHash);
     } else {
       $hashService = GeneralUtility::makeInstance(HashService::class);
-      $hmac = $hashService->hmac($forgotHash, PasswordRecoveryController::class);
+      $hmac = $hashService->hmac($forgotHash, \TYPO3\CMS\FrontendLogin\Controller\PasswordRecoveryController::class);
     }
 
     $feUserRecordRepo = GeneralUtility::makeInstance(FeUserRecordRepository::class);
