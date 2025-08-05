@@ -6,10 +6,9 @@ use Quicko\Clubmanager\Domain\Model\Mail\Task;
 use Quicko\Clubmanager\FormEngine\PasswordReset;
 use Quicko\Clubmanager\Mail\Generator\Arguments\PasswordRecoveryArguments;
 use Quicko\Clubmanager\Mail\Generator\PasswordRecoveryGenerator;
-
+use Quicko\Clubmanager\Mail\MailQueue;
 use Quicko\Clubmanager\Utils\HookUtils;
 use Quicko\Clubmanager\Utils\PasswordGenerator;
-use Quicko\Mailjournal\Mail\MailQueue;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
 use TYPO3\CMS\Core\DataHandling\DataHandler;

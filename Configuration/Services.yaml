@@ -5,7 +5,10 @@ services:
     public: false
 
   Quicko\Clubmanager\:
-    resource: '../Classes/*'
+    resource: "../Classes/*"
 
   Quicko\Clubmanager\Utils\UniversalTypoScriptService:
+    public: true
+
+  Quicko\Clubmanager\Utils\ForgotPasswordHashGenerator:
     public: true

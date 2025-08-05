@@ -16,7 +16,7 @@ class MemberLoginReminderTaskAdditionalFieldProvider implements AdditionalFieldP
      * Gets additional fields to render in the form to add/edit a task
      *
      * @param array $taskInfo Values of the fields from the add/edit task form
-     * @param MemberLoginReminderTask|null $task The task object being edited. Null when adding a task!
+     * @param MailServiceTask|null $task The task object being edited. Null when adding a task!
      * @param \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule Reference to the scheduler backend module
      * @return array A two dimensional array: array('fieldId' => array('code' => '', 'label' => '', 'cshKey' => '', 'cshLabel' => ''))
      */
@@ -69,11 +69,11 @@ class MemberLoginReminderTaskAdditionalFieldProvider implements AdditionalFieldP
   public function saveAdditionalFields(array $submittedData, AbstractTask $task): void
   {
     /**
-     * @var MemberLoginReminderTask $memberLoginReminderTask
+     * @var MailServiceTask $mailTask
      */
-    $memberLoginReminderTask = $task;
-    $memberLoginReminderTask->ARGUMENTS['MIN_DAY_PERIOD'] = $submittedData['clubmanager.MemberLoginReminderTask.MIN_DAY_PERIOD'];
-    $memberLoginReminderTask->ARGUMENTS['MEMBER_PID_LIST'] = $submittedData['clubmanager.MemberLoginReminderTask.MEMBER_PID_LIST'];
+    $mailTask = $task;
+    $mailTask->ARGUMENTS['MIN_DAY_PERIOD'] = $submittedData['clubmanager.MemberLoginReminderTask.MIN_DAY_PERIOD'];
+    $mailTask->ARGUMENTS['MEMBER_PID_LIST'] = $submittedData['clubmanager.MemberLoginReminderTask.MEMBER_PID_LIST'];
   }
 
 }

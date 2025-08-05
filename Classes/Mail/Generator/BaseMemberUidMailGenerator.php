@@ -2,10 +2,10 @@
 
 namespace Quicko\Clubmanager\Mail\Generator;
 
+use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
+use Quicko\Clubmanager\Mail\Generator\Arguments\MemberUidArguments;
 use Quicko\Clubmanager\Records\CachedMemberRecordRepository;
 use Quicko\Clubmanager\Records\MemberRecordRepository;
-use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
-use Quicko\Mailjournal\Mail\Generator\BaseMailGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 abstract class BaseMemberUidMailGenerator extends BaseMailGenerator
@@ -65,7 +65,7 @@ abstract class BaseMemberUidMailGenerator extends BaseMailGenerator
    */
   protected function getMemberFromArgs(BaseMailGeneratorArguments $args): array|null
   {
-    /** @var \Quicko\Clubmanager\Mail\Generator\Arguments\GenericMemberMailArguments $memberArgs */
+    /** @var MemberUidArguments $memberArgs */
     $memberArgs = $args;
 
     if ($this->member && $this->member['uid'] == $memberArgs->memberUid) {

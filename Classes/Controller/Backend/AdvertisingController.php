@@ -25,6 +25,13 @@ class AdvertisingController extends ActionController
     return $moduleTemplate->renderResponse('Backend/Advertising/Memberlist');
   }
 
+  public function mailtasksAction(): ResponseInterface
+  {
+    $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+
+    return $moduleTemplate->renderResponse('Backend/Advertising/Mailtasks');
+  }
+
   public function settlementsAction(): ResponseInterface
   {
     $moduleTemplate = $this->moduleTemplateFactory->create($this->request);

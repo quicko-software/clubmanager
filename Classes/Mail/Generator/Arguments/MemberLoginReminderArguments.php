@@ -2,16 +2,12 @@
 
 namespace Quicko\Clubmanager\Mail\Generator\Arguments;
 
-use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
-
-class MemberLoginReminderArguments extends BaseMailGeneratorArguments
+class MemberLoginReminderArguments extends MemberUidArguments
 {
   /**
-   * memberUid.
-   */
-  public ?int $memberUid = null;
-  /**
    * loginPid.
+   *
+   * @var int
    */
   public int $loginPid;
 }
