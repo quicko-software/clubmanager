@@ -82,7 +82,10 @@ class ResetFeuserPasswordHook
 
   private function userResetTokenIsSet(array $feuserRecord): bool
   {
-    return in_array('password', $feuserRecord) ? $feuserRecord['password'] === PasswordReset::RESET_VALUE_TOKEN : false;
+    if(array_key_exists('password', $feuserRecord)) {
+      return $feuserRecord['password'] === PasswordReset::RESET_VALUE_TOKEN;
+    }
+    return false;
   }
 
   public function processDatamap_afterAllOperations(DataHandler &$pObj): void
@@ -90,6 +93,7 @@ class ResetFeuserPasswordHook
     if (!array_key_exists('fe_users', $pObj->datamap)) {
       return;
     }
+
     foreach ($pObj->datamap['fe_users'] as $uid => $feuserProps) {
       $feuserUid = HookUtils::getRecordUid(strval($uid), $pObj);
       if (!$feuserUid) {
