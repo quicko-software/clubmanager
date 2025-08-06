@@ -14,7 +14,6 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
    * Returns a list with open tasks with a limit.
    *
    * @return array
-   *
    */
   public function getOpenSegment(int $limit = null)
   {
@@ -40,7 +39,6 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
 
   /**
    * Returns current count of open mailtasks.
-   *
    */
   public function countMailsOpen(): int
   {
@@ -60,7 +58,6 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
 
   /**
    * Returns current count of mail tasks with errors.
-   *
    */
   public function countMailsWithErrors(): int
   {
@@ -95,8 +92,9 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
         'error_time' => $task->getErrorTime(),
         'open_tries' => $task->getOpenTries(),
         'priority_level' => $task->getPriorityLevel(),
-      ])
-      ->executeStatement();
+      ]);
+
+    $queryBuilder->executeStatement();
   }
 
   /**

@@ -90,22 +90,6 @@ Frontend users login pid `feUsersLoginPid`
 
       plugin.tx_clubmanager.settings.feUsersLoginPid = 458788
 
-.. _tsPasswordRecoveryLifeTime:
 
-Password recovery link lifetime `passwordRecoveryLifeTime`
-----------------------------------------------------------
 
-.. confval:: passwordRecoveryLifeTime
 
-   :type: int
-   :Default: 48
-   :Path: plugin.tx_clubmanager.settings
-   :Scope: Plugin, TypoScript Setup
-
-   Define the lifetime of a password recovery link send out by e-mail in hours.
-   Overwrites :ref:`Extension Configuration passwordRecoveryLifeTime
-   <extensionConfigurationLifetimePwRecoveryLink>`!
-
-   ::
-
-      plugin.tx_clubmanager.settings.passwordRecoveryLifeTime = 48
