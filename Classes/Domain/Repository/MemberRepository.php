@@ -171,7 +171,7 @@ class MemberRepository extends Repository
     return $result;
   }
 
-  public function findActivePublic(array $sorting = null)
+  public function findActivePublic(?array $sorting = null)
   {
     $query = $this->createQuery();
     $query->matching(

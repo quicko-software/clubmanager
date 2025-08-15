@@ -14,7 +14,7 @@ class LocationController extends BaseSettingsController
   {
   }
 
-  public function detailAction(Location $location = null): ResponseInterface
+  public function detailAction(?Location $location = null): ResponseInterface
   {
     $this->setDefaultSettingsIfRequired();
     $this->view->assign('location', $location);

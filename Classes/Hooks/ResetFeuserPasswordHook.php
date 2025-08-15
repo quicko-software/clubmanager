@@ -23,7 +23,7 @@ class ResetFeuserPasswordHook
    */
   protected $logger;
 
-  public function __construct(Logger $logger = null)
+  public function __construct(?Logger $logger = null)
   {
     if ($logger === null) {
       /** @var LogManager $logManager */

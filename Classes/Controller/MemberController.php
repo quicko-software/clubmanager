@@ -16,7 +16,7 @@ class MemberController extends BaseSettingsController
     $this->memberRepository = $memberRepository;
   }
 
-  public function detailAction(Member $member = null, Location $location = null): ResponseInterface
+  public function detailAction(?Member $member = null, ?Location $location = null): ResponseInterface
   {
     $this->setDefaultSettingsIfRequired();
 

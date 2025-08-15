@@ -13,7 +13,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 // /
 class StoragePids
 {
-  public static function getList(string $extensionName = null): array
+  public static function getList(?string $extensionName = null): array
   {
     if (Typo3Mode::isFrontend()) {
       /** @var ConfigurationManager $configurationManager */
@@ -36,7 +36,7 @@ class StoragePids
     return [$storagePidInt];
   }
 
-  public static function getFirst(string $extensionName = null): mixed
+  public static function getFirst(?string $extensionName = null): mixed
   {
     $list = self::getList($extensionName);
 

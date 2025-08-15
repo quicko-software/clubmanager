@@ -16,7 +16,7 @@ class TaskRecordRepository extends BaseRecordRepository implements SingletonInte
    * @return array
    *
    */
-  public function getOpenSegment(int $limit = null)
+  public function getOpenSegment(?int $limit = null)
   {
     $queryBuilder = $this->getQueryBuilder();
     $queryBuilder
