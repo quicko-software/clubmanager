@@ -8,13 +8,20 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * @extends Repository<Member>
+ * @template T of Member
+ *
+ * @extends Repository<T>
  */
 class MemberRepository extends Repository
 {
   use PersistAndRefetchTrait;
 
-  public function findByFeUserName($feUserName): ?Member
+  /**
+   * Summary of findByFeUserName.
+   *
+   * @return T|null
+   */
+  public function findByFeUserName(string $feUserName): ?object
   {
     $query = $this->createQuery();
     $this->disableQueryRestrictions($query);
@@ -30,16 +37,20 @@ class MemberRepository extends Repository
     return $member;
   }
 
-  public function findByFeUserNameWithHiddenLocations(LocationRepository $locationRepository, string $feUserName): ?Member
+  /**
+   * Summary of findByFeUserNameWithHiddenLocations.
+   *
+   * @return T|null
+   */
+  public function findByFeUserNameWithHiddenLocations(LocationRepository $locationRepository, string $feUserName): ?object
   {
-    /** @var Member $member */
     $member = $this->findByFeUserName($feUserName);
-    if ($member) {
-      $loc = $locationRepository->findMainLocByMemberUidWithHidden($member->getUid());
+    if ($member && $memberUid = $member->getUid()) {
+      $loc = $locationRepository->findMainLocByMemberUidWithHidden($memberUid);
       if ($loc) {
         $member->setMainLocation($loc);
       }
-      $subLocs = $locationRepository->findSubLocsByMemberUidWithHidden($member->getUid());
+      $subLocs = $locationRepository->findSubLocsByMemberUidWithHidden($memberUid);
 
       foreach ($subLocs as $subLoc) {
         $member->getSubLocations()->attach($subLoc);
@@ -49,6 +60,11 @@ class MemberRepository extends Repository
     return $member;
   }
 
+  /**
+   * Summary of disableQueryRestrictions.
+   *
+   * @param QueryInterface<T> $query
+   */
   protected function disableQueryRestrictions(QueryInterface $query): void
   {
     $querySettings = $query->getQuerySettings();
@@ -58,9 +74,9 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
+   * @return iterable<int, T>
    */
-  public function findAllEndedWithWrongState(DateTime $refDate)
+  public function findAllEndedWithWrongState(DateTime $refDate): iterable
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
@@ -80,9 +96,9 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
+   * @return iterable<int, T>
    */
-  public function findAllCanceleddWithWrongState()
+  public function findAllCanceleddWithWrongState(): iterable
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
@@ -100,7 +116,12 @@ class MemberRepository extends Repository
     return $query->execute();
   }
 
-  public function findAllActiveInPid($pid, $endDate)
+  /**
+   * Summary of findAllActiveInPid.
+   *
+   * @return iterable<int, T>
+   */
+  public function findAllActiveInPid(int $pid, DateTime $endDate): iterable
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
@@ -120,7 +141,12 @@ class MemberRepository extends Repository
     return $query->execute();
   }
 
-  public function findOneByEmailAndPid(string $email, int $pid)
+  /**
+   * Summary of findOneByEmailAndPid.
+   *
+   * @return iterable<int, T>
+   */
+  public function findOneByEmailAndPid(string $email, int $pid): iterable
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
@@ -140,11 +166,11 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @param array $memberPidList list of pids where to look for members, e.g. [12,488,7] or null
+   * @param int[] $memberPidList list of pids where to look for members, e.g. [12,488,7] or null
    *
-   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|Member[]
+   * @return iterable<int, T>
    */
-  public function findMemberRoRemind(int $minDaysSinceLastEmail, array $memberPidList)
+  public function findMemberRoRemind(int $minDaysSinceLastEmail, array $memberPidList): iterable
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
@@ -159,7 +185,7 @@ class MemberRepository extends Repository
       $query->equals('feuser.lastlogin', 0), // that never logged in
       $query->lessThan('feuser.lastreminderemailsent', $xDaysAgoSec), // and who got their last reminder at least X days ago
     ];
-    if (is_array($memberPidList) && count($memberPidList) > 0) {
+    if (count($memberPidList) > 0) {
       $constraints[] = $query->in('pid', $memberPidList);
     }
 
@@ -171,7 +197,14 @@ class MemberRepository extends Repository
     return $result;
   }
 
-  public function findActivePublic(?array $sorting = null)
+  /**
+   * Summary of findActivePublic.
+   *
+   * @param string[] $sorting
+   *
+   * @return iterable<int, T>
+   */
+  public function findActivePublic(?array $sorting = null): iterable
   {
     $query = $this->createQuery();
     $query->matching(
@@ -184,7 +217,12 @@ class MemberRepository extends Repository
     return $query->execute();
   }
 
-  public function findByUidWithoutStoragePage(int $uid)
+  /**
+   * Summary of findByUidWithoutStoragePage.
+   *
+   * @return T|null
+   */
+  public function findByUidWithoutStoragePage(int $uid): ?object
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
@@ -202,9 +240,11 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @param array<int|string> $uids
+   * @param int[] $uids
+   *
+   * @return iterable<int, T>
    */
-  public function findAllByUids($uids)
+  public function findAllByUids(array $uids): iterable
   {
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
