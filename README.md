@@ -1,5 +1,5 @@
 [![Latest Stable Version](https://poser.pugx.org/quicko/clubmanager/v/stable)](https://packagist.org/packages/quicko/clubmanager)
-[![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
+[![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
 [![License](https://poser.pugx.org/quicko/clubmanager/license)](https://packagist.org/packages/quicko/clubmanager)
 
 ![Quicko logo](Documentation/Images/Quicko-Avatar.png)
