@@ -12,7 +12,7 @@ class Plugin
    * @param array<string,string> $controllerActions
    * @param array<string,string> $nonCacheableControllerActions
    */
-  public function __construct(string $extensionKey, string $pluginName, array $controllerActions, array $nonCacheableControllerActions, string $iconFileName, string $wizardGroupId = null, string $flexFormFileName = '', string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN)
+  public function __construct(string $extensionKey, string $pluginName, array $controllerActions, array $nonCacheableControllerActions, string $iconFileName, ?string $wizardGroupId = null, string $flexFormFileName = '', string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN)
   {
     $this->extensionKey = $extensionKey;
     $this->pluginName = $pluginName;

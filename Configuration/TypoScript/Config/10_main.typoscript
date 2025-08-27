@@ -38,7 +38,6 @@ plugin.tx_clubmanager {
 			}			
 		}
 		feUsersLoginPid = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
-		passwordRecoveryLifeTime = {$plugin.tx_clubmanager.settings.passwordRecoveryLifeTime}
 		contentBlockerMode = 
 	}
 }

@@ -215,7 +215,7 @@ class LocationRepository extends Repository
     return $result;
   }
 
-  public function findPublicActive(array $sorting = null): QueryResultInterface
+  public function findPublicActive(?array $sorting = null): QueryResultInterface
   {
     $query = $this->createQuery();
     $query->matching(

@@ -30,6 +30,7 @@ $color-seconday: #014f77;
         flex-grow: 1;
         flex-shrink: 1;
         height: 100%;
+
         >* {
           flex-grow: 0;
           flex-shrink: 0;
@@ -37,15 +38,18 @@ $color-seconday: #014f77;
 
         >.dt-scroll {
           color: black;
+
           a {
             color: black;
           }
+
           flex-grow: 1;
           flex-shrink: 1;
           display: flex !important;
           flex-direction: column;
           position: relative;
           overflow: hidden;
+
           >.dt-scroll-body>table>thead th,
           >.dt-scroll-head>.dt-scroll-headInner>table>thead th {
             background: #333;
@@ -169,7 +173,7 @@ $color-seconday: #014f77;
   div.dt-button-collection {
     border-radius: 2px;
     width: auto;
-    
+
     .dt-button {
       max-width: 400px;
       color: black;
@@ -255,7 +259,7 @@ $color-seconday: #014f77;
       border: none;
       text-shadow: none;
     }
-  
+
     &:focus:not(.disabled) {
       background: $color-primary-hover !important;
     }
@@ -287,11 +291,13 @@ $color-seconday: #014f77;
       vertical-align: -0.125em;
     }
 
+    &.dt-button-active:not(.disabled),
     &.active:not(.disabled) {
       &::before {
         content: "\F26D";
       }
     }
+
     &.dt-button-active:not(.disabled) {
       background-color: $color-primary;
     }

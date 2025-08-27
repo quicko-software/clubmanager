@@ -23,7 +23,7 @@ class DummyMemberFactory
   private int $pid = 0;
   private CountryRepository $countryRepository;
   private CategoryRepository $categoryRepository;
-  private ?FrontendUserGroup $frontendUserGroup;
+  private ?FrontendUserGroup $frontendUserGroup = null;
   /**
    * @var array<int,array<string,string|float>>
    */
