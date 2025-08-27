@@ -40,6 +40,10 @@ class Member extends AbstractEntity
   public const FOUND_VIA_60 = 60;
   public const FOUND_VIA_70 = 70;
 
+  protected bool $hidden = false;
+
+  protected bool $deleted = false;
+
   protected ?DateTime $crdate = null;
 
   protected ?DateTime $starttime = null;
@@ -61,11 +65,11 @@ class Member extends AbstractEntity
 
   protected int $directDebit = 0;
 
-  protected ?string $iban= null;
+  protected ?string $iban = null;
 
   protected ?string $bic = null;
 
-  protected ?string $account= null;
+  protected ?string $account = null;
 
   /**
    * @Lazy
@@ -158,7 +162,7 @@ class Member extends AbstractEntity
   protected int $foundVia;
 
   /**
-   * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Category>
+   * @var ObjectStorage<Category>
    *
    * @Lazy
    */
@@ -168,10 +172,31 @@ class Member extends AbstractEntity
   {
     $this->initializeObject();
   }
-  protected function initializeObject() : void
+
+  protected function initializeObject(): void
   {
     $this->categories = new ObjectStorage();
     $this->subLocations = new ObjectStorage();
+  }
+
+  public function isHidden(): bool
+  {
+    return $this->hidden;
+  }
+
+  public function setHidden(bool $hidden): void
+  {
+    $this->hidden = $hidden;
+  }
+
+  public function isDeleted(): bool
+  {
+    return $this->deleted;
+  }
+
+  public function setDeleted(bool $deleted): void
+  {
+    $this->deleted = $deleted;
   }
 
   public function getIdent(): ?string
@@ -560,7 +585,7 @@ class Member extends AbstractEntity
   }
 
   /**
-   * @return ObjectStorage<\Quicko\Clubmanager\Domain\Model\Category>
+   * @return ObjectStorage<Category>
    */
   public function getCategories(): ObjectStorage
   {
@@ -568,7 +593,7 @@ class Member extends AbstractEntity
   }
 
   /**
-   * @param ObjectStorage<\Quicko\Clubmanager\Domain\Model\Category> $categories
+   * @param ObjectStorage<Category> $categories
    */
   public function setCategories(ObjectStorage $categories): void
   {
@@ -863,15 +888,15 @@ class Member extends AbstractEntity
   }
 
   /**
-   * Get the value of altEmail
+   * Get the value of altEmail.
    */
-  public function getAltEmail(): string|null
+  public function getAltEmail(): ?string
   {
     return $this->altEmail;
   }
 
   /**
-   * Set the value of altEmail
+   * Set the value of altEmail.
    */
   public function setAltEmail(string $altEmail): self
   {

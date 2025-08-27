@@ -247,9 +247,7 @@ class MemberRepository extends Repository
   public function findAllByUids(array $uids): iterable
   {
     $query = $this->createQuery();
-    $querySettings = $query->getQuerySettings();
-    $querySettings->setRespectStoragePage(false);
-    $querySettings->setIgnoreEnableFields(true);
+    $this->disableQueryRestrictions($query);
     $constraints = [
       $query->in('uid', $uids),
     ];
