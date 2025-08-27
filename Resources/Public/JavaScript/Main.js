@@ -1,20 +1,59 @@
 var Main;
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other entry modules.
+(() => {
 
-/***/ "../Resources/Private/JavaScript/ContentBlocker.js":
-/*!*********************************************************!*\
-  !*** ../Resources/Private/JavaScript/ContentBlocker.js ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ContentBlocker)
-/* harmony export */ });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+;// external "jQuery"
+const external_jQuery_namespaceObject = jQuery;
+var external_jQuery_default = /*#__PURE__*/__webpack_require__.n(external_jQuery_namespaceObject);
+;// ../Resources/Private/JavaScript/ContentBlocker.js
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
@@ -27,7 +66,7 @@ var ContentBlocker = /*#__PURE__*/function () {
     var _this = this;
     _classCallCheck(this, ContentBlocker);
     this.$element = $element;
-    var $allowButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".contentAllowButton", this.$element);
+    var $allowButton = external_jQuery_default()(".contentAllowButton", this.$element);
     if (this.getMode() == "cookieman" && window.cookieman) {
       if (cookieman.hasConsented(this.getCookieName())) {
         ContentBlocker.loadContent(this.$element);
@@ -45,7 +84,7 @@ var ContentBlocker = /*#__PURE__*/function () {
   return _createClass(ContentBlocker, [{
     key: "allow",
     value: function allow() {
-      var $alwaysCheckbox = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.allow-always', this.$element);
+      var $alwaysCheckbox = external_jQuery_default()('.allow-always', this.$element);
       if (this.getMode() == "cookieman" && window.cookieman) {
         if ($alwaysCheckbox.is(':checked')) {
           cookieman.consent(this.getConsentGroupId());
@@ -101,17 +140,17 @@ var ContentBlocker = /*#__PURE__*/function () {
   }], [{
     key: "mount",
     value: function mount() {
-      var $blockContentElements = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.block-content');
+      var $blockContentElements = external_jQuery_default()('.block-content');
       $blockContentElements.each(function (index) {
-        return new ContentBlocker(jquery__WEBPACK_IMPORTED_MODULE_0___default()($blockContentElements[index]));
+        return new ContentBlocker(external_jQuery_default()($blockContentElements[index]));
       });
     }
   }, {
     key: "load",
     value: function load(groupdId) {
-      var $blockContentElements = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-consent-groupid="' + groupdId + '"].block-content');
+      var $blockContentElements = external_jQuery_default()('[data-consent-groupid="' + groupdId + '"].block-content');
       $blockContentElements.each(function (index) {
-        ContentBlocker.loadContent(jquery__WEBPACK_IMPORTED_MODULE_0___default()($blockContentElements[index]));
+        ContentBlocker.loadContent(external_jQuery_default()($blockContentElements[index]));
       });
     }
   }, {
@@ -142,111 +181,17 @@ var ContentBlocker = /*#__PURE__*/function () {
   }]);
 }();
 
-
-/***/ }),
-
-/***/ "jquery":
-/*!*************************!*\
-  !*** external "jQuery" ***!
-  \*************************/
-/***/ ((module) => {
-
-module.exports = jQuery;
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be isolated against other entry modules.
-(() => {
-var __webpack_exports__ = {};
-/*!***********************************************!*\
-  !*** ../Resources/Private/JavaScript/Main.js ***!
-  \***********************************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ContentBlocker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContentBlocker */ "../Resources/Private/JavaScript/ContentBlocker.js");
+;// ../Resources/Private/JavaScript/Main.js
 
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
-  _ContentBlocker__WEBPACK_IMPORTED_MODULE_1__["default"].mount();
+external_jQuery_default()(function () {
+  ContentBlocker.mount();
 });
-window.ContentBlocker = _ContentBlocker__WEBPACK_IMPORTED_MODULE_1__["default"];
+window.ContentBlocker = ContentBlocker;
 })();
 
 // This entry needs to be wrapped in an IIFE because it needs to be isolated against other entry modules.
 (() => {
-/*!*******************************************!*\
-  !*** ../Resources/Private/Scss/main.scss ***!
-  \*******************************************/
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
