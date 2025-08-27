@@ -1,24 +1,21 @@
 <?php
 
-use Symfony\Component\DependencyInjection\Container;
-
 defined('TYPO3') or exit;
 
 use Quicko\Clubmanager\Controller\CitiesController;
+use Quicko\Clubmanager\Configuration\ExtRecoveryConfiguration;
 use Quicko\Clubmanager\Controller\LocationController;
 use Quicko\Clubmanager\Controller\MemberController;
 use Quicko\Clubmanager\Domain\Model\Plugin;
 use Quicko\Clubmanager\Evaluation\BicEvaluation;
 use Quicko\Clubmanager\Evaluation\IbanEvaluation;
-use Quicko\Clubmanager\Utils\LogUtils;
 use Quicko\Clubmanager\Utils\PluginRegisterFacade;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\FrontendLogin\Configuration\RecoveryConfiguration;
 
 call_user_func(function () {
-
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['PersistedTester'] = Quicko\Clubmanager\Routing\Aspect\PersistedTester::class;
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['SanitizeValue'] = Quicko\Clubmanager\Routing\Aspect\SanitizeValue::class;
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['SanitizeValueUidMapper'] = Quicko\Clubmanager\Routing\Aspect\SanitizeValueUidMapper::class;
@@ -92,7 +89,7 @@ call_user_func(function () {
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_fe_user_password_hook'] = Quicko\Clubmanager\Hooks\ResetFeuserPasswordHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_location_lat_lng_update_hook'] = Quicko\Clubmanager\Hooks\LocationLatLngUpdateHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_member_starttime_hook'] = Quicko\Clubmanager\Hooks\MemberStartTimeHook::class;
-  //$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_reset_password'] = \Quicko\Clubmanager\Hooks\EmailVerificationTokenResetHook::class;
+  // $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_reset_password'] = \Quicko\Clubmanager\Hooks\EmailVerificationTokenResetHook::class;
 
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1454581922] = [
       'nodeName' => 'SearchLocation',
@@ -100,13 +97,16 @@ call_user_func(function () {
       'class' => Quicko\Clubmanager\FormEngine\SearchLocationButton::class,
   ];
 
-  
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1738654663] = [
     'nodeName' => 'PasswordReset',
     'priority' => 30,
-    'class' => \Quicko\Clubmanager\FormEngine\PasswordReset::class
+    'class' => Quicko\Clubmanager\FormEngine\PasswordReset::class,
  ];
- 
+
+  $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][RecoveryConfiguration::class] = [
+   'className' => ExtRecoveryConfiguration::class,
+  ];
+
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\MemberLoginReminderTask::class] = [
       'extension' => 'clubmanager',
       'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MemberLoginReminderTask.title',

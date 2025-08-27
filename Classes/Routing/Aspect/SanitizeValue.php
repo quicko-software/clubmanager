@@ -43,7 +43,7 @@ class SanitizeValue implements MappableAspectInterface, StaticMappableAspectInte
   /**
    * Exists a mapping already?
    */
-  protected function isSanitizedValueMappingExists(string $sanitizedValue, string $originalValue = null): bool
+  protected function isSanitizedValueMappingExists(string $sanitizedValue, ?string $originalValue = null): bool
   {
     $queryBuilder = $this->getQueryBuilder();
     $queryBuilder

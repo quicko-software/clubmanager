@@ -136,6 +136,9 @@ class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, 
     );
     for ($i = 0; $i < 1000; ++$i) {
       $this->memberRepo->add($dummyMemberFactory->createMember());
+      if($i % 100) {
+        $this->memberRepo->persistAll();
+      }
     }
     $this->memberRepo->persistAll();
 
