@@ -235,9 +235,9 @@
         <source>Country</source>
         <target state="final">Land</target>
       </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.alt_email" resname="tx_clubmanager_domain_model_member.alt_email" approved="yes">
-        <source>Alternative e-mail</source>
-        <target state="final">Alternative E-Mail</target>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_email" resname="tx_clubmanager_domain_model_member.alt_billing_email" approved="yes">
+        <source>Alternative E-Mail für Rechnungen</source>
+        <target state="final">Alternative E-Mail für Rechnungen</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.crdate" resname="tx_clubmanager_domain_model_member.crdate" approved="yes">
         <source>Record created on</source>
