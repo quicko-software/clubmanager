@@ -3,7 +3,7 @@
 ######################
 # Since TYPO3 13, “Bootstrap Package: Full Package” must be integrated via the site configuration as “Sets for this website.”
 [compatVersion("12.4")]
-    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:bootstrap_package/Configuration/TypoScript/constants.typoscript" condition="extension.isLoaded('bootstrap_package') == 1">
+    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:bootstrap_package/Configuration/TypoScript/constants.typoscript">
 [END]
 
 

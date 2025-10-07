@@ -1,7 +1,7 @@
 ####################
 #### EXTENSIONS ####
 ####################
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager/Configuration/TypoScript/Bootstrap_package/constants.typoscript" condition="extension.isLoaded('bootstrap_package') == 1">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager/Configuration/TypoScript/Bootstrap_package/constants.typoscript">
 
 ##############
 ### CONFIG ###

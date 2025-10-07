@@ -1,4 +1,4 @@
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/constants.typoscript" condition="extension.isLoaded('felogin') == 1">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/constants.typoscript">
 
 styles.content.loginform {
     showForgotPasswordLink = 1
