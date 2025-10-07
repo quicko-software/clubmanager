@@ -1,7 +1,7 @@
 plugin.tx_clubmanager.settings.contentBlockerMode = cookieman
 
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/setup.typoscript" condition="extension.isLoaded('cookieman') == 1">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/TrackingObjects/fe_typo_user.typoscript" condition="extension.isLoaded('cookieman') == 1">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/setup.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/TrackingObjects/fe_typo_user.typoscript">
 
 plugin.tx_cookieman._LOCAL_LANG {
     de {

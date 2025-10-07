@@ -1,5 +1,5 @@
 // FELOGIN
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/setup.typoscript" condition="extension.isLoaded('felogin') == 1">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/setup.typoscript">
 
 plugin.tx_felogin_login {
     view.templateRootPaths.10 = EXT:clubmanager/Resources/Private/Extensions/Felogin/Templates/
