@@ -186,33 +186,37 @@ class LocationRepository extends Repository
    */
   public function findAround($coords, $radiusKm): array|QueryResultInterface
   {
-    $query = $this->createQuery();
-    $distanceLiteral = DistanceCalcLiteral::getSql('tx_clubmanager_domain_model_location');
-    $sql = <<<EOS
-      SELECT tx_clubmanager_domain_model_location.* , $distanceLiteral as distance FROM tx_clubmanager_domain_model_location
-      JOIN tx_clubmanager_domain_model_member
-      ON tx_clubmanager_domain_model_location.member = tx_clubmanager_domain_model_member.uid
-      WHERE (
-        $distanceLiteral < :radiusKm
-        AND tx_clubmanager_domain_model_location.hidden = 0 
-        AND tx_clubmanager_domain_model_location.deleted = 0
-        AND tx_clubmanager_domain_model_member.hidden = 0 
-        AND tx_clubmanager_domain_model_member.deleted = 0 
-        AND tx_clubmanager_domain_model_member.state = :state
-        AND tx_clubmanager_domain_model_location.pid in (:pid)
-      )
-      ORDER BY distance, tx_clubmanager_domain_model_location.lastname
-      EOS;
-    $query->statement($sql, [
-      ':lat' => $coords['latitude'],
-      ':lng' => $coords['longitude'],
-      ':radiusKm' => $radiusKm,
-      ':state' => \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE,
-      ':pid' => implode(',', StoragePids::getList()),
-    ]);
-    $result = $query->execute();
+      $distanceMath = DistanceCalcLiteral::getSql('tx_clubmanager_domain_model_location');
+      $table = 'tx_clubmanager_domain_model_location';
+      $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+      $query = $queryBuilder
+          ->addSelectLiteral('tx_clubmanager_domain_model_location.*')
+          ->addSelectLiteral($distanceMath . ' AS distance')
+          ->from($table)
+          ->join(
+              $table,
+              'tx_clubmanager_domain_model_member',
+              'tx_clubmanager_domain_model_member',
+              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.uid', 'tx_clubmanager_domain_model_location.uid')
+          )
+          ->where($distanceMath . ' < ' . $queryBuilder->createNamedParameter($radiusKm))
+          ->andWhere(
+              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_location.hidden', 0),
+              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_location.deleted', 0),
+              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.hidden', 0),
+              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.deleted', 0),
+              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+              $queryBuilder->expr()->in('tx_clubmanager_domain_model_location.pid', StoragePids::getList())
+          )
+          ->orderBy('distance', 'ASC')
+          ->addOrderBy('tx_clubmanager_domain_model_location.lastname')
+          ->setParameter('lat',  $coords['latitude'])
+          ->setParameter('lng', $coords['longitude'])
+          ->setParameter('radiusKm', $radiusKm)
 
-    return $result;
+      ;
+
+    return $query->executeQuery();
   }
 
   public function findPublicActive(?array $sorting = null): QueryResultInterface
