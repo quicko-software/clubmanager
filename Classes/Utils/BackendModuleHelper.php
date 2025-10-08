@@ -12,7 +12,7 @@ class BackendModuleHelper
   ) : array {
     return [
       'parent' => 'clubmanager',
-      'access' => 'user,group',
+      'access' => 'user',
       'workspaces' => 'live',
       'path' => "/module/clubmanager/$beUrlSubPath",
       'labels' => "LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:mlang_tabs_tab_$moduleName",
