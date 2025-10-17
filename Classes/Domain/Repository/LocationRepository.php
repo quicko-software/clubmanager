@@ -160,7 +160,7 @@ class LocationRepository extends Repository
    *
    * @param array $zipList the list of allowed zips as string array, e.g. ['06120','06110','99712']
    */
-  public function findWithZipCode($zipList)
+  public function findWithZipCode($zipList) : array
   {
     if ($zipList === null || count($zipList) === 0) {
       return [];
@@ -184,39 +184,48 @@ class LocationRepository extends Repository
    * @param array $coords   the coordinates as array, e.g. ['latitude' => 51.123, 'longitude' => 11.456 ]
    * @param int   $radiusKm the max distance of the member location to the given $coords
    */
-  public function findAround($coords, $radiusKm): array|QueryResultInterface
+  public function findAroundCoords($coords, $radiusKm) : array
   {
-      $distanceMath = DistanceCalcLiteral::getSql('tx_clubmanager_domain_model_location');
-      $table = 'tx_clubmanager_domain_model_location';
-      $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
-      $query = $queryBuilder
-          ->addSelectLiteral('tx_clubmanager_domain_model_location.*')
-          ->addSelectLiteral($distanceMath . ' AS distance')
-          ->from($table)
-          ->join(
-              $table,
-              'tx_clubmanager_domain_model_member',
-              'tx_clubmanager_domain_model_member',
-              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.uid', 'tx_clubmanager_domain_model_location.uid')
-          )
-          ->where($distanceMath . ' < ' . $queryBuilder->createNamedParameter($radiusKm))
-          ->andWhere(
-              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_location.hidden', 0),
-              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_location.deleted', 0),
-              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.hidden', 0),
-              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.deleted', 0),
-              $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
-              $queryBuilder->expr()->in('tx_clubmanager_domain_model_location.pid', StoragePids::getList())
-          )
-          ->orderBy('distance', 'ASC')
-          ->addOrderBy('tx_clubmanager_domain_model_location.lastname')
-          ->setParameter('lat',  $coords['latitude'])
-          ->setParameter('lng', $coords['longitude'])
-          ->setParameter('radiusKm', $radiusKm)
-
-      ;
-
-    return $query->executeQuery();
+    $distanceMath = DistanceCalcLiteral::getSql('tx_clubmanager_domain_model_location');
+    $table = 'tx_clubmanager_domain_model_location';
+    /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder */
+    $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+    $queryBuilder
+      ->addSelectLiteral('tx_clubmanager_domain_model_location.*')
+      ->addSelectLiteral($distanceMath . ' AS distance')
+      ->from($table)
+      ->join(
+        $table,
+        'tx_clubmanager_domain_model_member',
+        'tx_clubmanager_domain_model_member',
+        $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.uid', 'tx_clubmanager_domain_model_location.member')
+      )
+      ->where($distanceMath . ' < ' . $queryBuilder->createNamedParameter($radiusKm))
+      ->andWhere(
+        $queryBuilder->expr()->eq('tx_clubmanager_domain_model_location.hidden', 0),
+        $queryBuilder->expr()->eq('tx_clubmanager_domain_model_location.deleted', 0),
+        $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.hidden', 0),
+        $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.deleted', 0),
+        $queryBuilder->expr()->eq('tx_clubmanager_domain_model_member.state', \Quicko\Clubmanager\Domain\Model\Member::STATE_ACTIVE),
+        $queryBuilder->expr()->in('tx_clubmanager_domain_model_location.pid', StoragePids::getList())
+      )
+      ->orderBy('distance', 'ASC')
+      ->addOrderBy('tx_clubmanager_domain_model_location.lastname')
+      ->setParameter('lat',  $coords['latitude'])
+      ->setParameter('lng', $coords['longitude'])
+      ->setParameter('radiusKm', $radiusKm)
+    ;
+ 
+    $resultRecords = $queryBuilder->executeQuery()->fetchAllAssociative();
+    // Unlike $query->execute(), the $queryBuilder->executeQuery() method does
+    // not provide extbase model mapping of the result-records.
+    // So - do it here (note that this is quite hacky, since the DataMapper is not intented to
+    // be used by third-party-extensions) -> otherwise, we had to rebuild a query using
+    // the result uids and resort it manually.
+    // 2025-10-17,stephanw
+    $dataMapper = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper::class);
+    $objArray = $dataMapper->map(Location::class, $resultRecords);
+    return $objArray;
   }
 
   public function findPublicActive(?array $sorting = null): QueryResultInterface
