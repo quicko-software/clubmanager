@@ -13,8 +13,8 @@
   });
 
   2.)
-  The .dataTable_scrollBody must be positioned absolute
-  within it's parent (.dataTable_scroll) with maximal
+  The .dt-scroll-body must be positioned absolute
+  within it's parent (.dt-scroll) with maximal
   expansion.
 
   Expands the scrollable table area as far as possible
@@ -26,6 +26,7 @@ import $ from 'jquery';
 export default class DataTableHeightFix {
 
   static mount($dataTable) {
+    console.log('mount');
     $dataTable.on('init.dt', function () {
       DataTableHeightFix.correct($dataTable);
     });
@@ -35,7 +36,6 @@ export default class DataTableHeightFix {
   }
 
   static correct($dataTable) {
-
     let $scroll = $dataTable.closest('.dt-scroll');
     let $scrollBody = $scroll.find('.dt-scroll-body');
     let $scrollHead = $scroll.find('.dt-scroll-head');
@@ -46,7 +46,7 @@ export default class DataTableHeightFix {
       $scrollBody.css('width','unset');
       $scrollBody.css('height','unset');
       $scrollBody.css('max-height', new_max_height + 'px');
-
+      console.log('max-height = ' + new_max_height + 'px');
       let scrollerPluginInstance = $dataTable.DataTable().settings()[0].oScroller;
       scrollerPluginInstance.measure();
     }
