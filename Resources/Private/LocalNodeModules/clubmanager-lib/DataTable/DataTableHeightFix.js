@@ -26,7 +26,6 @@ import $ from 'jquery';
 export default class DataTableHeightFix {
 
   static mount($dataTable) {
-    console.log('mount');
     $dataTable.on('init.dt', function () {
       DataTableHeightFix.correct($dataTable);
     });
@@ -46,7 +45,6 @@ export default class DataTableHeightFix {
       $scrollBody.css('width','unset');
       $scrollBody.css('height','unset');
       $scrollBody.css('max-height', new_max_height + 'px');
-      console.log('max-height = ' + new_max_height + 'px');
       let scrollerPluginInstance = $dataTable.DataTable().settings()[0].oScroller;
       scrollerPluginInstance.measure();
     }
