@@ -5,16 +5,18 @@ $color-primary: #65a30d;
 $color-primary-hover: #2f7934;
 $color-seconday: #014f77;
 
-.module-body.t3js-module-body {
-  height: calc(100% - 65px);
+// .module-body.t3js-module-body {
+//   height: calc(100% - 65px);
+// }
+body:has(.clubmanager-backend-module) {
+  height: 100%;
 }
-
 .clubmanager-backend-module {
   height: 100%;
   display: flex;
   flex-direction: column;
 
-  >section {
+  section {
     flex-basis: 100%;
     flex-grow: 0;
     flex-shrink: 0;
@@ -24,7 +26,7 @@ $color-seconday: #014f77;
     align-items: stretch;
 
     .card-body {
-      >.dt-container {
+      .dt-container {
         display: flex !important;
         flex-direction: column;
         flex-grow: 1;
@@ -36,7 +38,7 @@ $color-seconday: #014f77;
           flex-shrink: 0;
         }
 
-        >.dt-scroll {
+        .dt-scroll {
           color: black;
 
           a {
@@ -50,8 +52,8 @@ $color-seconday: #014f77;
           position: relative;
           overflow: hidden;
 
-          >.dt-scroll-body>table>thead th,
-          >.dt-scroll-head>.dt-scroll-headInner>table>thead th {
+          .dt-scroll-body>table>thead th,
+          .dt-scroll-head>.dt-scroll-headInner>table>thead th {
             background: #333;
             font-size: 14px;
             padding: .5em 2em .5em .5em;
@@ -67,11 +69,9 @@ $color-seconday: #014f77;
             white-space: nowrap;
           }
 
-          >.dt-scroll-body {
-
-
-            >table {
-              >tbody {
+          .dt-scroll-body {
+            table {
+              tbody {
                 td {
                   padding: 5px 13px;
                   min-height: 30px;
@@ -90,7 +90,7 @@ $color-seconday: #014f77;
                   }
                 }
 
-                >tr {
+                tr {
 
                   &.even.selected,
                   &.odd.selected {
@@ -113,8 +113,8 @@ $color-seconday: #014f77;
         .dtr-inline.collapsed {
           tbody>tr {
 
-            >td.dtr-control::before,
-            >th.dtr-control::before {
+            td.dtr-control::before,
+            th.dtr-control::before {
               background-color: transparent;
               border: none;
               box-shadow: none;
@@ -145,8 +145,8 @@ $color-seconday: #014f77;
 
             &.selected {
 
-              >td.dtr-control::before,
-              >th.dtr-control::before {
+              td.dtr-control::before,
+              th.dtr-control::before {
                 color: white;
               }
             }

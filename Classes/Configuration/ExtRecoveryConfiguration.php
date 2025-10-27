@@ -24,7 +24,12 @@ class ExtRecoveryConfiguration extends RecoveryConfiguration
       $hashService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\HashService::class);
     }
     // parent::__construct($context, $configurationManager, $random, $hashService);
-    $this->settings = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+    // $this->settings = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+    //
+    // Don't call $configurationManager->getConfiguration(...) here because it requires
+    // a http request which is not present in cli-context (scheduler).
+    // As far as I can see now the settings are not neccessary (2025-10-23,stephanw).
+    // 
     $this->fixSettings();
     $this->forgotHash = $this->getLifeTimeTimestamp() . '|' . $this->generateHash($random, $hashService);
     $this->resolveFromTypoScript();
