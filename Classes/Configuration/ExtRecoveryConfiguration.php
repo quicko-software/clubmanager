@@ -44,7 +44,7 @@ class ExtRecoveryConfiguration extends RecoveryConfiguration
 
     $this->mailTemplateName = (string) ($this->settings['email']['templateName'] ?? '');
     if (empty($this->mailTemplateName)) {
-      $this->settings['email']['templateName'] = 'DUMMY';
+      $this->settings['email']['templateName'] = 'PasswordRecovery';
     }
     /** @var ExtensionConfiguration $config */
     $config = GeneralUtility::makeInstance(ExtensionConfiguration::class);
