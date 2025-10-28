@@ -3,6 +3,7 @@
 
 plugin.tx_felogin_login {
     view.templateRootPaths.10 = EXT:clubmanager/Resources/Private/Extensions/Felogin/Templates/
+    view.partialRootPaths.10 = EXT:clubmanager/Resources/Private/Extensions/Felogin/Partials/
     settings {
         pages = {$plugin.tx_clubmanager.settings.feUsersStoragePid}
     }
