@@ -446,12 +446,11 @@ class Member extends AbstractEntity
 
   /**
    * @param ?Location $mainLocation
-   *
    */
   public function setMainLocation($mainLocation): void
   {
-    if($mainLocation) {
-    $mainLocation->setKind(0);
+    if ($mainLocation) {
+      $mainLocation->setKind(0);
     }
     $this->mainLocation = $mainLocation;
   }
@@ -469,7 +468,7 @@ class Member extends AbstractEntity
    */
   public function setSubLocations($subLocations): void
   {
-    foreach($subLocations as $subLocation) {
+    foreach ($subLocations as $subLocation) {
       $subLocation->setKind(1);
     }
     $this->subLocations = $subLocations;
