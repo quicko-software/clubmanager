@@ -440,9 +440,24 @@
 			<trans-unit id="tx_clubmanager_domain_model_socialmedia.type.2" resname="tx_clubmanager_domain_model_socialmedia.type.2">
 				<source>Youtube</source>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_socialmedia.type.3" resname="tx_clubmanager_domain_model_socialmedia.type.3">
-				<source>Twitter</source>
-			</trans-unit>
-		</body>
+		<trans-unit id="tx_clubmanager_domain_model_socialmedia.type.3" resname="tx_clubmanager_domain_model_socialmedia.type.3">
+			<source>Twitter</source>
+		</trans-unit>
+		<trans-unit id="tx_clubmanager_domain_model_memberstatuschange" resname="tx_clubmanager_domain_model_memberstatuschange">
+			<source>Status Change</source>
+		</trans-unit>
+		<trans-unit id="tx_clubmanager_domain_model_memberstatuschange.effective_date" resname="tx_clubmanager_domain_model_memberstatuschange.effective_date">
+			<source>Effective Date</source>
+		</trans-unit>
+		<trans-unit id="tx_clubmanager_domain_model_memberstatuschange.note" resname="tx_clubmanager_domain_model_memberstatuschange.note">
+			<source>Note</source>
+		</trans-unit>
+		<trans-unit id="tx_clubmanager_domain_model_memberstatuschange.processed" resname="tx_clubmanager_domain_model_memberstatuschange.processed">
+			<source>Processed</source>
+		</trans-unit>
+		<trans-unit id="tx_clubmanager_domain_model_member.status_changes" resname="tx_clubmanager_domain_model_member.status_changes">
+			<source>Status History</source>
+		</trans-unit>
+	</body>
 	</file>
 </xliff>

@@ -12,3 +12,8 @@ services:
 
   Quicko\Clubmanager\Utils\ForgotPasswordHashGenerator:
     public: true
+
+  Quicko\Clubmanager\Updates\MemberStatusHistoryUpgradeWizard:
+    tags:
+      - name: install.upgradewizard
+        identifier: clubmanagerMemberStatusHistory

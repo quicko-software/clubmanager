@@ -92,33 +92,39 @@ call_user_func(function () {
   // $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_reset_password'] = \Quicko\Clubmanager\Hooks\EmailVerificationTokenResetHook::class;
 
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1454581922] = [
-      'nodeName' => 'SearchLocation',
-      'priority' => '70',
-      'class' => Quicko\Clubmanager\FormEngine\SearchLocationButton::class,
+    'nodeName' => 'SearchLocation',
+    'priority' => '70',
+    'class' => Quicko\Clubmanager\FormEngine\SearchLocationButton::class,
   ];
 
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1738654663] = [
     'nodeName' => 'PasswordReset',
     'priority' => 30,
     'class' => Quicko\Clubmanager\FormEngine\PasswordReset::class,
- ];
+  ];
 
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][RecoveryConfiguration::class] = [
-   'className' => ExtRecoveryConfiguration::class,
+    'className' => ExtRecoveryConfiguration::class,
   ];
 
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\MemberLoginReminderTask::class] = [
-      'extension' => 'clubmanager',
-      'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MemberLoginReminderTask.title',
-      'description' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MemberLoginReminderTask.description',
-      'additionalFields' => Quicko\Clubmanager\Tasks\MemberLoginReminderTaskAdditionalFieldProvider::class,
+    'extension' => 'clubmanager',
+    'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MemberLoginReminderTask.title',
+    'description' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MemberLoginReminderTask.description',
+    'additionalFields' => Quicko\Clubmanager\Tasks\MemberLoginReminderTaskAdditionalFieldProvider::class,
   ];
 
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\MailServiceTask::class] = [
-      'extension' => 'clubmanager',
-      'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MailServiceTask.title',
-      'description' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MailServiceTask.description',
-      'additionalFields' => Quicko\Clubmanager\Tasks\MailServiceTaskAdditionalFieldProvider::class,
+    'extension' => 'clubmanager',
+    'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MailServiceTask.title',
+    'description' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.MailServiceTask.description',
+    'additionalFields' => Quicko\Clubmanager\Tasks\MailServiceTaskAdditionalFieldProvider::class,
+  ];
+
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\SynchronizeStatusChangesTask::class] = [
+    'extension' => 'clubmanager',
+    'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.SynchronizeStatusChangesTask.title',
+    'description' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.SynchronizeStatusChangesTask.description',
   ];
 
   $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class);

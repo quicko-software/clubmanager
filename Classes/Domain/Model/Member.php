@@ -168,6 +168,13 @@ class Member extends AbstractEntity
    */
   protected ObjectStorage $categories;
 
+  /**
+   * @var ObjectStorage<MemberStatusChange>
+   *
+   * @Cascade("remove")
+   */
+  protected ObjectStorage $statusChanges;
+
   public function __construct()
   {
     $this->initializeObject();
@@ -177,6 +184,7 @@ class Member extends AbstractEntity
   {
     $this->categories = new ObjectStorage();
     $this->subLocations = new ObjectStorage();
+    $this->statusChanges = new ObjectStorage();
   }
 
   public function isHidden(): bool
@@ -907,5 +915,26 @@ class Member extends AbstractEntity
     $this->altEmail = $altEmail;
 
     return $this;
+  }
+
+  /**
+   * @return ObjectStorage<MemberStatusChange>
+   */
+  public function getStatusChanges(): ObjectStorage
+  {
+    return $this->statusChanges;
+  }
+
+  /**
+   * @param ObjectStorage<MemberStatusChange> $statusChanges
+   */
+  public function setStatusChanges(ObjectStorage $statusChanges): void
+  {
+    $this->statusChanges = $statusChanges;
+  }
+
+  public function addStatusChange(MemberStatusChange $statusChange): void
+  {
+    $this->statusChanges->attach($statusChange);
   }
 }

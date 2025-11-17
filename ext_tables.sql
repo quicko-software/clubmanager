@@ -163,3 +163,19 @@ CREATE TABLE tx_clubmanager_domain_model_socialmedia (
 	url varchar(1024) DEFAULT '' NOT NULL,
 	KEY location (location),
 );
+
+#
+# Table structure for table 'tx_clubmanager_domain_model_memberstatuschange'
+#
+CREATE TABLE tx_clubmanager_domain_model_memberstatuschange (
+	member int(11) unsigned DEFAULT '0' NOT NULL,
+	state int(11) DEFAULT '0' NOT NULL,
+	effective_date bigint(20) DEFAULT '0' NOT NULL,
+	note text,
+	processed tinyint(4) DEFAULT '0' NOT NULL,
+	created_by int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY member (member),
+	KEY effective_processed (effective_date, processed),
+	KEY state (state)
+);

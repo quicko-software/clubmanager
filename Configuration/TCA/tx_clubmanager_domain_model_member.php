@@ -45,6 +45,7 @@ return [
                 state, level, --linebreak--,
                 reduced_rate, cancellation_wish, --linebreak--,
                 starttime, endtime,--linebreak--,
+                status_changes, --linebreak--,
                 email, phone, telefax,--linebreak--,
                 feuser
             ',
@@ -105,6 +106,7 @@ return [
                 'default' => 0,
                 'eval' => 'int',
                 'format' => 'date',
+                'readOnly' => true,
             ],
             'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
@@ -120,6 +122,7 @@ return [
                 'range' => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038),
                 ],
+                'readOnly' => true,
             ],
             'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
@@ -356,6 +359,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'size' => 1,
+                'readOnly' => true,
                 'items' => [
                     ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.0', 'value' => Quicko\Clubmanager\Domain\Model\Member::STATE_UNSET],
                     ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.1', 'value' => Quicko\Clubmanager\Domain\Model\Member::STATE_APPLIED],
@@ -540,6 +544,24 @@ return [
                             ],
                         ],
                     ],
+                ],
+            ],
+        ],
+
+        'status_changes' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.status_changes',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_clubmanager_domain_model_memberstatuschange',
+                'foreign_field' => 'member',
+                'foreign_default_sortby' => 'effective_date DESC',
+                'minitems' => 0,
+                'maxitems' => 9999,
+                'appearance' => [
+                    'collapseAll' => 1,
+                    'expandSingle' => 1,
+                    'showSynchronizationLink' => 1,
                 ],
             ],
         ],

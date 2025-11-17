@@ -134,7 +134,10 @@ class MemberRepository extends Repository
           $query->equals('endtime', 0),
           $query->lessThanOrEqual('endtime', $endDate)
         ),
-        $query->equals('state', Member::STATE_ACTIVE),
+        $query->logicalOr(
+          $query->equals('state', Member::STATE_ACTIVE),
+          $query->equals('state', Member::STATE_SUSPENDED)
+        )
       )
     );
 
