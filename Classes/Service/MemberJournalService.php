@@ -118,6 +118,47 @@ class MemberJournalService
     return $processedCount;
   }
 
+  /**
+   * Verarbeitet fällige Journal-Einträge für einen spezifischen Member
+   */
+  public function processPendingEntriesForMember(int $memberUid, ?DateTime $referenceDate = null): int
+  {
+    $refDate = $referenceDate ?? new DateTime('now');
+    $pendingEntries = $this->journalRepository->findPendingUntilDateForMember($refDate, $memberUid);
+
+    $processedCount = 0;
+    $now = new DateTime();
+
+    foreach ($pendingEntries as $entry) {
+      // Lade Member-Objekt
+      $member = $this->memberRepository->findByUidWithoutStoragePage($memberUid);
+
+      if (!$member instanceof Member) {
+        // Member existiert nicht mehr, markiere trotzdem als verarbeitet
+        $entry->setProcessed($now);
+        $this->journalRepository->update($entry);
+        continue;
+      }
+
+      if ($entry->isStatusChange()) {
+        $this->applyStatusChange($member, $entry);
+      } elseif ($entry->isLevelChange()) {
+        $this->applyLevelChange($member, $entry);
+      }
+
+      $entry->setProcessed($now);
+      $this->journalRepository->update($entry);
+      $this->memberRepository->update($member);
+      $processedCount++;
+    }
+
+    if ($processedCount > 0) {
+      $this->persistenceManager->persistAll();
+    }
+
+    return $processedCount;
+  }
+
   protected function applyStatusChange(Member $member, MemberJournalEntry $entry): void
   {
     $targetState = $entry->getTargetState();

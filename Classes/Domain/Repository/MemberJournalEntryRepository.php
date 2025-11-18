@@ -42,6 +42,34 @@ class MemberJournalEntryRepository extends Repository
   }
 
   /**
+   * Findet alle unverarbeiteten Einträge bis zum Datum für einen spezifischen Member
+   *
+   * @return iterable<int, T>
+   */
+  public function findPendingUntilDateForMember(DateTime $date, int $memberUid): iterable
+  {
+    $query = $this->createQuery();
+    $query->getQuerySettings()->setRespectStoragePage(false);
+    $query->matching(
+      $query->logicalAnd(
+        $query->equals('member', $memberUid),
+        $query->in('entryType', [
+          MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE,
+          MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE
+        ]),
+        $query->equals('processed', null),
+        $query->lessThanOrEqual('effectiveDate', $date),
+        $query->greaterThan('effectiveDate', 0),
+        $query->equals('deleted', 0),
+        $query->equals('hidden', 0)
+      )
+    );
+    $query->setOrderings(['effectiveDate' => QueryInterface::ORDER_ASCENDING]);
+
+    return $query->execute();
+  }
+
+  /**
    * Vollständiges Journal für ein Member
    *
    * @return iterable<int, T>
