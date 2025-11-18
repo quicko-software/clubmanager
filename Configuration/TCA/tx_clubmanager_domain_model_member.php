@@ -43,9 +43,9 @@ return [
         'membership' => [
             'showitem' => '
                 ident, --linebreak--, 
-                state, level, --linebreak--,
-                reduced_rate, --linebreak--,
-                starttime, endtime,--linebreak--,
+                state, --linebreak--,
+                starttime, endtime, --linebreak--,
+                level, reduced_rate, --linebreak--,
                 email, phone, telefax,--linebreak--,
                 feuser
             ',
