@@ -9,7 +9,7 @@ return [
   'ctrl' => [
     'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry',
     'label' => 'entry_date',
-    'label_alt' => 'entry_type',
+    'label_alt' => 'entry_type, target_state, effective_date',
     'label_alt_force' => true,
     'type' => 'entry_type',
     'typeicon_column' => 'entry_type',
