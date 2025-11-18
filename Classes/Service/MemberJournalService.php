@@ -125,31 +125,70 @@ class MemberJournalService
   {
     $refDate = $referenceDate ?? new DateTime('now');
     $pendingEntries = $this->journalRepository->findPendingUntilDateForMember($refDate, $memberUid);
+    $entriesArray = iterator_to_array($pendingEntries);
 
     $processedCount = 0;
     $now = new DateTime();
 
-    foreach ($pendingEntries as $entry) {
-      // Lade Member-Objekt
+    foreach ($entriesArray as $entry) {
+      // Lade Member-Objekt - versuche zuerst via Repository
       $member = $this->memberRepository->findByUidWithoutStoragePage($memberUid);
 
       if (!$member instanceof Member) {
-        // Member existiert nicht mehr, markiere trotzdem als verarbeitet
+        // Versuche direkten DB-Zugriff (z.B. wenn wir im Hook während des Speicherns sind)
+        $memberRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tx_clubmanager_domain_model_member', $memberUid);
+        if (!$memberRecord) {
+          // Member existiert nicht mehr, markiere trotzdem als verarbeitet
+          $entry->setProcessed($now);
+          $this->journalRepository->update($entry);
+          continue;
+        }
+
+        // Erstelle ein temporäres Member-Objekt aus dem Record
+        $member = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Member::class);
+        $member->_setProperty('uid', $memberRecord['uid']);
+        $member->setState($memberRecord['state'] ?? '');
+        $member->setLevel($memberRecord['level'] ?? 0);
+        $member->setStarttime($memberRecord['starttime'] ? new \DateTime('@' . $memberRecord['starttime']) : null);
+        $member->setEndtime($memberRecord['endtime'] ? new \DateTime('@' . $memberRecord['endtime']) : null);
+
+        // Wende Änderungen am temporären Objekt an
+        if ($entry->isStatusChange()) {
+          $this->applyStatusChange($member, $entry);
+        } elseif ($entry->isLevelChange()) {
+          $this->applyLevelChange($member, $entry);
+        }
+
+        // Speichere direkt in DB statt via Repository
+        $connection = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)
+          ->getConnectionForTable('tx_clubmanager_domain_model_member');
+        $connection->update(
+          'tx_clubmanager_domain_model_member',
+          [
+            'state' => $member->getState(),
+            'level' => $member->getLevel(),
+            'starttime' => $member->getStarttime() ? $member->getStarttime()->getTimestamp() : 0,
+            'endtime' => $member->getEndtime() ? $member->getEndtime()->getTimestamp() : 0,
+          ],
+          ['uid' => $memberUid]
+        );
+
         $entry->setProcessed($now);
         $this->journalRepository->update($entry);
-        continue;
-      }
+        $processedCount++;
+      } else {
+        // Normal flow via Repository
+        if ($entry->isStatusChange()) {
+          $this->applyStatusChange($member, $entry);
+        } elseif ($entry->isLevelChange()) {
+          $this->applyLevelChange($member, $entry);
+        }
 
-      if ($entry->isStatusChange()) {
-        $this->applyStatusChange($member, $entry);
-      } elseif ($entry->isLevelChange()) {
-        $this->applyLevelChange($member, $entry);
+        $entry->setProcessed($now);
+        $this->journalRepository->update($entry);
+        $this->memberRepository->update($member);
+        $processedCount++;
       }
-
-      $entry->setProcessed($now);
-      $this->journalRepository->update($entry);
-      $this->memberRepository->update($member);
-      $processedCount++;
     }
 
     if ($processedCount > 0) {
@@ -172,9 +211,10 @@ class MemberJournalService
 
     switch ($targetState) {
       case Member::STATE_ACTIVE:
-        if (!$member->getStarttime()) {
-          $member->setStarttime($effectiveDate);
-        }
+        // Setze starttime auf effective_date bei Aktivierung
+        $member->setStarttime($effectiveDate);
+        // Wenn der Member wieder aktiv wird, entferne das endtime
+        $member->setEndtime(null);
         break;
 
       case Member::STATE_CANCELLED:

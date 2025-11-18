@@ -23,6 +23,10 @@ class MemberJournalEntryRepository extends Repository
   {
     $query = $this->createQuery();
     $query->getQuerySettings()->setRespectStoragePage(false);
+
+    // Konvertiere DateTime zu Timestamp für den Vergleich
+    $timestamp = $date->getTimestamp();
+
     $query->matching(
       $query->logicalAnd(
         $query->in('entryType', [
@@ -30,7 +34,7 @@ class MemberJournalEntryRepository extends Repository
           MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE
         ]),
         $query->equals('processed', null),
-        $query->lessThanOrEqual('effectiveDate', $date),
+        $query->lessThanOrEqual('effectiveDate', $timestamp),
         $query->greaterThan('effectiveDate', 0),
         $query->equals('deleted', 0),
         $query->equals('hidden', 0)
@@ -49,7 +53,14 @@ class MemberJournalEntryRepository extends Repository
   public function findPendingUntilDateForMember(DateTime $date, int $memberUid): iterable
   {
     $query = $this->createQuery();
-    $query->getQuerySettings()->setRespectStoragePage(false);
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true); // Ignore enable fields, wir prüfen explizit
+    $query->setQuerySettings($querySettings);
+
+    // Konvertiere DateTime zu Timestamp für den Vergleich
+    $timestamp = $date->getTimestamp();
+
     $query->matching(
       $query->logicalAnd(
         $query->equals('member', $memberUid),
@@ -58,7 +69,7 @@ class MemberJournalEntryRepository extends Repository
           MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE
         ]),
         $query->equals('processed', null),
-        $query->lessThanOrEqual('effectiveDate', $date),
+        $query->lessThanOrEqual('effectiveDate', $timestamp),
         $query->greaterThan('effectiveDate', 0),
         $query->equals('deleted', 0),
         $query->equals('hidden', 0)
@@ -121,6 +132,29 @@ class MemberJournalEntryRepository extends Repository
         $query->equals('entryType', MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE),
         $query->equals('targetState', \Quicko\Clubmanager\Domain\Model\Member::STATE_CANCELLED),
         $query->equals('processed', null),
+        $query->equals('deleted', 0),
+        $query->equals('hidden', 0)
+      )
+    );
+    $query->setOrderings(['entryDate' => QueryInterface::ORDER_DESCENDING]);
+
+    return $query->execute()->getFirst();
+  }
+
+  /**
+   * Findet den letzten verarbeiteten Eintrag eines bestimmten Typs
+   *
+   * @return T|null
+   */
+  public function findLastProcessedEntry(int $memberUid, string $entryType): ?object
+  {
+    $query = $this->createQuery();
+    $query->getQuerySettings()->setRespectStoragePage(false);
+    $query->matching(
+      $query->logicalAnd(
+        $query->equals('member', $memberUid),
+        $query->equals('entryType', $entryType),
+        $query->logicalNot($query->equals('processed', null)),
         $query->equals('deleted', 0),
         $query->equals('hidden', 0)
       )
