@@ -31,7 +31,9 @@ class MemberJournalEntryRepository extends Repository
         ]),
         $query->equals('processed', null),
         $query->lessThanOrEqual('effectiveDate', $date),
-        $query->greaterThan('effectiveDate', 0)
+        $query->greaterThan('effectiveDate', 0),
+        $query->equals('deleted', 0),
+        $query->equals('hidden', 0)
       )
     );
     $query->setOrderings(['effectiveDate' => QueryInterface::ORDER_ASCENDING]);
@@ -66,7 +68,33 @@ class MemberJournalEntryRepository extends Repository
     $query->matching(
       $query->logicalAnd(
         $query->equals('member', $memberUid),
-        $query->equals('entryType', MemberJournalEntry::ENTRY_TYPE_CANCELLATION_REQUEST)
+        $query->equals('entryType', MemberJournalEntry::ENTRY_TYPE_CANCELLATION_REQUEST),
+        $query->equals('deleted', 0),
+        $query->equals('hidden', 0)
+      )
+    );
+    $query->setOrderings(['entryDate' => QueryInterface::ORDER_DESCENDING]);
+
+    return $query->execute()->getFirst();
+  }
+
+  /**
+   * Findet den zugehörigen Status-Wechsel-Eintrag für einen Kündigungswunsch
+   *
+   * @return T|null
+   */
+  public function findPendingCancellationStatusChange(int $memberUid): ?object
+  {
+    $query = $this->createQuery();
+    $query->getQuerySettings()->setRespectStoragePage(false);
+    $query->matching(
+      $query->logicalAnd(
+        $query->equals('member', $memberUid),
+        $query->equals('entryType', MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE),
+        $query->equals('targetState', \Quicko\Clubmanager\Domain\Model\Member::STATE_CANCELLED),
+        $query->equals('processed', null),
+        $query->equals('deleted', 0),
+        $query->equals('hidden', 0)
       )
     );
     $query->setOrderings(['entryDate' => QueryInterface::ORDER_DESCENDING]);

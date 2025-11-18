@@ -58,7 +58,7 @@ return [
       'showitem' => 'entry_date, creator_type',
     ],
     'cancellation_data' => [
-      'showitem' => 'effective_date',
+      'showitem' => 'processed',
     ],
     'status_data' => [
       'showitem' => 'target_state, --linebreak--, effective_date, processed',

@@ -19,12 +19,11 @@ class MemberJournalService
   }
 
   /**
-   * Erstellt Kündigungswunsch + automatischen Status-Wechsel
+   * Erstellt Kündigungswunsch (Status-Wechsel wird später von Billing-Task erstellt)
    */
   public function createCancellationRequest(
     Member $member,
     string $noteText,
-    DateTime $effectiveDate,
     int $creatorType = MemberJournalEntry::CREATOR_TYPE_MEMBER
   ): MemberJournalEntry {
     $memberUid = $member->getUid();
@@ -32,35 +31,48 @@ class MemberJournalService
       throw new \InvalidArgumentException('Member must have a UID');
     }
 
-    // 1. Kündigungswunsch
     $request = new MemberJournalEntry();
     $request->setPid($member->getPid());
     $request->setMember($memberUid);
     $request->setEntryType(MemberJournalEntry::ENTRY_TYPE_CANCELLATION_REQUEST);
     $request->setEntryDate(new DateTime());
-    $request->setEffectiveDate($effectiveDate);
+    // effective_date wird nicht mehr gesetzt - entry_date wird verwendet
     $request->setNote($noteText);
     $request->setCreatorType($creatorType);
     $this->journalRepository->add($request);
     $this->persistenceManager->persistAll();
 
-    // 2. Automatisch Status-Wechsel
-    $statusChange = new MemberJournalEntry();
-    $statusChange->setPid($member->getPid());
-    $statusChange->setMember($memberUid);
-    $statusChange->setEntryType(MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE);
-    $statusChange->setEntryDate(new DateTime());
-    $statusChange->setTargetState(Member::STATE_CANCELLED);
-    $statusChange->setEffectiveDate($effectiveDate);
-    $statusChange->setNote(sprintf(
-      'Automatisch erstellt aufgrund Kündigungswunsch vom %s',
-      $request->getEntryDate()->format('d.m.Y')
-    ));
-    $statusChange->setCreatorType(MemberJournalEntry::CREATOR_TYPE_SYSTEM);
-    $this->journalRepository->add($statusChange);
+    return $request;
+  }
+
+  /**
+   * Erstellt Status-Änderungs-Eintrag
+   */
+  public function createStatusChange(
+    Member $member,
+    int $targetState,
+    DateTime $effectiveDate,
+    string $noteText = '',
+    int $creatorType = MemberJournalEntry::CREATOR_TYPE_SYSTEM
+  ): MemberJournalEntry {
+    $memberUid = $member->getUid();
+    if (!$memberUid) {
+      throw new \InvalidArgumentException('Member must have a UID');
+    }
+
+    $entry = new MemberJournalEntry();
+    $entry->setPid($member->getPid());
+    $entry->setMember($memberUid);
+    $entry->setEntryType(MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE);
+    $entry->setEntryDate(new DateTime());
+    $entry->setEffectiveDate($effectiveDate);
+    $entry->setTargetState($targetState);
+    $entry->setNote($noteText);
+    $entry->setCreatorType($creatorType);
+    $this->journalRepository->add($entry);
     $this->persistenceManager->persistAll();
 
-    return $request;
+    return $entry;
   }
 
   /**
@@ -157,6 +169,14 @@ class MemberJournalService
   public function getPendingCancellationRequest(int $memberUid): ?MemberJournalEntry
   {
     return $this->journalRepository->findPendingCancellationRequest($memberUid);
+  }
+
+  /**
+   * Findet den zugehörigen Status-Wechsel-Eintrag für einen Kündigungswunsch
+   */
+  public function getPendingCancellationStatusChange(int $memberUid): ?MemberJournalEntry
+  {
+    return $this->journalRepository->findPendingCancellationStatusChange($memberUid);
   }
 }
 
