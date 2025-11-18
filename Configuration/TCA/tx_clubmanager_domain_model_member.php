@@ -42,8 +42,7 @@ return [
         '1' => ['showitem' => ''],
         'membership' => [
             'showitem' => '
-                ident, --linebreak--, 
-                state, --linebreak--,
+                ident, state, --linebreak--, 
                 starttime, endtime, --linebreak--,
                 level, reduced_rate, --linebreak--,
                 email, phone, telefax,--linebreak--,
