@@ -50,8 +50,6 @@ class Member extends AbstractEntity
 
   protected ?DateTime $endtime = null;
 
-  protected bool $cancellationWish = false;
-
   protected bool $reducedRate = false;
 
   protected int $state = self::STATE_UNSET;
@@ -169,11 +167,11 @@ class Member extends AbstractEntity
   protected ObjectStorage $categories;
 
   /**
-   * @var ObjectStorage<MemberStatusChange>
+   * @var ObjectStorage<MemberJournalEntry>
    *
    * @Cascade("remove")
    */
-  protected ObjectStorage $statusChanges;
+  protected ObjectStorage $journalEntries;
 
   public function __construct()
   {
@@ -184,7 +182,7 @@ class Member extends AbstractEntity
   {
     $this->categories = new ObjectStorage();
     $this->subLocations = new ObjectStorage();
-    $this->statusChanges = new ObjectStorage();
+    $this->journalEntries = new ObjectStorage();
   }
 
   public function isHidden(): bool
@@ -657,16 +655,6 @@ class Member extends AbstractEntity
     $this->endtime = $endtime;
   }
 
-  public function getCancellationWish(): bool
-  {
-    return $this->cancellationWish;
-  }
-
-  public function setCancellationWish(bool $cancellationWish): void
-  {
-    $this->cancellationWish = $cancellationWish;
-  }
-
   public function getReducedRate(): bool
   {
     return $this->reducedRate;
@@ -918,23 +906,23 @@ class Member extends AbstractEntity
   }
 
   /**
-   * @return ObjectStorage<MemberStatusChange>
+   * @return ObjectStorage<MemberJournalEntry>
    */
-  public function getStatusChanges(): ObjectStorage
+  public function getJournalEntries(): ObjectStorage
   {
-    return $this->statusChanges;
+    return $this->journalEntries;
   }
 
   /**
-   * @param ObjectStorage<MemberStatusChange> $statusChanges
+   * @param ObjectStorage<MemberJournalEntry> $journalEntries
    */
-  public function setStatusChanges(ObjectStorage $statusChanges): void
+  public function setJournalEntries(ObjectStorage $journalEntries): void
   {
-    $this->statusChanges = $statusChanges;
+    $this->journalEntries = $journalEntries;
   }
 
-  public function addStatusChange(MemberStatusChange $statusChange): void
+  public function addJournalEntry(MemberJournalEntry $journalEntry): void
   {
-    $this->statusChanges->attach($statusChange);
+    $this->journalEntries->attach($journalEntry);
   }
 }

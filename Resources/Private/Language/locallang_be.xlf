@@ -24,11 +24,11 @@
 			<trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg">
 				<source>Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </source>
 			</trans-unit>
-			<trans-unit id="task.SynchronizeStatusChangesTask.title" resname="task.SynchronizeStatusChangesTask.title">
-			<source>Synchronize Member Status Changes</source>
+	<trans-unit id="task.ProcessJournalEntriesTask.title" resname="task.ProcessJournalEntriesTask.title">
+		<source>Process Member Journal Entries</source>
 		</trans-unit>
-		<trans-unit id="task.SynchronizeStatusChangesTask.description" resname="task.SynchronizeStatusChangesTask.description">
-			<source>Synchronizes pending member status changes to the member records (state, starttime, endtime)</source>
+	<trans-unit id="task.ProcessJournalEntriesTask.description" resname="task.ProcessJournalEntriesTask.description">
+		<source>Processes pending journal entries (status changes, level changes)</source>
 		</trans-unit>
 		<trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS" resname="task.MailServiceTask.arg.MAX_NUM_MAILS">
 				<source>Maximum number of emails per run</source>

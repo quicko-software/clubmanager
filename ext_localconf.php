@@ -121,10 +121,10 @@ call_user_func(function () {
     'additionalFields' => Quicko\Clubmanager\Tasks\MailServiceTaskAdditionalFieldProvider::class,
   ];
 
-  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\SynchronizeStatusChangesTask::class] = [
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\ProcessJournalEntriesTask::class] = [
     'extension' => 'clubmanager',
-    'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.SynchronizeStatusChangesTask.title',
-    'description' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.SynchronizeStatusChangesTask.description',
+    'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.ProcessJournalEntriesTask.title',
+    'description' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.ProcessJournalEntriesTask.description',
   ];
 
   $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class);

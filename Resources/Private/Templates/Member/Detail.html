@@ -100,17 +100,6 @@
                         </div>
                     </f:if>
 
-                    <f:if condition="{member.cancellationWish} == 1">
-                        <div class="mb-3">
-                            <span class="levellabel btn btn-default">
-                                {f:translate(key:'content_element.member.label.cancellationWish',extensionName:'clubmanager')}
-                            </span>
-                            <span class="level btn {f:if(condition: '{member.cancellationWish} == 0', then: 'btn-default')}{f:if(condition: '{member.cancellationWish} == 1', then: 'btn-warning')}">
-                                {f:translate(key:'content_element.member.cancellationWish.yes',extensionName:'clubmanager')}
-                            </span>
-                        </div>
-                    </f:if>
-
                     <f:if condition="{member.endtime}">
                         <div class="mb-3">
                             <span class="levellabel btn btn-default">

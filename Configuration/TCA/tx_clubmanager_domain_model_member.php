@@ -34,6 +34,7 @@ return [
                     --palette--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.palette.alt_address; alt_address,
                 --div--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category, categories,
                 --div--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.tab.customfields, club_function, found_via, customfield1, customfield2, customfield3, customfield4, customfield5, customfield6,
+                --div--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.tab.journal, journal_entries,
 		        --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, hidden, crdate',
         ],
     ],
@@ -43,9 +44,8 @@ return [
             'showitem' => '
                 ident, --linebreak--, 
                 state, level, --linebreak--,
-                reduced_rate, cancellation_wish, --linebreak--,
+                reduced_rate, --linebreak--,
                 starttime, endtime,--linebreak--,
-                status_changes, --linebreak--,
                 email, phone, telefax,--linebreak--,
                 feuser
             ',
@@ -369,20 +369,6 @@ return [
                 ],
             ],
         ],
-        'cancellation_wish' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.cancellation_wish',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'default' => 0,
-                'items' => [
-                    [
-                        'label' => '',
-                    ],
-                ],
-              ],
-        ],
         'reduced_rate' => [
             'exclude' => true,
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.reduced_rate',
@@ -491,7 +477,7 @@ return [
                         'usergroup' => [
                             'config' => [
                                 'default' => Quicko\Clubmanager\Utils\SettingUtils::get('clubmanager', 'defaultFeUserGroupUid'),
-                             ],
+                            ],
                         ],
                     ],
                 ],
@@ -548,14 +534,14 @@ return [
             ],
         ],
 
-        'status_changes' => [
+        'journal_entries' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.status_changes',
+            'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.journal_entries',
             'config' => [
                 'type' => 'inline',
-                'foreign_table' => 'tx_clubmanager_domain_model_memberstatuschange',
+                'foreign_table' => 'tx_clubmanager_domain_model_memberjournalentry',
                 'foreign_field' => 'member',
-                'foreign_default_sortby' => 'effective_date DESC',
+                'foreign_default_sortby' => 'entry_date DESC',
                 'minitems' => 0,
                 'maxitems' => 9999,
                 'appearance' => [
@@ -615,7 +601,7 @@ return [
                 'minitems' => 0,
                 'maxitems' => 1,
                 'items' => [
-                    ['value' => '',  'key' => ''],
+                    ['value' => '', 'key' => ''],
                 ],
             ],
         ],

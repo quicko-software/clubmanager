@@ -39,13 +39,13 @@
 			<source>Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </source>
 			<target>Offene Mails: %1$d, Fehler: %2$d, E-Mails pro Durchlauf: %3$d. </target>
 		</trans-unit>
-		<trans-unit id="task.SynchronizeStatusChangesTask.title" resname="task.SynchronizeStatusChangesTask.title">
-			<source>Synchronize Member Status Changes</source>
-			<target>Mitglieder Status-Änderungen synchronisieren</target>
+	<trans-unit id="task.ProcessJournalEntriesTask.title" resname="task.ProcessJournalEntriesTask.title">
+		<source>Process Member Journal Entries</source>
+		<target>Mitglieder-Journal Einträge verarbeiten</target>
 		</trans-unit>
-		<trans-unit id="task.SynchronizeStatusChangesTask.description" resname="task.SynchronizeStatusChangesTask.description">
-			<source>Synchronizes pending member status changes to the member records (state, starttime, endtime)</source>
-			<target>Synchronisiert fällige Mitglieder-Statusänderungen in die Mitgliederdatensätze (Status, Startdatum, Enddatum)</target>
+	<trans-unit id="task.ProcessJournalEntriesTask.description" resname="task.ProcessJournalEntriesTask.description">
+		<source>Processes pending journal entries (status changes, level changes)</source>
+		<target>Verarbeitet fällige Journal-Einträge (Status- und Level-Änderungen)</target>
 		</trans-unit>
 		<trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS"
 				resname="task.MailServiceTask.arg.MAX_NUM_MAILS">

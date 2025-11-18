@@ -201,13 +201,10 @@
 			<trans-unit id="tx_clubmanager_domain_model_member.state.4" resname="tx_clubmanager_domain_model_member.state.4">
 				<source>Cancelled</source>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info">
-				<source>Address suffix</source>
-			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.cancellation_wish" resname="tx_clubmanager_domain_model_member.cancellation_wish">
-				<source>Cancellation requested</source>
-			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate">
+		<trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info">
+			<source>Address suffix</source>
+		</trans-unit>
+		<trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate">
 				<source>Reduced membership</source>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.customfield1" resname="tx_clubmanager_domain_model_member.customfield1">
@@ -443,21 +440,57 @@
 		<trans-unit id="tx_clubmanager_domain_model_socialmedia.type.3" resname="tx_clubmanager_domain_model_socialmedia.type.3">
 			<source>Twitter</source>
 		</trans-unit>
-		<trans-unit id="tx_clubmanager_domain_model_memberstatuschange" resname="tx_clubmanager_domain_model_memberstatuschange">
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry" resname="tx_clubmanager_domain_model_memberjournalentry">
+		<source>Member Journal Entry</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type">
+		<source>Entry Type</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request">
+		<source>Cancellation Request</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change">
 			<source>Status Change</source>
 		</trans-unit>
-		<trans-unit id="tx_clubmanager_domain_model_memberstatuschange.effective_date" resname="tx_clubmanager_domain_model_memberstatuschange.effective_date">
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change">
+		<source>Level Change</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_date" resname="tx_clubmanager_domain_model_memberjournalentry.entry_date">
+		<source>Entry Date</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.effective_date" resname="tx_clubmanager_domain_model_memberjournalentry.effective_date">
 			<source>Effective Date</source>
 		</trans-unit>
-		<trans-unit id="tx_clubmanager_domain_model_memberstatuschange.note" resname="tx_clubmanager_domain_model_memberstatuschange.note">
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.processed" resname="tx_clubmanager_domain_model_memberjournalentry.processed">
+		<source>Processed</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.note" resname="tx_clubmanager_domain_model_memberjournalentry.note">
 			<source>Note</source>
 		</trans-unit>
-		<trans-unit id="tx_clubmanager_domain_model_memberstatuschange.processed" resname="tx_clubmanager_domain_model_memberstatuschange.processed">
-			<source>Processed</source>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type">
+		<source>Creator</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.system" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.system">
+		<source>System</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.backend" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.backend">
+		<source>Backend User</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.member" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.member">
+		<source>Member</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.old_level" resname="tx_clubmanager_domain_model_memberjournalentry.old_level">
+		<source>Old Level</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.new_level" resname="tx_clubmanager_domain_model_memberjournalentry.new_level">
+		<source>New Level</source>
 		</trans-unit>
-		<trans-unit id="tx_clubmanager_domain_model_member.status_changes" resname="tx_clubmanager_domain_model_member.status_changes">
-			<source>Status History</source>
-		</trans-unit>
-	</body>
+	<trans-unit id="tx_clubmanager_domain_model_member.journal_entries" resname="tx_clubmanager_domain_model_member.journal_entries">
+		<source>Member Journal</source>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_member.tab.journal" resname="tx_clubmanager_domain_model_member.tab.journal">
+		<source>Journal</source>
+	</trans-unit>
+</body>
 	</file>
 </xliff>

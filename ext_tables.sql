@@ -19,7 +19,9 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 	lastname varchar(255) DEFAULT '' NOT NULL,
 	dateofbirth bigint(20) DEFAULT '0' NOT NULL,
 	nationality varchar(255) DEFAULT '' NOT NULL,
-	cancellation_wish int(11) unsigned DEFAULT '0',
+	# DEPRECATED: cancellation_wish wurde durch Journal-System ersetzt
+	# Feld kann nach erfolgreicher Migration gelöscht werden mit: ALTER TABLE tx_clubmanager_domain_model_member DROP COLUMN cancellation_wish;
+	# cancellation_wish int(11) unsigned DEFAULT '0',
 	reduced_rate int(11) unsigned DEFAULT '0',
 	company varchar(255) DEFAULT '' NOT NULL,
 	add_address_info varchar(255) DEFAULT '' NOT NULL,
@@ -165,17 +167,28 @@ CREATE TABLE tx_clubmanager_domain_model_socialmedia (
 );
 
 #
-# Table structure for table 'tx_clubmanager_domain_model_memberstatuschange'
+# Table structure for table 'tx_clubmanager_domain_model_memberjournalentry'
 #
-CREATE TABLE tx_clubmanager_domain_model_memberstatuschange (
+CREATE TABLE tx_clubmanager_domain_model_memberjournalentry (
 	member int(11) unsigned DEFAULT '0' NOT NULL,
-	state int(11) DEFAULT '0' NOT NULL,
-	effective_date bigint(20) DEFAULT '0' NOT NULL,
+	
+	entry_type varchar(50) DEFAULT 'status_change' NOT NULL,
+	entry_date bigint(20) NOT NULL,
+	
+	-- Gemeinsame Felder
 	note text,
-	processed tinyint(4) DEFAULT '0' NOT NULL,
-	created_by int(11) unsigned DEFAULT '0' NOT NULL,
+	creator_type tinyint DEFAULT '0' NOT NULL,
+	processed bigint(20) DEFAULT NULL,
+	effective_date bigint(20) DEFAULT NULL,
+	
+	-- Für entry_type = 'status_change'
+	target_state int(11) DEFAULT NULL,
+	
+	-- Für entry_type = 'level_change'
+	old_level int(11) DEFAULT NULL,
+	new_level int(11) DEFAULT NULL,
 
-	KEY member (member),
-	KEY effective_processed (effective_date, processed),
-	KEY state (state)
+	KEY member_date (member, entry_date DESC),
+	KEY entry_type (entry_type),
+	KEY effective_processed (effective_date, processed, entry_type)
 );

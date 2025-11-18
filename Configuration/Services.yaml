@@ -13,7 +13,7 @@ services:
   Quicko\Clubmanager\Utils\ForgotPasswordHashGenerator:
     public: true
 
-  Quicko\Clubmanager\Updates\MemberStatusHistoryUpgradeWizard:
+  Quicko\Clubmanager\Updates\MemberJournalInitialWizard:
     tags:
       - name: install.upgradewizard
-        identifier: clubmanagerMemberStatusHistory
+        identifier: clubmanagerMemberJournalInitial
