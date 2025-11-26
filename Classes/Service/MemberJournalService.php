@@ -7,6 +7,7 @@ use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
+use Quicko\Clubmanager\Utils\SettingUtils;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 class MemberJournalService
@@ -32,7 +33,7 @@ class MemberJournalService
     }
 
     $request = new MemberJournalEntry();
-    $request->setPid($member->getPid());
+    $request->setPid($this->resolveJournalStoragePid($member));
     $request->setMember($memberUid);
     $request->setEntryType(MemberJournalEntry::ENTRY_TYPE_CANCELLATION_REQUEST);
     $request->setEntryDate(new DateTime());
@@ -61,7 +62,7 @@ class MemberJournalService
     }
 
     $entry = new MemberJournalEntry();
-    $entry->setPid($member->getPid());
+    $entry->setPid($this->resolveJournalStoragePid($member));
     $entry->setMember($memberUid);
     $entry->setEntryType(MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE);
     $entry->setEntryDate(new DateTime());
@@ -258,6 +259,21 @@ class MemberJournalService
   public function getPendingCancellationStatusChange(int $memberUid): ?MemberJournalEntry
   {
     return $this->journalRepository->findPendingCancellationStatusChange($memberUid);
+  }
+
+  /**
+   * Resolves the storage pid for journal entries based on site configuration
+   * Falls back to member's pid if no site configuration is found
+   */
+  protected function resolveJournalStoragePid(Member $member): int
+  {
+    $memberPid = $member->getPid() ?? 0;
+    if ($memberPid <= 0) {
+      return 0;
+    }
+
+    $storagePid = (int)SettingUtils::getSiteSetting($memberPid, 'clubmanager.memberJournalStoragePid', 0);
+    return $storagePid > 0 ? $storagePid : $memberPid;
   }
 }
 
