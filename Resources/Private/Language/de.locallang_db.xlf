@@ -51,6 +51,10 @@
 				<source>Membership</source>
 				<target>Mitgliedschaft</target>
 			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.palette.contact" resname="tx_clubmanager_domain_model_member.palette.contact">
+				<source>Contact</source>
+				<target>Kontakt</target>
+			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.palette.account" resname="tx_clubmanager_domain_model_member.palette.account">
 				<source>Account data</source>
 				<target>Kontodaten</target>

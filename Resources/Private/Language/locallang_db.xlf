@@ -39,6 +39,9 @@
 			<trans-unit id="tx_clubmanager_domain_model_member.palette.membership" resname="tx_clubmanager_domain_model_member.palette.membership">
 				<source>Membership</source>
 			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.palette.contact" resname="tx_clubmanager_domain_model_member.palette.contact">
+				<source>Contact</source>
+			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.palette.account" resname="tx_clubmanager_domain_model_member.palette.account">
 				<source>Account data</source>
 			</trans-unit>
