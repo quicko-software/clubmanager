@@ -90,6 +90,7 @@ call_user_func(function () {
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_location_lat_lng_update_hook'] = Quicko\Clubmanager\Hooks\LocationLatLngUpdateHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_member_starttime_hook'] = Quicko\Clubmanager\Hooks\MemberStartTimeHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_process_member_journal_hook'] = Quicko\Clubmanager\Hooks\ProcessMemberJournalHook::class;
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_prevent_system_journal_edit'] = Quicko\Clubmanager\Hooks\PreventSystemJournalEntryEditHook::class;
   // $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_reset_password'] = \Quicko\Clubmanager\Hooks\EmailVerificationTokenResetHook::class;
 
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1454581922] = [
@@ -107,6 +108,14 @@ call_user_func(function () {
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][RecoveryConfiguration::class] = [
     'className' => ExtRecoveryConfiguration::class,
   ];
+
+  // FormDataProvider: Set fields to readOnly for system-created journal entries
+  $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord']
+    [Quicko\Clubmanager\FormEngine\FormDataProvider\MemberJournalEntryReadonly::class] = [
+      'depends' => [
+        \TYPO3\CMS\Backend\Form\FormDataProvider\EvaluateDisplayConditions::class,
+      ],
+    ];
 
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\MemberLoginReminderTask::class] = [
     'extension' => 'clubmanager',

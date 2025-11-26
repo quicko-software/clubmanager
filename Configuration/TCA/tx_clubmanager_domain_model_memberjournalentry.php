@@ -104,7 +104,7 @@ return [
       'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.entry_date',
       'config' => [
         'type' => 'datetime',
-        'format' => 'date',
+        'format' => 'datetime',
         'required' => true,
         'default' => 0,
       ],
@@ -120,7 +120,8 @@ return [
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.creator_type.backend', 'value' => 1],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.creator_type.member', 'value' => 2],
         ],
-        'default' => 0,
+        'default' => 1,
+        'readOnly' => true,
       ],
     ],
     'effective_date' => [
@@ -157,6 +158,7 @@ return [
         'type' => 'select',
         'renderType' => 'selectSingle',
         'items' => [
+          ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.1', 'value' => Member::STATE_APPLIED],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.2', 'value' => Member::STATE_ACTIVE],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.3', 'value' => Member::STATE_SUSPENDED],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.4', 'value' => Member::STATE_CANCELLED],
