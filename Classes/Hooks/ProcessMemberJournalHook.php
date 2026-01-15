@@ -7,7 +7,6 @@ use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
 use Quicko\Clubmanager\Service\MemberJournalService;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
@@ -29,38 +28,50 @@ class ProcessMemberJournalHook
   }
 
   /**
-   * Hook beim Speichern:
-   * - Member: Verarbeitet fällige Journal-Einträge und prüft Konsistenz
-   * - Journal-Eintrag: Verarbeitet ihn sofort wenn fällig
+   * Hook nach Abschluss ALLER DataHandler-Operationen.
+   * Wird einmal am Ende aufgerufen, nachdem alle Records (inkl. IRRE-Children) gespeichert sind.
+   *
+   * - Verarbeitet fällige Journal-Einträge sofort (nutzt MemberJournalService)
+   * - Prüft Konsistenz zwischen Member und Journal-Historie
+   *
+   * Das Command (clubmanager:journal:process) dient zusätzlich für Batch-Verarbeitung via Cron.
    */
-  public function processDatamap_afterDatabaseOperations(
-    string &$status,
-    string &$table,
-    string &$id,
-    array &$fieldArray,
-    DataHandler &$pObj
-  ): void {
-    if ($table === 'tx_clubmanager_domain_model_member') {
-      $this->processMemberSave($status, $id, $pObj);
-    } elseif ($table === 'tx_clubmanager_domain_model_memberjournalentry') {
-      $this->processJournalEntrySave($status, $id, $pObj);
+  public function processDatamap_afterAllOperations(DataHandler &$pObj): void
+  {
+    // Sammle alle betroffenen Member-UIDs
+    $memberUids = [];
+
+    // Direkt gespeicherte Member
+    if (isset($pObj->datamap['tx_clubmanager_domain_model_member'])) {
+      foreach ($pObj->datamap['tx_clubmanager_domain_model_member'] as $id => $data) {
+        $uid = is_numeric($id) ? (int) $id : ($pObj->substNEWwithIDs[$id] ?? null);
+        if ($uid) {
+          $memberUids[$uid] = true;
+        }
+      }
+    }
+
+    // Member über Journal-Einträge (IRRE-Children)
+    if (isset($pObj->datamap['tx_clubmanager_domain_model_memberjournalentry'])) {
+      foreach ($pObj->datamap['tx_clubmanager_domain_model_memberjournalentry'] as $id => $data) {
+        $memberUid = $data['member'] ?? null;
+        if ($memberUid && (int) $memberUid > 0) {
+          $memberUids[(int) $memberUid] = true;
+        }
+      }
+    }
+
+    // Verarbeite alle betroffenen Member
+    foreach (array_keys($memberUids) as $memberUid) {
+      $this->processMemberSave($memberUid);
     }
   }
 
   /**
-   * Verarbeitet das Speichern eines Members
+   * Verarbeitet fällige Journal-Einträge und prüft Konsistenz für einen Member
    */
-  protected function processMemberSave(string $status, string $id, DataHandler $pObj): void
+  protected function processMemberSave(int $memberUid): void
   {
-    $uid = $id;
-    if ($status === 'new') {
-      $uid = $pObj->substNEWwithIDs[$id] ?? null;
-    }
-
-    if (!$uid) {
-      return;
-    }
-
     try {
       $journalRepository = GeneralUtility::makeInstance(MemberJournalEntryRepository::class);
       $memberRepository = GeneralUtility::makeInstance(MemberRepository::class);
@@ -74,17 +85,17 @@ class ProcessMemberJournalHook
       );
 
       // 1. Verarbeite fällige Journal-Einträge
-      $processedCount = $journalService->processPendingEntriesForMember((int) $uid);
+      $processedCount = $journalService->processPendingEntriesForMember($memberUid);
 
       if ($processedCount > 0) {
         $this->logger->info(
-          sprintf('Processed %d pending journal entries for member %d', $processedCount, $uid)
+          sprintf('Processed %d pending journal entries for member %d', $processedCount, $memberUid)
         );
       }
 
       // 2. Prüfe Konsistenz zwischen Member und Journal-Historie
       $corrected = $this->ensureMemberConsistencyWithJournal(
-        (int) $uid,
+        $memberUid,
         $journalRepository,
         $memberRepository,
         $persistenceManager
@@ -92,82 +103,12 @@ class ProcessMemberJournalHook
 
       if ($corrected) {
         $this->logger->info(
-          sprintf('Corrected member %d state to match journal history', $uid)
+          sprintf('Corrected member %d state to match journal history', $memberUid)
         );
       }
     } catch (\Exception $e) {
       $this->logger->error(
-        sprintf('Error processing journal for member %d: %s', $uid, $e->getMessage())
-      );
-    }
-  }
-
-  /**
-   * Verarbeitet das Speichern eines Journal-Eintrags
-   * Verarbeitet ihn sofort wenn das effective_date bereits erreicht ist
-   */
-  protected function processJournalEntrySave(string $status, string $id, DataHandler $pObj): void
-  {
-    $uid = $id;
-    if ($status === 'new') {
-      $uid = $pObj->substNEWwithIDs[$id] ?? null;
-    }
-
-    if (!$uid) {
-      return;
-    }
-
-    try {
-      // Lade den Record direkt aus der DB (nicht über Extbase-Repository)
-      $record = BackendUtility::getRecord('tx_clubmanager_domain_model_memberjournalentry', (int) $uid);
-
-      if (!$record) {
-        return;
-      }
-
-      // Nur Status- und Level-Änderungen verarbeiten
-      $entryType = $record['entry_type'] ?? '';
-      if (
-        $entryType !== MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE
-        && $entryType !== MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE
-      ) {
-        return;
-      }
-
-      // Bereits verarbeitet?
-      if (!empty($record['processed'])) {
-        return;
-      }
-
-      // Ist das effective_date bereits erreicht?
-      $effectiveDate = $record['effective_date'] ?? 0;
-      $now = time();
-      if ($effectiveDate === 0 || $effectiveDate > $now) {
-        return;
-      }
-
-      // Member-UID
-      $memberUid = $record['member'] ?? 0;
-      if ($memberUid === 0) {
-        return;
-      }
-
-      // Verarbeite den Eintrag sofort für den zugehörigen Member
-      $journalRepository = GeneralUtility::makeInstance(MemberJournalEntryRepository::class);
-      $memberRepository = GeneralUtility::makeInstance(MemberRepository::class);
-      $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
-
-      $journalService = GeneralUtility::makeInstance(
-        MemberJournalService::class,
-        $journalRepository,
-        $memberRepository,
-        $persistenceManager
-      );
-
-      $journalService->processPendingEntriesForMember($memberUid);
-    } catch (\Exception $e) {
-      $this->logger->error(
-        sprintf('Error processing journal entry %d: %s', $uid, $e->getMessage())
+        sprintf('Error processing journal for member %d: %s', $memberUid, $e->getMessage())
       );
     }
   }

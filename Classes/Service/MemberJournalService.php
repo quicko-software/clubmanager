@@ -8,6 +8,8 @@ use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use Quicko\Clubmanager\Utils\SettingUtils;
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 class MemberJournalService
@@ -100,16 +102,29 @@ class MemberJournalService
         continue;
       }
 
-      if ($entry->isStatusChange()) {
-        $this->applyStatusChange($member, $entry);
-      } elseif ($entry->isLevelChange()) {
-        $this->applyLevelChange($member, $entry);
-      }
+      try {
+        if ($entry->isStatusChange()) {
+          $this->applyStatusChange($member, $entry);
+        } elseif ($entry->isLevelChange()) {
+          $this->applyLevelChange($member, $entry);
+        }
 
-      $entry->setProcessed($now);
-      $this->journalRepository->update($entry);
-      $this->memberRepository->update($member);
-      $processedCount++;
+        $entry->setProcessed($now);
+        $this->journalRepository->update($entry);
+        $this->memberRepository->update($member);
+        $processedCount++;
+      } catch (\InvalidArgumentException $e) {
+        // Log error but continue with next entry
+        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+        $logger->error('Skipping invalid journal entry', [
+          'entryUid' => $entry->getUid(),
+          'memberUid' => $memberUid,
+          'error' => $e->getMessage(),
+        ]);
+        // Mark as processed to prevent retry loop
+        $entry->setProcessed($now);
+        $this->journalRepository->update($entry);
+      }
     }
 
     if ($processedCount > 0) {
@@ -212,8 +227,10 @@ class MemberJournalService
 
     switch ($targetState) {
       case Member::STATE_ACTIVE:
-        // Setze starttime auf effective_date bei Aktivierung
-        $member->setStarttime($effectiveDate);
+        // Setze starttime nur bei Erstaktivierung (nicht bei Reaktivierung nach Ruhend-Status)
+        if ($member->getStarttime() === null) {
+          $member->setStarttime($effectiveDate);
+        }
         // Wenn der Member wieder aktiv wird, entferne das endtime
         $member->setEndtime(null);
         break;
@@ -272,7 +289,7 @@ class MemberJournalService
       return 0;
     }
 
-    $storagePid = (int)SettingUtils::getSiteSetting($memberPid, 'clubmanager.memberJournalStoragePid', 0);
+    $storagePid = (int) SettingUtils::getSiteSetting($memberPid, 'clubmanager.memberJournalStoragePid', 0);
     return $storagePid > 0 ? $storagePid : $memberPid;
   }
 }

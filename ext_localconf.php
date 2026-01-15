@@ -91,6 +91,7 @@ call_user_func(function () {
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_member_starttime_hook'] = Quicko\Clubmanager\Hooks\MemberStartTimeHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_process_member_journal_hook'] = Quicko\Clubmanager\Hooks\ProcessMemberJournalHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_prevent_system_journal_edit'] = Quicko\Clubmanager\Hooks\PreventSystemJournalEntryEditHook::class;
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_autofill_journal_fields'] = Quicko\Clubmanager\Hooks\AutoFillJournalEntryFieldsHook::class;
   // $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_reset_password'] = \Quicko\Clubmanager\Hooks\EmailVerificationTokenResetHook::class;
 
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1454581922] = [
@@ -111,11 +112,28 @@ call_user_func(function () {
 
   // FormDataProvider: Set fields to readOnly for system-created journal entries
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord']
-    [Quicko\Clubmanager\FormEngine\FormDataProvider\MemberJournalEntryReadonly::class] = [
-      'depends' => [
-        \TYPO3\CMS\Backend\Form\FormDataProvider\EvaluateDisplayConditions::class,
-      ],
-    ];
+  [Quicko\Clubmanager\FormEngine\FormDataProvider\MemberJournalEntryReadonly::class] = [
+    'depends' => [
+      \TYPO3\CMS\Backend\Form\FormDataProvider\EvaluateDisplayConditions::class,
+    ],
+  ];
+
+  // FormDataProvider: Set level field to readOnly for Members
+  $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord']
+  [Quicko\Clubmanager\FormEngine\FormDataProvider\MemberFieldsReadonly::class] = [
+    'depends' => [
+      \TYPO3\CMS\Backend\Form\FormDataProvider\EvaluateDisplayConditions::class,
+    ],
+  ];
+
+  // FormDataProvider: Disable delete control for journal entries for non-admins
+  $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord']
+  [Quicko\Clubmanager\FormEngine\FormDataProvider\JournalEntryDeleteControl::class] = [
+    'depends' => [
+      \TYPO3\CMS\Backend\Form\FormDataProvider\TcaColumnsProcessCommon::class,
+    ],
+  ];
+
 
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\MemberLoginReminderTask::class] = [
     'extension' => 'clubmanager',
@@ -131,11 +149,6 @@ call_user_func(function () {
     'additionalFields' => Quicko\Clubmanager\Tasks\MailServiceTaskAdditionalFieldProvider::class,
   ];
 
-  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\ProcessJournalEntriesTask::class] = [
-    'extension' => 'clubmanager',
-    'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.ProcessJournalEntriesTask.title',
-    'description' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:task.ProcessJournalEntriesTask.description',
-  ];
 
   $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class);
   $fe_users_storagePid = $extConf->get(

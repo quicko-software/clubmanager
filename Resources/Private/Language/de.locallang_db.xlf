@@ -608,7 +608,7 @@
 	</trans-unit>
 	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_date" resname="tx_clubmanager_domain_model_memberjournalentry.entry_date">
 		<source>Entry Date</source>
-		<target>Eingetragen am</target>
+		<target>Erstellungsdatum</target>
 	</trans-unit>
 	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.effective_date" resname="tx_clubmanager_domain_model_memberjournalentry.effective_date">
 			<source>Effective Date</source>

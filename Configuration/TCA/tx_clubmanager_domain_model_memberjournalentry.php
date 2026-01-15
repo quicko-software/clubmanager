@@ -43,6 +43,13 @@ return [
         note,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden
       ',
+      'columnsOverrides' => [
+        'effective_date' => [
+          'config' => [
+            'required' => true,
+          ],
+        ],
+      ],
     ],
     'level_change' => [
       'showitem' => '
@@ -51,6 +58,18 @@ return [
         note,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden
       ',
+      'columnsOverrides' => [
+        'effective_date' => [
+          'config' => [
+            'required' => true,
+          ],
+        ],
+        'new_level' => [
+          'config' => [
+            'required' => true,
+          ],
+        ],
+      ],
     ],
   ],
   'palettes' => [
@@ -121,7 +140,6 @@ return [
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.creator_type.member', 'value' => 2],
         ],
         'default' => 1,
-        'readOnly' => true,
       ],
     ],
     'effective_date' => [
@@ -139,7 +157,6 @@ return [
       'config' => [
         'type' => 'datetime',
         'format' => 'datetime',
-        'readOnly' => true,
       ],
     ],
     'note' => [

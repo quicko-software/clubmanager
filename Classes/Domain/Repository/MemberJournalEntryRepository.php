@@ -40,7 +40,10 @@ class MemberJournalEntryRepository extends Repository
         $query->equals('hidden', 0)
       )
     );
-    $query->setOrderings(['effectiveDate' => QueryInterface::ORDER_ASCENDING]);
+    $query->setOrderings([
+      'effectiveDate' => QueryInterface::ORDER_ASCENDING,
+      'entryDate' => QueryInterface::ORDER_ASCENDING
+    ]);
 
     return $query->execute();
   }
@@ -75,7 +78,10 @@ class MemberJournalEntryRepository extends Repository
         $query->equals('hidden', 0)
       )
     );
-    $query->setOrderings(['effectiveDate' => QueryInterface::ORDER_ASCENDING]);
+    $query->setOrderings([
+      'effectiveDate' => QueryInterface::ORDER_ASCENDING,
+      'entryDate' => QueryInterface::ORDER_ASCENDING
+    ]);
 
     return $query->execute();
   }

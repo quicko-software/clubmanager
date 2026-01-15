@@ -549,8 +549,6 @@ return [
                 'minitems' => 0,
                 'maxitems' => 9999,
                 'appearance' => [
-                    'collapseAll' => 1,
-                    'expandSingle' => 1,
                     'showSynchronizationLink' => 1,
                 ],
             ],

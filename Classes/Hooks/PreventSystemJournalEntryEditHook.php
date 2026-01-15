@@ -13,8 +13,8 @@ use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Prevents editing of system-created and member-created journal entries.
- * This is a server-side protection that ensures system/member entries cannot be modified.
+ * Prevents editing of system-created, member-created, and processed journal entries.
+ * This is a server-side protection that ensures these entries cannot be modified.
  * Admins can always edit.
  */
 class PreventSystemJournalEntryEditHook
@@ -47,16 +47,24 @@ class PreventSystemJournalEntryEditHook
             return;
         }
 
-        // Check if this is a system-created entry
+        // Check if this entry should be protected
         $record = $this->getRecord((int) $id);
         if ($record === null) {
             return;
         }
 
         $creatorType = (int) ($record['creator_type'] ?? -1);
+        $processed = (int) ($record['processed'] ?? 0);
+        $isProcessed = $processed > 0;
 
-        // Allow editing only for Backend-created entries (creator_type = 1)
-        if ($creatorType !== self::CREATOR_TYPE_SYSTEM && $creatorType !== self::CREATOR_TYPE_MEMBER) {
+        // Prevent editing if:
+        // - Entry was created by system/member, OR
+        // - Entry has been processed
+        $shouldPreventEdit = ($creatorType === self::CREATOR_TYPE_SYSTEM ||
+            $creatorType === self::CREATOR_TYPE_MEMBER ||
+            $isProcessed);
+
+        if (!$shouldPreventEdit) {
             return;
         }
 
@@ -64,9 +72,13 @@ class PreventSystemJournalEntryEditHook
         $fieldArray = [];
 
         // Add flash message to inform user
-        $message = $creatorType === self::CREATOR_TYPE_SYSTEM
-            ? 'System-Journaleinträge können nicht bearbeitet werden.'
-            : 'Mitglieder-Journaleinträge können nicht bearbeitet werden.';
+        if ($isProcessed) {
+            $message = 'Verarbeitete Journal-Einträge können nicht mehr bearbeitet werden.';
+        } elseif ($creatorType === self::CREATOR_TYPE_SYSTEM) {
+            $message = 'System-Journaleinträge können nicht bearbeitet werden.';
+        } else {
+            $message = 'Mitglieder-Journaleinträge können nicht bearbeitet werden.';
+        }
 
         $this->addFlashMessage(
             $message,
@@ -88,7 +100,7 @@ class PreventSystemJournalEntryEditHook
         $queryBuilder->getRestrictions()->removeAll();
 
         $record = $queryBuilder
-            ->select('creator_type')
+            ->select('creator_type', 'processed')
             ->from(self::TABLE_NAME)
             ->where(
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, ParameterType::INTEGER))
