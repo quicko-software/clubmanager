@@ -35,19 +35,21 @@
 				<source>Service for sending e-mails</source>
 				<target>Service zum Versenden von E-Mails</target>
 			</trans-unit>
-		<trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg">
-			<source>Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </source>
-			<target>Offene Mails: %1$d, Fehler: %2$d, E-Mails pro Durchlauf: %3$d. </target>
-		</trans-unit>
-	<trans-unit id="task.ProcessJournalEntriesTask.title" resname="task.ProcessJournalEntriesTask.title">
-		<source>Process Member Journal Entries</source>
-		<target>Mitglieder-Journal Einträge verarbeiten</target>
-		</trans-unit>
-	<trans-unit id="task.ProcessJournalEntriesTask.description" resname="task.ProcessJournalEntriesTask.description">
-		<source>Processes pending journal entries (status changes, level changes)</source>
-		<target>Verarbeitet fällige Journal-Einträge (Status- und Level-Änderungen)</target>
-		</trans-unit>
-		<trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS"
+			<trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg">
+				<source>Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </source>
+				<target>Offene Mails: %1$d, Fehler: %2$d, E-Mails pro Durchlauf: %3$d. </target>
+			</trans-unit>
+			<trans-unit id="task.ProcessJournalEntriesTask.title"
+				resname="task.ProcessJournalEntriesTask.title">
+				<source>Process Member Journal Entries</source>
+				<target>Mitglieder-Journal Einträge verarbeiten</target>
+			</trans-unit>
+			<trans-unit id="task.ProcessJournalEntriesTask.description"
+				resname="task.ProcessJournalEntriesTask.description">
+				<source>Processes pending journal entries (status changes, level changes)</source>
+				<target>Verarbeitet fällige Journal-Einträge (Status- und Level-Änderungen)</target>
+			</trans-unit>
+			<trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS"
 				resname="task.MailServiceTask.arg.MAX_NUM_MAILS">
 				<source>Maximum number of emails per run</source>
 				<target>Maximale Anzahl der E-Mails pro Durchlauf</target>
@@ -438,6 +440,30 @@
 			<trans-unit id="password-reset.button.title" resname="password-reset.button.title">
 				<source>Reset Password (Regenerate + Email to user)</source>
 				<target>Passwort zurücksetzen (Neu generieren + E-Mail an Benutzer)</target>
+			</trans-unit>
+
+			<trans-unit id="memberjournal.level_change.warning.dialog.title"
+				resname="memberjournal.level_change.warning.dialog.title">
+				<source>Level change with past effective date</source>
+				<target>Level-Anpassung mit rückwirkendem Datum</target>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.warning.dialog.text"
+				resname="memberjournal.level_change.warning.dialog.text">
+				<source>The effective date is today or in the past. Adding this entry can affect billing and
+					may require corrections. Press 'Continue' to save the member, otherwise 'Cancel'.</source>
+				<target>Das effective_date liegt in der Vergangenheit oder heute. Das Hinzufügen dieses
+					Eintrags kann Auswirkungen auf die Abrechnung haben und muss ggf. korrigiert werden.
+					Drücken Sie 'Weiter', um den Datensatz zu speichern, anderenfalls 'Abbrechen'.</target>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.warning.dialog.ok-button-label"
+				resname="memberjournal.level_change.warning.dialog.ok-button-label">
+				<source>Continue</source>
+				<target>Weiter</target>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.warning.dialog.cancel-button-label"
+				resname="memberjournal.level_change.warning.dialog.cancel-button-label">
+				<source>Cancel</source>
+				<target>Abbrechen</target>
 			</trans-unit>
 
 		</body>

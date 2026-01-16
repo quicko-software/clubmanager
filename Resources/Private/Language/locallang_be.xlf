@@ -307,6 +307,19 @@
 			<trans-unit id="password-reset.button.title" resname="password-reset.button.title">
 				<source>Reset Password (Regenerate + Email to user)</source>
 			</trans-unit>
+
+			<trans-unit id="memberjournal.level_change.warning.dialog.title" resname="memberjournal.level_change.warning.dialog.title">
+				<source>Level change with past effective date</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.warning.dialog.text" resname="memberjournal.level_change.warning.dialog.text">
+				<source>The effective date is today or in the past. Adding this entry can affect billing and may require corrections. Press 'Continue' to save the member, otherwise 'Cancel'.</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.warning.dialog.ok-button-label" resname="memberjournal.level_change.warning.dialog.ok-button-label">
+				<source>Continue</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.warning.dialog.cancel-button-label" resname="memberjournal.level_change.warning.dialog.cancel-button-label">
+				<source>Cancel</source>
+			</trans-unit>
 			
 		</body>
 	</file>

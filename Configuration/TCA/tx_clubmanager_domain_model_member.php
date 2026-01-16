@@ -149,6 +149,11 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim,unique',
+                'fieldInformation' => [
+                    'memberJournalLevelChangeWarning' => [
+                        'renderType' => 'MemberJournalLevelChangeWarning',
+                    ],
+                ],
             ],
         ],
 
