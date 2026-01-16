@@ -10,6 +10,8 @@ use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use Quicko\Clubmanager\Utils\SettingUtils;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 class MemberJournalService
@@ -49,37 +51,32 @@ class MemberJournalService
   }
 
   /**
-   * Markiert offene Kündigungen als erledigt (z.B. bei Reaktivierung)
+   * Blendt offene Kündigungen aus (z.B. bei Reaktivierung)
    */
   public function resolvePendingCancellationForMember(int $memberUid, string $noteText = ''): int
   {
-    $now = new DateTime('now');
     $updated = 0;
+    $noteText = trim($noteText);
+    if ($noteText === '') {
+      if (ExtensionManagementUtility::isLoaded('clubmanager_pro')) {
+        $noteText = LocalizationUtility::translate(
+          'memberjournalentry.note.cancellation_reverted',
+          'clubmanager_pro'
+        ) ?? '';
+      }
+      $noteText = $noteText !== '' ? $noteText : 'Kündigungswunsch durch Status-Aktiv zurückgenommen';
+    }
 
     $request = $this->journalRepository->findPendingCancellationRequest($memberUid);
     if ($request instanceof MemberJournalEntry) {
-      if ($noteText !== '') {
-        $existingNote = trim($request->getNote());
-        $request->setNote($existingNote === '' ? $noteText : $existingNote . "\n" . $noteText);
-      }
-      $request->setProcessed($now);
-      $this->journalRepository->update($request);
+      $this->hideJournalEntry($request, $noteText);
       $updated++;
     }
 
     $statusChange = $this->journalRepository->findPendingCancellationStatusChange($memberUid);
     if ($statusChange instanceof MemberJournalEntry) {
-      if ($noteText !== '') {
-        $existingNote = trim($statusChange->getNote());
-        $statusChange->setNote($existingNote === '' ? $noteText : $existingNote . "\n" . $noteText);
-      }
-      $statusChange->setProcessed($now);
-      $this->journalRepository->update($statusChange);
+      $this->hideJournalEntry($statusChange, $noteText);
       $updated++;
-    }
-
-    if ($updated > 0) {
-      $this->persistenceManager->persistAll();
     }
 
     return $updated;
@@ -328,6 +325,30 @@ class MemberJournalService
 
     $storagePid = (int) SettingUtils::getSiteSetting($memberPid, 'clubmanager.memberJournalStoragePid', 0);
     return $storagePid > 0 ? $storagePid : $memberPid;
+  }
+
+  private function hideJournalEntry(MemberJournalEntry $entry, string $noteText): void
+  {
+    $uid = $entry->getUid();
+    if (!$uid) {
+      return;
+    }
+
+    $fieldsToUpdate = [
+      'hidden' => 1,
+      'tstamp' => time(),
+    ];
+
+    $existingNote = trim($entry->getNote());
+    $fieldsToUpdate['note'] = $existingNote === '' ? $noteText : $existingNote . "\n" . $noteText;
+
+    $connection = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)
+      ->getConnectionForTable('tx_clubmanager_domain_model_memberjournalentry');
+    $connection->update(
+      'tx_clubmanager_domain_model_memberjournalentry',
+      $fieldsToUpdate,
+      ['uid' => $uid]
+    );
   }
 }
 
