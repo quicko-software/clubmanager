@@ -4,6 +4,19 @@ defined('TYPO3') or exit;
 
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+$entryTypeItems = [
+  ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change', 'value' => 'status_change'],
+  ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change', 'value' => 'level_change'],
+];
+
+if (ExtensionManagementUtility::isLoaded('clubmanager_pro')) {
+  array_unshift($entryTypeItems, [
+    'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request',
+    'value' => 'cancellation_request'
+  ]);
+}
 
 return [
   'ctrl' => [
@@ -110,11 +123,7 @@ return [
       'config' => [
         'type' => 'select',
         'renderType' => 'selectSingle',
-        'items' => [
-          ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request', 'value' => 'cancellation_request'],
-          ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change', 'value' => 'status_change'],
-          ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change', 'value' => 'level_change'],
-        ],
+        'items' => $entryTypeItems,
         'default' => 'status_change',
       ],
     ],

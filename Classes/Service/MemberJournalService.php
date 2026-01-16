@@ -49,6 +49,43 @@ class MemberJournalService
   }
 
   /**
+   * Markiert offene Kündigungen als erledigt (z.B. bei Reaktivierung)
+   */
+  public function resolvePendingCancellationForMember(int $memberUid, string $noteText = ''): int
+  {
+    $now = new DateTime('now');
+    $updated = 0;
+
+    $request = $this->journalRepository->findPendingCancellationRequest($memberUid);
+    if ($request instanceof MemberJournalEntry) {
+      if ($noteText !== '') {
+        $existingNote = trim($request->getNote());
+        $request->setNote($existingNote === '' ? $noteText : $existingNote . "\n" . $noteText);
+      }
+      $request->setProcessed($now);
+      $this->journalRepository->update($request);
+      $updated++;
+    }
+
+    $statusChange = $this->journalRepository->findPendingCancellationStatusChange($memberUid);
+    if ($statusChange instanceof MemberJournalEntry) {
+      if ($noteText !== '') {
+        $existingNote = trim($statusChange->getNote());
+        $statusChange->setNote($existingNote === '' ? $noteText : $existingNote . "\n" . $noteText);
+      }
+      $statusChange->setProcessed($now);
+      $this->journalRepository->update($statusChange);
+      $updated++;
+    }
+
+    if ($updated > 0) {
+      $this->persistenceManager->persistAll();
+    }
+
+    return $updated;
+  }
+
+  /**
    * Erstellt Status-Änderungs-Eintrag
    */
   public function createStatusChange(

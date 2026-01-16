@@ -114,6 +114,7 @@ class MemberJournalEntryRepository extends Repository
       $query->logicalAnd(
         $query->equals('member', $memberUid),
         $query->equals('entryType', MemberJournalEntry::ENTRY_TYPE_CANCELLATION_REQUEST),
+        $query->equals('processed', null),
         $query->equals('deleted', 0),
         $query->equals('hidden', 0)
       )
@@ -165,7 +166,10 @@ class MemberJournalEntryRepository extends Repository
         $query->equals('hidden', 0)
       )
     );
-    $query->setOrderings(['entryDate' => QueryInterface::ORDER_DESCENDING]);
+    $query->setOrderings([
+      'effectiveDate' => QueryInterface::ORDER_DESCENDING,
+      'entryDate' => QueryInterface::ORDER_DESCENDING
+    ]);
 
     return $query->execute()->getFirst();
   }
