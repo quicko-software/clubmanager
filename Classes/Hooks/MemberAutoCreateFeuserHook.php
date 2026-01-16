@@ -4,7 +4,6 @@ namespace Quicko\Clubmanager\Hooks;
 
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Utils\HookUtils;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Database\Connection;
@@ -14,6 +13,12 @@ use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * Hook to automatically create a FE user when a member becomes active.
+ *
+ * IMPORTANT: This hook must be registered AFTER ProcessMemberJournalHook,
+ * because the journal processing may change the member status.
+ */
 class MemberAutoCreateFeuserHook
 {
   protected Logger $logger;
@@ -148,44 +153,115 @@ class MemberAutoCreateFeuserHook
   }
 
   /**
-   * @param string      $status
-   * @param string      $table
-   * @param string      $id
-   * @param array       $fieldArray
-   * @param DataHandler $pObj
+   * Fetch member record directly from DB to avoid any caching issues.
+   *
+   * @return array<string, mixed>|null
    */
-  public function processDatamap_afterDatabaseOperations(string &$status, string &$table, string &$id, array &$fieldArray, DataHandler &$pObj): void
+  private function getMemberRecordFromDb(int $memberUid): ?array
   {
-    if ($table !== 'tx_clubmanager_domain_model_member') {
-      return;
-    }
-    if ($status !== 'update' && $status !== 'new') {
+    $queryBuilder = $this->getQueryBuilder('tx_clubmanager_domain_model_member');
+    $record = $queryBuilder
+      ->select('uid', 'state', 'ident', 'email')
+      ->from('tx_clubmanager_domain_model_member')
+      ->where(
+        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($memberUid, Connection::PARAM_INT)),
+        $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT))
+      )
+      ->setMaxResults(1)
+      ->executeQuery()
+      ->fetchAssociative();
+
+    return is_array($record) ? $record : null;
+  }
+
+  /**
+   * Check a single member and create FE user if needed.
+   */
+  private function processActiveMember(int $memberUid): void
+  {
+    if ($memberUid <= 0) {
       return;
     }
 
-    $uid = $id;
-    if ($status === 'new') {
-      $uid = $pObj->substNEWwithIDs[$id] ?? null;
-    }
-    if (!$uid) {
+    // Use direct DB query to avoid caching issues
+    $record = $this->getMemberRecordFromDb($memberUid);
+    if ($record === null) {
       return;
     }
 
-    $record = BackendUtility::getRecord(
-      'tx_clubmanager_domain_model_member',
-      $uid,
-      'uid,state,ident,email'
-    );
-    if (!is_array($record)) {
+    $state = (int) $record['state'];
+    if ($state !== Member::STATE_ACTIVE) {
       return;
     }
-    if ((int) $record['state'] !== Member::STATE_ACTIVE) {
-      return;
-    }
-    if ($this->hasExistingFeuser((int) $record['uid'])) {
+
+    if ($this->hasExistingFeuser($memberUid)) {
       return;
     }
 
     $this->createFeuser($record);
+  }
+
+  /**
+   * Fetch journal entry's member UID directly from DB.
+   */
+  private function getJournalEntryMemberUid(int $entryUid): ?int
+  {
+    $queryBuilder = $this->getQueryBuilder('tx_clubmanager_domain_model_memberjournalentry');
+    $record = $queryBuilder
+      ->select('member')
+      ->from('tx_clubmanager_domain_model_memberjournalentry')
+      ->where(
+        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($entryUid, Connection::PARAM_INT)),
+        $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT))
+      )
+      ->setMaxResults(1)
+      ->executeQuery()
+      ->fetchAssociative();
+
+    if (is_array($record) && isset($record['member'])) {
+      return (int) $record['member'];
+    }
+    return null;
+  }
+
+  /**
+   * Hook after ALL DataHandler operations are complete.
+   * This runs AFTER ProcessMemberJournalHook has updated member states.
+   */
+  public function processDatamap_afterAllOperations(DataHandler &$pObj): void
+  {
+    $memberUids = [];
+
+    // Collect member UIDs from direct member saves
+    if (isset($pObj->datamap['tx_clubmanager_domain_model_member'])) {
+      foreach ($pObj->datamap['tx_clubmanager_domain_model_member'] as $id => $data) {
+        $uid = is_numeric($id) ? (int) $id : ($pObj->substNEWwithIDs[$id] ?? null);
+        if ($uid) {
+          $memberUids[$uid] = true;
+        }
+      }
+    }
+
+    // Collect member UIDs from journal entry saves (IRRE children)
+    if (isset($pObj->datamap['tx_clubmanager_domain_model_memberjournalentry'])) {
+      foreach ($pObj->datamap['tx_clubmanager_domain_model_memberjournalentry'] as $id => $data) {
+        $memberUid = $data['member'] ?? null;
+
+        // If member UID not in datamap, fetch from DB directly
+        $resolvedEntryUid = is_numeric($id) ? (int) $id : ($pObj->substNEWwithIDs[$id] ?? null);
+        if ($resolvedEntryUid && $memberUid === null) {
+          $memberUid = $this->getJournalEntryMemberUid($resolvedEntryUid);
+        }
+
+        if ($memberUid && (int) $memberUid > 0) {
+          $memberUids[(int) $memberUid] = true;
+        }
+      }
+    }
+
+    // Process each affected member
+    foreach (array_keys($memberUids) as $memberUid) {
+      $this->processActiveMember($memberUid);
+    }
   }
 }
