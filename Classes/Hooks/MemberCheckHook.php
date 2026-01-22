@@ -49,7 +49,11 @@ class MemberCheckHook
         $ident = $fieldArray['ident'] ?? null;
         if ($ident === null && is_numeric($id)) {
             $record = BackendUtility::getRecord(self::TABLE_NAME, (int) $id, 'ident');
-            $ident = $record['ident'] ?? null;
+            if (is_array($record)) {
+                $ident = $record['ident'] ?? null;
+            } else {
+                $ident = null;
+            }
         }
 
         if ($ident === null || trim((string) $ident) === '') {

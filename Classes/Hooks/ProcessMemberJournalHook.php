@@ -12,6 +12,9 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
@@ -174,6 +177,16 @@ class ProcessMemberJournalHook
           sprintf('Corrected member %d state to match journal history', $memberUid)
         );
       }
+    } catch (\InvalidArgumentException $e) {
+      // Validierungsfehler als Flash-Message anzeigen
+      $this->addFlashMessage(
+        $e->getMessage(),
+        'Validierungsfehler',
+        ContextualFeedbackSeverity::ERROR
+      );
+      $this->logger->warning(
+        sprintf('Validation error for member %d: %s', $memberUid, $e->getMessage())
+      );
     } catch (\Exception $e) {
       $this->logger->error(
         sprintf('Error processing journal for member %d: %s', $memberUid, $e->getMessage())
@@ -351,6 +364,20 @@ class ProcessMemberJournalHook
         )
       );
     }
+  }
+
+  private function addFlashMessage(string $message, string $title, ContextualFeedbackSeverity $severity): void
+  {
+    $flashMessage = GeneralUtility::makeInstance(
+      FlashMessage::class,
+      $message,
+      $title,
+      $severity,
+      true
+    );
+
+    $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
+    $flashMessageService->getMessageQueueByIdentifier()->enqueue($flashMessage);
   }
 }
 

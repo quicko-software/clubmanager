@@ -85,7 +85,9 @@ call_user_func(function () {
 
   PluginRegisterFacade::configureAllPlugins();
 
-  // MemberCheckHook: Validiert ident vor Status-Änderung auf ACTIVE - MUSS VOR anderen Member-Hooks laufen
+  // ValidateJournalEntryHook: Blockiert Journal-Einträge ohne ident VOR dem Speichern
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_validate_journal_entry_hook'] = Quicko\Clubmanager\Hooks\ValidateJournalEntryHook::class;
+  // MemberCheckHook: Validiert ident vor direkter Status-Änderung auf ACTIVE
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_member_check_hook'] = Quicko\Clubmanager\Hooks\MemberCheckHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_fe_user_email_hook'] = Quicko\Clubmanager\Hooks\CopyMemberEmailToFeuserHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_fe_user_password_hook'] = Quicko\Clubmanager\Hooks\ResetFeuserPasswordHook::class;

@@ -181,63 +181,81 @@ class MemberJournalService
     $now = new DateTime();
 
     foreach ($entriesArray as $entry) {
-      // Lade Member-Objekt - versuche zuerst via Repository
-      $member = $this->memberRepository->findByUidWithoutStoragePage($memberUid);
+      try {
+        // Lade Member-Objekt - versuche zuerst via Repository
+        $member = $this->memberRepository->findByUidWithoutStoragePage($memberUid);
 
-      if (!$member instanceof Member) {
-        // Versuche direkten DB-Zugriff (z.B. wenn wir im Hook während des Speicherns sind)
-        $memberRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tx_clubmanager_domain_model_member', $memberUid);
-        if (!$memberRecord) {
-          // Member existiert nicht mehr, markiere trotzdem als verarbeitet
+        if (!$member instanceof Member) {
+          // Versuche direkten DB-Zugriff (z.B. wenn wir im Hook während des Speicherns sind)
+          $memberRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tx_clubmanager_domain_model_member', $memberUid);
+          if (!$memberRecord) {
+            // Member existiert nicht mehr, markiere trotzdem als verarbeitet
+            $entry->setProcessed($now);
+            $this->journalRepository->update($entry);
+            continue;
+          }
+
+          // Erstelle ein temporäres Member-Objekt aus dem Record
+          $member = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Member::class);
+          $member->_setProperty('uid', $memberRecord['uid']);
+          $member->setState($memberRecord['state'] ?? '');
+          $member->setLevel($memberRecord['level'] ?? 0);
+          $member->setIdent($memberRecord['ident'] ?? '');
+          $member->setStarttime($memberRecord['starttime'] ? new \DateTime('@' . $memberRecord['starttime']) : null);
+          $member->setEndtime($memberRecord['endtime'] ? new \DateTime('@' . $memberRecord['endtime']) : null);
+
+          // Wende Änderungen am temporären Objekt an
+          if ($entry->isStatusChange()) {
+            $this->applyStatusChange($member, $entry);
+          } elseif ($entry->isLevelChange()) {
+            $this->applyLevelChange($member, $entry);
+          }
+
+          // Speichere direkt in DB statt via Repository
+          $connection = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)
+            ->getConnectionForTable('tx_clubmanager_domain_model_member');
+          $connection->update(
+            'tx_clubmanager_domain_model_member',
+            [
+              'state' => $member->getState(),
+              'level' => $member->getLevel(),
+              'starttime' => $member->getStarttime() ? $member->getStarttime()->getTimestamp() : 0,
+              'endtime' => $member->getEndtime() ? $member->getEndtime()->getTimestamp() : 0,
+            ],
+            ['uid' => $memberUid]
+          );
+
           $entry->setProcessed($now);
           $this->journalRepository->update($entry);
-          continue;
+          $processedCount++;
+        } else {
+          // Normal flow via Repository
+          if ($entry->isStatusChange()) {
+            $this->applyStatusChange($member, $entry);
+          } elseif ($entry->isLevelChange()) {
+            $this->applyLevelChange($member, $entry);
+          }
+
+          $entry->setProcessed($now);
+          $this->journalRepository->update($entry);
+          $this->memberRepository->update($member);
+          $processedCount++;
         }
-
-        // Erstelle ein temporäres Member-Objekt aus dem Record
-        $member = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Member::class);
-        $member->_setProperty('uid', $memberRecord['uid']);
-        $member->setState($memberRecord['state'] ?? '');
-        $member->setLevel($memberRecord['level'] ?? 0);
-        $member->setStarttime($memberRecord['starttime'] ? new \DateTime('@' . $memberRecord['starttime']) : null);
-        $member->setEndtime($memberRecord['endtime'] ? new \DateTime('@' . $memberRecord['endtime']) : null);
-
-        // Wende Änderungen am temporären Objekt an
-        if ($entry->isStatusChange()) {
-          $this->applyStatusChange($member, $entry);
-        } elseif ($entry->isLevelChange()) {
-          $this->applyLevelChange($member, $entry);
-        }
-
-        // Speichere direkt in DB statt via Repository
-        $connection = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)
-          ->getConnectionForTable('tx_clubmanager_domain_model_member');
-        $connection->update(
-          'tx_clubmanager_domain_model_member',
-          [
-            'state' => $member->getState(),
-            'level' => $member->getLevel(),
-            'starttime' => $member->getStarttime() ? $member->getStarttime()->getTimestamp() : 0,
-            'endtime' => $member->getEndtime() ? $member->getEndtime()->getTimestamp() : 0,
-          ],
-          ['uid' => $memberUid]
-        );
-
+      } catch (\InvalidArgumentException $e) {
+        // Log error and mark as processed with error note
+        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+        $logger->error('Skipping invalid journal entry for member', [
+          'entryUid' => $entry->getUid(),
+          'memberUid' => $memberUid,
+          'error' => $e->getMessage(),
+        ]);
+        
         $entry->setProcessed($now);
+        $entry->setNote($entry->getNote() . "\nError: " . $e->getMessage());
         $this->journalRepository->update($entry);
-        $processedCount++;
-      } else {
-        // Normal flow via Repository
-        if ($entry->isStatusChange()) {
-          $this->applyStatusChange($member, $entry);
-        } elseif ($entry->isLevelChange()) {
-          $this->applyLevelChange($member, $entry);
-        }
-
-        $entry->setProcessed($now);
-        $this->journalRepository->update($entry);
-        $this->memberRepository->update($member);
-        $processedCount++;
+        
+        // Re-throw to inform the user via FlashMessage (in Hook)
+        throw $e;
       }
     }
 
@@ -255,6 +273,16 @@ class MemberJournalService
 
     if ($targetState === null || $effectiveDate === null) {
       throw new \InvalidArgumentException('Status-Change benötigt target_state und effective_date');
+    }
+
+    // Prüfe ident bei Aktivierung
+    if ($targetState === Member::STATE_ACTIVE) {
+      $ident = trim((string) ($member->getIdent() ?? ''));
+      if ($ident === '') {
+        throw new \InvalidArgumentException(
+          'Aktivierung nicht möglich: Mitgliedsnummer (ident) fehlt. Bitte zuerst eine Mitgliedsnummer vergeben.'
+        );
+      }
     }
 
     $member->setState($targetState);
