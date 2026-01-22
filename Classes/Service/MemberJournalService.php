@@ -64,7 +64,10 @@ class MemberJournalService
           'clubmanager_pro'
         ) ?? '';
       }
-      $noteText = $noteText !== '' ? $noteText : 'Kündigungswunsch durch Status-Aktiv zurückgenommen';
+      $noteText = $noteText !== '' ? $noteText : (
+        LocalizationUtility::translate('memberjournal.cancellation_reverted', 'clubmanager')
+          ?? 'Cancellation request reverted by status change to active'
+      );
     }
 
     $request = $this->journalRepository->findPendingCancellationRequest($memberUid);
@@ -272,7 +275,7 @@ class MemberJournalService
     $effectiveDate = $entry->getEffectiveDate();
 
     if ($targetState === null || $effectiveDate === null) {
-      throw new \InvalidArgumentException('Status-Change benötigt target_state und effective_date');
+      throw new \InvalidArgumentException('Status change requires target_state and effective_date');
     }
 
     // Prüfe ident bei Aktivierung
@@ -280,7 +283,8 @@ class MemberJournalService
       $ident = trim((string) ($member->getIdent() ?? ''));
       if ($ident === '') {
         throw new \InvalidArgumentException(
-          'Aktivierung nicht möglich: Mitgliedsnummer (ident) fehlt. Bitte zuerst eine Mitgliedsnummer vergeben.'
+          LocalizationUtility::translate('flash.activation_blocked.no_ident.short', 'clubmanager')
+            ?? 'Activation not possible: Member number (ident) is missing.'
         );
       }
     }

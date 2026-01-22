@@ -11,6 +11,7 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Prevents editing of system-created, member-created, and processed journal entries.
@@ -80,16 +81,20 @@ class PreventSystemJournalEntryEditHook
 
         // Add flash message to inform user
         if ($isProcessed) {
-            $message = 'Verarbeitete Journal-Einträge können nicht mehr bearbeitet werden.';
+            $message = LocalizationUtility::translate('flash.journal_edit_blocked.processed', 'clubmanager')
+                ?? 'Processed journal entries cannot be edited.';
         } elseif ($creatorType === self::CREATOR_TYPE_SYSTEM) {
-            $message = 'System-Journaleinträge können nicht bearbeitet werden.';
+            $message = LocalizationUtility::translate('flash.journal_edit_blocked.system_entry', 'clubmanager')
+                ?? 'System-generated journal entries cannot be edited.';
         } else {
-            $message = 'Mitglieder-Journaleinträge können nicht bearbeitet werden.';
+            $message = LocalizationUtility::translate('flash.journal_edit_blocked.member_entry', 'clubmanager')
+                ?? 'Member-created journal entries cannot be edited.';
         }
 
         $this->addFlashMessage(
             $message,
-            'Bearbeitung nicht möglich',
+            LocalizationUtility::translate('flash.journal_edit_blocked.title', 'clubmanager')
+                ?? 'Editing not possible',
             ContextualFeedbackSeverity::WARNING
         );
     }

@@ -17,6 +17,7 @@ use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class ProcessMemberJournalHook
 {
@@ -138,7 +139,8 @@ class ProcessMemberJournalHook
       if ($autoResolveCancellation) {
         $journalService->resolvePendingCancellationForMember(
           $memberUid,
-          'Kündigungswunsch durch Status-Aktiv zurückgenommen'
+          LocalizationUtility::translate('memberjournal.cancellation_reverted', 'clubmanager')
+            ?? 'Cancellation request reverted by status change to active'
         );
       }
 
@@ -181,7 +183,8 @@ class ProcessMemberJournalHook
       // Validierungsfehler als Flash-Message anzeigen
       $this->addFlashMessage(
         $e->getMessage(),
-        'Validierungsfehler',
+        LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
+          ?? 'Validation Error',
         ContextualFeedbackSeverity::ERROR
       );
       $this->logger->warning(

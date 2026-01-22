@@ -466,6 +466,40 @@
 				<target>Abbrechen</target>
 			</trans-unit>
 
+			<!-- Flash messages for member/journal validation -->
+			<trans-unit id="flash.validation_error.title" resname="flash.validation_error.title">
+				<source>Validation Error</source>
+				<target>Validierungsfehler</target>
+			</trans-unit>
+			<trans-unit id="flash.activation_blocked.no_ident" resname="flash.activation_blocked.no_ident">
+				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first before setting the status to "active". Changes were NOT saved.</source>
+				<target>Aktivierung nicht möglich: Mitgliedsnummer (ident) fehlt. Bitte zuerst eine Mitgliedsnummer vergeben, bevor der Status auf "aktiv" gesetzt werden kann. Die Änderungen wurden NICHT gespeichert.</target>
+			</trans-unit>
+			<trans-unit id="flash.activation_blocked.no_ident.short" resname="flash.activation_blocked.no_ident.short">
+				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first.</source>
+				<target>Aktivierung nicht möglich: Mitgliedsnummer (ident) fehlt. Bitte zuerst eine Mitgliedsnummer vergeben.</target>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.title" resname="flash.journal_edit_blocked.title">
+				<source>Editing not possible</source>
+				<target>Bearbeitung nicht möglich</target>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.system_entry" resname="flash.journal_edit_blocked.system_entry">
+				<source>System-generated journal entries cannot be edited. Please create a new entry instead.</source>
+				<target>System-generierte Journal-Einträge können nicht bearbeitet werden. Bitte erstellen Sie stattdessen einen neuen Eintrag.</target>
+			</trans-unit>
+			<trans-unit id="memberjournal.cancellation_reverted" resname="memberjournal.cancellation_reverted">
+				<source>Cancellation request reverted by status change to active</source>
+				<target>Kündigungswunsch durch Status-Aktiv zurückgenommen</target>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.processed" resname="flash.journal_edit_blocked.processed">
+				<source>Processed journal entries cannot be edited.</source>
+				<target>Verarbeitete Journal-Einträge können nicht mehr bearbeitet werden.</target>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.member_entry" resname="flash.journal_edit_blocked.member_entry">
+				<source>Member-created journal entries cannot be edited.</source>
+				<target>Mitglieder-Journaleinträge können nicht bearbeitet werden.</target>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

@@ -320,6 +320,32 @@
 			<trans-unit id="memberjournal.level_change.warning.dialog.cancel-button-label" resname="memberjournal.level_change.warning.dialog.cancel-button-label">
 				<source>Cancel</source>
 			</trans-unit>
+
+			<!-- Flash messages for member/journal validation -->
+			<trans-unit id="flash.validation_error.title" resname="flash.validation_error.title">
+				<source>Validation Error</source>
+			</trans-unit>
+			<trans-unit id="flash.activation_blocked.no_ident" resname="flash.activation_blocked.no_ident">
+				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first before setting the status to "active". Changes were NOT saved.</source>
+			</trans-unit>
+			<trans-unit id="flash.activation_blocked.no_ident.short" resname="flash.activation_blocked.no_ident.short">
+				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first.</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.title" resname="flash.journal_edit_blocked.title">
+				<source>Editing not possible</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.system_entry" resname="flash.journal_edit_blocked.system_entry">
+				<source>System-generated journal entries cannot be edited. Please create a new entry instead.</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.cancellation_reverted" resname="memberjournal.cancellation_reverted">
+				<source>Cancellation request reverted by status change to active</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.processed" resname="flash.journal_edit_blocked.processed">
+				<source>Processed journal entries cannot be edited.</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.member_entry" resname="flash.journal_edit_blocked.member_entry">
+				<source>Member-created journal entries cannot be edited.</source>
+			</trans-unit>
 			
 		</body>
 	</file>

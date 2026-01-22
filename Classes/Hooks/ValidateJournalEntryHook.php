@@ -13,6 +13,7 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Validates journal entries BEFORE saving.
@@ -163,10 +164,10 @@ class ValidateJournalEntryHook
             }
 
             $this->addFlashMessage(
-                'Aktivierung nicht möglich: Mitgliedsnummer (ident) fehlt. ' .
-                'Bitte zuerst eine Mitgliedsnummer vergeben, bevor der Status auf "aktiv" gesetzt werden kann. ' .
-                'Die Änderungen wurden NICHT gespeichert.',
-                'Validierungsfehler',
+                LocalizationUtility::translate('flash.activation_blocked.no_ident', 'clubmanager')
+                    ?? 'Activation not possible: Member number (ident) is missing.',
+                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
+                    ?? 'Validation Error',
                 ContextualFeedbackSeverity::ERROR
             );
         }
@@ -239,10 +240,10 @@ class ValidateJournalEntryHook
             }
 
             $this->addFlashMessage(
-                'Aktivierung nicht möglich: Mitgliedsnummer (ident) fehlt. ' .
-                'Bitte zuerst eine Mitgliedsnummer vergeben, bevor der Status auf "aktiv" gesetzt werden kann. ' .
-                'Die Änderungen wurden NICHT gespeichert.',
-                'Validierungsfehler',
+                LocalizationUtility::translate('flash.activation_blocked.no_ident', 'clubmanager')
+                    ?? 'Activation not possible: Member number (ident) is missing.',
+                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
+                    ?? 'Validation Error',
                 ContextualFeedbackSeverity::ERROR
             );
         }
