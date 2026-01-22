@@ -186,18 +186,37 @@ class MemberAutoCreateFeuserHook
     // Use direct DB query to avoid caching issues
     $record = $this->getMemberRecordFromDb($memberUid);
     if ($record === null) {
+      $this->logger->debug('processActiveMember: Member record not found', ['memberUid' => $memberUid]);
       return;
     }
 
     $state = (int) $record['state'];
     if ($state !== Member::STATE_ACTIVE) {
+      $this->logger->debug('processActiveMember: Member not active, skipping', [
+        'memberUid' => $memberUid,
+        'state' => $state,
+      ]);
+      return;
+    }
+
+    // Prüfe ob ident vorhanden ist - ohne ident kann kein sinnvoller FE-User erstellt werden
+    $ident = trim((string) ($record['ident'] ?? ''));
+    if ($ident === '') {
+      $this->logger->debug('processActiveMember: Member has no ident, skipping FE-User creation', [
+        'memberUid' => $memberUid,
+      ]);
       return;
     }
 
     if ($this->hasExistingFeuser($memberUid)) {
+      $this->logger->debug('processActiveMember: FE-User already exists', ['memberUid' => $memberUid]);
       return;
     }
 
+    $this->logger->info('processActiveMember: Creating FE-User for member', [
+      'memberUid' => $memberUid,
+      'ident' => $ident,
+    ]);
     $this->createFeuser($record);
   }
 

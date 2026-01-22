@@ -270,8 +270,11 @@ class MemberJournalService
         break;
 
       case Member::STATE_CANCELLED:
-      case Member::STATE_SUSPENDED:
         $member->setEndtime($effectiveDate);
+        break;
+
+      case Member::STATE_SUSPENDED:
+        // Ruhend setzt KEINE endtime - Member bleibt Mitglied
         break;
     }
   }

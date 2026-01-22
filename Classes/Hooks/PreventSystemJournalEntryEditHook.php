@@ -47,6 +47,13 @@ class PreventSystemJournalEntryEditHook
             return;
         }
 
+        // Prüfe ob echte Änderungen vorliegen (nicht nur System-Felder durch IRRE-Handling)
+        $ignoredFields = ['tstamp', 'crdate', 'pid', 'sorting', 'l10n_diffsource'];
+        $meaningfulChanges = array_diff_key($fieldArray, array_flip($ignoredFields));
+        if (empty($meaningfulChanges)) {
+            return;
+        }
+
         // Check if this entry should be protected
         $record = $this->getRecord((int) $id);
         if ($record === null) {

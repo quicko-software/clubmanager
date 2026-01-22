@@ -8,6 +8,7 @@ use Quicko\Clubmanager\Service\MemberJournalService;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
@@ -59,18 +60,35 @@ class ProcessMemberJournalHook
         $memberUid = $data['member'] ?? null;
         $entryType = $data['entry_type'] ?? null;
         $targetState = $data['target_state'] ?? null;
+        $isProcessed = false;
 
         $resolvedEntryUid = is_numeric($id) ? (int) $id : ($pObj->substNEWwithIDs[$id] ?? null);
-        if ($resolvedEntryUid && ($memberUid === null || $entryType === null || $targetState === null)) {
+
+        // Für existierende Einträge: Prüfe processed-Status aus DB
+        if ($resolvedEntryUid && is_numeric($id)) {
           $record = BackendUtility::getRecord(
             'tx_clubmanager_domain_model_memberjournalentry',
             $resolvedEntryUid,
-            'member,entry_type,target_state'
+            'member,entry_type,target_state,processed'
           );
           if (is_array($record)) {
             $memberUid = $memberUid ?? ($record['member'] ?? null);
             $entryType = $entryType ?? ($record['entry_type'] ?? null);
             $targetState = $targetState ?? ($record['target_state'] ?? null);
+            $isProcessed = !empty($record['processed']);
+          }
+        } elseif ($resolvedEntryUid && ($memberUid === null || $entryType === null || $targetState === null)) {
+          // Neuer Eintrag: Fehlende Daten aus DB holen
+          $record = BackendUtility::getRecord(
+            'tx_clubmanager_domain_model_memberjournalentry',
+            $resolvedEntryUid,
+            'member,entry_type,target_state,processed'
+          );
+          if (is_array($record)) {
+            $memberUid = $memberUid ?? ($record['member'] ?? null);
+            $entryType = $entryType ?? ($record['entry_type'] ?? null);
+            $targetState = $targetState ?? ($record['target_state'] ?? null);
+            $isProcessed = !empty($record['processed']);
           }
         }
 
@@ -78,8 +96,10 @@ class ProcessMemberJournalHook
           $memberUid = (int) $memberUid;
           $memberUids[$memberUid] = true;
 
+          // Nur NEUE (nicht-processed) Einträge für autoResolveCancellation berücksichtigen
           if (
-            $entryType === MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE
+            !$isProcessed
+            && $entryType === MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE
             && (int) $targetState === Member::STATE_ACTIVE
           ) {
             $activeStatusMemberUids[$memberUid] = true;
@@ -146,6 +166,9 @@ class ProcessMemberJournalHook
         );
       }
 
+      // 4. Synchronisiere FE-User disable-Status mit Member-Status
+      $this->syncFeUserDisableState($memberUid);
+
       if ($corrected) {
         $this->logger->info(
           sprintf('Corrected member %d state to match journal history', $memberUid)
@@ -208,7 +231,6 @@ class ProcessMemberJournalHook
               break;
 
             case Member::STATE_CANCELLED:
-            case Member::STATE_SUSPENDED:
               $currentEndtime = $member->getEndtime();
               if (
                 $currentEndtime === null
@@ -217,6 +239,10 @@ class ProcessMemberJournalHook
                 $member->setEndtime($effectiveDate);
                 $corrected = true;
               }
+              break;
+
+            case Member::STATE_SUSPENDED:
+              // Ruhend setzt KEINE endtime - Member bleibt Mitglied
               break;
           }
         }
@@ -284,6 +310,47 @@ class ProcessMemberJournalHook
   private function isBillingInstalled(): bool
   {
     return class_exists(\Quicko\ClubmanagerBilling\Service\CancellationPeriodCalculator::class);
+  }
+
+  /**
+   * Synchronisiert den FE-User disable-Status mit dem Member-Status.
+   * Deaktiviert FE-User wenn Member nicht mehr ACTIVE ist,
+   * aktiviert FE-User wenn Member wieder ACTIVE wird.
+   */
+  private function syncFeUserDisableState(int $memberUid): void
+  {
+    // Hole aktuellen Member-Status
+    $memberRecord = BackendUtility::getRecord('tx_clubmanager_domain_model_member', $memberUid, 'state');
+    if (!is_array($memberRecord)) {
+      return;
+    }
+
+    $currentState = (int) ($memberRecord['state'] ?? 0);
+    $shouldDisable = ($currentState !== Member::STATE_ACTIVE);
+
+    $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+      ->getConnectionForTable('fe_users');
+
+    // Aktualisiere alle FE-User dieses Members
+    $affectedRows = $connection->update(
+      'fe_users',
+      ['disable' => $shouldDisable ? 1 : 0],
+      [
+        'clubmanager_member' => $memberUid,
+        'deleted' => 0,
+      ]
+    );
+
+    if ($affectedRows > 0) {
+      $this->logger->info(
+        sprintf(
+          'Updated fe_users disable=%d for member %d (%d rows)',
+          $shouldDisable ? 1 : 0,
+          $memberUid,
+          $affectedRows
+        )
+      );
+    }
   }
 }
 
