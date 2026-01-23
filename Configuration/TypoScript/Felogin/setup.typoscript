@@ -12,7 +12,7 @@ plugin.tx_felogin_login {
 
 // LOGIN ON EVERY PAGE
 lib.login >
-lib.login = COA_INT
+lib.login = COA
 lib.login {
     10 = TEXT
     10 {
