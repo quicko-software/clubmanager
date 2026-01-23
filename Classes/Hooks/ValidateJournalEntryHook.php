@@ -6,7 +6,6 @@ namespace Quicko\Clubmanager\Hooks;
 
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
-use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
@@ -14,7 +13,6 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Validates journal entries BEFORE saving.
@@ -171,10 +169,8 @@ class ValidateJournalEntryHook
             }
 
             $this->addFlashMessage(
-                LocalizationUtility::translate('flash.activation_blocked.no_ident', 'clubmanager')
-                    ?? 'Activation not possible: Member number (ident) is missing.',
-                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
-                    ?? 'Validation Error',
+                $this->translate('flash.activation_blocked.no_ident', 'Activation not possible: Member number (ident) is missing.'),
+                $this->translate('flash.validation_error.title', 'Validation Error'),
                 ContextualFeedbackSeverity::ERROR
             );
         }
@@ -197,13 +193,9 @@ class ValidateJournalEntryHook
         string|int $id,
         DataHandler $dataHandler
     ): void {
-        // KRITISCH: Nur NEUE Einträge validieren!
-        // Bestehende Einträge (numerische IDs) werden bei IRRE-Speicherung des Parents
-        // erneut übermittelt, dürfen aber nicht erneut validiert/blockiert werden.
+        // Bestimme ob es ein neuer oder bestehender Eintrag ist
         $isNewEntry = str_starts_with((string) $id, 'NEW');
-        if (!$isNewEntry) {
-            return;
-        }
+        $existingUid = $isNewEntry ? null : (int) $id;
 
         $entryType = $fieldArray['entry_type'] ?? null;
         $targetState = $fieldArray['target_state'] ?? null;
@@ -228,9 +220,9 @@ class ValidateJournalEntryHook
                 return; // Eintrag wurde blockiert
             }
 
-            // CR2: Prüfe auf offene Level-Changes
+            // CR2: Prüfe auf offene Level-Changes (excludeUid = sich selbst bei bestehenden Einträgen)
             if ($memberUid !== null) {
-                if ($this->validateNoPendingLevelChange($fieldArray, $memberUid, null, $id)) {
+                if ($this->validateNoPendingLevelChange($fieldArray, $memberUid, $existingUid, $id)) {
                     return; // Eintrag wurde blockiert
                 }
             }
@@ -238,16 +230,16 @@ class ValidateJournalEntryHook
 
         // Status-Change spezifische Validierungen
         if ($entryType === MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE) {
-            // CR3: Gleicher Status blockieren
-            if ($memberUid !== null && $targetState !== null) {
+            // CR3: Gleicher Status blockieren - nur für neue Einträge
+            if ($isNewEntry && $memberUid !== null && $targetState !== null) {
                 if ($this->validateNotSameStatus($fieldArray, $memberUid, (int) $targetState, $id, $dataHandler)) {
                     return; // Eintrag wurde blockiert
                 }
             }
 
-            // CR2: Prüfe auf offene Status-Changes
+            // CR2: Prüfe auf offene Status-Changes (excludeUid = sich selbst bei bestehenden Einträgen)
             if ($memberUid !== null) {
-                if ($this->validateNoPendingStatusChange($fieldArray, $memberUid, null, $id)) {
+                if ($this->validateNoPendingStatusChange($fieldArray, $memberUid, $existingUid, $id)) {
                     return; // Eintrag wurde blockiert
                 }
             }
@@ -288,10 +280,8 @@ class ValidateJournalEntryHook
             }
 
             $this->addFlashMessage(
-                LocalizationUtility::translate('flash.level_change_same_level', 'clubmanager')
-                    ?? 'Level change not possible: New level is the same as the current level.',
-                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
-                    ?? 'Validation Error',
+                $this->translate('flash.level_change_same_level', 'Level change not possible: New level is the same as the current level.'),
+                $this->translate('flash.validation_error.title', 'Validation Error'),
                 ContextualFeedbackSeverity::ERROR
             );
 
@@ -329,10 +319,8 @@ class ValidateJournalEntryHook
             }
 
             $this->addFlashMessage(
-                LocalizationUtility::translate('flash.status_change_same_status', 'clubmanager')
-                    ?? 'Status change not possible: Target status is the same as the current status.',
-                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
-                    ?? 'Validation Error',
+                $this->translate('flash.status_change_same_status', 'Status change not possible: Target status is the same as the current status.'),
+                $this->translate('flash.validation_error.title', 'Validation Error'),
                 ContextualFeedbackSeverity::ERROR
             );
 
@@ -344,6 +332,7 @@ class ValidateJournalEntryHook
 
     /**
      * CR2: Validiert dass kein offener Status-Change für diesen Member existiert.
+     * Verwendet direkte DBAL-Queries statt Extbase Repository (Hook-Kontext).
      *
      * @return bool True wenn blockiert, false wenn OK
      */
@@ -353,10 +342,13 @@ class ValidateJournalEntryHook
         ?int $excludeUid,
         string|int $id
     ): bool {
-        $repository = GeneralUtility::makeInstance(MemberJournalEntryRepository::class);
-        $pendingEntry = $repository->findPendingStatusChange($memberUid, $excludeUid);
+        $hasPending = $this->hasPendingEntry(
+            $memberUid,
+            MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE,
+            $excludeUid
+        );
 
-        if ($pendingEntry !== null) {
+        if ($hasPending) {
             self::$invalidEntryIds[$id] = $memberUid;
 
             $pid = $fieldArray['pid'] ?? null;
@@ -366,10 +358,8 @@ class ValidateJournalEntryHook
             }
 
             $this->addFlashMessage(
-                LocalizationUtility::translate('flash.pending_status_change_exists', 'clubmanager')
-                    ?? 'A pending status change already exists for this member. Please wait until it is processed.',
-                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
-                    ?? 'Validation Error',
+                $this->translate('flash.pending_status_change_exists', 'A pending status change already exists for this member. Please wait until it is processed.'),
+                $this->translate('flash.validation_error.title', 'Validation Error'),
                 ContextualFeedbackSeverity::ERROR
             );
 
@@ -381,6 +371,7 @@ class ValidateJournalEntryHook
 
     /**
      * CR2: Validiert dass kein offener Level-Change für diesen Member existiert.
+     * Verwendet direkte DBAL-Queries statt Extbase Repository (Hook-Kontext).
      *
      * @return bool True wenn blockiert, false wenn OK
      */
@@ -390,10 +381,13 @@ class ValidateJournalEntryHook
         ?int $excludeUid,
         string|int $id
     ): bool {
-        $repository = GeneralUtility::makeInstance(MemberJournalEntryRepository::class);
-        $pendingEntry = $repository->findPendingLevelChange($memberUid, $excludeUid);
+        $hasPending = $this->hasPendingEntry(
+            $memberUid,
+            MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE,
+            $excludeUid
+        );
 
-        if ($pendingEntry !== null) {
+        if ($hasPending) {
             self::$invalidEntryIds[$id] = $memberUid;
 
             $pid = $fieldArray['pid'] ?? null;
@@ -403,10 +397,8 @@ class ValidateJournalEntryHook
             }
 
             $this->addFlashMessage(
-                LocalizationUtility::translate('flash.pending_level_change_exists', 'clubmanager')
-                    ?? 'A pending level change already exists for this member. Please wait until it is processed.',
-                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
-                    ?? 'Validation Error',
+                $this->translate('flash.pending_level_change_exists', 'A pending level change already exists for this member. Please wait until it is processed.'),
+                $this->translate('flash.validation_error.title', 'Validation Error'),
                 ContextualFeedbackSeverity::ERROR
             );
 
@@ -414,6 +406,39 @@ class ValidateJournalEntryHook
         }
 
         return false;
+    }
+
+    /**
+     * Prüft per DBAL ob ein offener Eintrag eines bestimmten Typs für einen Member existiert.
+     */
+    private function hasPendingEntry(int $memberUid, string $entryType, ?int $excludeUid = null): bool
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable(self::TABLE_NAME);
+
+        $queryBuilder
+            ->count('uid')
+            ->from(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq('member', $queryBuilder->createNamedParameter($memberUid)),
+                $queryBuilder->expr()->eq('entry_type', $queryBuilder->createNamedParameter($entryType)),
+                $queryBuilder->expr()->or(
+                    $queryBuilder->expr()->isNull('processed'),
+                    $queryBuilder->expr()->eq('processed', $queryBuilder->createNamedParameter(0))
+                ),
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0)),
+                $queryBuilder->expr()->eq('hidden', $queryBuilder->createNamedParameter(0))
+            );
+
+        if ($excludeUid !== null) {
+            $queryBuilder->andWhere(
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($excludeUid))
+            );
+        }
+
+        $count = (int) $queryBuilder->executeQuery()->fetchOne();
+
+        return $count > 0;
     }
 
     /**
@@ -481,10 +506,8 @@ class ValidateJournalEntryHook
             }
 
             $this->addFlashMessage(
-                LocalizationUtility::translate('flash.activation_blocked.no_ident', 'clubmanager')
-                    ?? 'Activation not possible: Member number (ident) is missing.',
-                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
-                    ?? 'Validation Error',
+                $this->translate('flash.activation_blocked.no_ident', 'Activation not possible: Member number (ident) is missing.'),
+                $this->translate('flash.validation_error.title', 'Validation Error'),
                 ContextualFeedbackSeverity::ERROR
             );
         }
@@ -556,21 +579,50 @@ class ValidateJournalEntryHook
     }
 
     /**
-     * Ermittelt die Member-UID aus fieldArray oder bestehendem Record
+     * Ermittelt die Member-UID aus fieldArray, bestehendem Record oder Parent-Kontext (IRRE).
+     *
+     * Bei IRRE-Children steht die member-UID oft nicht im fieldArray, da sie
+     * automatisch vom DataHandler zugewiesen wird. In diesem Fall ermitteln wir
+     * die Member-UID aus dem Parent-Kontext.
      */
     private function resolveMemberUid(array $fieldArray, string|int $id, DataHandler $dataHandler): ?int
     {
-        // Aus fieldArray
+        // 1. Aus fieldArray (direktes member-Feld)
         $memberUid = $fieldArray['member'] ?? null;
         if ($memberUid !== null && (int) $memberUid > 0) {
             return (int) $memberUid;
         }
 
-        // Aus bestehendem Record
+        // 2. Aus bestehendem Record (bei Updates)
         if (is_numeric($id)) {
             $record = BackendUtility::getRecord(self::TABLE_NAME, (int) $id, 'member');
             if (is_array($record) && isset($record['member'])) {
                 return (int) $record['member'];
+            }
+        }
+
+        // 3. Aus Parent-Kontext (IRRE): Prüfe welcher Member gerade in der Datamap ist
+        $memberDatamap = $dataHandler->datamap[self::MEMBER_TABLE] ?? [];
+        foreach ($memberDatamap as $memberId => $memberData) {
+            // Prüfe ob dieser Member journal_entries enthält, die auf unseren Eintrag verweisen
+            $journalEntries = $memberData['journal_entries'] ?? null;
+            if ($journalEntries !== null && is_string($journalEntries)) {
+                // Format: "NEW12345,NEW12346,123,124" oder "NEW12345"
+                $entryIds = explode(',', $journalEntries);
+                if (in_array((string) $id, $entryIds, true)) {
+                    // Gefunden! Dieser Member enthält unseren Journal-Eintrag
+                    if (is_numeric($memberId)) {
+                        return (int) $memberId;
+                    }
+                }
+            }
+        }
+
+        // 4. Fallback: Wenn nur ein Member in der Datamap ist, nehmen wir diesen
+        if (count($memberDatamap) === 1) {
+            $memberId = array_key_first($memberDatamap);
+            if (is_numeric($memberId)) {
+                return (int) $memberId;
             }
         }
 
@@ -601,5 +653,21 @@ class ValidateJournalEntryHook
 
         $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
         $flashMessageService->getMessageQueueByIdentifier()->enqueue($flashMessage);
+    }
+
+    /**
+     * Übersetzt einen Label-Key mit dem Backend-LanguageService.
+     * Verwendet die Sprache des aktuellen Backend-Users.
+     */
+    private function translate(string $key, string $fallback): string
+    {
+        $languageService = $GLOBALS['LANG'] ?? null;
+        if ($languageService === null) {
+            return $fallback;
+        }
+
+        $translated = $languageService->sL('LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:' . $key);
+        
+        return $translated ?: $fallback;
     }
 }
