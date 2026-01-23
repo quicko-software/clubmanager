@@ -416,6 +416,9 @@ class ValidateJournalEntryHook
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable(self::TABLE_NAME);
 
+        // Entferne Standard-Restrictions, wir prüfen hidden/deleted explizit
+        $queryBuilder->getRestrictions()->removeAll();
+
         $queryBuilder
             ->count('uid')
             ->from(self::TABLE_NAME)
@@ -470,14 +473,9 @@ class ValidateJournalEntryHook
         ?int $memberUid,
         DataHandler $dataHandler
     ): void {
-        // Prüfe effective_date - nur blockieren wenn in Vergangenheit oder heute
+        // Prüfe effective_date - muss gesetzt sein
         $effectiveDate = $this->parseEffectiveDate($fieldArray['effective_date'] ?? null);
         if ($effectiveDate === null) {
-            return;
-        }
-
-        $now = new \DateTime('today');
-        if ($effectiveDate > $now) {
             return;
         }
 
@@ -485,7 +483,7 @@ class ValidateJournalEntryHook
             return;
         }
 
-        // Prüfe ob Member ident hat
+        // Prüfe ob Member ident hat - IMMER für Aktivierungs-Einträge, auch zukünftige!
         $memberRecord = BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'ident');
         if (!is_array($memberRecord)) {
             return;
