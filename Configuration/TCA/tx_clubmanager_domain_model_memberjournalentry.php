@@ -183,8 +183,8 @@ return [
       'config' => [
         'type' => 'select',
         'renderType' => 'selectSingle',
+        // CR4: STATE_APPLIED entfernt - ist ein reiner System-Status für Neuanmeldungen
         'items' => [
-          ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.1', 'value' => Member::STATE_APPLIED],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.2', 'value' => Member::STATE_ACTIVE],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.3', 'value' => Member::STATE_SUSPENDED],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.4', 'value' => Member::STATE_CANCELLED],

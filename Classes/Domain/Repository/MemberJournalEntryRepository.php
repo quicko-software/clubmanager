@@ -173,6 +173,72 @@ class MemberJournalEntryRepository extends Repository
 
     return $query->execute()->getFirst();
   }
+
+  /**
+   * CR2: Prüft ob ein Member einen unverarbeiteten Status-Change hat.
+   * Verhindert das Anlegen mehrerer offener Status-Changes.
+   *
+   * @param int $memberUid Member UID
+   * @param int|null $excludeUid Optional: UID eines Eintrags, der ausgeschlossen werden soll (für Updates)
+   * @return T|null
+   */
+  public function findPendingStatusChange(int $memberUid, ?int $excludeUid = null): ?object
+  {
+    $query = $this->createQuery();
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
+    $query->setQuerySettings($querySettings);
+
+    $constraints = [
+      $query->equals('member', $memberUid),
+      $query->equals('entryType', MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE),
+      $query->equals('processed', null),
+      $query->equals('deleted', 0),
+      $query->equals('hidden', 0)
+    ];
+
+    if ($excludeUid !== null) {
+      $constraints[] = $query->logicalNot($query->equals('uid', $excludeUid));
+    }
+
+    $query->matching($query->logicalAnd(...$constraints));
+
+    return $query->execute()->getFirst();
+  }
+
+  /**
+   * CR2: Prüft ob ein Member einen unverarbeiteten Level-Change hat.
+   * Verhindert das Anlegen mehrerer offener Level-Changes.
+   *
+   * @param int $memberUid Member UID
+   * @param int|null $excludeUid Optional: UID eines Eintrags, der ausgeschlossen werden soll (für Updates)
+   * @return T|null
+   */
+  public function findPendingLevelChange(int $memberUid, ?int $excludeUid = null): ?object
+  {
+    $query = $this->createQuery();
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
+    $query->setQuerySettings($querySettings);
+
+    $constraints = [
+      $query->equals('member', $memberUid),
+      $query->equals('entryType', MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE),
+      $query->equals('processed', null),
+      $query->equals('deleted', 0),
+      $query->equals('hidden', 0)
+    ];
+
+    if ($excludeUid !== null) {
+      $constraints[] = $query->logicalNot($query->equals('uid', $excludeUid));
+    }
+
+    $query->matching($query->logicalAnd(...$constraints));
+
+    return $query->execute()->getFirst();
+  }
 }
 
 

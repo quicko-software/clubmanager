@@ -56,7 +56,7 @@ class PreventSystemJournalEntryEditHook
         }
 
         // Check if this entry should be protected
-        $record = $this->getRecord((int) $id);
+        $record = $this->getRecordForComparison((int) $id);
         if ($record === null) {
             return;
         }
@@ -74,6 +74,12 @@ class PreventSystemJournalEntryEditHook
 
         if (!$shouldPreventEdit) {
             return;
+        }
+
+        // Bug 6 Fix: Deep Compare - Prüfe ob tatsächlich inhaltliche Änderungen vorliegen
+        // IRRE sendet beim Speichern des Parents auch unveränderte Children-Daten
+        if (!$this->hasActualChanges($meaningfulChanges, $record)) {
+            return; // Keine echten Änderungen -> Hook abbrechen, keine Warnung
         }
 
         // Prevent modification by clearing the field array
@@ -104,7 +110,10 @@ class PreventSystemJournalEntryEditHook
         return $GLOBALS['BE_USER'];
     }
 
-    private function getRecord(int $uid): ?array
+    /**
+     * Lädt den Datensatz mit allen für den Vergleich relevanten Feldern.
+     */
+    private function getRecordForComparison(int $uid): ?array
     {
         $queryBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)
             ->getQueryBuilderForTable(self::TABLE_NAME);
@@ -112,7 +121,7 @@ class PreventSystemJournalEntryEditHook
         $queryBuilder->getRestrictions()->removeAll();
 
         $record = $queryBuilder
-            ->select('creator_type', 'processed')
+            ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, ParameterType::INTEGER))
@@ -121,6 +130,53 @@ class PreventSystemJournalEntryEditHook
             ->fetchAssociative();
 
         return $record ?: null;
+    }
+
+    /**
+     * Prüft ob tatsächliche inhaltliche Änderungen vorliegen.
+     * Vergleicht die eingehenden Werte mit den DB-Werten.
+     *
+     * @param array<string, mixed> $incomingData Die zu speichernden Daten
+     * @param array<string, mixed> $dbRecord Der aktuelle Datensatz aus der DB
+     */
+    private function hasActualChanges(array $incomingData, array $dbRecord): bool
+    {
+        foreach ($incomingData as $field => $newValue) {
+            // Feld existiert nicht im DB-Record -> neue Daten
+            if (!array_key_exists($field, $dbRecord)) {
+                return true;
+            }
+
+            $dbValue = $dbRecord[$field];
+
+            // Normalisierung für Vergleich (beide zu String, trim)
+            $normalizedNew = $this->normalizeValue($newValue);
+            $normalizedDb = $this->normalizeValue($dbValue);
+
+            if ($normalizedNew !== $normalizedDb) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Normalisiert einen Wert für den Vergleich.
+     * Konvertiert zu String und trimmt Whitespace.
+     */
+    private function normalizeValue(mixed $value): string
+    {
+        if ($value === null) {
+            return '';
+        }
+
+        // Boolean zu "0" oder "1"
+        if (is_bool($value)) {
+            return $value ? '1' : '0';
+        }
+
+        return trim((string) $value);
     }
 
     private function addFlashMessage(string $message, string $title, ContextualFeedbackSeverity $severity): void

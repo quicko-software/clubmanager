@@ -114,7 +114,7 @@ const MemberJournalLevelChangeWarning = {
         continue;
       }
 
-      if (this.isPastOrToday(effectiveTimestamp)) {
+      if (this.isPast(effectiveTimestamp)) {
         return true;
       }
     }
@@ -199,14 +199,19 @@ const MemberJournalLevelChangeWarning = {
     return null;
   },
 
-  isPastOrToday(timestamp) {
+  /**
+   * CR5: Prüft ob das Datum in der Vergangenheit liegt (NICHT heute).
+   * Nur bei effective_date < heute soll die Warnung erscheinen.
+   */
+  isPast(timestamp) {
     const effectiveDate = new Date(timestamp * 1000);
     effectiveDate.setHours(0, 0, 0, 0);
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    return effectiveDate.getTime() <= today.getTime();
+    // CR5: Nur < (strikt kleiner), nicht <= (kleiner oder gleich)
+    return effectiveDate.getTime() < today.getTime();
   }
 };
 

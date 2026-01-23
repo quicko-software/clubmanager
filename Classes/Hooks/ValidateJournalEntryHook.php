@@ -6,6 +6,7 @@ namespace Quicko\Clubmanager\Hooks;
 
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
+use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
@@ -183,24 +184,252 @@ class ValidateJournalEntryHook
     ): void {
         $entryType = $fieldArray['entry_type'] ?? null;
         $targetState = $fieldArray['target_state'] ?? null;
+        $newLevel = $fieldArray['new_level'] ?? null;
+        $oldLevel = $fieldArray['old_level'] ?? null;
 
         // Für existierende Einträge: Werte aus DB holen wenn nicht im fieldArray
+        $existingRecord = null;
         if (is_numeric($id)) {
-            $record = BackendUtility::getRecord(self::TABLE_NAME, (int) $id, 'entry_type,target_state,member');
-            if (is_array($record)) {
-                $entryType = $entryType ?? ($record['entry_type'] ?? null);
-                $targetState = $targetState ?? ($record['target_state'] ?? null);
+            $existingRecord = BackendUtility::getRecord(
+                self::TABLE_NAME,
+                (int) $id,
+                'entry_type,target_state,member,new_level,old_level'
+            );
+            if (is_array($existingRecord)) {
+                $entryType = $entryType ?? ($existingRecord['entry_type'] ?? null);
+                $targetState = $targetState ?? ($existingRecord['target_state'] ?? null);
+                $newLevel = $newLevel ?? ($existingRecord['new_level'] ?? null);
+                $oldLevel = $oldLevel ?? ($existingRecord['old_level'] ?? null);
             }
         }
 
-        // Nur Status-Wechsel auf ACTIVE prüfen (ENTRY_TYPE_STATUS_CHANGE ist ein String!)
-        if ($entryType !== MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE) {
-            return;
-        }
-        if ((int) $targetState !== Member::STATE_ACTIVE) {
-            return;
+        // Member-UID ermitteln
+        $memberUid = $this->resolveMemberUid($fieldArray, $id, $dataHandler);
+        $excludeUid = is_numeric($id) ? (int) $id : null;
+
+        // Bug 7: Level-Change Validierung (old_level != new_level)
+        if ($entryType === MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE) {
+            if ($this->validateLevelChange($fieldArray, $oldLevel, $newLevel, $id)) {
+                return; // Eintrag wurde blockiert
+            }
+
+            // CR2: Prüfe auf offene Level-Changes (nur bei neuen Einträgen)
+            if ($memberUid !== null && str_starts_with((string) $id, 'NEW')) {
+                if ($this->validateNoPendingLevelChange($fieldArray, $memberUid, $excludeUid, $id)) {
+                    return; // Eintrag wurde blockiert
+                }
+            }
         }
 
+        // Status-Change spezifische Validierungen
+        if ($entryType === MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE) {
+            // CR3: Gleicher Status blockieren
+            if ($memberUid !== null && $targetState !== null) {
+                if ($this->validateNotSameStatus($fieldArray, $memberUid, (int) $targetState, $id, $dataHandler)) {
+                    return; // Eintrag wurde blockiert
+                }
+            }
+
+            // CR2: Prüfe auf offene Status-Changes (nur bei neuen Einträgen)
+            if ($memberUid !== null && str_starts_with((string) $id, 'NEW')) {
+                if ($this->validateNoPendingStatusChange($fieldArray, $memberUid, $excludeUid, $id)) {
+                    return; // Eintrag wurde blockiert
+                }
+            }
+
+            // Bestehende Validierung: Aktivierung ohne ident blockieren
+            if ((int) $targetState === Member::STATE_ACTIVE) {
+                $this->validateActivationWithIdent($fieldArray, $id, $memberUid, $dataHandler);
+            }
+        }
+    }
+
+    /**
+     * Bug 7: Validiert dass bei Level-Changes old_level != new_level ist.
+     *
+     * @return bool True wenn blockiert, false wenn OK
+     */
+    private function validateLevelChange(
+        array &$fieldArray,
+        mixed $oldLevel,
+        mixed $newLevel,
+        string|int $id
+    ): bool {
+        // Beide Werte müssen vorhanden sein
+        if ($oldLevel === null || $newLevel === null) {
+            return false;
+        }
+
+        $oldLevelInt = (int) $oldLevel;
+        $newLevelInt = (int) $newLevel;
+
+        if ($oldLevelInt === $newLevelInt) {
+            self::$invalidEntryIds[$id] = 0;
+
+            $pid = $fieldArray['pid'] ?? null;
+            $fieldArray = [];
+            if ($pid !== null) {
+                $fieldArray['pid'] = $pid;
+            }
+
+            $this->addFlashMessage(
+                LocalizationUtility::translate('flash.level_change_same_level', 'clubmanager')
+                    ?? 'Level change not possible: New level is the same as the current level.',
+                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
+                    ?? 'Validation Error',
+                ContextualFeedbackSeverity::ERROR
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * CR3: Validiert dass der Ziel-Status nicht dem aktuellen Status entspricht.
+     *
+     * @return bool True wenn blockiert, false wenn OK
+     */
+    private function validateNotSameStatus(
+        array &$fieldArray,
+        int $memberUid,
+        int $targetState,
+        string|int $id,
+        DataHandler $dataHandler
+    ): bool {
+        // Aktuellen Status aus DB oder Datamap holen
+        $currentState = $this->getCurrentMemberState($memberUid, $dataHandler);
+        if ($currentState === null) {
+            return false;
+        }
+
+        if ($currentState === $targetState) {
+            self::$invalidEntryIds[$id] = $memberUid;
+
+            $pid = $fieldArray['pid'] ?? null;
+            $fieldArray = [];
+            if ($pid !== null) {
+                $fieldArray['pid'] = $pid;
+            }
+
+            $this->addFlashMessage(
+                LocalizationUtility::translate('flash.status_change_same_status', 'clubmanager')
+                    ?? 'Status change not possible: Target status is the same as the current status.',
+                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
+                    ?? 'Validation Error',
+                ContextualFeedbackSeverity::ERROR
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * CR2: Validiert dass kein offener Status-Change für diesen Member existiert.
+     *
+     * @return bool True wenn blockiert, false wenn OK
+     */
+    private function validateNoPendingStatusChange(
+        array &$fieldArray,
+        int $memberUid,
+        ?int $excludeUid,
+        string|int $id
+    ): bool {
+        $repository = GeneralUtility::makeInstance(MemberJournalEntryRepository::class);
+        $pendingEntry = $repository->findPendingStatusChange($memberUid, $excludeUid);
+
+        if ($pendingEntry !== null) {
+            self::$invalidEntryIds[$id] = $memberUid;
+
+            $pid = $fieldArray['pid'] ?? null;
+            $fieldArray = [];
+            if ($pid !== null) {
+                $fieldArray['pid'] = $pid;
+            }
+
+            $this->addFlashMessage(
+                LocalizationUtility::translate('flash.pending_status_change_exists', 'clubmanager')
+                    ?? 'A pending status change already exists for this member. Please wait until it is processed.',
+                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
+                    ?? 'Validation Error',
+                ContextualFeedbackSeverity::ERROR
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * CR2: Validiert dass kein offener Level-Change für diesen Member existiert.
+     *
+     * @return bool True wenn blockiert, false wenn OK
+     */
+    private function validateNoPendingLevelChange(
+        array &$fieldArray,
+        int $memberUid,
+        ?int $excludeUid,
+        string|int $id
+    ): bool {
+        $repository = GeneralUtility::makeInstance(MemberJournalEntryRepository::class);
+        $pendingEntry = $repository->findPendingLevelChange($memberUid, $excludeUid);
+
+        if ($pendingEntry !== null) {
+            self::$invalidEntryIds[$id] = $memberUid;
+
+            $pid = $fieldArray['pid'] ?? null;
+            $fieldArray = [];
+            if ($pid !== null) {
+                $fieldArray['pid'] = $pid;
+            }
+
+            $this->addFlashMessage(
+                LocalizationUtility::translate('flash.pending_level_change_exists', 'clubmanager')
+                    ?? 'A pending level change already exists for this member. Please wait until it is processed.',
+                LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
+                    ?? 'Validation Error',
+                ContextualFeedbackSeverity::ERROR
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Holt den aktuellen Status eines Members aus DB oder Datamap.
+     */
+    private function getCurrentMemberState(int $memberUid, DataHandler $dataHandler): ?int
+    {
+        // Prüfe erst Datamap (falls im selben Request geändert)
+        $memberData = $dataHandler->datamap[self::MEMBER_TABLE][$memberUid] ?? null;
+        if (is_array($memberData) && isset($memberData['state'])) {
+            return (int) $memberData['state'];
+        }
+
+        // Aus DB holen
+        $memberRecord = BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'state');
+        if (is_array($memberRecord) && isset($memberRecord['state'])) {
+            return (int) $memberRecord['state'];
+        }
+
+        return null;
+    }
+
+    /**
+     * Bestehende Validierung: Aktivierung ohne ident blockieren.
+     */
+    private function validateActivationWithIdent(
+        array &$fieldArray,
+        string|int $id,
+        ?int $memberUid,
+        DataHandler $dataHandler
+    ): void {
         // Prüfe effective_date - nur blockieren wenn in Vergangenheit oder heute
         $effectiveDate = $this->parseEffectiveDate($fieldArray['effective_date'] ?? null);
         if ($effectiveDate === null) {
@@ -212,8 +441,6 @@ class ValidateJournalEntryHook
             return;
         }
 
-        // Member-UID ermitteln
-        $memberUid = $this->resolveMemberUid($fieldArray, $id, $dataHandler);
         if ($memberUid === null) {
             return;
         }
@@ -231,8 +458,7 @@ class ValidateJournalEntryHook
         if (trim((string) $ident) === '') {
             self::$invalidEntryIds[$id] = $memberUid;
             self::$blockedMemberUids[$memberUid] = true;
-            
-            // WICHTIG: pid muss erhalten bleiben für DataHandler bei neuen Records
+
             $pid = $fieldArray['pid'] ?? null;
             $fieldArray = [];
             if ($pid !== null) {

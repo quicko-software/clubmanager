@@ -8,9 +8,9 @@ use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 
 /**
- * Sets the level field to readOnly for Members.
- * Level changes should only be made through Journal entries.
- * This applies to ALL users including admins - level is determined by journal data.
+ * Sets fields to readOnly for Members:
+ * - level: Always readOnly (changes only through Journal entries)
+ * - ident: ReadOnly for non-admins after first activation (starttime is set)
  */
 final class MemberFieldsReadonly implements FormDataProviderInterface
 {
@@ -26,7 +26,37 @@ final class MemberFieldsReadonly implements FormDataProviderInterface
       $result['processedTca']['columns']['level']['config']['readOnly'] = true;
     }
 
+    // CR1: ident nach erster Aktivierung für Redakteure sperren
+    // starttime wird bei Aktivierung gesetzt und dient als Indikator
+    if (!$this->getBackendUser()->isAdmin()) {
+      $starttime = $result['databaseRow']['starttime'] ?? null;
+      $wasActivated = $this->wasEverActivated($starttime);
+
+      if ($wasActivated && isset($result['processedTca']['columns']['ident'])) {
+        $result['processedTca']['columns']['ident']['config']['readOnly'] = true;
+      }
+    }
+
     return $result;
+  }
+
+  /**
+   * Prüft ob das Mitglied bereits einmal aktiviert war.
+   * starttime wird bei der ersten Aktivierung gesetzt.
+   */
+  private function wasEverActivated(mixed $starttime): bool
+  {
+    if ($starttime === null || $starttime === '' || $starttime === 0 || $starttime === '0') {
+      return false;
+    }
+
+    // starttime kann als Timestamp (int) oder formatierter String kommen
+    if (is_numeric($starttime)) {
+      return (int) $starttime > 0;
+    }
+
+    // Formatierter String (z.B. "2024-01-15 00:00:00")
+    return trim((string) $starttime) !== '';
   }
 
   private function getBackendUser(): BackendUserAuthentication

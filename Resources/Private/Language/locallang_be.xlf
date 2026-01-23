@@ -346,6 +346,24 @@
 			<trans-unit id="flash.journal_edit_blocked.member_entry" resname="flash.journal_edit_blocked.member_entry">
 				<source>Member-created journal entries cannot be edited.</source>
 			</trans-unit>
+
+			<!-- Bug 7: Level Change Validation -->
+			<trans-unit id="flash.level_change_same_level" resname="flash.level_change_same_level">
+				<source>Level change not possible: New level is the same as the current level.</source>
+			</trans-unit>
+
+			<!-- CR3: Same Status Validation -->
+			<trans-unit id="flash.status_change_same_status" resname="flash.status_change_same_status">
+				<source>Status change not possible: Target status is the same as the current member status.</source>
+			</trans-unit>
+
+			<!-- CR2: Pending Entry Validations -->
+			<trans-unit id="flash.pending_status_change_exists" resname="flash.pending_status_change_exists">
+				<source>A pending status change already exists for this member. Please wait until it is processed or delete the existing entry first.</source>
+			</trans-unit>
+			<trans-unit id="flash.pending_level_change_exists" resname="flash.pending_level_change_exists">
+				<source>A pending level change already exists for this member. Please wait until it is processed or delete the existing entry first.</source>
+			</trans-unit>
 			
 		</body>
 	</file>

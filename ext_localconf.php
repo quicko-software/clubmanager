@@ -85,15 +85,19 @@ call_user_func(function () {
 
   PluginRegisterFacade::configureAllPlugins();
 
-  // ValidateJournalEntryHook: Blockiert Journal-Einträge ohne ident VOR dem Speichern
+  // AutoFillJournalEntryFieldsHook: Füllt Felder wie old_level, entry_date, creator_type
+  // WICHTIG: Muss VOR ValidateJournalEntryHook laufen, damit old_level für die Validierung verfügbar ist
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_autofill_journal_fields'] = Quicko\Clubmanager\Hooks\AutoFillJournalEntryFieldsHook::class;
+
+  // ValidateJournalEntryHook: Validiert Journal-Einträge (ident-Prüfung, Level-Change, Status-Duplikate, Pending-Check)
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_validate_journal_entry_hook'] = Quicko\Clubmanager\Hooks\ValidateJournalEntryHook::class;
+
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_fe_user_email_hook'] = Quicko\Clubmanager\Hooks\CopyMemberEmailToFeuserHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_fe_user_password_hook'] = Quicko\Clubmanager\Hooks\ResetFeuserPasswordHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_location_lat_lng_update_hook'] = Quicko\Clubmanager\Hooks\LocationLatLngUpdateHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_member_starttime_hook'] = Quicko\Clubmanager\Hooks\MemberStartTimeHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_process_member_journal_hook'] = Quicko\Clubmanager\Hooks\ProcessMemberJournalHook::class;
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_prevent_system_journal_edit'] = Quicko\Clubmanager\Hooks\PreventSystemJournalEntryEditHook::class;
-  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_autofill_journal_fields'] = Quicko\Clubmanager\Hooks\AutoFillJournalEntryFieldsHook::class;
   // Must run AFTER clubmanager_process_member_journal_hook because journal processing updates member state
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_member_autocreate_feuser_hook'] = Quicko\Clubmanager\Hooks\MemberAutoCreateFeuserHook::class;
   // $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_reset_password'] = \Quicko\Clubmanager\Hooks\EmailVerificationTokenResetHook::class;
