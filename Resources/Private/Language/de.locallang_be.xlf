@@ -466,6 +466,30 @@
 				<target>Abbrechen</target>
 			</trans-unit>
 
+			<!-- Bug 7: Same Level Error Dialog -->
+			<trans-unit id="memberjournal.level_change.same_level.dialog.title"
+				resname="memberjournal.level_change.same_level.dialog.title">
+				<source>Validation Error</source>
+				<target>Validierungsfehler</target>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.same_level.dialog.text"
+				resname="memberjournal.level_change.same_level.dialog.text">
+				<source>Level change not possible: The new level is the same as the current level. Please select a different level.</source>
+				<target>Level-Änderung nicht möglich: Der neue Level entspricht dem aktuellen Level. Bitte wählen Sie einen anderen Level.</target>
+			</trans-unit>
+
+			<!-- CR3: Same Status Error Dialog -->
+			<trans-unit id="memberjournal.status_change.same_status.dialog.title"
+				resname="memberjournal.status_change.same_status.dialog.title">
+				<source>Validation Error</source>
+				<target>Validierungsfehler</target>
+			</trans-unit>
+			<trans-unit id="memberjournal.status_change.same_status.dialog.text"
+				resname="memberjournal.status_change.same_status.dialog.text">
+				<source>Status change not possible: The target status is the same as the current member status. Please select a different status.</source>
+				<target>Status-Änderung nicht möglich: Der Zielstatus entspricht dem aktuellen Mitgliedsstatus. Bitte wählen Sie einen anderen Status.</target>
+			</trans-unit>
+
 			<!-- Flash messages for member/journal validation -->
 			<trans-unit id="flash.validation_error.title" resname="flash.validation_error.title">
 				<source>Validation Error</source>

@@ -115,11 +115,17 @@ class ValidateJournalEntryHook
         }
 
         // Kein ident - prüfe ob ungültige Journal-Einträge in Datamap sind
+        // WICHTIG: Nur NEUE Einträge (NEW prefix) prüfen, nicht bestehende!
         $journalData = $dataHandler->datamap[self::TABLE_NAME] ?? [];
         $now = new \DateTime('today');
         $hasInvalidEntry = false;
 
         foreach ($journalData as $entryId => $entryData) {
+            // KRITISCH: Nur NEUE Einträge validieren!
+            if (!str_starts_with((string) $entryId, 'NEW')) {
+                continue;
+            }
+
             // Prüfe ob dieser Eintrag zu diesem Member gehört
             $entryMemberUid = $entryData['member'] ?? null;
 
@@ -176,36 +182,45 @@ class ValidateJournalEntryHook
 
     /**
      * Validiert einen einzelnen Journal-Eintrag (Fallback für direkte Journal-Bearbeitung).
+     *
+     * WICHTIG: Validierungen für Bug 7, CR2, CR3 gelten nur für NEUE Einträge (NEW prefix).
+     * Bestehende Einträge (numerische IDs) werden nicht validiert, da sie bereits gespeichert
+     * wurden und bei IRRE-Speicherung des Parents erneut übermittelt werden.
+     *
+     * WICHTIG: Validierung erfolgt erst wenn effective_date gesetzt ist!
+     * Beim Type-Switching speichert FormEngine automatisch, bevor der User die Felder
+     * ausfüllen kann. Daher darf die Validierung erst greifen, wenn der Eintrag
+     * "vollständig" ist (= effective_date vorhanden).
      */
     private function validateSingleJournalEntry(
         array &$fieldArray,
         string|int $id,
         DataHandler $dataHandler
     ): void {
+        // KRITISCH: Nur NEUE Einträge validieren!
+        // Bestehende Einträge (numerische IDs) werden bei IRRE-Speicherung des Parents
+        // erneut übermittelt, dürfen aber nicht erneut validiert/blockiert werden.
+        $isNewEntry = str_starts_with((string) $id, 'NEW');
+        if (!$isNewEntry) {
+            return;
+        }
+
         $entryType = $fieldArray['entry_type'] ?? null;
         $targetState = $fieldArray['target_state'] ?? null;
         $newLevel = $fieldArray['new_level'] ?? null;
         $oldLevel = $fieldArray['old_level'] ?? null;
+        $effectiveDate = $this->parseEffectiveDate($fieldArray['effective_date'] ?? null);
 
-        // Für existierende Einträge: Werte aus DB holen wenn nicht im fieldArray
-        $existingRecord = null;
-        if (is_numeric($id)) {
-            $existingRecord = BackendUtility::getRecord(
-                self::TABLE_NAME,
-                (int) $id,
-                'entry_type,target_state,member,new_level,old_level'
-            );
-            if (is_array($existingRecord)) {
-                $entryType = $entryType ?? ($existingRecord['entry_type'] ?? null);
-                $targetState = $targetState ?? ($existingRecord['target_state'] ?? null);
-                $newLevel = $newLevel ?? ($existingRecord['new_level'] ?? null);
-                $oldLevel = $oldLevel ?? ($existingRecord['old_level'] ?? null);
-            }
+        // KRITISCH: Validierung nur wenn effective_date gesetzt ist!
+        // Beim Type-Switching speichert FormEngine automatisch mit Default-Werten.
+        // Der User hatte noch keine Chance, die Felder korrekt auszufüllen.
+        // Ohne effective_date ist der Eintrag sowieso nicht verarbeitbar.
+        if ($effectiveDate === null) {
+            return;
         }
 
         // Member-UID ermitteln
         $memberUid = $this->resolveMemberUid($fieldArray, $id, $dataHandler);
-        $excludeUid = is_numeric($id) ? (int) $id : null;
 
         // Bug 7: Level-Change Validierung (old_level != new_level)
         if ($entryType === MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE) {
@@ -213,9 +228,9 @@ class ValidateJournalEntryHook
                 return; // Eintrag wurde blockiert
             }
 
-            // CR2: Prüfe auf offene Level-Changes (nur bei neuen Einträgen)
-            if ($memberUid !== null && str_starts_with((string) $id, 'NEW')) {
-                if ($this->validateNoPendingLevelChange($fieldArray, $memberUid, $excludeUid, $id)) {
+            // CR2: Prüfe auf offene Level-Changes
+            if ($memberUid !== null) {
+                if ($this->validateNoPendingLevelChange($fieldArray, $memberUid, null, $id)) {
                     return; // Eintrag wurde blockiert
                 }
             }
@@ -230,9 +245,9 @@ class ValidateJournalEntryHook
                 }
             }
 
-            // CR2: Prüfe auf offene Status-Changes (nur bei neuen Einträgen)
-            if ($memberUid !== null && str_starts_with((string) $id, 'NEW')) {
-                if ($this->validateNoPendingStatusChange($fieldArray, $memberUid, $excludeUid, $id)) {
+            // CR2: Prüfe auf offene Status-Changes
+            if ($memberUid !== null) {
+                if ($this->validateNoPendingStatusChange($fieldArray, $memberUid, null, $id)) {
                     return; // Eintrag wurde blockiert
                 }
             }
@@ -477,6 +492,9 @@ class ValidateJournalEntryHook
 
     /**
      * Hook nach allen Operationen: Löscht ungültige Journal-Einträge die durch IRRE erstellt wurden.
+     *
+     * WICHTIG: Nur NEU erstellte Einträge (NEW prefix) werden gelöscht!
+     * Bestehende Einträge (numerische IDs) dürfen NIEMALS gelöscht werden.
      */
     public function processDatamap_afterAllOperations(DataHandler &$dataHandler): void
     {
@@ -488,12 +506,19 @@ class ValidateJournalEntryHook
             ->getConnectionForTable(self::TABLE_NAME);
 
         foreach (self::$invalidEntryIds as $id => $memberUid) {
-            // Resolve NEW... IDs to actual UIDs
-            $resolvedUid = is_numeric($id) ? (int) $id : ($dataHandler->substNEWwithIDs[$id] ?? null);
+            // KRITISCH: Nur NEW-Einträge löschen, NIEMALS bestehende!
+            // $id ist der ursprüngliche Key (z.B. "NEW12345" oder numerisch)
+            if (is_numeric($id)) {
+                // Bestehender Eintrag - NICHT löschen!
+                continue;
+            }
 
-            if ($resolvedUid !== null) {
-                // Lösche den ungültigen Eintrag komplett
-                $connection->delete(self::TABLE_NAME, ['uid' => $resolvedUid]);
+            // NEW-Eintrag: Resolve zu tatsächlicher UID
+            $resolvedUid = $dataHandler->substNEWwithIDs[$id] ?? null;
+
+            if ($resolvedUid !== null && $resolvedUid > 0) {
+                // Lösche den ungültigen neuen Eintrag
+                $connection->delete(self::TABLE_NAME, ['uid' => (int) $resolvedUid]);
             }
         }
 

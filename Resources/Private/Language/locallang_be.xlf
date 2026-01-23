@@ -321,6 +321,22 @@
 				<source>Cancel</source>
 			</trans-unit>
 
+			<!-- Bug 7: Same Level Error Dialog -->
+			<trans-unit id="memberjournal.level_change.same_level.dialog.title" resname="memberjournal.level_change.same_level.dialog.title">
+				<source>Validation Error</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.same_level.dialog.text" resname="memberjournal.level_change.same_level.dialog.text">
+				<source>Level change not possible: The new level is the same as the current level. Please select a different level.</source>
+			</trans-unit>
+
+			<!-- CR3: Same Status Error Dialog -->
+			<trans-unit id="memberjournal.status_change.same_status.dialog.title" resname="memberjournal.status_change.same_status.dialog.title">
+				<source>Validation Error</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.status_change.same_status.dialog.text" resname="memberjournal.status_change.same_status.dialog.text">
+				<source>Status change not possible: The target status is the same as the current member status. Please select a different status.</source>
+			</trans-unit>
+
 			<!-- Flash messages for member/journal validation -->
 			<trans-unit id="flash.validation_error.title" resname="flash.validation_error.title">
 				<source>Validation Error</source>

@@ -1,8 +1,9 @@
 import $ from 'jquery';
 
 /**
- * Shows a warning dialog when saving a member with level_change journal entries
- * that have an effective_date in the past or today AND are not yet processed.
+ * Validates level_change journal entries:
+ * 1. Bug 7: Blocks saving if old_level == new_level (hard error)
+ * 2. CR5: Shows warning if effective_date < today (soft warning, can proceed)
  *
  * Uses the same pattern as EmailVerificationTokenReset - intercepts save button click.
  */
@@ -27,6 +28,57 @@ const MemberJournalLevelChangeWarning = {
 
     const self = this;
     $(document).on('click', this.saveButtonSelector, function(event) {
+      // Bug 7: Prüfe auf gleiche Level (harte Blockierung, kein Weiter möglich)
+      const sameLevelEntry = self.findSameLevelEntry(form);
+      if (sameLevelEntry) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        top.TYPO3.Modal.confirm(
+          config.sameLevelTitle || 'Validation Error',
+          config.sameLevelText || 'Level change not possible: New level is the same as the current level.',
+          top.TYPO3.Severity.error,
+          [
+            {
+              text: config.okLabel || 'OK',
+              btnClass: 'btn-default',
+              active: true,
+              trigger: function() {
+                top.TYPO3.Modal.dismiss();
+              }
+            }
+          ]
+        );
+
+        return false;
+      }
+
+      // CR3: Prüfe auf gleichen Status (harte Blockierung, kein Weiter möglich)
+      const sameStatusEntry = self.findSameStatusEntry(form, config.memberState);
+      if (sameStatusEntry) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        top.TYPO3.Modal.confirm(
+          config.sameStatusTitle || 'Validation Error',
+          config.sameStatusText || 'Status change not possible: Target status is the same as the current status.',
+          top.TYPO3.Severity.error,
+          [
+            {
+              text: config.okLabel || 'OK',
+              btnClass: 'btn-default',
+              active: true,
+              trigger: function() {
+                top.TYPO3.Modal.dismiss();
+              }
+            }
+          ]
+        );
+
+        return false;
+      }
+
+      // CR5: Warnung bei Vergangenheitsdatum (weiche Warnung, kann fortfahren)
       if (self.isConfirmed) {
         self.isConfirmed = false;
         return true;
@@ -78,8 +130,132 @@ const MemberJournalLevelChangeWarning = {
       title: element.getAttribute('data-dialog-title') || '',
       text: element.getAttribute('data-dialog-text') || '',
       okLabel: element.getAttribute('data-dialog-ok-button-label') || '',
-      cancelLabel: element.getAttribute('data-dialog-cancel-button-label') || ''
+      cancelLabel: element.getAttribute('data-dialog-cancel-button-label') || '',
+      sameLevelTitle: element.getAttribute('data-same-level-title') || '',
+      sameLevelText: element.getAttribute('data-same-level-text') || '',
+      sameStatusTitle: element.getAttribute('data-same-status-title') || '',
+      sameStatusText: element.getAttribute('data-same-status-text') || '',
+      memberState: parseInt(element.getAttribute('data-member-state') || '0', 10)
     };
+  },
+
+  /**
+   * Bug 7: Findet Level-Change-Einträge wo old_level == new_level
+   * Gibt den recordId des ersten gefundenen Eintrags zurück, oder null.
+   */
+  findSameLevelEntry(form) {
+    const entryTypeFields = form.querySelectorAll(this.entryTypeSelector);
+    if (!entryTypeFields.length) {
+      return null;
+    }
+
+    for (const entryTypeField of entryTypeFields) {
+      const entryType = entryTypeField.value || '';
+      if (entryType !== 'level_change') {
+        continue;
+      }
+
+      const recordId = this.getInlineRecordId(entryTypeField.getAttribute('name') || '');
+      if (!recordId) {
+        continue;
+      }
+
+      // Bereits verarbeitete Einträge überspringen
+      if (this.isProcessed(form, recordId)) {
+        continue;
+      }
+
+      const oldLevel = this.getFieldValue(form, recordId, 'old_level');
+      const newLevel = this.getFieldValue(form, recordId, 'new_level');
+
+      // Nur prüfen wenn beide Werte vorhanden sind
+      if (oldLevel === null || newLevel === null) {
+        continue;
+      }
+
+      if (oldLevel === newLevel) {
+        return recordId;
+      }
+    }
+
+    return null;
+  },
+
+  /**
+   * CR3: Findet Status-Change-Einträge wo target_state == memberState
+   * Gibt den recordId des ersten gefundenen Eintrags zurück, oder null.
+   */
+  findSameStatusEntry(form, memberState) {
+    const entryTypeFields = form.querySelectorAll(this.entryTypeSelector);
+    if (!entryTypeFields.length) {
+      return null;
+    }
+
+    for (const entryTypeField of entryTypeFields) {
+      const entryType = entryTypeField.value || '';
+      if (entryType !== 'status_change') {
+        continue;
+      }
+
+      const recordId = this.getInlineRecordId(entryTypeField.getAttribute('name') || '');
+      if (!recordId) {
+        continue;
+      }
+
+      // Bereits verarbeitete Einträge überspringen
+      if (this.isProcessed(form, recordId)) {
+        continue;
+      }
+
+      const targetState = this.getFieldValue(form, recordId, 'target_state');
+
+      // Nur prüfen wenn target_state vorhanden ist
+      if (targetState === null) {
+        continue;
+      }
+
+      if (targetState === memberState) {
+        return recordId;
+      }
+    }
+
+    return null;
+  },
+
+  /**
+   * Holt den Wert eines Feldes für einen Journal-Eintrag
+   */
+  getFieldValue(form, recordId, fieldName) {
+    const fullFieldName = `data[tx_clubmanager_domain_model_memberjournalentry][${recordId}][${fieldName}]`;
+
+    // Versuche zuerst das hidden field (enthält den tatsächlichen Wert)
+    let input = form.querySelector(`input[name="${fullFieldName}"]`);
+    if (input) {
+      const value = (input.value || '').trim();
+      if (value !== '') {
+        return parseInt(value, 10);
+      }
+    }
+
+    // Fallback: Select-Element
+    const select = form.querySelector(`select[name="${fullFieldName}"]`);
+    if (select) {
+      const value = (select.value || '').trim();
+      if (value !== '') {
+        return parseInt(value, 10);
+      }
+    }
+
+    // Fallback: data-formengine-input-name
+    input = form.querySelector(`input[data-formengine-input-name="${fullFieldName}"]`);
+    if (input) {
+      const value = (input.value || '').trim();
+      if (value !== '') {
+        return parseInt(value, 10);
+      }
+    }
+
+    return null;
   },
 
   /**
