@@ -359,6 +359,9 @@
 			<trans-unit id="flash.activation_warning.no_email" resname="flash.activation_warning.no_email">
 				<source>No email address is set. Activation can continue, but automatic login communication is not possible.</source>
 			</trans-unit>
+			<trans-unit id="flash.past_effective_date.warning" resname="flash.past_effective_date.warning">
+				<source>The effective date is in the past. This change may affect billing/statistics and might require corrections.</source>
+			</trans-unit>
 			<trans-unit id="flash.journal_edit_blocked.title" resname="flash.journal_edit_blocked.title">
 				<source>Editing not possible</source>
 			</trans-unit>

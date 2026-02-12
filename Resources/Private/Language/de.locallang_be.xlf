@@ -449,9 +449,9 @@
 			</trans-unit>
 			<trans-unit id="memberjournal.level_change.warning.dialog.text"
 				resname="memberjournal.level_change.warning.dialog.text">
-				<source>The effective date is today or in the past. Adding this entry can affect billing and
+				<source>The effective date is in the past. Adding this entry can affect billing and
 					may require corrections. Press 'Continue' to save the member, otherwise 'Cancel'.</source>
-				<target>Das effective_date liegt in der Vergangenheit oder heute. Das Hinzufügen dieses
+				<target>Das Wirksamkeitsdatum liegt in der Vergangenheit. Das Hinzufügen dieses
 					Eintrags kann Auswirkungen auf die Abrechnung haben und muss ggf. korrigiert werden.
 					Drücken Sie 'Weiter', um den Datensatz zu speichern, anderenfalls 'Abbrechen'.</target>
 			</trans-unit>
@@ -489,11 +489,25 @@
 				<source>Status change not possible: The target status is the same as the current member status. Please select a different status.</source>
 				<target>Status-Änderung nicht möglich: Der Zielstatus entspricht dem aktuellen Mitgliedsstatus. Bitte wählen Sie einen anderen Status.</target>
 			</trans-unit>
+			<trans-unit id="memberjournal.status_change.no_email.dialog.title"
+				resname="memberjournal.status_change.no_email.dialog.title">
+				<source>Activation without email address</source>
+				<target>Aktivierung ohne E-Mail-Adresse</target>
+			</trans-unit>
+			<trans-unit id="memberjournal.status_change.no_email.dialog.text"
+				resname="memberjournal.status_change.no_email.dialog.text">
+				<source>No email address is set for this member. Automatic sending of access data is not possible. The member can only be informed manually. Do you want to continue?</source>
+				<target>Für dieses Mitglied ist keine E-Mail-Adresse hinterlegt. Ein automatischer Versand von Zugangsdaten ist nicht möglich. Das Mitglied kann nur manuell informiert werden. Möchten Sie fortfahren?</target>
+			</trans-unit>
 
 			<!-- Flash messages for member/journal validation -->
 			<trans-unit id="flash.validation_error.title" resname="flash.validation_error.title">
 				<source>Validation Error</source>
 				<target>Validierungsfehler</target>
+			</trans-unit>
+			<trans-unit id="flash.validation_warning.title" resname="flash.validation_warning.title">
+				<source>Validation Warning</source>
+				<target>Validierungswarnung</target>
 			</trans-unit>
 			<trans-unit id="flash.activation_blocked.no_ident" resname="flash.activation_blocked.no_ident">
 				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first before setting the status to "active". Changes were NOT saved.</source>
@@ -502,6 +516,14 @@
 			<trans-unit id="flash.activation_blocked.no_ident.short" resname="flash.activation_blocked.no_ident.short">
 				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first.</source>
 				<target>Aktivierung nicht möglich: Mitgliedsnummer (ident) fehlt. Bitte zuerst eine Mitgliedsnummer vergeben.</target>
+			</trans-unit>
+			<trans-unit id="flash.activation_warning.no_email" resname="flash.activation_warning.no_email">
+				<source>No email address is set. Activation can continue, but automatic login communication is not possible.</source>
+				<target>Es ist keine E-Mail-Adresse hinterlegt. Die Aktivierung kann fortgesetzt werden, aber eine automatische Login-Kommunikation ist nicht möglich.</target>
+			</trans-unit>
+			<trans-unit id="flash.past_effective_date.warning" resname="flash.past_effective_date.warning">
+				<source>The effective date is in the past. This change may affect billing/statistics and might require corrections.</source>
+				<target>Das Wirksamkeitsdatum liegt in der Vergangenheit. Diese Änderung kann Auswirkungen auf Abrechnung und Statistik haben und ggf. Nachkorrekturen erfordern.</target>
 			</trans-unit>
 			<trans-unit id="flash.journal_edit_blocked.title" resname="flash.journal_edit_blocked.title">
 				<source>Editing not possible</source>

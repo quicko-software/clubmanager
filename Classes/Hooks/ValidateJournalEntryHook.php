@@ -41,10 +41,11 @@ class ValidateJournalEntryHook
     private static array $blockedMemberUids = [];
 
     /**
-     * Speichert Member-UIDs, für die im Request bereits eine "no email" Warnung ausgegeben wurde.
-     * @var array<int, bool>
+     * Speichert Entry-IDs, für die die Vergangenheits-Warnung im Request bereits ausgegeben wurde.
+     * @var array<string|int, bool>
      */
-    private static array $warnedNoEmailMemberUids = [];
+    private static array $warnedPastEffectiveDateEntries = [];
+
 
     /**
      * Hook called before data is processed by DataHandler.
@@ -222,6 +223,8 @@ class ValidateJournalEntryHook
         if ($effectiveDate === null) {
             return;
         }
+
+        $this->addPastEffectiveDateWarning($entryType, $effectiveDate, $id);
 
         // Member-UID ermitteln
         $memberUid = $this->resolveMemberUid($fieldArray, $id, $dataHandler);
@@ -642,22 +645,6 @@ class ValidateJournalEntryHook
             return;
         }
 
-        // CR6: Aktivierung ohne E-Mail bleibt möglich, zeigt aber eine Warnung.
-        if (!isset(self::$warnedNoEmailMemberUids[$memberUid])) {
-            $emailFromDatamap = $this->getEmailFromDatamap($memberUid, $dataHandler);
-            $email = trim((string) ($emailFromDatamap ?? ($memberRecord['email'] ?? '')));
-            if ($email === '') {
-                self::$warnedNoEmailMemberUids[$memberUid] = true;
-                $this->addFlashMessage(
-                    $this->translate(
-                        'flash.activation_warning.no_email',
-                        'No email address is set. Activation can continue, but automatic login communication is not possible.'
-                    ),
-                    $this->translate('flash.validation_warning.title', 'Validation Warning'),
-                    ContextualFeedbackSeverity::WARNING
-                );
-            }
-        }
     }
 
     /**
@@ -695,7 +682,7 @@ class ValidateJournalEntryHook
         // Reset für nächsten Request
         self::$invalidEntryIds = [];
         self::$blockedMemberUids = [];
-        self::$warnedNoEmailMemberUids = [];
+        self::$warnedPastEffectiveDateEntries = [];
     }
 
     /**
@@ -789,13 +776,34 @@ class ValidateJournalEntryHook
         return null;
     }
 
-    private function getEmailFromDatamap(int $memberUid, DataHandler $dataHandler): ?string
+    private function addPastEffectiveDateWarning(mixed $entryType, \DateTime $effectiveDate, string|int $id): void
     {
-        $memberData = $dataHandler->datamap['tx_clubmanager_domain_model_member'][$memberUid] ?? null;
-        if (is_array($memberData) && isset($memberData['email'])) {
-            return (string) $memberData['email'];
+        if (
+            $entryType !== MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE
+            && $entryType !== MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE
+        ) {
+            return;
         }
-        return null;
+
+        if (isset(self::$warnedPastEffectiveDateEntries[$id])) {
+            return;
+        }
+
+        $today = new \DateTime('today');
+        if ($effectiveDate >= $today) {
+            return;
+        }
+
+        self::$warnedPastEffectiveDateEntries[$id] = true;
+
+        $this->addFlashMessage(
+            $this->translate(
+                'flash.past_effective_date.warning',
+                'The effective date is in the past. This change may affect billing/statistics and might require corrections.'
+            ),
+            $this->translate('flash.validation_warning.title', 'Validation Warning'),
+            ContextualFeedbackSeverity::WARNING
+        );
     }
 
     private function addFlashMessage(string $message, string $title, ContextualFeedbackSeverity $severity): void

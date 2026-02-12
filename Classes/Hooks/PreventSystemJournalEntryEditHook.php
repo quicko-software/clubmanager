@@ -65,6 +65,12 @@ class PreventSystemJournalEntryEditHook
         $processed = (int) ($record['processed'] ?? 0);
         $isProcessed = $processed > 0;
 
+        // CR7: Pending-Einträge dürfen über hidden=1 deaktiviert werden
+        // (auch wenn sie system-/member-created sind).
+        if ($this->isPendingHideOperation($meaningfulChanges, $record, $isProcessed)) {
+            return;
+        }
+
         // Prevent editing if:
         // - Entry was created by system/member, OR
         // - Entry has been processed
@@ -159,6 +165,29 @@ class PreventSystemJournalEntryEditHook
         }
 
         return false;
+    }
+
+    /**
+     * Prüft, ob ein pending Journal-Eintrag per hidden=1 deaktiviert werden soll.
+     *
+     * @param array<string, mixed> $incomingData
+     * @param array<string, mixed> $dbRecord
+     */
+    private function isPendingHideOperation(array $incomingData, array $dbRecord, bool $isProcessed): bool
+    {
+        if ($isProcessed) {
+            return false;
+        }
+
+        if (!array_key_exists('hidden', $incomingData)) {
+            return false;
+        }
+
+        $currentHidden = (int) ($dbRecord['hidden'] ?? 0);
+        $newHidden = (int) $incomingData['hidden'];
+
+        // Nur das Deaktivieren (0 -> 1) freigeben
+        return $currentHidden === 0 && $newHidden === 1;
     }
 
     /**

@@ -171,6 +171,11 @@ class ProcessMemberJournalHook
         );
       }
 
+      // CR6: Bei Aktivierung ohne E-Mail eine Warning-Flashmessage anzeigen.
+      if ($autoResolveCancellation) {
+        $this->addActivationNoEmailWarning($memberUid);
+      }
+
       // 4. Synchronisiere FE-User disable-Status mit Member-Status
       $this->syncFeUserDisableState($memberUid);
 
@@ -367,6 +372,31 @@ class ProcessMemberJournalHook
         )
       );
     }
+  }
+
+  private function addActivationNoEmailWarning(int $memberUid): void
+  {
+    $memberRecord = BackendUtility::getRecord('tx_clubmanager_domain_model_member', $memberUid, 'state,email');
+    if (!is_array($memberRecord)) {
+      return;
+    }
+
+    if ((int) ($memberRecord['state'] ?? 0) !== Member::STATE_ACTIVE) {
+      return;
+    }
+
+    $email = trim((string) ($memberRecord['email'] ?? ''));
+    if ($email !== '') {
+      return;
+    }
+
+    $this->addFlashMessage(
+      LocalizationUtility::translate('flash.activation_warning.no_email', 'clubmanager')
+        ?? 'No email address is set. Activation can continue, but automatic login communication is not possible.',
+      LocalizationUtility::translate('flash.validation_warning.title', 'clubmanager')
+        ?? 'Validation Warning',
+      ContextualFeedbackSeverity::WARNING
+    );
   }
 
   private function addFlashMessage(string $message, string $title, ContextualFeedbackSeverity $severity): void
