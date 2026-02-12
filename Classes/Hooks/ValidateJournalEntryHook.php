@@ -41,6 +41,12 @@ class ValidateJournalEntryHook
     private static array $blockedMemberUids = [];
 
     /**
+     * Speichert Member-UIDs, für die im Request bereits eine "no email" Warnung ausgegeben wurde.
+     * @var array<int, bool>
+     */
+    private static array $warnedNoEmailMemberUids = [];
+
+    /**
      * Hook called before data is processed by DataHandler.
      * Blocks journal entries that would cause invalid state transitions.
      *
@@ -193,9 +199,15 @@ class ValidateJournalEntryHook
         string|int $id,
         DataHandler $dataHandler
     ): void {
-        // Bestimme ob es ein neuer oder bestehender Eintrag ist
-        $isNewEntry = str_starts_with((string) $id, 'NEW');
-        $existingUid = $isNewEntry ? null : (int) $id;
+        // Bestimme ob es ein bestehender Eintrag ist
+        $existingUid = str_starts_with((string) $id, 'NEW') ? null : (int) $id;
+
+        // CR8: Reaktivierung von hidden=1 auf hidden=0 blockieren, wenn neuere entry_date existieren
+        if ($existingUid !== null) {
+            if ($this->validateHiddenReactivation($fieldArray, $existingUid, $id)) {
+                return;
+            }
+        }
 
         $entryType = $fieldArray['entry_type'] ?? null;
         $targetState = $fieldArray['target_state'] ?? null;
@@ -230,8 +242,13 @@ class ValidateJournalEntryHook
 
         // Status-Change spezifische Validierungen
         if ($entryType === MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE) {
-            // CR3: Gleicher Status blockieren - nur für neue Einträge
-            if ($isNewEntry && $memberUid !== null && $targetState !== null) {
+            // CR4: "Beantragt" darf in Base nicht manuell gesetzt werden
+            if ($targetState !== null && $this->validateBeantragtNotAllowed($fieldArray, (int) $targetState, $id, $memberUid)) {
+                return; // Eintrag wurde blockiert
+            }
+
+            // CR3/CR7: Gleicher Status blockieren (auch beim Edit eines pending Eintrags)
+            if ($memberUid !== null && $targetState !== null) {
                 if ($this->validateNotSameStatus($fieldArray, $memberUid, (int) $targetState, $id, $dataHandler)) {
                     return; // Eintrag wurde blockiert
                 }
@@ -249,6 +266,44 @@ class ValidateJournalEntryHook
                 $this->validateActivationWithIdent($fieldArray, $id, $memberUid, $dataHandler);
             }
         }
+    }
+
+    /**
+     * CR4: Validiert, dass der Status "beantragt" nicht manuell gesetzt werden kann.
+     *
+     * @return bool True wenn blockiert, false wenn OK
+     */
+    private function validateBeantragtNotAllowed(
+        array &$fieldArray,
+        int $targetState,
+        string|int $id,
+        ?int $memberUid
+    ): bool {
+        if ($targetState !== Member::STATE_APPLIED) {
+            return false;
+        }
+
+        self::$invalidEntryIds[$id] = $memberUid ?? 0;
+        if ($memberUid !== null) {
+            self::$blockedMemberUids[$memberUid] = true;
+        }
+
+        $pid = $fieldArray['pid'] ?? null;
+        $fieldArray = [];
+        if ($pid !== null) {
+            $fieldArray['pid'] = $pid;
+        }
+
+        $this->addFlashMessage(
+            $this->translate(
+                'flash.status_change_applied_not_allowed',
+                'Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.'
+            ),
+            $this->translate('flash.validation_error.title', 'Validation Error'),
+            ContextualFeedbackSeverity::ERROR
+        );
+
+        return true;
     }
 
     /**
@@ -445,6 +500,82 @@ class ValidateJournalEntryHook
     }
 
     /**
+     * CR8: Validiert, dass hidden=1 Einträge nicht reaktiviert werden, wenn neuere Einträge existieren.
+     *
+     * @return bool True wenn blockiert, false wenn OK
+     */
+    private function validateHiddenReactivation(array &$fieldArray, int $uid, string|int $id): bool
+    {
+        if (!array_key_exists('hidden', $fieldArray)) {
+            return false;
+        }
+        if ((int) $fieldArray['hidden'] !== 0) {
+            return false;
+        }
+
+        $record = BackendUtility::getRecord(self::TABLE_NAME, $uid, 'hidden,member,entry_date');
+        if (!is_array($record)) {
+            return false;
+        }
+
+        $wasHidden = (int) ($record['hidden'] ?? 0) === 1;
+        if (!$wasHidden) {
+            return false;
+        }
+
+        $memberUid = (int) ($record['member'] ?? 0);
+        $entryDate = (int) ($record['entry_date'] ?? 0);
+        if ($memberUid <= 0 || $entryDate <= 0) {
+            return false;
+        }
+
+        if (!$this->hasNewerJournalEntryByEntryDate($memberUid, $entryDate, $uid)) {
+            return false;
+        }
+
+        self::$invalidEntryIds[$id] = $memberUid;
+        self::$blockedMemberUids[$memberUid] = true;
+
+        $pid = $fieldArray['pid'] ?? null;
+        $fieldArray = [];
+        if ($pid !== null) {
+            $fieldArray['pid'] = $pid;
+        }
+
+        $this->addFlashMessage(
+            $this->translate(
+                'flash.journal_reactivation_blocked_newer_entries',
+                'Reactivation not possible: Newer journal entries exist.'
+            ),
+            $this->translate('flash.validation_error.title', 'Validation Error'),
+            ContextualFeedbackSeverity::ERROR
+        );
+
+        return true;
+    }
+
+    private function hasNewerJournalEntryByEntryDate(int $memberUid, int $entryDate, int $excludeUid): bool
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable(self::TABLE_NAME);
+        $queryBuilder->getRestrictions()->removeAll();
+
+        $count = (int) $queryBuilder
+            ->count('uid')
+            ->from(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq('member', $queryBuilder->createNamedParameter($memberUid)),
+                $queryBuilder->expr()->gt('entry_date', $queryBuilder->createNamedParameter($entryDate)),
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0)),
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($excludeUid))
+            )
+            ->executeQuery()
+            ->fetchOne();
+
+        return $count > 0;
+    }
+
+    /**
      * Holt den aktuellen Status eines Members aus DB oder Datamap.
      */
     private function getCurrentMemberState(int $memberUid, DataHandler $dataHandler): ?int
@@ -484,7 +615,7 @@ class ValidateJournalEntryHook
         }
 
         // Prüfe ob Member ident hat - IMMER für Aktivierungs-Einträge, auch zukünftige!
-        $memberRecord = BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'ident');
+        $memberRecord = BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'ident,email');
         if (!is_array($memberRecord)) {
             return;
         }
@@ -508,6 +639,24 @@ class ValidateJournalEntryHook
                 $this->translate('flash.validation_error.title', 'Validation Error'),
                 ContextualFeedbackSeverity::ERROR
             );
+            return;
+        }
+
+        // CR6: Aktivierung ohne E-Mail bleibt möglich, zeigt aber eine Warnung.
+        if (!isset(self::$warnedNoEmailMemberUids[$memberUid])) {
+            $emailFromDatamap = $this->getEmailFromDatamap($memberUid, $dataHandler);
+            $email = trim((string) ($emailFromDatamap ?? ($memberRecord['email'] ?? '')));
+            if ($email === '') {
+                self::$warnedNoEmailMemberUids[$memberUid] = true;
+                $this->addFlashMessage(
+                    $this->translate(
+                        'flash.activation_warning.no_email',
+                        'No email address is set. Activation can continue, but automatic login communication is not possible.'
+                    ),
+                    $this->translate('flash.validation_warning.title', 'Validation Warning'),
+                    ContextualFeedbackSeverity::WARNING
+                );
+            }
         }
     }
 
@@ -546,6 +695,7 @@ class ValidateJournalEntryHook
         // Reset für nächsten Request
         self::$invalidEntryIds = [];
         self::$blockedMemberUids = [];
+        self::$warnedNoEmailMemberUids = [];
     }
 
     /**
@@ -635,6 +785,15 @@ class ValidateJournalEntryHook
         $memberData = $dataHandler->datamap['tx_clubmanager_domain_model_member'][$memberUid] ?? null;
         if (is_array($memberData) && isset($memberData['ident'])) {
             return (string) $memberData['ident'];
+        }
+        return null;
+    }
+
+    private function getEmailFromDatamap(int $memberUid, DataHandler $dataHandler): ?string
+    {
+        $memberData = $dataHandler->datamap['tx_clubmanager_domain_model_member'][$memberUid] ?? null;
+        if (is_array($memberData) && isset($memberData['email'])) {
+            return (string) $memberData['email'];
         }
         return null;
     }

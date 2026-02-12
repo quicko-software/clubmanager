@@ -2,6 +2,7 @@
 
 namespace Quicko\Clubmanager\FormEngine;
 
+use Quicko\Clubmanager\Domain\Model\Member;
 use TYPO3\CMS\Backend\Form\AbstractNode;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
@@ -13,7 +14,8 @@ use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
  * Provides JavaScript validation for:
  * - Bug 7: Level change with same old/new level
  * - CR3: Status change to same status as current member
- * - CR5: Level change with past effective date (warning)
+ * - CR5: Status/Level change with past effective date (warning)
+ * - CR6: Activation without email address (warning)
  */
 class MemberJournalLevelChangeWarning extends AbstractNode
 {
@@ -55,6 +57,14 @@ class MemberJournalLevelChangeWarning extends AbstractNode
       'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.same_status.dialog.text'
     );
 
+    // CR6: Warnung bei Aktivierung ohne E-Mail
+    $activationNoEmailTitle = $ls->sL(
+      'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.no_email.dialog.title'
+    );
+    $activationNoEmailText = $ls->sL(
+      'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.no_email.dialog.text'
+    );
+
     // Aktuellen Member-Status aus dem Formular-Daten holen
     $memberState = $this->data['databaseRow']['state'] ?? 0;
 
@@ -65,7 +75,8 @@ class MemberJournalLevelChangeWarning extends AbstractNode
       'data-dialog-ok-button-label="%s" data-dialog-cancel-button-label="%s" ' .
       'data-same-level-title="%s" data-same-level-text="%s" ' .
       'data-same-status-title="%s" data-same-status-text="%s" ' .
-      'data-member-state="%d"></span>',
+      'data-no-email-title="%s" data-no-email-text="%s" ' .
+      'data-member-state="%d" data-active-state="%d"></span>',
       htmlspecialchars($dialogTitle, ENT_QUOTES),
       htmlspecialchars($dialogText, ENT_QUOTES),
       htmlspecialchars($okButtonLabel, ENT_QUOTES),
@@ -74,7 +85,10 @@ class MemberJournalLevelChangeWarning extends AbstractNode
       htmlspecialchars($sameLevelText, ENT_QUOTES),
       htmlspecialchars($sameStatusTitle, ENT_QUOTES),
       htmlspecialchars($sameStatusText, ENT_QUOTES),
-      (int) $memberState
+      htmlspecialchars($activationNoEmailTitle, ENT_QUOTES),
+      htmlspecialchars($activationNoEmailText, ENT_QUOTES),
+      (int) $memberState,
+      Member::STATE_ACTIVE
     );
 
     return $resultArray;

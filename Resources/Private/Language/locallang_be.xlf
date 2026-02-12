@@ -312,7 +312,7 @@
 				<source>Level change with past effective date</source>
 			</trans-unit>
 			<trans-unit id="memberjournal.level_change.warning.dialog.text" resname="memberjournal.level_change.warning.dialog.text">
-				<source>The effective date is today or in the past. Adding this entry can affect billing and may require corrections. Press 'Continue' to save the member, otherwise 'Cancel'.</source>
+				<source>The effective date is in the past. Adding this entry can affect billing and may require corrections. Press 'Continue' to save the member, otherwise 'Cancel'.</source>
 			</trans-unit>
 			<trans-unit id="memberjournal.level_change.warning.dialog.ok-button-label" resname="memberjournal.level_change.warning.dialog.ok-button-label">
 				<source>Continue</source>
@@ -336,16 +336,28 @@
 			<trans-unit id="memberjournal.status_change.same_status.dialog.text" resname="memberjournal.status_change.same_status.dialog.text">
 				<source>Status change not possible: The target status is the same as the current member status. Please select a different status.</source>
 			</trans-unit>
+			<trans-unit id="memberjournal.status_change.no_email.dialog.title" resname="memberjournal.status_change.no_email.dialog.title">
+				<source>Activation without email address</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.status_change.no_email.dialog.text" resname="memberjournal.status_change.no_email.dialog.text">
+				<source>No email address is set for this member. Automatic sending of access data is not possible. The member can only be informed manually. Do you want to continue?</source>
+			</trans-unit>
 
 			<!-- Flash messages for member/journal validation -->
 			<trans-unit id="flash.validation_error.title" resname="flash.validation_error.title">
 				<source>Validation Error</source>
+			</trans-unit>
+			<trans-unit id="flash.validation_warning.title" resname="flash.validation_warning.title">
+				<source>Validation Warning</source>
 			</trans-unit>
 			<trans-unit id="flash.activation_blocked.no_ident" resname="flash.activation_blocked.no_ident">
 				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first before setting the status to "active". Changes were NOT saved.</source>
 			</trans-unit>
 			<trans-unit id="flash.activation_blocked.no_ident.short" resname="flash.activation_blocked.no_ident.short">
 				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first.</source>
+			</trans-unit>
+			<trans-unit id="flash.activation_warning.no_email" resname="flash.activation_warning.no_email">
+				<source>No email address is set. Activation can continue, but automatic login communication is not possible.</source>
 			</trans-unit>
 			<trans-unit id="flash.journal_edit_blocked.title" resname="flash.journal_edit_blocked.title">
 				<source>Editing not possible</source>
@@ -379,6 +391,12 @@
 			</trans-unit>
 			<trans-unit id="flash.pending_level_change_exists" resname="flash.pending_level_change_exists">
 				<source>A pending level change already exists for this member. Please wait until it is processed or delete the existing entry first.</source>
+			</trans-unit>
+			<trans-unit id="flash.status_change_applied_not_allowed" resname="flash.status_change_applied_not_allowed">
+				<source>Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_reactivation_blocked_newer_entries" resname="flash.journal_reactivation_blocked_newer_entries">
+				<source>Reactivation not possible: Newer journal entries exist.</source>
 			</trans-unit>
 			
 		</body>

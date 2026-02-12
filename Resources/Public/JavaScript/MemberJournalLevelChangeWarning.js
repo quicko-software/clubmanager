@@ -3,7 +3,8 @@ import $ from 'jquery';
 /**
  * Validates level_change journal entries:
  * 1. Bug 7: Blocks saving if old_level == new_level (hard error)
- * 2. CR5: Shows warning if effective_date < today (soft warning, can proceed)
+ * 2. CR5: Shows warning if effective_date < today for status/level changes
+ * 3. CR6: Warns on activation without email address
  *
  * Uses the same pattern as EmailVerificationTokenReset - intercepts save button click.
  */
@@ -13,7 +14,8 @@ const MemberJournalLevelChangeWarning = {
   saveButtonSelector: 'button[name="_savedok"]',
   entryTypeSelector: 'select[name^="data[tx_clubmanager_domain_model_memberjournalentry]["][name$="[entry_type]"]',
 
-  isConfirmed: false,
+  isPastDateConfirmed: false,
+  isNoEmailConfirmed: false,
 
   initialize() {
     const config = this.getDialogConfig();
@@ -79,44 +81,74 @@ const MemberJournalLevelChangeWarning = {
       }
 
       // CR5: Warnung bei Vergangenheitsdatum (weiche Warnung, kann fortfahren)
-      if (self.isConfirmed) {
-        self.isConfirmed = false;
-        return true;
+      if (!self.isPastDateConfirmed && self.hasUnprocessedPastEntry(form)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        top.TYPO3.Modal.confirm(
+          config.title,
+          config.text,
+          top.TYPO3.Severity.warning,
+          [
+            {
+              text: config.okLabel,
+              btnClass: 'btn-warning',
+              trigger: function() {
+                top.TYPO3.Modal.dismiss();
+                self.isPastDateConfirmed = true;
+                $(self.saveButtonSelector).first().trigger('click');
+              }
+            },
+            {
+              text: config.cancelLabel,
+              btnClass: 'btn-default',
+              active: true,
+              trigger: function() {
+                top.TYPO3.Modal.dismiss();
+              }
+            }
+          ]
+        );
+
+        return false;
       }
 
-      if (!self.hasUnprocessedPastLevelChange(form)) {
-        return true;
+      // CR6: Warnung bei Aktivierung ohne E-Mail (weiche Warnung, kann fortfahren)
+      if (!self.isNoEmailConfirmed && self.hasActivationWithoutEmail(form, config.activeState)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        top.TYPO3.Modal.confirm(
+          config.noEmailTitle || 'Missing email address',
+          config.noEmailText || 'No email address is set. Activation can continue, but automatic login communication is not possible.',
+          top.TYPO3.Severity.warning,
+          [
+            {
+              text: config.okLabel || 'Continue',
+              btnClass: 'btn-warning',
+              trigger: function() {
+                top.TYPO3.Modal.dismiss();
+                self.isNoEmailConfirmed = true;
+                $(self.saveButtonSelector).first().trigger('click');
+              }
+            },
+            {
+              text: config.cancelLabel || 'Cancel',
+              btnClass: 'btn-default',
+              active: true,
+              trigger: function() {
+                top.TYPO3.Modal.dismiss();
+              }
+            }
+          ]
+        );
+
+        return false;
       }
 
-      event.preventDefault();
-      event.stopImmediatePropagation();
-
-      top.TYPO3.Modal.confirm(
-        config.title,
-        config.text,
-        top.TYPO3.Severity.warning,
-        [
-          {
-            text: config.okLabel,
-            btnClass: 'btn-warning',
-            trigger: function() {
-              top.TYPO3.Modal.dismiss();
-              self.isConfirmed = true;
-              $(self.saveButtonSelector).first().trigger('click');
-            }
-          },
-          {
-            text: config.cancelLabel,
-            btnClass: 'btn-default',
-            active: true,
-            trigger: function() {
-              top.TYPO3.Modal.dismiss();
-            }
-          }
-        ]
-      );
-
-      return false;
+      self.isPastDateConfirmed = false;
+      self.isNoEmailConfirmed = false;
+      return true;
     });
   },
 
@@ -135,7 +167,10 @@ const MemberJournalLevelChangeWarning = {
       sameLevelText: element.getAttribute('data-same-level-text') || '',
       sameStatusTitle: element.getAttribute('data-same-status-title') || '',
       sameStatusText: element.getAttribute('data-same-status-text') || '',
-      memberState: parseInt(element.getAttribute('data-member-state') || '0', 10)
+      noEmailTitle: element.getAttribute('data-no-email-title') || '',
+      noEmailText: element.getAttribute('data-no-email-text') || '',
+      memberState: parseInt(element.getAttribute('data-member-state') || '0', 10),
+      activeState: parseInt(element.getAttribute('data-active-state') || '2', 10)
     };
   },
 
@@ -259,12 +294,12 @@ const MemberJournalLevelChangeWarning = {
   },
 
   /**
-   * Check if any level_change entry has:
-   * - entry_type = 'level_change'
-   * - effective_date <= today
+   * Check if any status/level entry has:
+   * - entry_type = 'level_change' or 'status_change'
+   * - effective_date < today
    * - processed is empty (not yet processed)
    */
-  hasUnprocessedPastLevelChange(form) {
+  hasUnprocessedPastEntry(form) {
     const entryTypeFields = form.querySelectorAll(this.entryTypeSelector);
     if (!entryTypeFields.length) {
       return false;
@@ -272,7 +307,7 @@ const MemberJournalLevelChangeWarning = {
 
     for (const entryTypeField of entryTypeFields) {
       const entryType = entryTypeField.value || '';
-      if (entryType !== 'level_change') {
+      if (entryType !== 'level_change' && entryType !== 'status_change') {
         continue;
       }
 
@@ -296,6 +331,48 @@ const MemberJournalLevelChangeWarning = {
     }
 
     return false;
+  },
+
+  hasActivationWithoutEmail(form, activeState) {
+    if (this.getMemberEmail(form) !== '') {
+      return false;
+    }
+
+    const entryTypeFields = form.querySelectorAll(this.entryTypeSelector);
+    if (!entryTypeFields.length) {
+      return false;
+    }
+
+    for (const entryTypeField of entryTypeFields) {
+      const entryType = entryTypeField.value || '';
+      if (entryType !== 'status_change') {
+        continue;
+      }
+
+      const recordId = this.getInlineRecordId(entryTypeField.getAttribute('name') || '');
+      if (!recordId) {
+        continue;
+      }
+
+      if (this.isProcessed(form, recordId)) {
+        continue;
+      }
+
+      const targetState = this.getFieldValue(form, recordId, 'target_state');
+      if (targetState === activeState) {
+        return true;
+      }
+    }
+
+    return false;
+  },
+
+  getMemberEmail(form) {
+    let input = form.querySelector('input[name^="data[tx_clubmanager_domain_model_member]["][name$="[email]"]');
+    if (!input) {
+      input = form.querySelector('input[data-formengine-input-name^="data[tx_clubmanager_domain_model_member]["][data-formengine-input-name$="[email]"]');
+    }
+    return input ? (input.value || '').trim() : '';
   },
 
   getInlineRecordId(fieldName) {

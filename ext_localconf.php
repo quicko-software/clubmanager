@@ -148,6 +148,15 @@ call_user_func(function () {
     ],
   ];
 
+  // FormDataProvider: Set fe_users.username readOnly for non-admin editors
+  // when FE users are linked to a clubmanager member.
+  $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord']
+  [Quicko\Clubmanager\FormEngine\FormDataProvider\FeUserUsernameReadonly::class] = [
+    'depends' => [
+      \TYPO3\CMS\Backend\Form\FormDataProvider\EvaluateDisplayConditions::class,
+    ],
+  ];
+
 
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\MemberLoginReminderTask::class] = [
     'extension' => 'clubmanager',
