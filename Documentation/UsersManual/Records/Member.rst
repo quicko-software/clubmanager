@@ -52,7 +52,8 @@ Here the general data concerning the membership are recorded.
 
 Membership
 **********
-All important data regarding the membership status is recorded here.
+
+Since version 2.0.0 the membership status and level are no longer edited directly in the member record. All changes are managed via the :ref:`Member Journal <member_journal>`.
 
 .. t3-field-list-table::
  :header-rows: 1
@@ -62,70 +63,46 @@ All important data regarding the membership status is recorded here.
    :Description:
          Description:
  - :Field:
-         Membership number
+         Membership number (ident)
    :Description:
-         Membership Number. Must be individual.
+         Unique membership number. Must be set before the first activation. After activation this field is read-only for editors.
  - :Field:
-         Membership status.
+         Membership status (derived)
    :Description:
-         A membership can have different statuses:
-
-         - "Not set": default member record.
-         - "Requested": this status is used when an application is being processed. This status is also set automatically when an application is submitted via the online form. The application automation requires the :ref:`ext:clubmanager_pro <clubmanagerPro>` module.
-         - "Active": the status for active members. Only active members appear in the frontend listings. Also, only "active" members are used for billing. For automatic billing the module :ref:`ext:clubmanager_billing <clubmanagerBilling>` is required.
-         - "Resting": this status is for members who want to temporarily put their membership on hold without cancelling.
-         - "Cancelled": this status is used for members whose membership has permanently expired because notice has been given or dues have not been paid.
-
+         Derived from Member Journal entries. Not editable directly.
  - :Field:
-         Level
+         Level (derived)
    :Description:
-         By default, a membership has a "Basic" level. Here you can
-         further levels/grades can be offered, e.g. to highlight members in the frontend-
-         listing and/or to offer additional information about the
-         single view:
-
-         - "Basic": standard level of membership
-         - "Bronze": Bronze membership
-         - "Silver": Silver membership
-         - "Gold": Gold membership
-
+         Derived from Member Journal entries. Not editable directly.
  - :Field:
          Reduced membership
    :Description:
-         Here it can be set that only a reduced fee is
-         e.g. for children, young people or pensioners. For
-         automatic billing the module
-         :ref:`ext:clubmanager_billing <clubmanagerBilling>` is required.
- - :field:
-         Cancellation requested
-   :Description:
-         Here a member can be marked so that the
-         membership is cancelled after the end of the current billing period.
-         For automatic billing the module
-         :ref:`ext:clubmanager_billing <clubmanagerBilling>` is required.
+         Purely descriptive flag. No automatic logic in Base.
  - :Field:
-         Beginning of membership
+         Beginning of membership (derived)
    :Description:
-         Membership start date.
+         Automatically set on first activation. Not editable.
  - :Field:
-         End of membership
+         End of membership (derived)
    :Description:
-         Date for the end of membership
- - :Field:
-         Email
-   :Description:
-         Main email of the member. This is used for the `ext:clubmanager` module
-         :guilabel:`Mail-Journal` to send e-mails. Not intended for publication.
- - :field:
-         Phone
-   :description:
-         Main telephone number to contact. Not for publication intended.
- - :Field:
-         User
-   :Description:
-         The frontend user associated with the member to login to the
-         closed member area. See also
-         :ref:`Relation: frontend user <recordMemberRelationsFrontendUser>`
+         Automatically set when a cancellation becomes effective. Not editable.
+
+
+.. _recordMemberMemberJournal:
+
+Member Journal
+==============
+
+The Member Journal manages all status and level changes of a membership. It replaces the direct editing of the fields ``state``, ``level``, ``starttime`` and ``endtime``.
+
+Each change of a membership is stored as a journal entry. The current state of a member record is always derived from the processed journal entries.
+
+The following entry types are available:
+
+* Status Change
+* Level Change
+
+See :ref:`Member Journal <member_journal>` for a complete functional description including lifecycle rules, validations and scheduler processing.
 
 
 .. _recordMemberTabGeneralMemberPerson:
@@ -226,13 +203,13 @@ no other address is stored.
 
 .. note::
 
-    By default a new member record is nearly empty. Only a few properties are set by
-    default. You can change them with :ref:`TSconfig <domainModelMember>`:
+   By default a new member record is nearly empty. Only a few properties are
+   set automatically. Membership status and level are not set directly in
+   version 2.0.0 and are managed exclusively via the
+   :ref:`Member Journal <member_journal>`.
 
-    *  (Membership) State: Not set
-    *  (Membership) Level: Basic
-    *  Type of person: Natural person
-    *  Country: Germany
+   You can adjust default values for other fields using
+   :ref:`TSconfig <domainModelMember>`
 
 
 
@@ -420,8 +397,7 @@ Member Tab: Access
  - :Field:
          Visible
    :Description:
-         Only visible member records are displayed in the frontend if.
-         the :guilabel:`membership status` is > :guilabel:`active`.
+         Only visible member records are displayed in the frontend. In addition, frontend output depends on the effective :guilabel:`membership status` derived from the Member Journal.
  - :Field:
          Record created on
    :Description:
@@ -457,21 +433,27 @@ This relation handles the frontend-user for a member.
          Field:
    :Description:
          Description:
- - :Field:
+  - :Field:
          Username
    :Description:
-         The username for the frontend login is freely selectable, but must be
-         be unique. By default, when using the
-         :ref:`Placeholder data <quickPlaceholderData>`the member number is used.
+         The frontend username is derived from the membership number
+         (:guilabel:`Membership number (ident)`).
+
+         It is read-only for editors. Administrators may change it
+         if required.
  - :Field:
          Password (Empty = Regenerate + email to user).
    :Description:
-         Password is never sent in plain text. Users get an
-         e-mail with the request to assign a password, if the password
-         field is empty, or the existing password is deleted here and the
-         member record is saved. The mail is sent with the
-         `ext:clubmanager` :ref:`Email Service <schedulerMailServiceTask>`.
- - :field:
+         Passwords are never sent in plain text.
+
+         When a member is activated for the first time via the
+         Member Journal, a frontend user is created automatically.
+         If no password is set, the member receives an email asking
+         to define a password.
+
+         If an existing password is removed and the member record
+         is saved, a new password reset email is triggered.
+ - :Field:
          User Groups
    :Description:
          Frontend users are automatically assigned to group
@@ -494,6 +476,13 @@ This relation handles the frontend-user for a member.
          a new :guilabel:`First login reminder` e-mail only
          after the :guilabel:`days until reminder` has expired in the
          :ref:`Member login reminder task <schedulerMemberLoginReminderTask>`.
+
+.. note::
+
+   An email address is required for the standard login workflow
+   (initial password setup and password reset). Without an email
+   address, frontend login is only possible if an administrator
+   sets a password manually and communicates it through another channel.
 
 
 .. _recordMemberRelationsLocation:

@@ -71,6 +71,7 @@ More information: `Quicko.software <https://quicko.software/>`_.
     Introduction/Index
     QuickStart/Index
     Configuration/Index
+    Upgrade/Index
     UsersManual/Index
     Templates/Index
     Addons/Index
