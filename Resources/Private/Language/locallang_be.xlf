@@ -350,6 +350,9 @@
 			<trans-unit id="flash.validation_warning.title" resname="flash.validation_warning.title">
 				<source>Validation Warning</source>
 			</trans-unit>
+			<trans-unit id="flash.journal_processing_warning.title" resname="flash.journal_processing_warning.title">
+				<source>Journal processing warning</source>
+			</trans-unit>
 			<trans-unit id="flash.activation_blocked.no_ident" resname="flash.activation_blocked.no_ident">
 				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first before setting the status to "active". Changes were NOT saved.</source>
 			</trans-unit>
@@ -371,6 +374,9 @@
 			<trans-unit id="memberjournal.cancellation_reverted" resname="memberjournal.cancellation_reverted">
 				<source>Cancellation request reverted by status change to active</source>
 			</trans-unit>
+			<trans-unit id="flash.pending_cancellation_reverted" resname="flash.pending_cancellation_reverted">
+				<source>Pending cancellation was automatically reverted.</source>
+			</trans-unit>
 			<trans-unit id="flash.journal_edit_blocked.processed" resname="flash.journal_edit_blocked.processed">
 				<source>Processed journal entries cannot be edited.</source>
 			</trans-unit>
@@ -390,10 +396,10 @@
 
 			<!-- CR2: Pending Entry Validations -->
 			<trans-unit id="flash.pending_status_change_exists" resname="flash.pending_status_change_exists">
-				<source>A pending status change already exists for this member. Please wait until it is processed or delete the existing entry first.</source>
+				<source>A pending status change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</source>
 			</trans-unit>
 			<trans-unit id="flash.pending_level_change_exists" resname="flash.pending_level_change_exists">
-				<source>A pending level change already exists for this member. Please wait until it is processed or delete the existing entry first.</source>
+				<source>A pending level change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</source>
 			</trans-unit>
 			<trans-unit id="flash.status_change_applied_not_allowed" resname="flash.status_change_applied_not_allowed">
 				<source>Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.</source>

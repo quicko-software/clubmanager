@@ -245,6 +245,15 @@ class ValidateJournalEntryHook
 
         // Status-Change spezifische Validierungen
         if ($entryType === MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE) {
+            // CR7: Pending Kündigungs-Eintrag auf "aktiv" zurückstellen:
+            // nicht als regulären Status-Change speichern, sondern als Rücknahme
+            // behandeln (Entry wird verborgen).
+            if ($existingUid !== null && $targetState !== null) {
+                if ($this->applyPendingCancellationRevert($fieldArray, $existingUid, (int) $targetState)) {
+                    return;
+                }
+            }
+
             // CR4: "Beantragt" darf in Base nicht manuell gesetzt werden
             if ($targetState !== null && $this->validateBeantragtNotAllowed($fieldArray, (int) $targetState, $id, $memberUid)) {
                 return; // Eintrag wurde blockiert
@@ -252,7 +261,10 @@ class ValidateJournalEntryHook
 
             // CR3/CR7: Gleicher Status blockieren (auch beim Edit eines pending Eintrags)
             if ($memberUid !== null && $targetState !== null) {
-                if ($this->validateNotSameStatus($fieldArray, $memberUid, (int) $targetState, $id, $dataHandler)) {
+                if (
+                    $this->shouldValidateNotSameStatus($existingUid, $fieldArray, (int) $targetState)
+                    && $this->validateNotSameStatus($fieldArray, $memberUid, (int) $targetState, $id, $dataHandler)
+                ) {
                     return; // Eintrag wurde blockiert
                 }
             }
@@ -350,6 +362,52 @@ class ValidateJournalEntryHook
     }
 
     /**
+     * CR7: Wenn ein bestehender pending "gekündigt"-Eintrag auf "aktiv" geändert wird,
+     * wird der Eintrag als Rücknahme verborgen statt als neuer No-Op-Statuswechsel gespeichert.
+     */
+    private function applyPendingCancellationRevert(array &$fieldArray, int $existingUid, int $newTargetState): bool
+    {
+        if ($newTargetState !== Member::STATE_ACTIVE) {
+            return false;
+        }
+
+        $record = BackendUtility::getRecord(
+            self::TABLE_NAME,
+            $existingUid,
+            'entry_type,target_state,processed,hidden,pid'
+        );
+        if (!is_array($record)) {
+            return false;
+        }
+
+        $isPendingStatusCancellation =
+            ($record['entry_type'] ?? '') === MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE
+            && (int) ($record['target_state'] ?? -1) === Member::STATE_CANCELLED
+            && empty($record['processed'])
+            && (int) ($record['hidden'] ?? 0) === 0;
+
+        if (!$isPendingStatusCancellation) {
+            return false;
+        }
+
+        $fieldArray = ['hidden' => 1];
+        if (isset($record['pid'])) {
+            $fieldArray['pid'] = (int) $record['pid'];
+        }
+
+        $this->addFlashMessage(
+            $this->translate(
+                'flash.pending_cancellation_reverted',
+                'Pending cancellation was automatically reverted.'
+            ),
+            $this->translate('flash.validation_warning.title', 'Validation Warning'),
+            ContextualFeedbackSeverity::WARNING
+        );
+
+        return true;
+    }
+
+    /**
      * CR3: Validiert dass der Ziel-Status nicht dem aktuellen Status entspricht.
      *
      * @return bool True wenn blockiert, false wenn OK
@@ -386,6 +444,50 @@ class ValidateJournalEntryHook
         }
 
         return false;
+    }
+
+    /**
+     * CR3/CR7: Same-status-Validierung nur anwenden für:
+     * - neue Status-Change-Einträge
+     * - bestehende, unverarbeitete Status-Change-Einträge, deren target_state tatsächlich geändert wird
+     */
+    private function shouldValidateNotSameStatus(?int $existingUid, array $fieldArray, int $newTargetState): bool
+    {
+        if ($existingUid === null) {
+            return true;
+        }
+
+        $record = BackendUtility::getRecord(
+            self::TABLE_NAME,
+            $existingUid,
+            'entry_type,target_state,processed,hidden'
+        );
+        if (!is_array($record)) {
+            return true;
+        }
+
+        if (($record['entry_type'] ?? '') !== MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE) {
+            return false;
+        }
+
+        $isPending = empty($record['processed']) && (int) ($record['hidden'] ?? 0) === 0;
+        if (!$isPending) {
+            return false;
+        }
+
+        // CR7-Sonderfall: Bestehende pending Kündigung (target=cancelled) wird auf
+        // active zurückgestellt. Dieser Flow wird nachgelagert automatisch als
+        // "reverted" behandelt und darf nicht durch Same-Status blockiert werden.
+        $oldTargetState = (int) ($record['target_state'] ?? -1);
+        if ($oldTargetState === Member::STATE_CANCELLED && $newTargetState === Member::STATE_ACTIVE) {
+            return false;
+        }
+
+        if (!array_key_exists('target_state', $fieldArray)) {
+            return false;
+        }
+
+        return (int) ($record['target_state'] ?? -1) !== $newTargetState;
     }
 
     /**
@@ -583,10 +685,11 @@ class ValidateJournalEntryHook
      */
     private function getCurrentMemberState(int $memberUid, DataHandler $dataHandler): ?int
     {
-        // Prüfe erst Datamap (falls im selben Request geändert)
-        $memberData = $dataHandler->datamap[self::MEMBER_TABLE][$memberUid] ?? null;
-        if (is_array($memberData) && isset($memberData['state'])) {
-            return (int) $memberData['state'];
+        // Datamap-State nur verwenden, wenn der State im selben Request
+        // explizit und tatsächlich vom DB-Wert abweichend geändert wurde.
+        $stateFromDatamap = $this->getExplicitStateFromDatamap($memberUid, $dataHandler);
+        if ($stateFromDatamap !== null) {
+            return $stateFromDatamap;
         }
 
         // Aus DB holen
@@ -596,6 +699,27 @@ class ValidateJournalEntryHook
         }
 
         return null;
+    }
+
+    /**
+     * Liefert den State aus der Datamap nur dann, wenn es sich um eine
+     * explizite und tatsächliche State-Änderung im aktuellen Request handelt.
+     */
+    private function getExplicitStateFromDatamap(int $memberUid, DataHandler $dataHandler): ?int
+    {
+        $memberData = $dataHandler->datamap[self::MEMBER_TABLE][$memberUid] ?? null;
+        if (!is_array($memberData) || !array_key_exists('state', $memberData)) {
+            return null;
+        }
+
+        $incomingState = (int) $memberData['state'];
+        $memberRecord = BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'state');
+        if (!is_array($memberRecord) || !isset($memberRecord['state'])) {
+            return null;
+        }
+
+        $dbState = (int) $memberRecord['state'];
+        return $incomingState !== $dbState ? $incomingState : null;
     }
 
     /**

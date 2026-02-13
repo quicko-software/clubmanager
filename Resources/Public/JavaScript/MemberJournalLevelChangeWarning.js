@@ -195,6 +195,13 @@ const MemberJournalLevelChangeWarning = {
         continue;
       }
 
+      // Bei bestehenden Einträgen ist die Same-Status-Prüfung clientseitig
+      // zu ungenau (z.B. beim pending cancellation revert). Diese Fälle
+      // werden serverseitig valide abgesichert.
+      if (!String(recordId).startsWith('NEW')) {
+        continue;
+      }
+
       // Bereits verarbeitete Einträge überspringen
       if (this.isProcessed(form, recordId)) {
         continue;

@@ -509,6 +509,10 @@
 				<source>Validation Warning</source>
 				<target>Validierungswarnung</target>
 			</trans-unit>
+			<trans-unit id="flash.journal_processing_warning.title" resname="flash.journal_processing_warning.title">
+				<source>Journal processing warning</source>
+				<target>Journal-Verarbeitung: Hinweis</target>
+			</trans-unit>
 			<trans-unit id="flash.activation_blocked.no_ident" resname="flash.activation_blocked.no_ident">
 				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first before setting the status to "active". Changes were NOT saved.</source>
 				<target>Aktivierung nicht möglich: Mitgliedsnummer (ident) fehlt. Bitte zuerst eine Mitgliedsnummer vergeben, bevor der Status auf "aktiv" gesetzt werden kann. Die Änderungen wurden NICHT gespeichert.</target>
@@ -537,6 +541,10 @@
 				<source>Cancellation request reverted by status change to active</source>
 				<target>Kündigungswunsch durch Status-Aktiv zurückgenommen</target>
 			</trans-unit>
+			<trans-unit id="flash.pending_cancellation_reverted" resname="flash.pending_cancellation_reverted">
+				<source>Pending cancellation was automatically reverted.</source>
+				<target>Eine offene Kündigung wurde automatisch zurückgenommen.</target>
+			</trans-unit>
 			<trans-unit id="flash.journal_edit_blocked.processed" resname="flash.journal_edit_blocked.processed">
 				<source>Processed journal entries cannot be edited.</source>
 				<target>Verarbeitete Journal-Einträge können nicht mehr bearbeitet werden.</target>
@@ -560,12 +568,12 @@
 
 			<!-- CR2: Pending Entry Validations -->
 			<trans-unit id="flash.pending_status_change_exists" resname="flash.pending_status_change_exists">
-				<source>A pending status change already exists for this member. Please wait until it is processed or delete the existing entry first.</source>
-				<target>Für dieses Mitglied existiert bereits eine offene Status-Änderung. Bitte warten Sie, bis diese verarbeitet wurde, oder löschen Sie den bestehenden Eintrag.</target>
+				<source>A pending status change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</source>
+				<target>Für dieses Mitglied existiert bereits eine offene Status-Änderung. Bitte warten Sie, bis diese verarbeitet wurde, oder deaktivieren Sie den bestehenden Eintrag.</target>
 			</trans-unit>
 			<trans-unit id="flash.pending_level_change_exists" resname="flash.pending_level_change_exists">
-				<source>A pending level change already exists for this member. Please wait until it is processed or delete the existing entry first.</source>
-				<target>Für dieses Mitglied existiert bereits eine offene Level-Änderung. Bitte warten Sie, bis diese verarbeitet wurde, oder löschen Sie den bestehenden Eintrag.</target>
+				<source>A pending level change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</source>
+				<target>Für dieses Mitglied existiert bereits eine offene Level-Änderung. Bitte warten Sie, bis diese verarbeitet wurde, oder deaktivieren Sie den bestehenden Eintrag.</target>
 			</trans-unit>
 
 		</body>

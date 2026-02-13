@@ -79,6 +79,11 @@ final class MemberJournalEntryReadonly implements FormDataProviderInterface
       if (($result['processedTca']['columns'][$fieldName]['config']['type'] ?? '') === 'passthrough') {
         continue;
       }
+      // CR7/CR8: Pending-Einträge dürfen über hidden=1 deaktiviert werden.
+      // Deshalb hidden bei unverarbeiteten Einträgen nicht auf readOnly setzen.
+      if ($fieldName === 'hidden' && !$isProcessed) {
+        continue;
+      }
       $result['processedTca']['columns'][$fieldName]['config']['readOnly'] = true;
     }
 

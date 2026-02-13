@@ -185,12 +185,12 @@ class ProcessMemberJournalHook
         );
       }
     } catch (\InvalidArgumentException $e) {
-      // Validierungsfehler als Flash-Message anzeigen
+      // Save ist zu diesem Zeitpunkt bereits gelaufen;
+      // dies ist eine nachgelagerte Verarbeitungswarnung.
       $this->addFlashMessage(
         $e->getMessage(),
-        LocalizationUtility::translate('flash.validation_error.title', 'clubmanager')
-          ?? 'Validation Error',
-        ContextualFeedbackSeverity::ERROR
+        $this->translate('flash.journal_processing_warning.title', 'Journal processing warning'),
+        ContextualFeedbackSeverity::WARNING
       );
       $this->logger->warning(
         sprintf('Validation error for member %d: %s', $memberUid, $e->getMessage())
@@ -411,6 +411,17 @@ class ProcessMemberJournalHook
 
     $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
     $flashMessageService->getMessageQueueByIdentifier()->enqueue($flashMessage);
+  }
+
+  private function translate(string $key, string $fallback): string
+  {
+    $languageService = $GLOBALS['LANG'] ?? null;
+    if ($languageService === null) {
+      return $fallback;
+    }
+
+    $translated = $languageService->sL('LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:' . $key);
+    return $translated ?: $fallback;
   }
 }
 
