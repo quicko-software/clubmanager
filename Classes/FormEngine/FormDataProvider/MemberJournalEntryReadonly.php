@@ -65,9 +65,9 @@ final class MemberJournalEntryReadonly implements FormDataProviderInterface
     $creatorType = is_array($creatorTypeRaw) ? (int) ($creatorTypeRaw[0] ?? -1) : (int) $creatorTypeRaw;
 
     // Determine if all fields should be readOnly
-    // Processed entries are always readOnly for everyone (except admins)
-    // System/Member entries are readOnly for non-admins only
-    $shouldBeReadOnly = (!$isAdmin && $isProcessed) ||
+    // Processed entries are always readOnly for everyone.
+    // System/Member entries are readOnly for non-admins only.
+    $shouldBeReadOnly = $isProcessed ||
       (!$isAdmin && ($creatorType === self::CREATOR_TYPE_SYSTEM || $creatorType === self::CREATOR_TYPE_MEMBER));
 
     if (!$shouldBeReadOnly) {

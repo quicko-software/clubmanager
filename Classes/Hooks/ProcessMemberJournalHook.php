@@ -9,6 +9,7 @@ use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
@@ -112,11 +113,47 @@ class ProcessMemberJournalHook
       }
     }
 
+    // Member über Journal-Delete-Commands (IRRE-Delete / direktes Löschen)
+    if (isset($pObj->cmdmap['tx_clubmanager_domain_model_memberjournalentry'])) {
+      foreach ($pObj->cmdmap['tx_clubmanager_domain_model_memberjournalentry'] as $id => $commands) {
+        if (!is_array($commands) || !isset($commands['delete']) || !is_numeric($id)) {
+          continue;
+        }
+
+        $memberUid = $this->findMemberUidForJournalEntry((int) $id);
+        if ($memberUid !== null) {
+          $memberUids[$memberUid] = true;
+        }
+      }
+    }
+
     // Verarbeite alle betroffenen Member
     foreach (array_keys($memberUids) as $memberUid) {
       $autoResolveCancellation = isset($activeStatusMemberUids[$memberUid]);
       $this->processMemberSave($memberUid, $autoResolveCancellation);
     }
+  }
+
+  private function findMemberUidForJournalEntry(int $journalEntryUid): ?int
+  {
+    $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+      ->getQueryBuilderForTable('tx_clubmanager_domain_model_memberjournalentry');
+    $queryBuilder->getRestrictions()->removeByType(DeletedRestriction::class);
+
+    $memberUid = $queryBuilder
+      ->select('member')
+      ->from('tx_clubmanager_domain_model_memberjournalentry')
+      ->where(
+        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($journalEntryUid))
+      )
+      ->executeQuery()
+      ->fetchOne();
+
+    if ($memberUid === false || (int) $memberUid <= 0) {
+      return null;
+    }
+
+    return (int) $memberUid;
   }
 
   /**

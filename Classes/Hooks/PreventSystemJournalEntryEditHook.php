@@ -16,7 +16,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 /**
  * Prevents editing of system-created, member-created, and processed journal entries.
  * This is a server-side protection that ensures these entries cannot be modified.
- * Admins can always edit.
+ * Processed entries are immutable for all roles; admins may still delete them.
  */
 class PreventSystemJournalEntryEditHook
 {
@@ -38,15 +38,12 @@ class PreventSystemJournalEntryEditHook
             return;
         }
 
-        // Admins can always edit
-        if ($this->getBackendUser()->isAdmin()) {
-            return;
-        }
-
         // Only check existing records (not new ones)
         if (!is_numeric($id)) {
             return;
         }
+
+        $isAdmin = $this->getBackendUser()->isAdmin();
 
         // Prüfe ob echte Änderungen vorliegen (nicht nur System-Felder durch IRRE-Handling)
         $ignoredFields = ['tstamp', 'crdate', 'pid', 'sorting', 'l10n_diffsource'];
@@ -71,12 +68,12 @@ class PreventSystemJournalEntryEditHook
             return;
         }
 
-        // Prevent editing if:
-        // - Entry was created by system/member, OR
-        // - Entry has been processed
-        $shouldPreventEdit = ($creatorType === self::CREATOR_TYPE_SYSTEM ||
-            $creatorType === self::CREATOR_TYPE_MEMBER ||
-            $isProcessed);
+        // Processed entries are immutable for everyone.
+        // System-/Member-created entries are immutable for non-admins.
+        $shouldPreventEdit = $isProcessed || (
+            !$isAdmin
+            && ($creatorType === self::CREATOR_TYPE_SYSTEM || $creatorType === self::CREATOR_TYPE_MEMBER)
+        );
 
         if (!$shouldPreventEdit) {
             return;
