@@ -183,12 +183,15 @@ return [
       'config' => [
         'type' => 'select',
         'renderType' => 'selectSingle',
-        // CR4: STATE_APPLIED entfernt - ist ein reiner System-Status für Neuanmeldungen
+        // STATE_APPLIED bleibt als statisches Item für korrekte Label-Auflösung in allen Renderpfaden.
+        // Die Form-UI-Auswahl wird zusätzlich via itemsProcFunc eingeschränkt (kein aktives manuelles Setzen).
         'items' => [
+          ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.1', 'value' => Member::STATE_APPLIED],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.2', 'value' => Member::STATE_ACTIVE],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.3', 'value' => Member::STATE_SUSPENDED],
           ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.4', 'value' => Member::STATE_CANCELLED],
         ],
+        'itemsProcFunc' => Quicko\Clubmanager\FormEngine\ItemsProcFunc\MemberJournalTargetStateItems::class . '->build',
         'required' => true,
       ],
     ],
