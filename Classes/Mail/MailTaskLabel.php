@@ -20,7 +20,6 @@ class MailTaskLabel
       $newTitle = "!!! INVALID !!!";
       try {
          if ($record != null) {
-
             $instance = MailGeneratorFactory::createGenerator($record['generator_class']);
             $baseMailGeneratorArguments = MailGeneratorArgumentsSerializer::deserialize($record['generator_arguments']);
 
