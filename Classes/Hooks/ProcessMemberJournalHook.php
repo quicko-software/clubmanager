@@ -23,6 +23,14 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 class ProcessMemberJournalHook
 {
   protected Logger $logger;
+  /**
+   * Member-UIDs aus Cmdmap-Delete-Operationen, die nach Abschluss
+   * der Command-Verarbeitung nachsynchronisiert werden müssen.
+   * Static, damit der Zustand auch bei mehrfachen Hook-Instanzen im selben Request erhalten bleibt.
+   *
+   * @var array<int, bool>
+   */
+  protected static array $cmdmapDeleteMemberUids = [];
 
   public function __construct(?Logger $logger = null)
   {
@@ -69,6 +77,22 @@ class ProcessMemberJournalHook
 
         $resolvedEntryUid = is_numeric($id) ? (int) $id : ($pObj->substNEWwithIDs[$id] ?? null);
 
+        // Stabilisiert IRRE-Hidden-Toggle beim ersten Save:
+        // Wenn für einen pending Eintrag hidden=1 angefordert wurde,
+        // den Zustand ggf. explizit persistieren.
+        $this->enforcePendingHiddenOnFirstSave($resolvedEntryUid, $data);
+
+        // Loeschen via Datamap (z.B. IRRE) kann als Feld "delete" kommen.
+        // In diesem Fall muessen wir den betroffenen Member explizit aufloesen,
+        // damit die Konsistenzpruefung nach dem ersten Speichern laeuft.
+        if ((int) ($data['delete'] ?? 0) === 1 && $resolvedEntryUid) {
+          $deletedEntryMemberUid = $this->findMemberUidForJournalEntry((int) $resolvedEntryUid);
+          if ($deletedEntryMemberUid !== null) {
+            $memberUids[$deletedEntryMemberUid] = true;
+          }
+          continue;
+        }
+
         // Für existierende Einträge: Prüfe processed-Status aus DB
         if ($resolvedEntryUid && is_numeric($id)) {
           $record = BackendUtility::getRecord(
@@ -113,6 +137,11 @@ class ProcessMemberJournalHook
       }
     }
 
+    // Fallback: Einige IRRE-Requests transportieren hidden-Updates nicht
+    // konsistent in die Datamap. Daher zusaetzlich die uebermittelten
+    // Formdaten pruefen und pending hidden=1 sicher persistieren.
+    $this->enforcePendingHiddenFromRequestData($memberUids);
+
     // Member über Journal-Delete-Commands (IRRE-Delete / direktes Löschen)
     if (isset($pObj->cmdmap['tx_clubmanager_domain_model_memberjournalentry'])) {
       foreach ($pObj->cmdmap['tx_clubmanager_domain_model_memberjournalentry'] as $id => $commands) {
@@ -132,6 +161,44 @@ class ProcessMemberJournalHook
       $autoResolveCancellation = isset($activeStatusMemberUids[$memberUid]);
       $this->processMemberSave($memberUid, $autoResolveCancellation);
     }
+  }
+
+  /**
+   * Erfasst Delete-Operationen aus process_cmdmap.
+   * Dieser Hook wird im Delete-Lifecycle mit dem Original-Record aufgerufen.
+   */
+  public function processCmdmap_deleteAction(
+    string $table,
+    int $id,
+    array $record,
+    mixed &$recordWasDeleted,
+    DataHandler $dataHandler
+  ): void {
+    if ($table !== 'tx_clubmanager_domain_model_memberjournalentry') {
+      return;
+    }
+
+    $memberUid = (int) ($record['member'] ?? 0);
+    if ($memberUid > 0) {
+      self::$cmdmapDeleteMemberUids[$memberUid] = true;
+    }
+  }
+
+  /**
+   * Führt nach Abschluss aller Cmdmap-Operationen die Konsistenzprüfung
+   * für betroffene Member aus.
+   */
+  public function processCmdmap_afterFinish(DataHandler $dataHandler): void
+  {
+    if (self::$cmdmapDeleteMemberUids === []) {
+      return;
+    }
+
+    foreach (array_keys(self::$cmdmapDeleteMemberUids) as $memberUid) {
+      $this->processMemberSave((int) $memberUid, false);
+    }
+
+    self::$cmdmapDeleteMemberUids = [];
   }
 
   private function findMemberUidForJournalEntry(int $journalEntryUid): ?int
@@ -154,6 +221,109 @@ class ProcessMemberJournalHook
     }
 
     return (int) $memberUid;
+  }
+
+  /**
+   * In seltenen IRRE-Faellen kann hidden=1 beim ersten Speichern eines Eintrags
+   * nicht sauber persistiert werden. Für pending Einträge erzwingen wir deshalb
+   * den gewünschten hidden=1-Zustand explizit nach Abschluss der Datamap-Verarbeitung.
+   *
+   * @param array<string, mixed> $journalData
+   */
+  private function enforcePendingHiddenOnFirstSave(?int $journalEntryUid, array $journalData): void
+  {
+    if ($journalEntryUid === null || $journalEntryUid <= 0) {
+      return;
+    }
+
+    if (!array_key_exists('hidden', $journalData) || (int) $journalData['hidden'] !== 1) {
+      return;
+    }
+
+    $record = BackendUtility::getRecord(
+      'tx_clubmanager_domain_model_memberjournalentry',
+      $journalEntryUid,
+      'uid,processed,hidden'
+    );
+    if (!is_array($record)) {
+      return;
+    }
+
+    // Nur pending Einträge (processed leer) dürfen über hidden deaktiviert werden.
+    if (!empty($record['processed'])) {
+      return;
+    }
+
+    if ((int) ($record['hidden'] ?? 0) === 1) {
+      return;
+    }
+
+    $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+      ->getConnectionForTable('tx_clubmanager_domain_model_memberjournalentry');
+    $connection->update(
+      'tx_clubmanager_domain_model_memberjournalentry',
+      [
+        'hidden' => 1,
+        'tstamp' => time(),
+      ],
+      ['uid' => $journalEntryUid]
+    );
+  }
+
+  /**
+   * Fallback fuer den Fall, dass hidden=1 in POST vorhanden ist,
+   * aber nicht sauber in DataHandler->datamap landet.
+   *
+   * @param array<int, bool> $memberUids
+   */
+  private function enforcePendingHiddenFromRequestData(array &$memberUids): void
+  {
+    $postData = $_POST['data']['tx_clubmanager_domain_model_memberjournalentry'] ?? null;
+    if (!is_array($postData)) {
+      return;
+    }
+
+    foreach ($postData as $id => $fields) {
+      if (!is_numeric((string) $id) || !is_array($fields)) {
+        continue;
+      }
+      if (!array_key_exists('hidden', $fields) || (int) $fields['hidden'] !== 1) {
+        continue;
+      }
+
+      $journalEntryUid = (int) $id;
+      $record = BackendUtility::getRecord(
+        'tx_clubmanager_domain_model_memberjournalentry',
+        $journalEntryUid,
+        'uid,member,processed,hidden'
+      );
+      if (!is_array($record)) {
+        continue;
+      }
+
+      // Nur pending Eintraege (processed leer) duerfen ueber hidden deaktiviert werden.
+      if (!empty($record['processed'])) {
+        continue;
+      }
+
+      if ((int) ($record['hidden'] ?? 0) !== 1) {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+          ->getConnectionForTable('tx_clubmanager_domain_model_memberjournalentry');
+        $connection->update(
+          'tx_clubmanager_domain_model_memberjournalentry',
+          [
+            'hidden' => 1,
+            'tstamp' => time(),
+          ],
+          ['uid' => $journalEntryUid]
+        );
+      }
+
+      $memberUid = (int) ($record['member'] ?? 0);
+      if ($memberUid > 0) {
+        $memberUids[$memberUid] = true;
+      }
+    }
   }
 
   /**

@@ -101,6 +101,7 @@ call_user_func(function () {
   // Must run AFTER clubmanager_process_member_journal_hook because journal processing updates member state
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_member_autocreate_feuser_hook'] = Quicko\Clubmanager\Hooks\MemberAutoCreateFeuserHook::class;
   // $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_reset_password'] = \Quicko\Clubmanager\Hooks\EmailVerificationTokenResetHook::class;
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['clubmanager_process_member_journal_hook'] = Quicko\Clubmanager\Hooks\ProcessMemberJournalHook::class;
 
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1454581922] = [
     'nodeName' => 'SearchLocation',
