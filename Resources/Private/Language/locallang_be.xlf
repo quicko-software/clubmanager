@@ -404,6 +404,9 @@
 			<trans-unit id="flash.status_change_applied_not_allowed" resname="flash.status_change_applied_not_allowed">
 				<source>Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.</source>
 			</trans-unit>
+			<trans-unit id="flash.status_change_cancelled_not_allowed_with_billing" resname="flash.status_change_cancelled_not_allowed_with_billing">
+				<source>Manual status change to "cancelled" is not allowed while Billing is active. Please use cancellation request.</source>
+			</trans-unit>
 			<trans-unit id="flash.journal_reactivation_blocked_newer_entries" resname="flash.journal_reactivation_blocked_newer_entries">
 				<source>Reactivation not possible: Newer journal entries exist.</source>
 			</trans-unit>

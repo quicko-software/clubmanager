@@ -13,6 +13,7 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /**
  * Validates journal entries BEFORE saving.
@@ -245,6 +246,10 @@ class ValidateJournalEntryHook
 
         // Status-Change spezifische Validierungen
         if ($entryType === MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE) {
+            if ($targetState !== null && $this->validateBillingManualCancelledNotAllowed($fieldArray, (int) $targetState, $id)) {
+                return;
+            }
+
             // CR7: Pending Kündigungs-Eintrag auf "aktiv" zurückstellen:
             // nicht als regulären Status-Change speichern, sondern als Rücknahme
             // behandeln (Entry wird verborgen).
@@ -313,6 +318,45 @@ class ValidateJournalEntryHook
             $this->translate(
                 'flash.status_change_applied_not_allowed',
                 'Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.'
+            ),
+            $this->translate('flash.validation_error.title', 'Validation Error'),
+            ContextualFeedbackSeverity::ERROR
+        );
+
+        return true;
+    }
+
+    /**
+     * Bei aktivem Billing darf "gekündigt" nicht manuell angelegt werden.
+     *
+     * @return bool True wenn blockiert, false wenn OK
+     */
+    private function validateBillingManualCancelledNotAllowed(
+        array &$fieldArray,
+        int $targetState,
+        string|int $id
+    ): bool {
+        if ($targetState !== Member::STATE_CANCELLED || !ExtensionManagementUtility::isLoaded('clubmanager_billing')) {
+            return false;
+        }
+
+        $isNewEntry = str_starts_with((string) $id, 'NEW');
+        // Nur manuelle Neuanlage blockieren, bestehende Einträge weiterhin bearbeitbar lassen.
+        if (!$isNewEntry) {
+            return false;
+        }
+
+        self::$invalidEntryIds[$id] = 0;
+        $pid = $fieldArray['pid'] ?? null;
+        $fieldArray = [];
+        if ($pid !== null) {
+            $fieldArray['pid'] = $pid;
+        }
+
+        $this->addFlashMessage(
+            $this->translate(
+                'flash.status_change_cancelled_not_allowed_with_billing',
+                'Manual status change to "cancelled" is not allowed while Billing is active. Please use cancellation request.'
             ),
             $this->translate('flash.validation_error.title', 'Validation Error'),
             ContextualFeedbackSeverity::ERROR

@@ -4,6 +4,7 @@ namespace Quicko\Clubmanager\FormEngine\ItemsProcFunc;
 
 use Quicko\Clubmanager\Domain\Model\Member;
 use TYPO3\CMS\Core\Schema\Struct\SelectItem;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 class MemberJournalTargetStateItems
 {
@@ -16,6 +17,8 @@ class MemberJournalTargetStateItems
     $originalItems = $params['items'] ?? [];
     $filteredItems = [];
     $hadAppliedBeforeFilter = false;
+    $hadCancelledBeforeFilter = false;
+    $isBillingLoaded = ExtensionManagementUtility::isLoaded('clubmanager_billing');
 
     foreach ($originalItems as $item) {
       $value = $this->extractItemValue($item);
@@ -23,6 +26,14 @@ class MemberJournalTargetStateItems
         $hadAppliedBeforeFilter = true;
         // Nur bei Legacy-Datensatz mit bereits gesetztem applied anzeigen.
         if ($currentValue === Member::STATE_APPLIED) {
+          $filteredItems[] = $item;
+        }
+        continue;
+      }
+      if ($value === Member::STATE_CANCELLED && $isBillingLoaded) {
+        $hadCancelledBeforeFilter = true;
+        // Nur bei Legacy-Datensatz mit bereits gesetztem cancelled anzeigen.
+        if ($currentValue === Member::STATE_CANCELLED) {
           $filteredItems[] = $item;
         }
         continue;
@@ -39,6 +50,15 @@ class MemberJournalTargetStateItems
         ),
         'value' => Member::STATE_APPLIED,
       ]);
+    }
+    if ($isBillingLoaded && $currentValue === Member::STATE_CANCELLED && !$hadCancelledBeforeFilter) {
+      $filteredItems[] = [
+        'label' => $this->resolveLabel(
+          'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.4',
+          'Canceled'
+        ),
+        'value' => Member::STATE_CANCELLED,
+      ];
     }
     $params['items'] = $filteredItems;
   }

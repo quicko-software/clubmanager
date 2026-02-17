@@ -565,6 +565,10 @@
 				<source>Status change not possible: Target status is the same as the current member status.</source>
 				<target>Status-Änderung nicht möglich: Zielstatus entspricht dem aktuellen Mitgliedsstatus.</target>
 			</trans-unit>
+			<trans-unit id="flash.status_change_cancelled_not_allowed_with_billing" resname="flash.status_change_cancelled_not_allowed_with_billing">
+				<source>Manual status change to "cancelled" is not allowed while Billing is active. Please use cancellation request.</source>
+				<target>Manuelle Status-Änderung auf "gekündigt" ist bei aktivem Billing nicht erlaubt. Bitte nutzen Sie den Kündigungswunsch.</target>
+			</trans-unit>
 
 			<!-- CR2: Pending Entry Validations -->
 			<trans-unit id="flash.pending_status_change_exists" resname="flash.pending_status_change_exists">
