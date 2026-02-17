@@ -175,6 +175,42 @@ class MemberJournalEntryRepository extends Repository
   }
 
   /**
+   * Ermittelt den relevanten Status für die aktuelle State-Projektion.
+   *
+   * STATE_APPLIED ist ein Initial-/Antragsstatus. Sobald ein verarbeiteter
+   * Folgestatus (aktiv/ruhend/gekündigt) existiert, soll dieser den
+   * aktuellen Member-Status bestimmen.
+   *
+   * @return T|null
+   */
+  public function findLastProcessedStatusEntryForStateProjection(int $memberUid): ?object
+  {
+    $query = $this->createQuery();
+    $query->getQuerySettings()->setRespectStoragePage(false);
+    $query->matching(
+      $query->logicalAnd(
+        $query->equals('member', $memberUid),
+        $query->equals('entryType', MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE),
+        $query->logicalNot($query->equals('targetState', \Quicko\Clubmanager\Domain\Model\Member::STATE_APPLIED)),
+        $query->logicalNot($query->equals('processed', null)),
+        $query->equals('deleted', 0),
+        $query->equals('hidden', 0)
+      )
+    );
+    $query->setOrderings([
+      'effectiveDate' => QueryInterface::ORDER_DESCENDING,
+      'entryDate' => QueryInterface::ORDER_DESCENDING
+    ]);
+
+    $entry = $query->execute()->getFirst();
+    if ($entry !== null) {
+      return $entry;
+    }
+
+    return $this->findLastProcessedEntry($memberUid, MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE);
+  }
+
+  /**
    * CR2: Prüft ob ein Member einen unverarbeiteten Status-Change hat.
    * Verhindert das Anlegen mehrerer offener Status-Changes.
    *

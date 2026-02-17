@@ -428,10 +428,7 @@ class ProcessMemberJournalHook
     $corrected = false;
 
     // Prüfe Status-Konsistenz
-    $lastStatusEntry = $journalRepository->findLastProcessedEntry(
-      $memberUid,
-      MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE
-    );
+    $lastStatusEntry = $journalRepository->findLastProcessedStatusEntryForStateProjection($memberUid);
 
     if ($lastStatusEntry !== null) {
       $expectedState = $lastStatusEntry->getTargetState();
