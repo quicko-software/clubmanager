@@ -207,6 +207,10 @@
 				<source>Dynamic registration process for new members via web form</source>
 				<target>Dynamischer Anmelde-Prozess für neue Mitglieder via Webformular</target>
 			</trans-unit>
+			<trans-unit id="module.memberlist.features.6" resname="module.memberlist.features.6">
+				<source>Incl. double opt-in procedure for verifying email addresses during new registrations</source>
+				<target>Inkl. Double-Opt-in-Verfahren zur Überprüfung der E-Mail-Adressen bei Neuanmeldungen</target>
+			</trans-unit>
 			<trans-unit id="module.memberlist.features.4" resname="module.memberlist.features.4">
 				<source>Automated cancellation process for members</source>
 				<target>Automatisierter Kündigungsprozess für Mitglieder</target>

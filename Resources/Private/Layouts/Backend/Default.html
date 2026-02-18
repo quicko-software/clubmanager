@@ -1,6 +1,96 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-<div class="memberlist-module">
-	<f:flashMessages/>
-	<f:render section="content"/>
+<div class="memberlist-module cm-advertising">
+    <style>
+        .cm-advertising {
+            --cm-primary: #0a5d8f;
+            --cm-primary-soft: #eaf4fb;
+            --cm-accent: #16a26f;
+            --cm-text: #1f2a37;
+            --cm-muted: #5b6470;
+            --cm-border: #d7dde4;
+            --cm-surface: #ffffff;
+            --cm-shadow: 0 8px 24px rgba(10, 34, 56, 0.08);
+        }
+
+        .cm-advertising .cm-advertising__panel {
+            max-width: 980px;
+            padding: 20px;
+            border: 1px solid var(--cm-border);
+            border-radius: 12px;
+            background: linear-gradient(180deg, var(--cm-primary-soft) 0%, var(--cm-surface) 48%);
+            box-shadow: var(--cm-shadow);
+        }
+
+        .cm-advertising .cm-advertising__title {
+            margin: 0 0 4px;
+            color: var(--cm-muted);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .cm-advertising .cm-advertising__subtitle {
+            margin: 0 0 16px;
+            color: var(--cm-text);
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .cm-advertising .cm-advertising__lead {
+            margin-bottom: 20px;
+            color: var(--cm-text);
+        }
+
+        .cm-advertising .cm-advertising__section-title {
+            margin-top: 20px;
+            color: var(--cm-primary);
+            font-weight: 700;
+        }
+
+        .cm-advertising .cm-advertising__features-title {
+            margin: 6px 0 8px;
+            color: var(--cm-text);
+            font-size: 17px;
+        }
+
+        .cm-advertising .cm-advertising__features {
+            margin: 0 0 20px;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .cm-advertising .cm-advertising__features li {
+            padding: 10px 12px;
+            border: 1px solid var(--cm-border);
+            border-radius: 8px;
+            background-color: var(--cm-surface);
+            color: var(--cm-text);
+        }
+
+        .cm-advertising .cm-advertising__check {
+            display: inline-block;
+            width: 20px;
+            color: var(--cm-accent);
+            font-weight: 700;
+        }
+
+        .cm-advertising .cm-advertising__cta {
+            margin-top: 8px;
+            border-radius: 7px;
+            border-color: var(--cm-primary);
+            color: var(--cm-primary);
+        }
+
+        .cm-advertising .cm-advertising__cta:hover {
+            border-color: var(--cm-primary);
+            background-color: var(--cm-primary-soft);
+            color: var(--cm-primary);
+        }
+    </style>
+
+    <f:flashMessages/>
+    <f:render section="content"/>
 </div>
 </html>

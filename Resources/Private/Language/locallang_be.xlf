@@ -141,6 +141,9 @@
 			<trans-unit id="module.memberlist.features.3" resname="module.memberlist.features.3">
 				<source>Dynamic registration process for new members via web form</source>
 			</trans-unit>
+			<trans-unit id="module.memberlist.features.6" resname="module.memberlist.features.6">
+				<source>Incl. double opt-in procedure for verifying email addresses during new registrations</source>
+			</trans-unit>
 			<trans-unit id="module.memberlist.features.4" resname="module.memberlist.features.4">
 				<source>Automated cancellation process for members</source>
 			</trans-unit>

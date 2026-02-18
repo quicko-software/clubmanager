@@ -107,7 +107,31 @@ Run the TYPO3 upgrade wizard **Create Missing Tables and Fields** to create the 
 This table stores all future status and level changes independently from the member record itself.
 
 
-Step 3: Run Upgrade Wizard
+Step 3: Configure Member Journal Storage Page
+----------------------------------------------
+
+Before running the migration wizard, you must define where Member Journal
+entries will be stored.
+
+#. Go to :guilabel:`Site Management > Settings`
+
+#. Select your site configuration
+
+#. Open section :guilabel:`Clubmanager > Member Journal`
+
+#. Set the field :guilabel:`Member Journal Storage Page` to a dedicated
+   sysfolder UID
+
+If this value is set to ``0``, journal entries will be stored in the same
+folder as the corresponding member record.
+
+.. important::
+
+   The storage page must be configured **before** executing the upgrade wizard.
+   Otherwise initial journal entries may be created in unintended locations.
+
+
+Step 4: Run Upgrade Wizard
 --------------------------
 
 Execute the following upgrade wizard:
@@ -119,8 +143,9 @@ This wizard creates initial journal entries for all existing members based on th
 The wizard should only be executed once.
 
 
-Step 4: Database Compare
+Step 5: Database Compare
 ------------------------
 
 After the wizard has completed successfully, you may run "Analyze Database" and "Database Compare".
+
 

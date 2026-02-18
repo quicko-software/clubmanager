@@ -2,50 +2,51 @@
 <f:layout name="Backend/Default"/>
 
 <f:section name="content">
-    <h1>
-        <f:translate key="LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.title"/>
-    </h1>
-    <h2>
-        <f:translate key="LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.title"/>
-    </h2>
-    <p class="lead">
-        {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.lead_intro')}
-    </p>
-
-    <f:be.infobox title="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.tip')}" state="0">
-        <p>
-            {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.tip.text')}<br/>
-            <a href="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.tip.link.url')}" target ="_blank" class="btn btn-default">
-                <core:icon identifier="actions-link"/>
-                {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.tip.link.text')}
-            </a>
+    <div class="cm-advertising__panel">
+        <h1 class="cm-advertising__title">
+            <f:translate key="LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.title"/>
+        </h1>
+        <h2 class="cm-advertising__subtitle">
+            <f:translate key="LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.title"/>
+        </h2>
+        <p class="lead cm-advertising__lead">
+            {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.lead_intro')}
         </p>
-    </f:be.infobox>
 
-    <h3>
-        {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.subtitle')}
-    </h3>
-    <h4>{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.title')}</h4>
-    <ul class="list-unstyled">
-        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.1')}</li>
-        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.2')}</li>
-        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.3')}</li>
-        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.4')}</li>
-        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.5')}</li>
-        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.6')}</li>
-        <li><i class="fa fa-check"></i> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.7')}</li>
-    </ul>
+        <f:be.infobox title="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.tip')}" state="0">
+            <p>
+                {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.tip.text')}<br/>
+                <a href="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.tip.link.url')}" target ="_blank" class="btn btn-default cm-advertising__cta">
+                    <core:icon identifier="actions-link"/>
+                    {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.tip.link.text')}
+                </a>
+            </p>
+        </f:be.infobox>
 
-    <f:be.infobox title="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info')}" state="-1">
-        <p>
-            {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info.text')}<br/>
-            <a href="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info.link.url')}" target ="_blank" class="btn btn-default">
-                <core:icon identifier="actions-envelope"/>
-                {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info.link.text')}
-            </a>
-        </p>
-    </f:be.infobox>
+        <h3 class="cm-advertising__section-title">
+            {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.subtitle')}
+        </h3>
+        <h4 class="cm-advertising__features-title">{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.title')}</h4>
+        <ul class="list-unstyled cm-advertising__features">
+            <li><span class="cm-advertising__check">✓</span> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.1')}</li>
+            <li><span class="cm-advertising__check">✓</span> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.2')}</li>
+            <li><span class="cm-advertising__check">✓</span> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.3')}</li>
+            <li><span class="cm-advertising__check">✓</span> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.4')}</li>
+            <li><span class="cm-advertising__check">✓</span> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.5')}</li>
+            <li><span class="cm-advertising__check">✓</span> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.6')}</li>
+            <li><span class="cm-advertising__check">✓</span> {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.billing.features.7')}</li>
+        </ul>
+
+        <f:be.infobox title="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info')}" state="-1">
+            <p>
+                {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info.text')}<br/>
+                <a href="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info.link.url')}" target ="_blank" class="btn btn-default cm-advertising__cta">
+                    <core:icon identifier="actions-envelope"/>
+                    {f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:module.info.link.text')}
+                </a>
+            </p>
+        </f:be.infobox>
+    </div>
 
 </f:section>
 </html>
-
