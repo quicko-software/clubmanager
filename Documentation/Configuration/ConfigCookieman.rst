@@ -47,7 +47,7 @@ Cookieman: Enable Site Set
         - quicko/clubmanager
         - quicko/clubmanager-cookieman
 
-.. info::
+.. note::
 
    Static TypoScript templates are no longer used. Configure values via site
    settings.

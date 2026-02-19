@@ -37,7 +37,7 @@ Felogin: Enable Site Set
         - quicko/clubmanager
         - quicko/clubmanager-login
 
-.. info::
+.. note::
 
    Static TypoScript templates are no longer used. Configure values via site
    settings.

@@ -329,6 +329,10 @@ Alternative Billing Address
          Country
    Description:
          Country for payment requests, or payment confirmations.
+ - Field:
+         Alternative e-mail
+   Description:
+         Alternative e-mail address for payment requests, or payment confirmations.
 
 
 .. _recordMemberTabCategories:
@@ -356,13 +360,14 @@ certifications, as members of the board of directors or membership of other bodi
 
 Member Tab: Additional Data
 ---------------------------
-In this tab, 5 fields are available for free assignment by default.
+In this tab, 6 fields are available for free assignment by default.
 
 - customfield1
 - customfield2
 - customfield3
 - customfield4
 - customfield5
+- customfield6
 
 The designation can be changed with the following TCEFORM:
 
@@ -493,4 +498,3 @@ Basically, :guilabel:`Main location` and :guilabel:`Other locations` have
 the same data structure. While there can be only one main location, many
 :guilabel:`Other locations` are possible.
 See :ref:`Record > Location <recordLocation>` for more information.
-

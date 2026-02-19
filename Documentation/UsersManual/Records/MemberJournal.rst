@@ -357,8 +357,6 @@ Administrator
 
 Administrators may:
 
-* Edit ``entry_date``
-* Edit creator-related metadata
 * Delete journal entries
 * Modify the membership number after activation
 

@@ -214,7 +214,7 @@ a frontend visitor comes over the `Cities list page` and has its own
 fluid template.
 
 
-Read more about the plugin configuration in chapter :ref:`Plugin <plugin>`.
+Read more about the plugin configuration in chapter :ref:`Plugins <plugins>`.
 
 Have a look at the frontend
 ===========================

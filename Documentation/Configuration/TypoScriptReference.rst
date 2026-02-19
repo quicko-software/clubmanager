@@ -51,7 +51,7 @@ Set this in your :file:`EXT:mysitepackage/Configuration/TypoScript/constants.typ
 Persistence storage folder `storagePid`
 ---------------------------------------
 
-.. confval:: storagePid
+.. confval:: tsStoragePid
 
    :type: int
    :Default: 0
@@ -76,7 +76,7 @@ settings.
 Frontend users login pid `feUsersLoginPid`
 ------------------------------------------
 
-.. confval:: feUsersLoginPid
+.. confval:: tsFeUsersLoginPid
 
    :type: int
    :Default: 0
@@ -97,7 +97,7 @@ Frontend users login pid `feUsersLoginPid`
 Password recovery link lifetime `passwordRecoveryLifeTime`
 ----------------------------------------------------------
 
-.. confval:: passwordRecoveryLifeTime
+.. confval:: tsPasswordRecoveryLifeTime
 
    :type: int
    :Default: 48

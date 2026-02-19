@@ -26,15 +26,13 @@ install it via the "Extensionmanager"
 Update the database scheme
 --------------------------
 
-Open your TYPO3 backend with :ref:`system maintainer <t3start:system-maintainer>`
-permissions.
+Open your TYPO3 backend with system maintainer permissions.
 
-In the module menu to the left navigate to :guilabel:`Admin Tools > Maintanance`,
+In the module menu to the left navigate to :guilabel:`Admin Tools > Maintenance`,
 then click on :guilabel:`Analyze database` and create all.
 
 Clear all caches
 ----------------
 
-In the same module :guilabel:`Admin Tools > Maintanance` you can also
+In the same module :guilabel:`Admin Tools > Maintenance` you can also
 conveniently clear all caches by clicking the button :guilabel:`Flush cache`.
-
