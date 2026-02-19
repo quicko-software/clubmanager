@@ -50,8 +50,6 @@ class Member extends AbstractEntity
 
   protected ?DateTime $endtime = null;
 
-  protected bool $cancellationWish = false;
-
   protected bool $reducedRate = false;
 
   protected int $state = self::STATE_UNSET;
@@ -168,6 +166,13 @@ class Member extends AbstractEntity
    */
   protected ObjectStorage $categories;
 
+  /**
+   * @var ObjectStorage<MemberJournalEntry>
+   *
+   * @Cascade("remove")
+   */
+  protected ObjectStorage $journalEntries;
+
   public function __construct()
   {
     $this->initializeObject();
@@ -177,6 +182,7 @@ class Member extends AbstractEntity
   {
     $this->categories = new ObjectStorage();
     $this->subLocations = new ObjectStorage();
+    $this->journalEntries = new ObjectStorage();
   }
 
   public function isHidden(): bool
@@ -446,11 +452,12 @@ class Member extends AbstractEntity
 
   /**
    * @param ?Location $mainLocation
-   *
-   * @return void
    */
-  public function setMainLocation($mainLocation)
+  public function setMainLocation($mainLocation): void
   {
+    if ($mainLocation) {
+      $mainLocation->setKind(0);
+    }
     $this->mainLocation = $mainLocation;
   }
 
@@ -467,6 +474,9 @@ class Member extends AbstractEntity
    */
   public function setSubLocations($subLocations): void
   {
+    foreach ($subLocations as $subLocation) {
+      $subLocation->setKind(1);
+    }
     $this->subLocations = $subLocations;
   }
 
@@ -643,16 +653,6 @@ class Member extends AbstractEntity
   public function setEndtime(?DateTime $endtime): void
   {
     $this->endtime = $endtime;
-  }
-
-  public function getCancellationWish(): bool
-  {
-    return $this->cancellationWish;
-  }
-
-  public function setCancellationWish(bool $cancellationWish): void
-  {
-    $this->cancellationWish = $cancellationWish;
   }
 
   public function getReducedRate(): bool
@@ -903,5 +903,26 @@ class Member extends AbstractEntity
     $this->altEmail = $altEmail;
 
     return $this;
+  }
+
+  /**
+   * @return ObjectStorage<MemberJournalEntry>
+   */
+  public function getJournalEntries(): ObjectStorage
+  {
+    return $this->journalEntries;
+  }
+
+  /**
+   * @param ObjectStorage<MemberJournalEntry> $journalEntries
+   */
+  public function setJournalEntries(ObjectStorage $journalEntries): void
+  {
+    $this->journalEntries = $journalEntries;
+  }
+
+  public function addJournalEntry(MemberJournalEntry $journalEntry): void
+  {
+    $this->journalEntries->attach($journalEntry);
   }
 }

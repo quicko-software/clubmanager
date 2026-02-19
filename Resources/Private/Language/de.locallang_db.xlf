@@ -51,6 +51,10 @@
 				<source>Membership</source>
 				<target>Mitgliedschaft</target>
 			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.palette.contact" resname="tx_clubmanager_domain_model_member.palette.contact">
+				<source>Contact</source>
+				<target>Kontakt</target>
+			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.palette.account" resname="tx_clubmanager_domain_model_member.palette.account">
 				<source>Account data</source>
 				<target>Kontodaten</target>
@@ -239,6 +243,10 @@
 				<source>Alternative e-mail for billing</source>
 				<target>Alternative E-Mail für Rechnungen</target>
 			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.alt_email" resname="tx_clubmanager_domain_model_member.alt_email">
+				<source>Alternative e-mail</source>
+				<target>Alternative E-Mail</target>
+			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.crdate" resname="tx_clubmanager_domain_model_member.crdate">
 				<source>Record created on</source>
 				<target>Datensatz angelegt am</target>
@@ -270,10 +278,6 @@
 			<trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info">
 				<source>Address suffix</source>
 				<target>Adresszusatz</target>
-			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_member.cancellation_wish" resname="tx_clubmanager_domain_model_member.cancellation_wish">
-				<source>Cancellation requested</source>
-				<target>Kündigung gewünscht</target>
 			</trans-unit>
 			<trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate">
 				<source>Reduced membership</source>
@@ -582,10 +586,78 @@
 				<source>Youtube</source>
 				<target>Youtube</target>
 			</trans-unit>
-			<trans-unit id="tx_clubmanager_domain_model_socialmedia.type.3" resname="tx_clubmanager_domain_model_socialmedia.type.3">
-				<source>Twitter</source>
-				<target>Twitter</target>
-			</trans-unit>
-		</body>
+		<trans-unit id="tx_clubmanager_domain_model_socialmedia.type.3" resname="tx_clubmanager_domain_model_socialmedia.type.3">
+			<source>Twitter</source>
+			<target>Twitter</target>
+		</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry" resname="tx_clubmanager_domain_model_memberjournalentry">
+		<source>Member Journal Entry</source>
+		<target>Mitglieder-Journal Eintrag</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type">
+		<source>Entry Type</source>
+		<target>Eintragstyp</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request">
+		<source>Cancellation Request</source>
+		<target>Kündigungswunsch</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change">
+			<source>Status Change</source>
+			<target>Status-Änderung</target>
+		</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change">
+		<source>Level Change</source>
+		<target>Level-Änderung</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_date" resname="tx_clubmanager_domain_model_memberjournalentry.entry_date">
+		<source>Entry Date</source>
+		<target>Erstellungsdatum</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.effective_date" resname="tx_clubmanager_domain_model_memberjournalentry.effective_date">
+			<source>Effective Date</source>
+			<target>Gültig ab</target>
+		</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.processed" resname="tx_clubmanager_domain_model_memberjournalentry.processed">
+		<source>Processed</source>
+		<target>Verarbeitet</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.note" resname="tx_clubmanager_domain_model_memberjournalentry.note">
+			<source>Note</source>
+			<target>Notiz</target>
+		</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type">
+		<source>Creator</source>
+		<target>Erstellt von</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.system" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.system">
+		<source>System</source>
+		<target>System</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.backend" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.backend">
+		<source>Backend User</source>
+		<target>Backend-Benutzer</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.member" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.member">
+		<source>Member</source>
+		<target>Mitglied</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.old_level" resname="tx_clubmanager_domain_model_memberjournalentry.old_level">
+		<source>Old Level</source>
+		<target>Altes Level</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.new_level" resname="tx_clubmanager_domain_model_memberjournalentry.new_level">
+		<source>New Level</source>
+		<target>Neues Level</target>
+		</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_member.journal_entries" resname="tx_clubmanager_domain_model_member.journal_entries">
+		<source>Member Journal</source>
+		<target>Mitglieder-Journal</target>
+	</trans-unit>
+	<trans-unit id="tx_clubmanager_domain_model_member.tab.journal" resname="tx_clubmanager_domain_model_member.tab.journal">
+		<source>Journal</source>
+		<target>Journal</target>
+	</trans-unit>
+</body>
 	</file>
 </xliff>

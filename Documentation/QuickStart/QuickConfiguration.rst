@@ -9,38 +9,38 @@ Quick configuration
 .. note::
 
     The screenshots used in this documentation assume the use of
-    `ext:bootstrap_package v12.0.7 <https://www.bootstrap-package.com/>`__
+    `ext:bootstrap_package <https://www.bootstrap-package.com/>`__
     by Benjamin Kott.
     Without this template extension you have to create your own views with the,
     `fluid` templates provided by the `ext:clubmanager`.
 
 
-Include TypoScript template
-===========================
+Enable Site Set
+===============
 
-It is necessary to include at least the basic TypoScript provided by this
-extension.
+This extension is configured via TYPO3 Site Sets. Static TypoScript templates
+are no longer supported.
+For details, see the TYPO3 main documentation:
+`Site sets <https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/SiteHandling/SiteSets.html>`__.
 
 .. tip::
 
     For a quick start, the use of
-    `ext:bootstrap_package v12.0.7 <https://www.bootstrap-package.com/>`__
+    `ext:bootstrap_package ^16.0 <https://www.bootstrap-package.com/>`__
     by Benjamin Kott is recommended.
 
-#. Go to module :guilabel:`Web > Template` and chose your root page. It should already contain a TypoScript template record.
+#. Open your site config:
+   :file:`config/sites/<your-site>/config.yaml`
 
-#. Switch to view :guilabel:`Info/Modify` and click on :guilabel:`Edit the whole template record`.
+#. Add the base set dependency:
 
-#. Switch to tab :guilabel:`Includes` and add the following templates from the list to the right: :guilabel:`Clubmanager (clubmanager)`.
+   .. code-block:: yaml
 
-.. figure:: /Images/QuickStart/be-include-typoscript.png
-   :class: with-shadow
-   :alt: Include static Typoscript
+      dependencies:
+        - quicko/clubmanager
 
-   Include at least :guilabel:`Clubmanager (clubmanager)` Typoscript
-
-Read more about possible configurations via TypoScript in the
-:ref:`Configuration <configuration>` section.
+Read more about configuration via Site Settings (preferred) and TypoScript
+fallback in the :ref:`Configuration <configuration>` section.
 
 Further reading
 ===============
@@ -50,6 +50,3 @@ Further reading
 *  :ref:`TsConfig <tsconfig>`, configuration for the backend
 *  :ref:`Routing <routing>` for human readable URLs
 *  :ref:`Templating <quickTemplating>` customize the templates
-
-
-

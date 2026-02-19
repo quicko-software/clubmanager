@@ -1,0 +1,4 @@
+name: quicko/clubmanager-cookieman
+label: Clubmanager (Cookieman)
+dependencies:
+    - quicko/clubmanager

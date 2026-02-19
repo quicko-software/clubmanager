@@ -1,0 +1,13 @@
+categories:
+  Clubmanager:
+    label: "Clubmanager"
+  Clubmanager.Journal:
+    label: "Member Journal"
+    parent: Clubmanager
+settings:
+  clubmanager.memberJournalStoragePid:
+    label: "Member Journal Storage Page"
+    description: "Page/folder where new member journal entries will be stored. If not set (0), entries are stored in the same folder as the member record."
+    category: Clubmanager.Journal
+    type: int
+    default: 0

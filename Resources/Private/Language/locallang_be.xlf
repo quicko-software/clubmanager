@@ -24,7 +24,13 @@
 			<trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg">
 				<source>Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </source>
 			</trans-unit>
-			<trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS" resname="task.MailServiceTask.arg.MAX_NUM_MAILS">
+	<trans-unit id="task.ProcessJournalEntriesTask.title" resname="task.ProcessJournalEntriesTask.title">
+		<source>Process Member Journal Entries</source>
+		</trans-unit>
+	<trans-unit id="task.ProcessJournalEntriesTask.description" resname="task.ProcessJournalEntriesTask.description">
+		<source>Processes pending journal entries (status changes, level changes)</source>
+		</trans-unit>
+		<trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS" resname="task.MailServiceTask.arg.MAX_NUM_MAILS">
 				<source>Maximum number of emails per run</source>
 			</trans-unit>
 			<trans-unit id="task.general.errors.invalid_value" resname="task.general.errors.invalid_value">
@@ -134,6 +140,9 @@
 			</trans-unit>
 			<trans-unit id="module.memberlist.features.3" resname="module.memberlist.features.3">
 				<source>Dynamic registration process for new members via web form</source>
+			</trans-unit>
+			<trans-unit id="module.memberlist.features.6" resname="module.memberlist.features.6">
+				<source>Incl. double opt-in procedure for verifying email addresses during new registrations</source>
 			</trans-unit>
 			<trans-unit id="module.memberlist.features.4" resname="module.memberlist.features.4">
 				<source>Automated cancellation process for members</source>
@@ -300,6 +309,109 @@
 
 			<trans-unit id="password-reset.button.title" resname="password-reset.button.title">
 				<source>Reset Password (Regenerate + Email to user)</source>
+			</trans-unit>
+
+			<trans-unit id="memberjournal.level_change.warning.dialog.title" resname="memberjournal.level_change.warning.dialog.title">
+				<source>Level change with past effective date</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.warning.dialog.text" resname="memberjournal.level_change.warning.dialog.text">
+				<source>The effective date is in the past. Adding this entry can affect billing and may require corrections. Press 'Continue' to save the member, otherwise 'Cancel'.</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.warning.dialog.ok-button-label" resname="memberjournal.level_change.warning.dialog.ok-button-label">
+				<source>Continue</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.warning.dialog.cancel-button-label" resname="memberjournal.level_change.warning.dialog.cancel-button-label">
+				<source>Cancel</source>
+			</trans-unit>
+
+			<!-- Bug 7: Same Level Error Dialog -->
+			<trans-unit id="memberjournal.level_change.same_level.dialog.title" resname="memberjournal.level_change.same_level.dialog.title">
+				<source>Validation Error</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.level_change.same_level.dialog.text" resname="memberjournal.level_change.same_level.dialog.text">
+				<source>Level change not possible: The new level is the same as the current level. Please select a different level.</source>
+			</trans-unit>
+
+			<!-- CR3: Same Status Error Dialog -->
+			<trans-unit id="memberjournal.status_change.same_status.dialog.title" resname="memberjournal.status_change.same_status.dialog.title">
+				<source>Validation Error</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.status_change.same_status.dialog.text" resname="memberjournal.status_change.same_status.dialog.text">
+				<source>Status change not possible: The target status is the same as the current member status. Please select a different status.</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.status_change.no_email.dialog.title" resname="memberjournal.status_change.no_email.dialog.title">
+				<source>Activation without email address</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.status_change.no_email.dialog.text" resname="memberjournal.status_change.no_email.dialog.text">
+				<source>No email address is set for this member. Automatic sending of access data is not possible. The member can only be informed manually. Do you want to continue?</source>
+			</trans-unit>
+
+			<!-- Flash messages for member/journal validation -->
+			<trans-unit id="flash.validation_error.title" resname="flash.validation_error.title">
+				<source>Validation Error</source>
+			</trans-unit>
+			<trans-unit id="flash.validation_warning.title" resname="flash.validation_warning.title">
+				<source>Validation Warning</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_processing_warning.title" resname="flash.journal_processing_warning.title">
+				<source>Journal processing warning</source>
+			</trans-unit>
+			<trans-unit id="flash.activation_blocked.no_ident" resname="flash.activation_blocked.no_ident">
+				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first before setting the status to "active". Changes were NOT saved.</source>
+			</trans-unit>
+			<trans-unit id="flash.activation_blocked.no_ident.short" resname="flash.activation_blocked.no_ident.short">
+				<source>Activation not possible: Member number (ident) is missing. Please assign a member number first.</source>
+			</trans-unit>
+			<trans-unit id="flash.activation_warning.no_email" resname="flash.activation_warning.no_email">
+				<source>No email address is set. Activation can continue, but automatic login communication is not possible.</source>
+			</trans-unit>
+			<trans-unit id="flash.past_effective_date.warning" resname="flash.past_effective_date.warning">
+				<source>The effective date is in the past. This change may affect billing/statistics and might require corrections.</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.title" resname="flash.journal_edit_blocked.title">
+				<source>Editing not possible</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.system_entry" resname="flash.journal_edit_blocked.system_entry">
+				<source>System-generated journal entries cannot be edited. Please create a new entry instead.</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.cancellation_reverted" resname="memberjournal.cancellation_reverted">
+				<source>Cancellation request reverted by status change to active</source>
+			</trans-unit>
+			<trans-unit id="flash.pending_cancellation_reverted" resname="flash.pending_cancellation_reverted">
+				<source>Pending cancellation was automatically reverted.</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.processed" resname="flash.journal_edit_blocked.processed">
+				<source>Processed journal entries cannot be edited.</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_edit_blocked.member_entry" resname="flash.journal_edit_blocked.member_entry">
+				<source>Member-created journal entries cannot be edited.</source>
+			</trans-unit>
+
+			<!-- Bug 7: Level Change Validation -->
+			<trans-unit id="flash.level_change_same_level" resname="flash.level_change_same_level">
+				<source>Level change not possible: New level is the same as the current level.</source>
+			</trans-unit>
+
+			<!-- CR3: Same Status Validation -->
+			<trans-unit id="flash.status_change_same_status" resname="flash.status_change_same_status">
+				<source>Status change not possible: Target status is the same as the current member status.</source>
+			</trans-unit>
+
+			<!-- CR2: Pending Entry Validations -->
+			<trans-unit id="flash.pending_status_change_exists" resname="flash.pending_status_change_exists">
+				<source>A pending status change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</source>
+			</trans-unit>
+			<trans-unit id="flash.pending_level_change_exists" resname="flash.pending_level_change_exists">
+				<source>A pending level change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</source>
+			</trans-unit>
+			<trans-unit id="flash.status_change_applied_not_allowed" resname="flash.status_change_applied_not_allowed">
+				<source>Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.</source>
+			</trans-unit>
+			<trans-unit id="flash.status_change_cancelled_not_allowed_with_billing" resname="flash.status_change_cancelled_not_allowed_with_billing">
+				<source>Manual status change to "cancelled" is not allowed while Billing is active. Please use cancellation request.</source>
+			</trans-unit>
+			<trans-unit id="flash.journal_reactivation_blocked_newer_entries" resname="flash.journal_reactivation_blocked_newer_entries">
+				<source>Reactivation not possible: Newer journal entries exist.</source>
 			</trans-unit>
 			
 		</body>

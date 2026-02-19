@@ -154,23 +154,11 @@
 				resname="content_element.member.label.starttime">
 				<source>Start of membership:</source>
 			</trans-unit>
-			<trans-unit id="content_element.member.label.endtime"
-				resname="content_element.member.label.endtime">
-				<source>End of membership:</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.label.cancellationWish"
-				resname="content_element.member.label.cancellationWish">
-				<source>Cancellation requested:</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.cancellationWish.yes"
-				resname="content_element.member.cancellationWish.yes">
-				<source>Yes</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.cancellationWish.no"
-				resname="content_element.member.cancellationWish.no">
-				<source>No</source>
-			</trans-unit>
-			<trans-unit id="content_element.member.label.route"
+		<trans-unit id="content_element.member.label.endtime"
+			resname="content_element.member.label.endtime">
+			<source>End of membership:</source>
+		</trans-unit>
+		<trans-unit id="content_element.member.label.route"
 				resname="content_element.member.label.route">
 				<source>To plan your route with Google Maps.</source>
 			</trans-unit>

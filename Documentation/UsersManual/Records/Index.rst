@@ -43,6 +43,20 @@ Records
 
          .. rst-class:: card-header h3
 
+            .. rubric:: :ref:`Member Journal <member_journal>`
+
+         .. container:: card-body
+
+            The Member Journal manages all status and level changes of a
+            membership. It provides historical tracking, lifecycle
+            validation and scheduler-based processing.
+
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
             .. rubric:: :ref:`Location <recordLocation>`
 
          .. container:: card-body
@@ -72,5 +86,6 @@ Records
 
    Category
    Member
+   MemberJournal
    Location
    EmailTask

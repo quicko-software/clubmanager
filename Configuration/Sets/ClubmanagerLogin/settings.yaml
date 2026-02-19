@@ -1,0 +1,10 @@
+felogin.showForgotPassword: true
+felogin.showLogoutFormAfterLogin: true
+felogin.dateFormat: 'd-m-Y H:i'
+
+clubmanagerLogin.storagePid: 0
+clubmanagerLogin.loginFormPid: 0
+clubmanagerLogin.memberProfilePage: 0
+clubmanagerLogin.label.login: 'Login'
+clubmanagerLogin.label.profile: 'Profil'
+clubmanagerLogin.label.logout: 'Logout'

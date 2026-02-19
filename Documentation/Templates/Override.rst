@@ -9,6 +9,12 @@ In the most common case, where you want to override the standard clubmanager
 template with your own templates you can use the TypoScript **constants** to set the
 paths:
 
+.. note::
+
+   This TypoScript-based template override is still the supported approach for
+   Fluid template paths. Site Sets are used for extension configuration, while
+   template root path overrides stay in your sitepackage TypoScript.
+
 .. code-block:: typoscript
    :caption: TypoScript constants
 

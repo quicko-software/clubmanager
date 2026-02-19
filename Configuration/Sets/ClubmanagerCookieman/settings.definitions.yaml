@@ -1,0 +1,29 @@
+categories:
+  clubmanagerCookieman:
+    label: 'Clubmanager Cookieman'
+
+settings:
+  clubmanagerCookieman.contentBlockerMode:
+    label: 'Content Blocker Mode'
+    description: 'Value for plugin.tx_clubmanager.settings.contentBlockerMode.'
+    category: clubmanagerCookieman
+    type: string
+    default: 'cookieman'
+  plugin.tx_cookieman.settings.theme:
+    label: 'Cookieman Theme'
+    description: 'Theme used by ext:cookieman (e.g. bootstrap5-modal).'
+    category: clubmanagerCookieman
+    type: string
+    default: 'bootstrap5-modal'
+  clubmanagerCookieman.links.dataProtectionDeclarationPid:
+    label: 'Data Protection PID'
+    description: 'Target page uid for data protection declaration link.'
+    category: clubmanagerCookieman
+    type: int
+    default: 0
+  clubmanagerCookieman.links.imprintPid:
+    label: 'Imprint PID'
+    description: 'Target page uid for imprint link.'
+    category: clubmanagerCookieman
+    type: int
+    default: 0

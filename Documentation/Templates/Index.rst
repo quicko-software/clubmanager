@@ -63,7 +63,7 @@ your :file:`composer.json`:
 
    {
       "require": {
-         "quicko/clubmanager": "^1.0"
+         "quicko/clubmanager": "^2.0"
       }
    }
 
@@ -76,7 +76,7 @@ And / or :file:`ext_emconf.php`:
        // ...
        'constraints' => [
            'depends' => [
-               'clubmanager' => '1.0.0-1.99.99',
+               'clubmanager' => '2.0.0-2.99.99',
            ],
            // ...
        ],
@@ -110,4 +110,3 @@ Xml-namespace you like to declare but we recommend to use the prefix :html:`cm:`
    :titlesonly:
 
    Override
-   ViewHelpers

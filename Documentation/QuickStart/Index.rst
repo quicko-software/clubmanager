@@ -20,7 +20,7 @@ Quick start
 
 #. Configuration:
 
-   -  Include the basic TypoScript
+   -  Enable the base Site Set
    -  Further configuration
 
    .. rst-class:: horizbuttons-attention-m
@@ -54,5 +54,4 @@ Quick start
    CreateRecords
    CreatePlaceholderData
    QuickTemplating
-
 

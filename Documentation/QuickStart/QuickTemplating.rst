@@ -24,6 +24,11 @@ To override the standard clubmanager templates
 with your own you can use the TypoScript **constants** to set the
 paths:
 
+.. note::
+
+    This TypoScript-based approach is available for legacy/fallback use-cases.
+    Site Sets and Site Settings are the preferred configuration method.
+
 .. code-block:: typoscript
    :caption: TypoScript constants
 
@@ -49,9 +54,9 @@ be used.
 
 .. tip::
 
-    For use with the `ext:bootstrap_package v12.0.7 <https://www.bootstrap-package.com/>`__
-    here you can find the most important constants to customize in your sitepackage:
+    For use with `ext:bootstrap_package ^16.0 <https://www.bootstrap-package.com/>`__
+    use Site Set settings instead of the old bootstrap constants file. See:
 
     .. code-block:: none
 
-       EXT:clubmanager/Configuration/TypoScript/Bootstrap_package/constants.typoscript
+       EXT:clubmanager/Configuration/Sets/Clubmanager/settings.yaml

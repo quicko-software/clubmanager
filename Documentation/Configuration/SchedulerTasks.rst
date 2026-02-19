@@ -136,3 +136,26 @@ next automatic execution of the
    See section :ref:`Global felogin configuration <configFeLoginGlobal>` and
    :ref:`Testing your felogin setup <setupFeLoginSetupTesting>` for more
    information on how login email automation works with `ext:clubmanager`!
+
+.. _schedulerMemberJournalProcessTask:
+
+Member Journal processing task
+==============================
+
+The Member Journal uses pending entries when a change is scheduled
+for a future date. To apply such changes automatically, a scheduled
+task must process due entries regularly.
+
+The recommended setup uses the scheduler task
+:guilabel:`Execute console commands` with the command:
+
+``clubmanager:journal:process``
+
+Recommended cron schedule:
+
+``0 2 * * *``
+
+.. note::
+
+   See :ref:`Member Journal <member_journal>` for details about effective dates,
+   immediate processing and pending entries.

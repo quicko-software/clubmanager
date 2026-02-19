@@ -1,0 +1,49 @@
+config.headerComment: 'Quicko - Der Clubmanager: TYPO3 Vereins-, Verbands- und Clubmanagement - https://quicko.software'
+
+page.logo.file: 'EXT:clubmanager/Resources/Public/Images/quicko-clubmanager-typeface.svg'
+page.logo.fileInverted: 'EXT:clubmanager/Resources/Public/Images/quicko-clubmanager-typeface-white.svg'
+page.logo.width: 192
+page.logo.height: 120
+page.logo.alt: 'QUICKO Clubmanager Logo'
+page.logo.linktitle: 'QUICKO Clubmanager Home'
+page.favicon.file: 'EXT:clubmanager/Resources/Public/Images/favicon.ico'
+
+page.theme.googleFont.enable: true
+page.theme.googleFont.font: 'Montserrat Alternates'
+page.theme.googleFont.weight: '300,400,700'
+
+page.theme.navigation.style: 'default'
+page.theme.navigation.type: 'top'
+page.theme.language.enable: false
+page.theme.socialmedia.enable: false
+page.theme.socialmedia.channels.facebook.url: 'https://www.facebook.com/typo3/'
+page.theme.socialmedia.channels.twitter.url: 'https://twitter.com/typo3'
+page.theme.socialmedia.channels.github.url: 'https://github.com/TYPO3/TYPO3.CMS'
+page.theme.socialmedia.channels.youtube.url: 'https://www.youtube.com/user/typo3'
+page.theme.meta.navigationValue: '173,174'
+page.theme.copyright.text: '<a href="https://quicko.software" rel="noopener" target="_blank">QUiCKO - Der Clubmanager</a> - entwickelt von <a href="https://www.wirkwerk.com" rel="noopener" target="_blank">WirkWerk</a> & <a href="https://www.codemacher.de" rel="noopener" target="_blank">Codemacher UG</a>. // <a href="https://quicko.software/impressum/" rel="noopener" target="_blank">Impressum</a> // <a href="https://quicko.software/datenschutzerklaerung/" rel="noopener" target="_blank">Datenschutz</a> // <a href="https://quicko.software/agb/" rel="noopener" target="_blank">AGB</a>'
+page.theme.cookieconsent.enable: false
+
+page.fluidtemplate.layoutRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Layouts/Page/'
+page.fluidtemplate.partialRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Partials/Page/'
+page.fluidtemplate.templateRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Templates/Page/'
+
+page.tracking.google.trackingID: ''
+
+plugin.bootstrap_package.view.layoutRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Layouts/'
+plugin.bootstrap_package.view.partialRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Partials/'
+plugin.bootstrap_package.view.templateRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Templates/'
+plugin.bootstrap_package.settings.overrideParserVariables: true
+plugin.bootstrap_package.settings.cssSourceMapping: false
+plugin.bootstrap_package.settings.scss.default: '#222222'
+plugin.bootstrap_package.settings.scss.primary: '#1D90C7'
+plugin.bootstrap_package.settings.scss.secondary: '#a08d51'
+plugin.bootstrap_package.settings.scss.tertiary: '#C0C0C0'
+plugin.bootstrap_package.settings.scss.quaternary: '#FFD700'
+plugin.bootstrap_package.settings.scss.breadcrumb-bg: '#FFFFFF'
+plugin.bootstrap_package.settings.scss.cookieconsent-bg: '#F2F2F2'
+plugin.bootstrap_package.settings.scss.footer-sections: '(content:(background: transparent, color: #222222, link-color: #1D90C7), meta:(background: #ffffff, color: #222222, link-color: #1D90C7))'
+
+plugin.bootstrap_package_contentelements.view.layoutRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Layouts/ContentElements/'
+plugin.bootstrap_package_contentelements.view.partialRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Partials/ContentElements/'
+plugin.bootstrap_package_contentelements.view.templateRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Templates/ContentElements/'

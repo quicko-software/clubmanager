@@ -37,7 +37,7 @@ Main features
 .. tip::
 
     The `ext:clubmanager` runs proven out-of-the-box with the well known
-    and popular `ext:bootstrap_package v12.0.7 <https://www.bootstrap-package.com/>`__
+    and popular `ext:bootstrap_package ^16.0 <https://www.bootstrap-package.com/>`__
     by Benjamin Kott.
 
 The free version of "Quicko - The Clubmanager" can be extended for

@@ -19,5 +19,5 @@ This sections describes extensions which extend EXT:clubmanager with additional 
    ClubmanagerCalendar
    ClubmanagerConference
    ClubmanagerStatistics
-   ClubmanagerExport
+   ClubmanagerNewsletter
    ClubmanagerPrivacy

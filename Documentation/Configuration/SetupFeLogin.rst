@@ -8,7 +8,7 @@ How to setup felogin
 
 .. important::
 
-   If not done yet you have to install `ext:bootstrap_package v12.0.7 <https://www.bootstrap-package.com/>`__ and
+   If not done yet you have to install `ext:bootstrap_package ^16.0 <https://www.bootstrap-package.com/>`__ and
    `felogin <https://docs.typo3.org/c/typo3/cms-felogin/main/en-us//Index.html>`__ first.
    See :ref:`Quick configuration <quickConfiguration>` :ref:`Config felogin <configFeLogin>`!
 
@@ -41,8 +41,10 @@ Your page tree for the automatisation of felogin should now look like that:
 
 .. important::
 
-   Make sure you did the :ref:`Global extension configuration <extensionConfiguration>`
-   and set the important global UID's there.
+   Make sure you configured the required login page/storage UIDs in site
+   settings (preferred), see :ref:`Config felogin <configFeLogin>`.
+   Keep :ref:`Global extension configuration <extensionConfiguration>` aligned
+   for legacy fallback values where required.
 
 
 .. _setupFeLoginDefaultContent:
@@ -65,7 +67,8 @@ Default content elements
 #. Create new pages beneath your login page and :guilabel:`Edit page properties`.
 
 #. See Tab :guilabel:`Access` and set :guilabel:`Usergroup Access Rights` to
-   your :guilabel:`felogin_usergroup` you created here: `:ref:Create default frontend user group <configFeLoginCreateDefaultFeuserGroup>`.
+   your :guilabel:`felogin_usergroup` you created here:
+   :ref:`Create default frontend user group <configFeLoginCreateDefaultFeuserGroup>`.
 
 #. At least insert :guilabel:`+ Content` > :guilabel:`Text` > :guilabel:`Text & Media` to say "Logout successful"
    on page `Logout target page`.
@@ -117,7 +120,4 @@ Setup member login reminder task
    you have to create the appropriate scheduler task to do this. See section
    :ref:`Member login reminder task <schedulerMemberLoginReminderTask>` for how
    to setup the scheduler task.
-
-
-
 
