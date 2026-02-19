@@ -1,22 +1,7 @@
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:felogin/Configuration/TypoScript/constants.typoscript">
+@import 'EXT:felogin/Configuration/TypoScript/constants.typoscript'
 
-styles.content.loginform {
-    showForgotPasswordLink = 1
-    showLogoutFormAfterLogin = 1
-    // changed to german format
-    dateFormat = d-m-Y H:i
-
-    pid = {$plugin.tx_clubmanager.settings.feUsersStoragePid}
-    emailFrom =
-    emailFromName =
-    replyToEmail =
-
-	redirectPageLogout =
-
-    // Own constants
-    loginFormPid = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
-    label {
-        login = Login
-        logout = Logout
-    }
-}
+# Backward compatibility for existing login TypoScript usage.
+styles.content.loginform.redirectPageLogout = {$felogin.redirectPageLogout}
+[{$styles.content.loginform.redirectPageLogout} == 0]
+styles.content.loginform.redirectPageLogout = {$plugin.tx_clubmanager.settings.defaultTargetLogoutPage}
+[END]

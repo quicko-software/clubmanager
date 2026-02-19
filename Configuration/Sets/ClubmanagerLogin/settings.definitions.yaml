@@ -1,0 +1,38 @@
+categories:
+  clubmanagerLogin:
+    label: 'Clubmanager Login'
+
+settings:
+  clubmanagerLogin.storagePid:
+    label: 'FE User Storage PID'
+    description: 'Storage folder/page for frontend users used by fe_login.'
+    category: clubmanagerLogin
+    type: int
+    default: 0
+  clubmanagerLogin.loginFormPid:
+    label: 'Login Page PID'
+    description: 'Page UID where the login form is rendered.'
+    category: clubmanagerLogin
+    type: int
+    default: 0
+  clubmanagerLogin.memberProfilePage:
+    label: 'Member Profile Page PID'
+    description: 'Target page for the profile button for logged-in users.'
+    category: clubmanagerLogin
+    type: int
+    default: 0
+  clubmanagerLogin.label.login:
+    label: 'Login Label'
+    category: clubmanagerLogin
+    type: string
+    default: 'Login'
+  clubmanagerLogin.label.profile:
+    label: 'Profile Label'
+    category: clubmanagerLogin
+    type: string
+    default: 'Profil'
+  clubmanagerLogin.label.logout:
+    label: 'Logout Label'
+    category: clubmanagerLogin
+    type: string
+    default: 'Logout'

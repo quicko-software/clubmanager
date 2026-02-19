@@ -7,6 +7,9 @@ Extension Configuration
 =======================
 
 Some general settings can be configured in the Extension Configuration.
+For TYPO3 v13+ projects using Site Sets, prefer :ref:`Site settings
+<siteSetsConfiguration>` where available and use extension configuration mainly
+as global defaults / fallback.
 
 #. Go to :guilabel:`Admin Tools > Settings > Extension Configuration`
 #. Choose :guilabel:`clubmanager`
@@ -109,7 +112,8 @@ UID of the Default fe_users storage page `feUsersStoragePid`
    :type: int
    :Default: 0
 
-   Define the storage folder where fe_users are automatically stored
+   Define the storage folder where fe_users are automatically stored.
+   Used as fallback when `clubmanagerLogin.storagePid` is `0`.
 
 .. _extensionConfigurationDefaultFeUserGroupUid:
 
@@ -134,8 +138,9 @@ UID of the Default fe_users login page `feUsersLoginPid`
    :Default: 0
 
    Define the default fe_users login page where users are directed to via
-   e-mail link. Can be overwritten by :ref:`TypoScript feUsersLoginPid
-   <tsFeUsersLoginPid>`!
+   e-mail link. Used as fallback when `clubmanagerLogin.loginFormPid` is `0`.
+   Can also be overwritten by :ref:`TypoScript feUsersLoginPid
+   <tsFeUsersLoginPid>`.
 
 .. _extensionConfigurationLogoutDefault:
 
@@ -147,21 +152,22 @@ UID of the default target page after logout `defaultTargetLogoutPage`
    :type: int
    :Default: 0
 
-   Define the default target page after logout from frontend login
+   Define the default target page after logout from frontend login.
+   Used as fallback when `styles.content.loginform.redirectPageLogout` is `0`.
 
 .. _extensionConfigurationLifetimePwRecoveryLink:
 
 Lifetime of the passwort recovery link `passwordRecoveryLifeTime`
 -----------------------------------------------------
 
-.. confval:: passwortRecoveryLifeTime
+.. confval:: passwordRecoveryLifeTime
 
    :type: int
    :Default: 48
 
    Define the lifetime of a password recovery link send out by e-mail in hours.
    Can be overwritten by :ref:`TypoScript passwordRecoveryLifeTime
-   <tsPasswortRecoveryLifeTime>`!
+   <tsPasswordRecoveryLifeTime>`.
 
 Mail
 ====

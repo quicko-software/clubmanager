@@ -1,7 +1,16 @@
 plugin.tx_clubmanager.settings.contentBlockerMode = cookieman
 
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/setup.typoscript">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/TrackingObjects/fe_typo_user.typoscript">
+@import 'EXT:cookieman/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:cookieman/Configuration/TypoScript/TrackingObjects/fe_typo_user.typoscript'
+
+# Set link targets from site settings only when explicitly configured (> 0).
+# If 0, keep existing values from legacy constants/integrator configuration.
+[{$clubmanagerCookieman.links.dataProtectionDeclarationPid} > 0]
+plugin.tx_cookieman.settings.links.dataProtectionDeclarationPid = {$clubmanagerCookieman.links.dataProtectionDeclarationPid}
+[END]
+[{$clubmanagerCookieman.links.imprintPid} > 0]
+plugin.tx_cookieman.settings.links.imprintPid = {$clubmanagerCookieman.links.imprintPid}
+[END]
 
 plugin.tx_cookieman._LOCAL_LANG {
     de {
@@ -54,4 +63,3 @@ plugin.tx_cookieman {
         }
     }
 }
-

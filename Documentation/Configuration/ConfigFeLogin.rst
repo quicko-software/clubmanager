@@ -21,27 +21,45 @@ Config felogin
 
 .. _configFeloginSetup:
 
-Felogin: Include static TypoScript template
-===========================================
+Felogin: Enable Site Set
+========================
 
 #. `Install ext:felogin <https://docs.typo3.org/c/typo3/cms-felogin/main/en-us//Index.html>`__
 
-#. Go to module :guilabel:`Web > Template` and chose your root page. It should already contain a TypoScript template record.
+#. Open your site config:
+   :file:`config/sites/<your-site>/config.yaml`
 
-#. Switch to view :guilabel:`Info/Modify` and click on :guilabel:`Edit the whole template record`.
+#. Add the login set dependency:
 
-#. Switch to tab :guilabel:`Includes` and add the following templates from the list to the right: :guilabel:`Clubmanager Felogin (clubmanager)`.
+   .. code-block:: yaml
 
-.. figure:: /Images/Configuration/be-include-felogin-typoscript.png
-   :class: with-shadow
-   :alt: Include static felogin typoscript
-
-   Include at least :guilabel:`Clubmanager Felogin (clubmanager)` typoscript
+      dependencies:
+        - quicko/clubmanager
+        - quicko/clubmanager-login
 
 .. info::
 
-   Now you're ready to setup the pagetree, if not done yet, the default felogin usergroup and to configure some
-   TypoScript!
+   Static TypoScript templates are no longer used. Configure values via site
+   settings.
+
+.. _configFeloginSiteSettings:
+
+Felogin: Site settings
+======================
+
+Set login-related values in your site settings file:
+:file:`config/sites/<your-site>/settings.yaml`
+
+.. code-block:: yaml
+
+   clubmanagerLogin.storagePid: 123
+   clubmanagerLogin.loginFormPid: 45
+   clubmanagerLogin.memberProfilePage: 67
+   clubmanagerLogin.label.login: 'Login'
+   clubmanagerLogin.label.profile: 'Profil'
+   clubmanagerLogin.label.logout: 'Logout'
+
+See also :ref:`Site sets reference <siteSetsConfiguration>`.
 
 
 .. _configFeLoginPagetree:
@@ -88,24 +106,33 @@ Important global configuration
 
 .. note::
 
-   After you created your page tree and the default frontend user group you
-   need to insert some main page uid as well as the uid of the default frontend
-   usergroup into the :ref:`Global extension configuration <extensionConfiguration>`!
+   After creating your page tree and the default frontend user group, configure
+   login-related page UIDs in site settings (preferred) and keep extension
+   configuration in sync for legacy fallback where needed.
 
-#. Go to :guilabel:`Admin Tools > Settings > Extension Configuration`
+#. Configure these values in
+   :file:`config/sites/<your-site>/settings.yaml`:
+
+   .. code-block:: yaml
+
+      clubmanagerLogin.storagePid: 123
+      clubmanagerLogin.loginFormPid: 45
+      clubmanagerLogin.memberProfilePage: 67
+
+#. Go to :guilabel:`Admin Tools > Settings > Extension Configuration`.
 
 #. Choose :guilabel:`clubmanager` and then Tab :guilabel:`Fe-user-login`.
 
-#. Set the uid where your fe_users should be stored > :guilabel:`feUsersStoragePid`
+#. Set the uid of your default fe_users group
+   :guilabel:`defaultFeUserGroupUid` (this is still required for member to
+   fe_user assignment).
 
-#. Set the uid of your default fe_users group  > :guilabel:`defaultFeUserGroupUid`
+#. Optional fallback values (used if matching site settings are `0`):
+   :guilabel:`feUsersStoragePid`, :guilabel:`feUsersLoginPid`,
+   :guilabel:`defaultTargetLogoutPage`.
 
-#. Set the uid of your default fe_users login page to generate the correct link send out by e-mail  > :guilabel:`feUsersLoginPid`
-
-#. Set the uid of your default target page after logout > :guilabel:`defaultTargetLogoutPage`
-
-#. In case you want to change it, set also the lifetime of the password recovery
-   links send out by e-mail > :guilabel:`passwordRecoveryLifeTime`
+#. In case you want to change it, set the lifetime of password recovery links
+   in hours: :guilabel:`passwordRecoveryLifeTime`.
 
 #. In tab :guilabel:`Mail` set the number of attempts for a mail delivery.
 
@@ -120,7 +147,8 @@ Important global configuration
 Felogin TypoScript
 ==================
 
-Change the following TypoScript in your own Sitepackage!
+TypoScript is optional and mainly relevant as legacy fallback / targeted
+override in your own sitepackage.
 
 
 .. _configFeloginTyposcriptSetup:
@@ -138,8 +166,8 @@ change wording in your own sitepackage to your needs.
 
 .. important::
 
-   Copy and change only the localization TypoScript. Don't touch the rest if you
-   want to use `ext:clubmanager > felogin` configuration out-of-the-box!
+   Copy and change only the localization TypoScript if needed. Keep functional
+   values in site settings where possible.
 
    .. code-block:: typoscript
       :caption: TypoScript setup
@@ -165,8 +193,8 @@ them in your own sitepackage to your needs.
 
 .. important::
 
-   You can use the following constants code-block in your sitepackage. Simply
-   change the constants to your needs and you are ready to go.
+   You can still use the following constants in legacy projects. Prefer site
+   settings for the documented login page and storage page UIDs.
 
    .. code-block:: typoscript
       :caption: TypoScript constants

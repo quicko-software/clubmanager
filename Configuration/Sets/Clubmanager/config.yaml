@@ -1,3 +1,9 @@
 name: quicko/clubmanager
 label: Clubmanager
-
+optionalDependencies:
+  - bootstrap-package/full
+  - bootstrap-package/bootstrap-5
+  - bootstrap-package/content-elements
+  - bootstrap-package/google-font
+  - bootstrap-package/cookie-consent
+  - bootstrap-package/google-tag-manager

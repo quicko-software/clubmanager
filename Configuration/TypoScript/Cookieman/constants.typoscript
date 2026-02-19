@@ -1,10 +1,1 @@
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:cookieman/Configuration/TypoScript/constants.typoscript">
-plugin.tx_cookieman {
-	settings {
-		theme = bootstrap5-modal
-		links {
-			dataProtectionDeclarationPid =
-			imprintPid =
-		}
-	}
-}
+@import 'EXT:cookieman/Configuration/TypoScript/constants.typoscript'

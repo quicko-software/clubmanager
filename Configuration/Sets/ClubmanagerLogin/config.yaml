@@ -1,0 +1,5 @@
+name: quicko/clubmanager-login
+label: Clubmanager (Login)
+dependencies:
+    - typo3/felogin
+    - quicko/clubmanager

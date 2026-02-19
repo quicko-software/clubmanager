@@ -19,8 +19,8 @@ Recommended page structure
 
 Create at least the following pages:
 
-*  "Home": Root page of the site, containing the root TypoScript template record
-   and the start page content: :guilabel:`Normal page`.
+*  "Home": Root page of the site, containing the start page content:
+   :guilabel:`Normal page`.
 *  "Member Storage": A folder to store the members in: :guilabel:`Folder`.
 *  "Frontend User": A folder to store the automatic generated `fe_users` in:
    :guilabel:`Folder`.
@@ -44,8 +44,9 @@ Depending on your use-case you can also make use of:
 
 .. important::
 
-    After creating the page structure, it is advisable to create some
-    :ref:`Global extension configuration <extensionConfiguration>`.
+    After creating the page structure, configure your site settings (Site Sets)
+    and then review :ref:`Global extension configuration <extensionConfiguration>`
+    only for required global defaults / fallback values.
 
 Your page tree could, for example look like that:
 

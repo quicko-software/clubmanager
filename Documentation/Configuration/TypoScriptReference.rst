@@ -2,17 +2,18 @@
 .. index:: Configuration; TypoScript reference
 .. _typoscript:
 
-====================
-TypoScript reference
-====================
+===============================
+TypoScript reference (fallback)
+===============================
 
 .. important::
-   Every setting can also be defined by TypoScript setup and constants. Normally
-   you should change this at
+   TYPO3 Site Sets and Site Settings are the preferred configuration method.
+   Use TypoScript mainly as fallback for legacy projects or as targeted
+   override in your sitepackage at
    :file:`EXT:mysitepackage/Configuration/TypoScript/setup.typoscript`
    and / or
-   :file:`EXT:mysitepackage/Configuration/TypoScript/constants.typoscript`
-   in your sitepackage.
+   :file:`EXT:mysitepackage/Configuration/TypoScript/constants.typoscript`.
+   See :ref:`Site sets reference <siteSetsConfiguration>`.
 
 .. only:: html
 
@@ -67,7 +68,7 @@ Settings
 ========
 
 It is possible to overwrite existing
-:ref:`Extension Configuration <extensionConfiguration>` with this typoscript
+:ref:`Extension Configuration <extensionConfiguration>` with these TypoScript
 settings.
 
 .. _tsFeUsersLoginPid:
@@ -91,4 +92,22 @@ Frontend users login pid `feUsersLoginPid`
       plugin.tx_clubmanager.settings.feUsersLoginPid = 458788
 
 .. _tsPasswordRecoveryLifeTime:
+.. _tsPasswortRecoveryLifeTime:
 
+Password recovery link lifetime `passwordRecoveryLifeTime`
+----------------------------------------------------------
+
+.. confval:: passwordRecoveryLifeTime
+
+   :type: int
+   :Default: 48
+   :Path: plugin.tx_clubmanager.settings
+   :Scope: Plugin, TypoScript Setup
+
+   Define the lifetime (hours) of password recovery links sent by e-mail.
+   Overwrites :ref:`Extension Configuration passwordRecoveryLifeTime
+   <extensionConfigurationLifetimePwRecoveryLink>`.
+
+   ::
+
+      plugin.tx_clubmanager.settings.passwordRecoveryLifeTime = 48

@@ -19,7 +19,8 @@ Clubmanager list and detail views.
 
    If you want to make use of functionality for data protection of
    youtube and/or google maps integration with a cookie consent manager
-   `ext:clubmanager` has preconfigured Typoscript for
+   `ext:clubmanager` provides a preconfigured Site Set and TypoScript fallback
+   for
    `ext:cookieman <https://docs.typo3.org/p/dmind/cookieman/main/en-us/>`__.
 
 .. only:: html
@@ -30,33 +31,49 @@ Clubmanager list and detail views.
 
 .. _configCookiemanSetup:
 
-Cookieman: Include static TypoScript template
-=============================================
+Cookieman: Enable Site Set
+==========================
 
 #. `Install ext:cookieman <https://docs.typo3.org/p/dmind/cookieman/main/en-us/Installation/Index.html>`__
 
-#. Go to module :guilabel:`Web > Template` and chose your root page. It should already contain a TypoScript template record.
+#. Open your site config:
+   :file:`config/sites/<your-site>/config.yaml`
 
-#. Switch to view :guilabel:`Info/Modify` and click on :guilabel:`Edit the whole template record`.
+#. Add the cookieman set dependency:
 
-#. Switch to tab :guilabel:`Includes` and add the following templates from the list to the right: :guilabel:`Clubmanager Cookieman (clubmanager)`.
+   .. code-block:: yaml
 
-.. figure:: /Images/Configuration/be-include-typoscript.png
-   :class: with-shadow
-   :alt: Include static cookieman typoscript
-
-   Include at least :guilabel:`Clubmanager Cookieman (clubmanager)` typoscript
+      dependencies:
+        - quicko/clubmanager
+        - quicko/clubmanager-cookieman
 
 .. info::
 
-   You do not need to integrate any cookieman static typoscript templates.
-   All of this is done with :guilabel:`Clubmanager Cookieman (clubmanager)` Typoscript.
+   Static TypoScript templates are no longer used. Configure values via site
+   settings.
+
+.. _configCookiemanSiteSettings:
+
+Cookieman: Site settings
+========================
+
+Set cookieman-related values in:
+:file:`config/sites/<your-site>/settings.yaml`
+
+.. code-block:: yaml
+
+   clubmanagerCookieman.contentBlockerMode: 'cookieman'
+   plugin.tx_cookieman.settings.theme: 'bootstrap5-modal'
+   clubmanagerCookieman.links.dataProtectionDeclarationPid: 10
+   clubmanagerCookieman.links.imprintPid: 11
+
+See also :ref:`Site sets reference <siteSetsConfiguration>`.
 
 
 .. _configCookiemanTyposcript:
 
-Cookieman TypoScript
-====================
+Cookieman TypoScript (fallback / optional overrides)
+====================================================
 
 .. _configCookiemanTyposcriptSetup:
 
@@ -73,17 +90,17 @@ own sitepackage to your needs.
 
 .. important::
 
-   Do not change, the following TypoScript on your own, because it activates the
-   Content-Blocker-Mode in :file:`EXT:clubmanager/Resources/Private/Partials/Youtube.html`
+   Keep `contentBlockerMode = cookieman` active, otherwise the content blocker
+   integration in :file:`EXT:clubmanager/Resources/Private/Partials/Youtube.html`
+   no longer works as intended.
 
    .. code-block:: typoscript
       :caption: TypoScript setup
 
       plugin.tx_clubmanager.settings.contentBlockerMode = cookieman
 
-The `plugin.tx_cookieman.settings` are set for all `EXT:clubmanager` requirements.
-Better you do not change this but add the settings according to your specific needs
-in your own Sitepackage.
+The `plugin.tx_cookieman.settings` are preset for `ext:clubmanager` defaults.
+Use site settings first and keep TypoScript changes minimal.
 
 .. _configCookiemanTyposcriptConstants:
 
@@ -100,9 +117,9 @@ own sitepackage to your needs.
 
 .. tip::
 
-   You can use the following constants code-block in your sitepackage. Simply
-   change the page pid's for your privacy policy and your legal disclosure and
-   you are ready to go.
+   Legacy projects can still use the following constants block. With Site Sets,
+   prefer `clubmanagerCookieman.links.dataProtectionDeclarationPid` and
+   `clubmanagerCookieman.links.imprintPid` in site settings.
 
    .. code-block:: typoscript
       :caption: TypoScript constants

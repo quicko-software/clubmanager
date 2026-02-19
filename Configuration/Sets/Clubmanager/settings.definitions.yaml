@@ -11,4 +11,3 @@ settings:
     category: Clubmanager.Journal
     type: int
     default: 0
-
