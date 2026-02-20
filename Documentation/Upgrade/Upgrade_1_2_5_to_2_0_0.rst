@@ -96,6 +96,19 @@ Step 1: Update Extension
 
 Update `ext:clubmanager` to version **2.0.0** via Composer or the TYPO3 Extension Repository.
 
+.. important::
+
+   Before continuing, ensure the required Site Sets are enabled in
+   :guilabel:`Site Management` for your site:
+
+   * `bootstrap-package/full`
+   * `quicko/clubmanager`
+
+   Also check your main TypoScript template record and remove the
+   :guilabel:`Clear` checkboxes there.
+   If `Clear` remains enabled, required TypoScript from the Site Sets can be
+   suppressed.
+
 
 Step 2: Create Missing Tables and Fields
 ----------------------------------------
@@ -142,10 +155,15 @@ This wizard creates initial journal entries for all existing members based on th
 
 The wizard should only be executed once.
 
+.. important::
+
+   Configure and activate the new scheduler task for Member Journal processing
+   after the migration.
+   See :ref:`Member Journal processing task <schedulerMemberJournalProcessTask>`
+   for setup details and execution behavior.
+
 
 Step 5: Database Compare
 ------------------------
 
 After the wizard has completed successfully, you may run "Analyze Database" and "Database Compare".
-
-
