@@ -339,6 +339,12 @@
 			<trans-unit id="memberjournal.status_change.same_status.dialog.text" resname="memberjournal.status_change.same_status.dialog.text">
 				<source>Status change not possible: The target status is the same as the current member status. Please select a different status.</source>
 			</trans-unit>
+			<trans-unit id="memberjournal.status_change.same_status_pending_cancellation.dialog.title" resname="memberjournal.status_change.same_status_pending_cancellation.dialog.title">
+				<source>Planned cancellation exists</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.status_change.same_status_pending_cancellation.dialog.text" resname="memberjournal.status_change.same_status_pending_cancellation.dialog.text">
+				<source>Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</source>
+			</trans-unit>
 			<trans-unit id="memberjournal.status_change.no_email.dialog.title" resname="memberjournal.status_change.no_email.dialog.title">
 				<source>Activation without email address</source>
 			</trans-unit>
@@ -395,6 +401,9 @@
 			<!-- CR3: Same Status Validation -->
 			<trans-unit id="flash.status_change_same_status" resname="flash.status_change_same_status">
 				<source>Status change not possible: Target status is the same as the current member status.</source>
+			</trans-unit>
+			<trans-unit id="flash.status_change_same_status_with_pending_cancellation" resname="flash.status_change_same_status_with_pending_cancellation">
+				<source>Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</source>
 			</trans-unit>
 
 			<!-- CR2: Pending Entry Validations -->

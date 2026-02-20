@@ -478,8 +478,18 @@ class ValidateJournalEntryHook
                 $fieldArray['pid'] = $pid;
             }
 
+            $messageKey = 'flash.status_change_same_status';
+            $messageFallback = 'Status change not possible: Target status is the same as the current status.';
+            if (
+                $targetState === Member::STATE_ACTIVE
+                && $this->hasPendingFutureCancellationStatusChange($memberUid)
+            ) {
+                $messageKey = 'flash.status_change_same_status_with_pending_cancellation';
+                $messageFallback = 'Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.';
+            }
+
             $this->addFlashMessage(
-                $this->translate('flash.status_change_same_status', 'Status change not possible: Target status is the same as the current status.'),
+                $this->translate($messageKey, $messageFallback),
                 $this->translate('flash.validation_error.title', 'Validation Error'),
                 ContextualFeedbackSeverity::ERROR
             );
@@ -488,6 +498,34 @@ class ValidateJournalEntryHook
         }
 
         return false;
+    }
+
+    private function hasPendingFutureCancellationStatusChange(int $memberUid): bool
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable(self::TABLE_NAME);
+        $queryBuilder->getRestrictions()->removeAll();
+
+        $todayStart = (new \DateTime('today'))->getTimestamp();
+        $count = (int) $queryBuilder
+            ->count('uid')
+            ->from(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq('member', $queryBuilder->createNamedParameter($memberUid)),
+                $queryBuilder->expr()->eq('entry_type', $queryBuilder->createNamedParameter(MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE)),
+                $queryBuilder->expr()->eq('target_state', $queryBuilder->createNamedParameter(Member::STATE_CANCELLED)),
+                $queryBuilder->expr()->gt('effective_date', $queryBuilder->createNamedParameter($todayStart)),
+                $queryBuilder->expr()->or(
+                    $queryBuilder->expr()->isNull('processed'),
+                    $queryBuilder->expr()->eq('processed', $queryBuilder->createNamedParameter(0))
+                ),
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0)),
+                $queryBuilder->expr()->eq('hidden', $queryBuilder->createNamedParameter(0))
+            )
+            ->executeQuery()
+            ->fetchOne();
+
+        return $count > 0;
     }
 
     /**

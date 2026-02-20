@@ -4,6 +4,7 @@ namespace Quicko\Clubmanager\Hooks;
 
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
+use Quicko\Clubmanager\Service\MemberJournalProjectionService;
 use Quicko\Clubmanager\Service\MemberJournalService;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
@@ -190,11 +191,30 @@ class ProcessMemberJournalHook
    */
   public function processCmdmap_afterFinish(DataHandler $dataHandler): void
   {
-    if (self::$cmdmapDeleteMemberUids === []) {
+    $memberUids = self::$cmdmapDeleteMemberUids;
+
+    // Defensive Fallback: In einigen IRRE/Delete-Lifecycles wird processCmdmap_deleteAction
+    // nicht zuverlässig für jeden Datensatz genutzt. Daher die Cmdmap hier erneut auswerten.
+    $cmdmap = $dataHandler->cmdmap['tx_clubmanager_domain_model_memberjournalentry'] ?? null;
+    if (is_array($cmdmap)) {
+      foreach ($cmdmap as $id => $commands) {
+        if (!is_array($commands) || !isset($commands['delete']) || !is_numeric((string) $id)) {
+          continue;
+        }
+
+        $memberUid = $this->findMemberUidForJournalEntry((int) $id);
+        if ($memberUid !== null) {
+          $memberUids[$memberUid] = true;
+        }
+      }
+    }
+
+    if ($memberUids === []) {
+      self::$cmdmapDeleteMemberUids = [];
       return;
     }
 
-    foreach (array_keys(self::$cmdmapDeleteMemberUids) as $memberUid) {
+    foreach (array_keys($memberUids) as $memberUid) {
       $this->processMemberSave((int) $memberUid, false);
     }
 
@@ -419,81 +439,8 @@ class ProcessMemberJournalHook
     MemberRepository $memberRepository,
     PersistenceManager $persistenceManager
   ): bool {
-    $member = $memberRepository->findByUidWithoutStoragePage($memberUid);
-
-    if (!$member instanceof Member) {
-      return false;
-    }
-
-    $corrected = false;
-
-    // Prüfe Status-Konsistenz
-    $lastStatusEntry = $journalRepository->findLastProcessedStatusEntryForStateProjection($memberUid);
-
-    if ($lastStatusEntry !== null) {
-      $expectedState = $lastStatusEntry->getTargetState();
-      if ($expectedState !== null) {
-        if ($member->getState() !== $expectedState) {
-          $member->setState($expectedState);
-          $corrected = true;
-        }
-
-        // Korrigiere auch Zeitfelder
-        $effectiveDate = $lastStatusEntry->getEffectiveDate();
-        if ($effectiveDate !== null) {
-          switch ($expectedState) {
-            case Member::STATE_ACTIVE:
-              if (!$member->getStarttime()) {
-                $member->setStarttime($effectiveDate);
-                $corrected = true;
-              }
-              // Endtime nur leeren, wenn keine geplante Kündigung existiert
-              $pendingCancellation = $journalRepository->findPendingCancellationStatusChange($memberUid);
-              if ($pendingCancellation === null && $member->getEndtime() !== null) {
-                $member->setEndtime(null);
-                $corrected = true;
-              }
-              break;
-
-            case Member::STATE_CANCELLED:
-              $currentEndtime = $member->getEndtime();
-              if (
-                $currentEndtime === null
-                || $currentEndtime->getTimestamp() !== $effectiveDate->getTimestamp()
-              ) {
-                $member->setEndtime($effectiveDate);
-                $corrected = true;
-              }
-              break;
-
-            case Member::STATE_SUSPENDED:
-              // Ruhend setzt KEINE endtime - Member bleibt Mitglied
-              break;
-          }
-        }
-      }
-    }
-
-    // Prüfe Level-Konsistenz
-    $lastLevelEntry = $journalRepository->findLastProcessedEntry(
-      $memberUid,
-      MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE
-    );
-
-    if ($lastLevelEntry !== null) {
-      $expectedLevel = $lastLevelEntry->getNewLevel();
-      if ($expectedLevel !== null && $member->getLevel() !== $expectedLevel) {
-        $member->setLevel($expectedLevel);
-        $corrected = true;
-      }
-    }
-
-    if ($corrected) {
-      $memberRepository->update($member);
-      $persistenceManager->persistAll();
-    }
-
-    return $corrected;
+    $projectionService = GeneralUtility::makeInstance(MemberJournalProjectionService::class);
+    return $projectionService->projectMemberConsistency($memberUid);
   }
 
   private function applyPendingCancellationEndtime(
@@ -502,34 +449,8 @@ class ProcessMemberJournalHook
     MemberRepository $memberRepository,
     PersistenceManager $persistenceManager
   ): void {
-    $pendingCancellation = $journalRepository->findPendingCancellationStatusChange($memberUid);
-    if (!$pendingCancellation instanceof MemberJournalEntry) {
-      return;
-    }
-
-    $effectiveDate = $pendingCancellation->getEffectiveDate();
-    if ($effectiveDate === null) {
-      return;
-    }
-
-    $now = new \DateTime('now');
-    if ($effectiveDate <= $now) {
-      return;
-    }
-
-    $member = $memberRepository->findByUidWithoutStoragePage($memberUid);
-    if (!$member instanceof Member) {
-      return;
-    }
-
-    $currentEndtime = $member->getEndtime();
-    if ($currentEndtime && $currentEndtime->getTimestamp() === $effectiveDate->getTimestamp()) {
-      return;
-    }
-
-    $member->setEndtime($effectiveDate);
-    $memberRepository->update($member);
-    $persistenceManager->persistAll();
+    $projectionService = GeneralUtility::makeInstance(MemberJournalProjectionService::class);
+    $projectionService->applyPendingFutureCancellationEndtime($memberUid);
   }
 
   private function isBillingInstalled(): bool
