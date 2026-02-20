@@ -54,6 +54,9 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
       return null;
     }
     $address_email = $member['fe_users_email'];
+    if (!filter_var((string) $address_email, FILTER_VALIDATE_EMAIL)) {
+      return null;
+    }
     $address_name = ($member['firstname'] ?? '') . ' ' . ($member['lastname'] ?? '');
 
     $loginPidString = TypoScriptUtils::getTypoScriptValueForPage('plugin.tx_clubmanager.settings.feUsersLoginPid', $member['fe_users_pid']);
