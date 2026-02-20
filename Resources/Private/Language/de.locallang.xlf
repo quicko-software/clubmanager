@@ -190,18 +190,6 @@
         <source>End of membership:</source>
         <target state="final">Ende der Mitgliedschaft:</target>
       </trans-unit>
-      <trans-unit id="content_element.member.label.cancellationWish" resname="content_element.member.label.cancellationWish" approved="yes">
-        <source>Cancellation requested:</source>
-        <target state="final">Kündigung gewünscht:</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.cancellationWish.yes" resname="content_element.member.cancellationWish.yes" approved="yes">
-        <source>Yes</source>
-        <target state="final">Ja</target>
-      </trans-unit>
-      <trans-unit id="content_element.member.cancellationWish.no" resname="content_element.member.cancellationWish.no" approved="yes">
-        <source>No</source>
-        <target state="final">Nein</target>
-      </trans-unit>
       <trans-unit id="content_element.member.label.route" resname="content_element.member.label.route" approved="yes">
         <source>To plan your route with Google Maps.</source>
         <target state="final">Zur Routenplanung mit Google Maps.</target>
