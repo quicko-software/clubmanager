@@ -51,6 +51,10 @@
         <source>Membership</source>
         <target state="final">Mitgliedschaft</target>
       </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.contact" resname="tx_clubmanager_domain_model_member.palette.contact" approved="yes">
+        <source>Contact</source>
+        <target state="final">Kontakt</target>
+      </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.palette.account" resname="tx_clubmanager_domain_model_member.palette.account" approved="yes">
         <source>Account data</source>
         <target state="final">Kontodaten</target>
@@ -239,6 +243,10 @@
         <source>Alternative E-Mail für Rechnungen</source>
         <target state="final">Alternative E-Mail für Rechnungen</target>
       </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_email" resname="tx_clubmanager_domain_model_member.alt_email" approved="yes">
+        <source>Alternative e-mail</source>
+        <target state="final">Alternative E-Mail</target>
+      </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.crdate" resname="tx_clubmanager_domain_model_member.crdate" approved="yes">
         <source>Record created on</source>
         <target state="final">Datensatz angelegt am</target>
@@ -270,10 +278,6 @@
       <trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info" approved="yes">
         <source>Address suffix</source>
         <target state="final">Adresszusatz</target>
-      </trans-unit>
-      <trans-unit id="tx_clubmanager_domain_model_member.cancellation_wish" resname="tx_clubmanager_domain_model_member.cancellation_wish" approved="yes">
-        <source>Cancellation requested</source>
-        <target state="final">Kündigung gewünscht</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate" approved="yes">
         <source>Reduced membership</source>
@@ -582,6 +586,74 @@
       <trans-unit id="tx_clubmanager_domain_model_socialmedia.type.3" resname="tx_clubmanager_domain_model_socialmedia.type.3" approved="yes">
         <source>Twitter</source>
         <target state="final">Twitter</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry" resname="tx_clubmanager_domain_model_memberjournalentry" approved="yes">
+        <source>Member Journal Entry</source>
+        <target state="final">Mitglieder-Journal Eintrag</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type" approved="yes">
+        <source>Entry Type</source>
+        <target state="final">Eintragstyp</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request" approved="yes">
+        <source>Cancellation Request</source>
+        <target state="final">Kündigungswunsch</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change" approved="yes">
+        <source>Status Change</source>
+        <target state="final">Status-Änderung</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change" approved="yes">
+        <source>Level Change</source>
+        <target state="final">Level-Änderung</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_date" resname="tx_clubmanager_domain_model_memberjournalentry.entry_date" approved="yes">
+        <source>Entry Date</source>
+        <target state="final">Erstellungsdatum</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.effective_date" resname="tx_clubmanager_domain_model_memberjournalentry.effective_date" approved="yes">
+        <source>Effective Date</source>
+        <target state="final">Gültig ab</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.processed" resname="tx_clubmanager_domain_model_memberjournalentry.processed" approved="yes">
+        <source>Processed</source>
+        <target state="final">Verarbeitet</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.note" resname="tx_clubmanager_domain_model_memberjournalentry.note" approved="yes">
+        <source>Note</source>
+        <target state="final">Notiz</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type" approved="yes">
+        <source>Creator</source>
+        <target state="final">Erstellt von</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.system" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.system" approved="yes">
+        <source>System</source>
+        <target state="final">System</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.backend" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.backend" approved="yes">
+        <source>Backend User</source>
+        <target state="final">Backend-Benutzer</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.member" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.member" approved="yes">
+        <source>Member</source>
+        <target state="final">Mitglied</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.old_level" resname="tx_clubmanager_domain_model_memberjournalentry.old_level" approved="yes">
+        <source>Old Level</source>
+        <target state="final">Altes Level</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.new_level" resname="tx_clubmanager_domain_model_memberjournalentry.new_level" approved="yes">
+        <source>New Level</source>
+        <target state="final">Neues Level</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.journal_entries" resname="tx_clubmanager_domain_model_member.journal_entries" approved="yes">
+        <source>Member Journal</source>
+        <target state="final">Mitglieder-Journal</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.tab.journal" resname="tx_clubmanager_domain_model_member.tab.journal" approved="yes">
+        <source>Journal</source>
+        <target state="final">Journal</target>
       </trans-unit>
     </body>
   </file>
