@@ -1,0 +1,5 @@
+@import 'EXT:clubmanager/Configuration/TypoScript/Config/*.typoscript'
+
+[applicationContext == "Development" || applicationContext == "Development/DDEV"]
+@import 'EXT:clubmanager/Configuration/TypoScript/Development/*.typoscript'
+[END]

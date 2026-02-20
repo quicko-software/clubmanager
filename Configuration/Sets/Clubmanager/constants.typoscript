@@ -1,0 +1,4 @@
+@import 'EXT:clubmanager/Configuration/TypoScript/constants.typoscript'
+
+# Enforce footer colors even if Site-Settings mapping is not applied during SCSS build.
+plugin.bootstrap_package.settings.scss.footer-sections = (content:(background: transparent, color: #222222, link-color: #1D90C7), meta:(background: #ffffff, color: #222222, link-color: #1D90C7))

@@ -26,7 +26,7 @@ Change the User TSconfig to disable not needed fields in member records for your
 backend editors. Use Page TSconfig to remove not needed elements in
 dropdown-fields or to add some and to rename field labels.
 
-In addition, the member record has five predefined fields that you can use for
+In addition, the member record has six predefined fields that you can use for
 your individual data.
 
 - customfield1
@@ -34,6 +34,7 @@ your individual data.
 - customfield3
 - customfield4
 - customfield5
+- customfield6
 
 .. _domainModelMemberUserTsconfig:
 
@@ -45,7 +46,6 @@ User TSconfig
     page.TCEFORM.tx_clubmanager_domain_model_member {
         starttime.disabled = 0
         endtime.disabled = 0
-        cancellationWish.disabled = 0
         reducedRate.disabled = 0
         state.disabled = 0
         feuser.disabled = 0
@@ -70,6 +70,7 @@ User TSconfig
         city.disabled = 0
         country.disabled = 0
         email.disabled = 0
+        altEmail.disabled = 0
         phone.disabled = 0
         company.disabled = 0
         personType.disabled = 0

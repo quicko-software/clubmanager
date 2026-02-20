@@ -337,7 +337,7 @@ This relation handles the social media data for a location.
    :Description:
          If contact data is set to invisible with this switch,
          they will not appear in the frontend listing and will not be used for internal purposes
-         like for example for an export with :ref:`ext:clubmanager_export <clubmanagerExport>`.
+         like for example for internal exports.
  - :Field:
          Type
    :Description:

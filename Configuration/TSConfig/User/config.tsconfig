@@ -4,7 +4,6 @@
 page.TCEFORM.tx_clubmanager_domain_model_member {
     starttime.disabled = 0
     endtime.disabled = 0
-    cancellationWish.disabled = 0
     reducedRate.disabled = 0
     state.disabled = 0
     feuser.disabled = 0
