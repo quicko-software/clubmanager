@@ -675,6 +675,12 @@ class ValidateJournalEntryHook
                 $queryBuilder->expr()->eq('hidden', $queryBuilder->createNamedParameter(0))
             );
 
+        if ($entryType === MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE) {
+            $queryBuilder->andWhere(
+                $queryBuilder->expr()->neq('target_state', $queryBuilder->createNamedParameter(Member::STATE_APPLIED))
+            );
+        }
+
         if ($excludeUid !== null) {
             $queryBuilder->andWhere(
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($excludeUid))
