@@ -388,15 +388,13 @@ class ProcessMemberJournalHook
         $persistenceManager
       );
 
-      // 3. Ohne Billing: Endtime bei geplanter Kündigung sofort setzen
-      if (!$this->isBillingInstalled()) {
-        $this->applyPendingCancellationEndtime(
-          $memberUid,
-          $journalRepository,
-          $memberRepository,
-          $persistenceManager
-        );
-      }
+      // 3. Endtime bei geplanter Kündigung sofort setzen
+      $this->applyPendingCancellationEndtime(
+        $memberUid,
+        $journalRepository,
+        $memberRepository,
+        $persistenceManager
+      );
 
       // CR6: Bei Aktivierung ohne E-Mail eine Warning-Flashmessage anzeigen.
       if ($autoResolveCancellation) {
