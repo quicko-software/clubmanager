@@ -457,6 +457,14 @@
         <source>Status change not possible: The target status is the same as the current member status. Please select a different status.</source>
         <target state="final">Status-Änderung nicht möglich: Der Zielstatus entspricht dem aktuellen Mitgliedsstatus. Bitte wählen Sie einen anderen Status.</target>
       </trans-unit>
+      <trans-unit id="memberjournal.status_change.same_status_pending_cancellation.dialog.title" resname="memberjournal.status_change.same_status_pending_cancellation.dialog.title" approved="yes">
+        <source>Planned cancellation exists</source>
+        <target state="final">Geplante Kündigung vorhanden</target>
+      </trans-unit>
+      <trans-unit id="memberjournal.status_change.same_status_pending_cancellation.dialog.text" resname="memberjournal.status_change.same_status_pending_cancellation.dialog.text" approved="yes">
+        <source>Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</source>
+        <target state="final">Status-Änderung nicht möglich: Es existiert bereits eine geplante Kündigung. Bitte deaktivieren Sie diesen Eintrag (hidden=1), um die Kündigung zurückzunehmen.</target>
+      </trans-unit>
       <trans-unit id="memberjournal.status_change.no_email.dialog.title" resname="memberjournal.status_change.no_email.dialog.title" approved="yes">
         <source>Activation without email address</source>
         <target state="final">Aktivierung ohne E-Mail-Adresse</target>
@@ -527,6 +535,10 @@
       <trans-unit id="flash.status_change_same_status" resname="flash.status_change_same_status" approved="yes">
         <source>Status change not possible: Target status is the same as the current member status.</source>
         <target state="final">Status-Änderung nicht möglich: Zielstatus entspricht dem aktuellen Mitgliedsstatus.</target>
+      </trans-unit>
+      <trans-unit id="flash.status_change_same_status_with_pending_cancellation" resname="flash.status_change_same_status_with_pending_cancellation" approved="yes">
+        <source>Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</source>
+        <target state="final">Status-Änderung nicht möglich: Es existiert bereits eine geplante Kündigung. Bitte deaktivieren Sie diesen Eintrag (hidden=1), um die Kündigung zurückzunehmen.</target>
       </trans-unit>
       <!-- CR2: Pending Entry Validations -->
       <trans-unit id="flash.pending_status_change_exists" resname="flash.pending_status_change_exists" approved="yes">
