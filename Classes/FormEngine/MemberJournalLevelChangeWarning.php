@@ -56,6 +56,12 @@ class MemberJournalLevelChangeWarning extends AbstractNode
     $sameStatusText = $ls->sL(
       'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.same_status.dialog.text'
     );
+    $sameStatusPendingCancellationTitle = $ls->sL(
+      'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.same_status_pending_cancellation.dialog.title'
+    );
+    $sameStatusPendingCancellationText = $ls->sL(
+      'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.same_status_pending_cancellation.dialog.text'
+    );
 
     // CR6: Warnung bei Aktivierung ohne E-Mail
     $activationNoEmailTitle = $ls->sL(
@@ -75,8 +81,9 @@ class MemberJournalLevelChangeWarning extends AbstractNode
       'data-dialog-ok-button-label="%s" data-dialog-cancel-button-label="%s" ' .
       'data-same-level-title="%s" data-same-level-text="%s" ' .
       'data-same-status-title="%s" data-same-status-text="%s" ' .
+      'data-same-status-pending-cancellation-title="%s" data-same-status-pending-cancellation-text="%s" ' .
       'data-no-email-title="%s" data-no-email-text="%s" ' .
-      'data-member-state="%d" data-active-state="%d"></span>',
+      'data-member-state="%d" data-active-state="%d" data-cancelled-state="%d"></span>',
       htmlspecialchars($dialogTitle, ENT_QUOTES),
       htmlspecialchars($dialogText, ENT_QUOTES),
       htmlspecialchars($okButtonLabel, ENT_QUOTES),
@@ -85,10 +92,13 @@ class MemberJournalLevelChangeWarning extends AbstractNode
       htmlspecialchars($sameLevelText, ENT_QUOTES),
       htmlspecialchars($sameStatusTitle, ENT_QUOTES),
       htmlspecialchars($sameStatusText, ENT_QUOTES),
+      htmlspecialchars($sameStatusPendingCancellationTitle, ENT_QUOTES),
+      htmlspecialchars($sameStatusPendingCancellationText, ENT_QUOTES),
       htmlspecialchars($activationNoEmailTitle, ENT_QUOTES),
       htmlspecialchars($activationNoEmailText, ENT_QUOTES),
       (int) $memberState,
-      Member::STATE_ACTIVE
+      Member::STATE_ACTIVE,
+      Member::STATE_CANCELLED
     );
 
     return $resultArray;

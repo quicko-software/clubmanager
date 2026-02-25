@@ -229,6 +229,7 @@ class MemberJournalEntryRepository extends Repository
     $constraints = [
       $query->equals('member', $memberUid),
       $query->equals('entryType', MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE),
+      $query->logicalNot($query->equals('targetState', \Quicko\Clubmanager\Domain\Model\Member::STATE_APPLIED)),
       $query->equals('processed', null),
       $query->equals('deleted', 0),
       $query->equals('hidden', 0)

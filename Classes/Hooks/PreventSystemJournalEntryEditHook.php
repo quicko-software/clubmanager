@@ -165,7 +165,9 @@ class PreventSystemJournalEntryEditHook
     }
 
     /**
-     * Prüft, ob ein pending Journal-Eintrag per hidden=1 deaktiviert werden soll.
+     * Prüft, ob ein pending Journal-Eintrag per hidden-Toggle geändert werden soll.
+     * Erlaubt beide Richtungen (0->1 und 1->0) für pending Einträge,
+     * damit Neuberechnung von Member-State und endtime symmetrisch erfolgt.
      *
      * @param array<string, mixed> $incomingData
      * @param array<string, mixed> $dbRecord
@@ -183,8 +185,7 @@ class PreventSystemJournalEntryEditHook
         $currentHidden = (int) ($dbRecord['hidden'] ?? 0);
         $newHidden = (int) $incomingData['hidden'];
 
-        // Nur das Deaktivieren (0 -> 1) freigeben
-        return $currentHidden === 0 && $newHidden === 1;
+        return $currentHidden !== $newHidden;
     }
 
     /**

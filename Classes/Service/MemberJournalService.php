@@ -8,6 +8,7 @@ use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use Quicko\Clubmanager\Utils\SettingUtils;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -348,6 +349,90 @@ class MemberJournalService
   }
 
   /**
+   * Findet einen versteckten (hidden=1) future StatusChange "gekündigt".
+   * Nutzt QueryBuilder, da Extbase EnableColumns hidden=1 ausfiltert.
+   */
+  public function getHiddenFutureCancellationStatusChange(int $memberUid): ?array
+  {
+    if ($memberUid <= 0) {
+      return null;
+    }
+
+    $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+      ->getQueryBuilderForTable('tx_clubmanager_domain_model_memberjournalentry');
+    $queryBuilder->getRestrictions()->removeAll();
+
+    $record = $queryBuilder
+      ->select('uid', 'effective_date', 'entry_date')
+      ->from('tx_clubmanager_domain_model_memberjournalentry')
+      ->where(
+        $queryBuilder->expr()->eq('member', $queryBuilder->createNamedParameter($memberUid)),
+        $queryBuilder->expr()->eq('entry_type', $queryBuilder->createNamedParameter(MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE)),
+        $queryBuilder->expr()->eq('target_state', $queryBuilder->createNamedParameter(Member::STATE_CANCELLED)),
+        $queryBuilder->expr()->eq('hidden', $queryBuilder->createNamedParameter(1)),
+        $queryBuilder->expr()->isNull('processed'),
+        $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0)),
+        $queryBuilder->expr()->gt('effective_date', $queryBuilder->createNamedParameter(0))
+      )
+      ->orderBy('entry_date', 'DESC')
+      ->setMaxResults(1)
+      ->executeQuery()
+      ->fetchAssociative();
+
+    return is_array($record) ? $record : null;
+  }
+
+  /**
+   * Zieht eine aktive future Kündigung zurück (hidden=1), triggert Projection.
+   */
+  public function withdrawCancellationStatusChange(int $memberUid): bool
+  {
+    $statusChange = $this->journalRepository->findPendingCancellationStatusChange($memberUid);
+    if (!$statusChange instanceof MemberJournalEntry || !$statusChange->getUid()) {
+      return false;
+    }
+
+    $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+      ->getConnectionForTable('tx_clubmanager_domain_model_memberjournalentry');
+    $connection->update(
+      'tx_clubmanager_domain_model_memberjournalentry',
+      ['hidden' => 1, 'tstamp' => time()],
+      ['uid' => $statusChange->getUid()]
+    );
+
+    $projectionService = GeneralUtility::makeInstance(MemberJournalProjectionService::class);
+    $projectionService->projectMemberConsistency($memberUid);
+    $projectionService->applyPendingFutureCancellationEndtime($memberUid);
+
+    return true;
+  }
+
+  /**
+   * Reaktiviert eine versteckte future Kündigung (hidden=0), triggert Projection.
+   */
+  public function reactivateCancellationStatusChange(int $memberUid): bool
+  {
+    $hiddenEntry = $this->getHiddenFutureCancellationStatusChange($memberUid);
+    if (!is_array($hiddenEntry) || empty($hiddenEntry['uid'])) {
+      return false;
+    }
+
+    $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+      ->getConnectionForTable('tx_clubmanager_domain_model_memberjournalentry');
+    $connection->update(
+      'tx_clubmanager_domain_model_memberjournalentry',
+      ['hidden' => 0, 'tstamp' => time()],
+      ['uid' => (int) $hiddenEntry['uid']]
+    );
+
+    $projectionService = GeneralUtility::makeInstance(MemberJournalProjectionService::class);
+    $projectionService->projectMemberConsistency($memberUid);
+    $projectionService->applyPendingFutureCancellationEndtime($memberUid);
+
+    return true;
+  }
+
+  /**
    * Resolves the storage pid for journal entries based on site configuration
    * Falls back to member's pid if no site configuration is found
    */
@@ -377,7 +462,7 @@ class MemberJournalService
     $existingNote = trim($entry->getNote());
     $fieldsToUpdate['note'] = $existingNote === '' ? $noteText : $existingNote . "\n" . $noteText;
 
-    $connection = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)
+    $connection = GeneralUtility::makeInstance(ConnectionPool::class)
       ->getConnectionForTable('tx_clubmanager_domain_model_memberjournalentry');
     $connection->update(
       'tx_clubmanager_domain_model_memberjournalentry',
