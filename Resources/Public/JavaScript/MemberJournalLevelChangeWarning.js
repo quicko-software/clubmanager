@@ -61,9 +61,17 @@ const MemberJournalLevelChangeWarning = {
         event.preventDefault();
         event.stopImmediatePropagation();
 
+        const hasPendingFutureCancellation = self.hasPendingFutureCancellation(form, config.cancelledState);
+        const sameStatusTitle = hasPendingFutureCancellation
+          ? (config.sameStatusPendingCancellationTitle || config.sameStatusTitle || 'Validation Error')
+          : (config.sameStatusTitle || 'Validation Error');
+        const sameStatusText = hasPendingFutureCancellation
+          ? (config.sameStatusPendingCancellationText || config.sameStatusText || 'Status change not possible.')
+          : (config.sameStatusText || 'Status change not possible: Target status is the same as the current status.');
+
         top.TYPO3.Modal.confirm(
-          config.sameStatusTitle || 'Validation Error',
-          config.sameStatusText || 'Status change not possible: Target status is the same as the current status.',
+          sameStatusTitle,
+          sameStatusText,
           top.TYPO3.Severity.error,
           [
             {
@@ -167,10 +175,13 @@ const MemberJournalLevelChangeWarning = {
       sameLevelText: element.getAttribute('data-same-level-text') || '',
       sameStatusTitle: element.getAttribute('data-same-status-title') || '',
       sameStatusText: element.getAttribute('data-same-status-text') || '',
+      sameStatusPendingCancellationTitle: element.getAttribute('data-same-status-pending-cancellation-title') || '',
+      sameStatusPendingCancellationText: element.getAttribute('data-same-status-pending-cancellation-text') || '',
       noEmailTitle: element.getAttribute('data-no-email-title') || '',
       noEmailText: element.getAttribute('data-no-email-text') || '',
       memberState: parseInt(element.getAttribute('data-member-state') || '0', 10),
-      activeState: parseInt(element.getAttribute('data-active-state') || '2', 10)
+      activeState: parseInt(element.getAttribute('data-active-state') || '2', 10),
+      cancelledState: parseInt(element.getAttribute('data-cancelled-state') || '4', 10)
     };
   },
 
@@ -367,6 +378,46 @@ const MemberJournalLevelChangeWarning = {
 
       const targetState = this.getFieldValue(form, recordId, 'target_state');
       if (targetState === activeState) {
+        return true;
+      }
+    }
+
+    return false;
+  },
+
+  hasPendingFutureCancellation(form, cancelledState) {
+    const entryTypeFields = form.querySelectorAll(this.entryTypeSelector);
+    if (!entryTypeFields.length) {
+      return false;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const todayTimestamp = Math.floor(today.getTime() / 1000);
+
+    for (const entryTypeField of entryTypeFields) {
+      const entryType = entryTypeField.value || '';
+      if (entryType !== 'status_change') {
+        continue;
+      }
+
+      const recordId = this.getInlineRecordId(entryTypeField.getAttribute('name') || '');
+      if (!recordId || this.isProcessed(form, recordId)) {
+        continue;
+      }
+
+      const hidden = this.getFieldValue(form, recordId, 'hidden');
+      if (hidden === 1) {
+        continue;
+      }
+
+      const targetState = this.getFieldValue(form, recordId, 'target_state');
+      if (targetState !== cancelledState) {
+        continue;
+      }
+
+      const effectiveTimestamp = this.getEffectiveDateTimestamp(form, recordId);
+      if (effectiveTimestamp && effectiveTimestamp > todayTimestamp) {
         return true;
       }
     }
