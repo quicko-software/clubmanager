@@ -445,6 +445,14 @@
         <source>Status change not possible: The target status is the same as the current member status. Please select a different status.</source>
         <target state="needs-translation">Status change not possible: The target status is the same as the current member status. Please select a different status.</target>
       </trans-unit>
+      <trans-unit id="memberjournal.status_change.same_status_pending_cancellation.dialog.title" resname="memberjournal.status_change.same_status_pending_cancellation.dialog.title">
+        <source>Planned cancellation exists</source>
+        <target state="needs-translation">Planned cancellation exists</target>
+      </trans-unit>
+      <trans-unit id="memberjournal.status_change.same_status_pending_cancellation.dialog.text" resname="memberjournal.status_change.same_status_pending_cancellation.dialog.text">
+        <source>Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</source>
+        <target state="needs-translation">Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</target>
+      </trans-unit>
       <trans-unit id="memberjournal.status_change.no_email.dialog.title" resname="memberjournal.status_change.no_email.dialog.title">
         <source>Activation without email address</source>
         <target state="needs-translation">Activation without email address</target>
@@ -515,6 +523,10 @@
       <trans-unit id="flash.status_change_same_status" resname="flash.status_change_same_status">
         <source>Status change not possible: Target status is the same as the current member status.</source>
         <target state="needs-translation">Status change not possible: Target status is the same as the current member status.</target>
+      </trans-unit>
+      <trans-unit id="flash.status_change_same_status_with_pending_cancellation" resname="flash.status_change_same_status_with_pending_cancellation">
+        <source>Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</source>
+        <target state="needs-translation">Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</target>
       </trans-unit>
       <!-- CR2: Pending Entry Validations -->
       <trans-unit id="flash.pending_status_change_exists" resname="flash.pending_status_change_exists">
