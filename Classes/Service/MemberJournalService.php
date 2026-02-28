@@ -3,38 +3,42 @@
 namespace Quicko\Clubmanager\Service;
 
 use DateTime;
+use InvalidArgumentException;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
-use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
+use Quicko\Clubmanager\Domain\Repository\MemberRepository;
+use Quicko\Clubmanager\Event\MemberStateChangedEvent;
 use Quicko\Clubmanager\Utils\SettingUtils;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Log\LogManager;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class MemberJournalService
 {
   public function __construct(
     protected MemberJournalEntryRepository $journalRepository,
     protected MemberRepository $memberRepository,
-    protected PersistenceManager $persistenceManager
+    protected PersistenceManager $persistenceManager,
+    protected EventDispatcherInterface $eventDispatcher,
   ) {
   }
 
   /**
-   * Erstellt Kündigungswunsch (Status-Wechsel wird später von Billing-Task erstellt)
+   * Erstellt Kündigungswunsch (Status-Wechsel wird später von Billing-Task erstellt).
    */
   public function createCancellationRequest(
     Member $member,
     string $noteText,
-    int $creatorType = MemberJournalEntry::CREATOR_TYPE_MEMBER
+    int $creatorType = MemberJournalEntry::CREATOR_TYPE_MEMBER,
   ): MemberJournalEntry {
     $memberUid = $member->getUid();
     if (!$memberUid) {
-      throw new \InvalidArgumentException('Member must have a UID');
+      throw new InvalidArgumentException('Member must have a UID');
     }
 
     $request = new MemberJournalEntry();
@@ -52,7 +56,7 @@ class MemberJournalService
   }
 
   /**
-   * Blendt offene Kündigungen aus (z.B. bei Reaktivierung)
+   * Blendt offene Kündigungen aus (z.B. bei Reaktivierung).
    */
   public function resolvePendingCancellationForMember(int $memberUid, string $noteText = ''): int
   {
@@ -74,31 +78,31 @@ class MemberJournalService
     $request = $this->journalRepository->findPendingCancellationRequest($memberUid);
     if ($request instanceof MemberJournalEntry) {
       $this->hideJournalEntry($request, $noteText);
-      $updated++;
+      ++$updated;
     }
 
     $statusChange = $this->journalRepository->findPendingCancellationStatusChange($memberUid);
     if ($statusChange instanceof MemberJournalEntry) {
       $this->hideJournalEntry($statusChange, $noteText);
-      $updated++;
+      ++$updated;
     }
 
     return $updated;
   }
 
   /**
-   * Erstellt Status-Änderungs-Eintrag
+   * Erstellt Status-Änderungs-Eintrag.
    */
   public function createStatusChange(
     Member $member,
     int $targetState,
     DateTime $effectiveDate,
     string $noteText = '',
-    int $creatorType = MemberJournalEntry::CREATOR_TYPE_SYSTEM
+    int $creatorType = MemberJournalEntry::CREATOR_TYPE_SYSTEM,
   ): MemberJournalEntry {
     $memberUid = $member->getUid();
     if (!$memberUid) {
-      throw new \InvalidArgumentException('Member must have a UID');
+      throw new InvalidArgumentException('Member must have a UID');
     }
 
     $entry = new MemberJournalEntry();
@@ -117,7 +121,7 @@ class MemberJournalService
   }
 
   /**
-   * Verarbeitet fällige Journal-Einträge (Cron)
+   * Verarbeitet fällige Journal-Einträge (Cron).
    */
   public function processPendingEntries(?DateTime $referenceDate = null): int
   {
@@ -129,7 +133,6 @@ class MemberJournalService
 
     foreach ($pendingEntries as $entry) {
       $memberUid = $entry->getMember();
-
       // Lade Member-Objekt
       $member = $this->memberRepository->findByUidWithoutStoragePage($memberUid);
 
@@ -139,6 +142,8 @@ class MemberJournalService
         $this->journalRepository->update($entry);
         continue;
       }
+
+      $oldState = $member->getState();
 
       try {
         if ($entry->isStatusChange()) {
@@ -150,8 +155,10 @@ class MemberJournalService
         $entry->setProcessed($now);
         $this->journalRepository->update($entry);
         $this->memberRepository->update($member);
-        $processedCount++;
-      } catch (\InvalidArgumentException $e) {
+        ++$processedCount;
+
+        $this->fireMemberChangedEvents($member, $oldState);
+      } catch (InvalidArgumentException $e) {
         // Log error but continue with next entry
         $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
         $logger->error('Skipping invalid journal entry', [
@@ -173,7 +180,7 @@ class MemberJournalService
   }
 
   /**
-   * Verarbeitet fällige Journal-Einträge für einen spezifischen Member
+   * Verarbeitet fällige Journal-Einträge für einen spezifischen Member.
    */
   public function processPendingEntriesForMember(int $memberUid, ?DateTime $referenceDate = null): int
   {
@@ -200,13 +207,15 @@ class MemberJournalService
           }
 
           // Erstelle ein temporäres Member-Objekt aus dem Record
-          $member = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Member::class);
+          $member = GeneralUtility::makeInstance(Member::class);
           $member->_setProperty('uid', $memberRecord['uid']);
-          $member->setState($memberRecord['state'] ?? '');
+          $member->setState($memberRecord['state'] ?? Member::STATE_UNSET);
           $member->setLevel($memberRecord['level'] ?? 0);
           $member->setIdent($memberRecord['ident'] ?? '');
-          $member->setStarttime($memberRecord['starttime'] ? new \DateTime('@' . $memberRecord['starttime']) : null);
-          $member->setEndtime($memberRecord['endtime'] ? new \DateTime('@' . $memberRecord['endtime']) : null);
+          $member->setStarttime($memberRecord['starttime'] ? new DateTime('@' . $memberRecord['starttime']) : null);
+          $member->setEndtime($memberRecord['endtime'] ? new DateTime('@' . $memberRecord['endtime']) : null);
+
+          $oldState = $member->getState();
 
           // Wende Änderungen am temporären Objekt an
           if ($entry->isStatusChange()) {
@@ -216,7 +225,7 @@ class MemberJournalService
           }
 
           // Speichere direkt in DB statt via Repository
-          $connection = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)
+          $connection = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getConnectionForTable('tx_clubmanager_domain_model_member');
           $connection->update(
             'tx_clubmanager_domain_model_member',
@@ -231,8 +240,12 @@ class MemberJournalService
 
           $entry->setProcessed($now);
           $this->journalRepository->update($entry);
-          $processedCount++;
+          ++$processedCount;
+
+          $this->fireMemberChangedEvents($member, $oldState);
         } else {
+          $oldState = $member->getState();
+
           // Normal flow via Repository
           if ($entry->isStatusChange()) {
             $this->applyStatusChange($member, $entry);
@@ -243,9 +256,11 @@ class MemberJournalService
           $entry->setProcessed($now);
           $this->journalRepository->update($entry);
           $this->memberRepository->update($member);
-          $processedCount++;
+          ++$processedCount;
+
+          $this->fireMemberChangedEvents($member, $oldState);
         }
-      } catch (\InvalidArgumentException $e) {
+      } catch (InvalidArgumentException $e) {
         // Log error and mark as processed with error note
         $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
         $logger->error('Skipping invalid journal entry for member', [
@@ -253,11 +268,11 @@ class MemberJournalService
           'memberUid' => $memberUid,
           'error' => $e->getMessage(),
         ]);
-        
+
         $entry->setProcessed($now);
         $entry->setNote($entry->getNote() . "\nError: " . $e->getMessage());
         $this->journalRepository->update($entry);
-        
+
         // Re-throw to inform the user via FlashMessage (in Hook)
         throw $e;
       }
@@ -276,17 +291,14 @@ class MemberJournalService
     $effectiveDate = $entry->getEffectiveDate();
 
     if ($targetState === null || $effectiveDate === null) {
-      throw new \InvalidArgumentException('Status change requires target_state and effective_date');
+      throw new InvalidArgumentException('Status change requires target_state and effective_date');
     }
 
     // Prüfe ident bei Aktivierung
     if ($targetState === Member::STATE_ACTIVE) {
       $ident = trim((string) ($member->getIdent() ?? ''));
       if ($ident === '') {
-        throw new \InvalidArgumentException(
-          LocalizationUtility::translate('flash.activation_blocked.no_ident.short', 'clubmanager')
-            ?? 'Activation not possible: Member number (ident) is missing.'
-        );
+        throw new InvalidArgumentException(LocalizationUtility::translate('flash.activation_blocked.no_ident.short', 'clubmanager') ?? 'Activation not possible: Member number (ident) is missing.');
       }
     }
 
@@ -317,23 +329,24 @@ class MemberJournalService
     $newLevel = $entry->getNewLevel();
 
     if ($newLevel === null) {
-      throw new \InvalidArgumentException('Level-Change benötigt new_level');
+      throw new InvalidArgumentException('Level-Change benötigt new_level');
     }
 
     $member->setLevel($newLevel);
   }
 
   /**
-   * Prüft ob ein Member einen offenen Kündigungswunsch hat
+   * Prüft ob ein Member einen offenen Kündigungswunsch hat.
    */
   public function hasPendingCancellationRequest(int $memberUid): bool
   {
     $request = $this->journalRepository->findPendingCancellationRequest($memberUid);
+
     return $request !== null;
   }
 
   /**
-   * Findet offenen Kündigungswunsch eines Members
+   * Findet offenen Kündigungswunsch eines Members.
    */
   public function getPendingCancellationRequest(int $memberUid): ?MemberJournalEntry
   {
@@ -341,7 +354,7 @@ class MemberJournalService
   }
 
   /**
-   * Findet den zugehörigen Status-Wechsel-Eintrag für einen Kündigungswunsch
+   * Findet den zugehörigen Status-Wechsel-Eintrag für einen Kündigungswunsch.
    */
   public function getPendingCancellationStatusChange(int $memberUid): ?MemberJournalEntry
   {
@@ -434,7 +447,7 @@ class MemberJournalService
 
   /**
    * Resolves the storage pid for journal entries based on site configuration
-   * Falls back to member's pid if no site configuration is found
+   * Falls back to member's pid if no site configuration is found.
    */
   protected function resolveJournalStoragePid(Member $member): int
   {
@@ -444,6 +457,7 @@ class MemberJournalService
     }
 
     $storagePid = (int) SettingUtils::getSiteSetting($memberPid, 'clubmanager.memberJournalStoragePid', 0);
+
     return $storagePid > 0 ? $storagePid : $memberPid;
   }
 
@@ -470,6 +484,19 @@ class MemberJournalService
       ['uid' => $uid]
     );
   }
+
+  protected function fireMemberChangedEvents(Member $member, int $oldState): void
+  {
+    $memberUid = $member->getUid();
+    $newState = $member->getState();
+
+    if ($memberUid && $newState !== $oldState) {
+      $this->fireMemberStateChangedEvent($memberUid, $oldState, $newState);
+    }
+  }
+
+  protected function fireMemberStateChangedEvent(int $memberUid, int $oldState, int $newState): void
+  {
+    $this->eventDispatcher->dispatch(new MemberStateChangedEvent($memberUid, $oldState, $newState));
+  }
 }
-
-
