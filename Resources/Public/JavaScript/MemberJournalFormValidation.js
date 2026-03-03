@@ -1,21 +1,26 @@
 import $ from 'jquery';
 
 /**
- * Validates level_change journal entries:
- * 1. Bug 7: Blocks saving if old_level == new_level (hard error)
- * 2. CR5: Shows warning if effective_date < today for status/level changes
- * 3. CR6: Warns on activation without email address
+ * Client-side validation for member journal entries in the Backend form.
+ *
+ * Validates before save:
+ * - Bug 7: Blocks saving if old_level == new_level (hard error)
+ * - CR3: Blocks saving if target_state == current member state (hard error)
+ * - CR5: Shows warning if effective_date < today for status/level changes
+ * - CR6: Warns on activation without email address
+ * - #6125: Warns on activation with unverified email (GDPR)
  *
  * Uses the same pattern as EmailVerificationTokenReset - intercepts save button click.
  */
-const MemberJournalLevelChangeWarning = {
+const MemberJournalFormValidation = {
   formSelector: 'form[name="editform"]',
-  configSelector: '.clbmgr_member-journal-level-warning',
+  configSelector: '.clbmgr_member-journal-form-validation',
   saveButtonSelector: 'button[name="_savedok"]',
   entryTypeSelector: 'select[name^="data[tx_clubmanager_domain_model_memberjournalentry]["][name$="[entry_type]"]',
 
   isPastDateConfirmed: false,
   isNoEmailConfirmed: false,
+  isUnverifiedEmailConfirmed: false,
 
   initialize() {
     const config = this.getDialogConfig();
@@ -154,8 +159,42 @@ const MemberJournalLevelChangeWarning = {
         return false;
       }
 
+      // #6125: Warnung bei Aktivierung mit nicht-verifizierter E-Mail (DSGVO, rote Warnung)
+      if (!self.isUnverifiedEmailConfirmed && self.hasActivationWithUnverifiedEmail(form, config)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        top.TYPO3.Modal.confirm(
+          config.unverifiedEmailTitle || 'Email address not verified!',
+          config.unverifiedEmailText || 'The email address has not been verified (Double-Opt-In missing). Activation is potentially not GDPR compliant.',
+          top.TYPO3.Severity.error,
+          [
+            {
+              text: config.cancelLabel || 'Cancel',
+              btnClass: 'btn-danger',
+              active: true,
+              trigger: function() {
+                top.TYPO3.Modal.dismiss();
+              }
+            },
+            {
+              text: config.okLabel || 'Continue',
+              btnClass: 'btn-default',
+              trigger: function() {
+                top.TYPO3.Modal.dismiss();
+                self.isUnverifiedEmailConfirmed = true;
+                $(self.saveButtonSelector).first().trigger('click');
+              }
+            }
+          ]
+        );
+
+        return false;
+      }
+
       self.isPastDateConfirmed = false;
       self.isNoEmailConfirmed = false;
+      self.isUnverifiedEmailConfirmed = false;
       return true;
     });
   },
@@ -179,6 +218,11 @@ const MemberJournalLevelChangeWarning = {
       sameStatusPendingCancellationText: element.getAttribute('data-same-status-pending-cancellation-text') || '',
       noEmailTitle: element.getAttribute('data-no-email-title') || '',
       noEmailText: element.getAttribute('data-no-email-text') || '',
+      emailVerified: element.hasAttribute('data-email-verified')
+        ? parseInt(element.getAttribute('data-email-verified'), 10)
+        : null,
+      unverifiedEmailTitle: element.getAttribute('data-unverified-email-title') || '',
+      unverifiedEmailText: element.getAttribute('data-unverified-email-text') || '',
       memberState: parseInt(element.getAttribute('data-member-state') || '0', 10),
       activeState: parseInt(element.getAttribute('data-active-state') || '2', 10),
       cancelledState: parseInt(element.getAttribute('data-cancelled-state') || '4', 10)
@@ -385,6 +429,44 @@ const MemberJournalLevelChangeWarning = {
     return false;
   },
 
+  hasActivationWithUnverifiedEmail(form, config) {
+    if (config.emailVerified === null || config.emailVerified === 1) {
+      return false;
+    }
+
+    if (this.getMemberEmail(form) === '') {
+      return false;
+    }
+
+    const entryTypeFields = form.querySelectorAll(this.entryTypeSelector);
+    if (!entryTypeFields.length) {
+      return false;
+    }
+
+    for (const entryTypeField of entryTypeFields) {
+      const entryType = entryTypeField.value || '';
+      if (entryType !== 'status_change') {
+        continue;
+      }
+
+      const recordId = this.getInlineRecordId(entryTypeField.getAttribute('name') || '');
+      if (!recordId) {
+        continue;
+      }
+
+      if (this.isProcessed(form, recordId)) {
+        continue;
+      }
+
+      const targetState = this.getFieldValue(form, recordId, 'target_state');
+      if (targetState === config.activeState) {
+        return true;
+      }
+    }
+
+    return false;
+  },
+
   hasPendingFutureCancellation(form, cancelledState) {
     const entryTypeFields = form.querySelectorAll(this.entryTypeSelector);
     if (!entryTypeFields.length) {
@@ -527,5 +609,5 @@ const MemberJournalLevelChangeWarning = {
 };
 
 $(function() {
-  MemberJournalLevelChangeWarning.initialize();
+  MemberJournalFormValidation.initialize();
 });

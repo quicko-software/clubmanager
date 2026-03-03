@@ -150,8 +150,8 @@ return [
                 'size' => 30,
                 'eval' => 'trim,unique',
                 'fieldInformation' => [
-                    'memberJournalLevelChangeWarning' => [
-                        'renderType' => 'MemberJournalLevelChangeWarning',
+                    'memberJournalFormValidation' => [
+                        'renderType' => 'MemberJournalFormValidation',
                     ],
                 ],
             ],

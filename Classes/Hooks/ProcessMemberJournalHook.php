@@ -403,8 +403,10 @@ class ProcessMemberJournalHook
       );
 
       // CR6: Bei Aktivierung ohne E-Mail eine Warning-Flashmessage anzeigen.
+      // #6125: Bei Aktivierung mit nicht-verifizierter E-Mail warnen (DSGVO).
       if ($autoResolveCancellation) {
         $this->addActivationNoEmailWarning($memberUid);
+        $this->addActivationUnverifiedEmailWarning($memberUid);
       }
 
       // 4. Synchronisiere FE-User disable-Status mit Member-Status
@@ -523,6 +525,43 @@ class ProcessMemberJournalHook
     $this->addFlashMessage(
       LocalizationUtility::translate('flash.activation_warning.no_email', 'clubmanager')
         ?? 'No email address is set. Activation can continue, but automatic login communication is not possible.',
+      LocalizationUtility::translate('flash.validation_warning.title', 'clubmanager')
+        ?? 'Validation Warning',
+      ContextualFeedbackSeverity::WARNING
+    );
+  }
+
+  private function addActivationUnverifiedEmailWarning(int $memberUid): void
+  {
+    if (!isset($GLOBALS['TCA']['tx_clubmanager_domain_model_member']['columns']['email_verified'])) {
+      return;
+    }
+
+    $memberRecord = BackendUtility::getRecord(
+      'tx_clubmanager_domain_model_member',
+      $memberUid,
+      'state,email,email_verified'
+    );
+    if (!is_array($memberRecord)) {
+      return;
+    }
+
+    if ((int) ($memberRecord['state'] ?? 0) !== Member::STATE_ACTIVE) {
+      return;
+    }
+
+    $email = trim((string) ($memberRecord['email'] ?? ''));
+    if ($email === '') {
+      return;
+    }
+
+    if ((int) ($memberRecord['email_verified'] ?? 0) === 1) {
+      return;
+    }
+
+    $this->addFlashMessage(
+      LocalizationUtility::translate('flash.activation_warning.unverified_email', 'clubmanager')
+        ?? 'The email address has not been verified (Double-Opt-In missing). Activation is potentially not GDPR compliant.',
       LocalizationUtility::translate('flash.validation_warning.title', 'clubmanager')
         ?? 'Validation Warning',
       ContextualFeedbackSeverity::WARNING
