@@ -2,12 +2,15 @@
 
 namespace Quicko\Clubmanager\Hooks;
 
+use Exception;
+use InvalidArgumentException;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
-use Quicko\Clubmanager\Service\MemberJournalProjectionService;
-use Quicko\Clubmanager\Service\MemberJournalService;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
+use Quicko\Clubmanager\Service\MemberJournalProjectionService;
+use Quicko\Clubmanager\Service\MemberJournalService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
@@ -173,7 +176,7 @@ class ProcessMemberJournalHook
     int $id,
     array $record,
     mixed &$recordWasDeleted,
-    DataHandler $dataHandler
+    DataHandler $dataHandler,
   ): void {
     if ($table !== 'tx_clubmanager_domain_model_memberjournalentry') {
       return;
@@ -211,6 +214,7 @@ class ProcessMemberJournalHook
 
     if ($memberUids === []) {
       self::$cmdmapDeleteMemberUids = [];
+
       return;
     }
 
@@ -347,7 +351,7 @@ class ProcessMemberJournalHook
   }
 
   /**
-   * Verarbeitet fällige Journal-Einträge und prüft Konsistenz für einen Member
+   * Verarbeitet fällige Journal-Einträge und prüft Konsistenz für einen Member.
    */
   protected function processMemberSave(int $memberUid, bool $autoResolveCancellation = false): void
   {
@@ -355,12 +359,14 @@ class ProcessMemberJournalHook
       $journalRepository = GeneralUtility::makeInstance(MemberJournalEntryRepository::class);
       $memberRepository = GeneralUtility::makeInstance(MemberRepository::class);
       $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
+      $eventDispatcher = GeneralUtility::makeInstance(EventDispatcherInterface::class);
 
       $journalService = GeneralUtility::makeInstance(
         MemberJournalService::class,
         $journalRepository,
         $memberRepository,
-        $persistenceManager
+        $persistenceManager,
+        $eventDispatcher
       );
 
       if ($autoResolveCancellation) {
@@ -397,8 +403,10 @@ class ProcessMemberJournalHook
       );
 
       // CR6: Bei Aktivierung ohne E-Mail eine Warning-Flashmessage anzeigen.
+      // #6125: Bei Aktivierung mit nicht-verifizierter E-Mail warnen (DSGVO).
       if ($autoResolveCancellation) {
         $this->addActivationNoEmailWarning($memberUid);
+        $this->addActivationUnverifiedEmailWarning($memberUid);
       }
 
       // 4. Synchronisiere FE-User disable-Status mit Member-Status
@@ -409,7 +417,7 @@ class ProcessMemberJournalHook
           sprintf('Corrected member %d state to match journal history', $memberUid)
         );
       }
-    } catch (\InvalidArgumentException $e) {
+    } catch (InvalidArgumentException $e) {
       // Save ist zu diesem Zeitpunkt bereits gelaufen;
       // dies ist eine nachgelagerte Verarbeitungswarnung.
       $this->addFlashMessage(
@@ -420,7 +428,7 @@ class ProcessMemberJournalHook
       $this->logger->warning(
         sprintf('Validation error for member %d: %s', $memberUid, $e->getMessage())
       );
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       $this->logger->error(
         sprintf('Error processing journal for member %d: %s', $memberUid, $e->getMessage())
       );
@@ -429,15 +437,16 @@ class ProcessMemberJournalHook
 
   /**
    * Stellt sicher, dass der Member-Zustand mit der Journal-Historie übereinstimmt
-   * Korrigiert automatisch wenn nötig (z.B. nach Löschen von Journal-Einträgen)
+   * Korrigiert automatisch wenn nötig (z.B. nach Löschen von Journal-Einträgen).
    */
   protected function ensureMemberConsistencyWithJournal(
     int $memberUid,
     MemberJournalEntryRepository $journalRepository,
     MemberRepository $memberRepository,
-    PersistenceManager $persistenceManager
+    PersistenceManager $persistenceManager,
   ): bool {
     $projectionService = GeneralUtility::makeInstance(MemberJournalProjectionService::class);
+
     return $projectionService->projectMemberConsistency($memberUid);
   }
 
@@ -445,7 +454,7 @@ class ProcessMemberJournalHook
     int $memberUid,
     MemberJournalEntryRepository $journalRepository,
     MemberRepository $memberRepository,
-    PersistenceManager $persistenceManager
+    PersistenceManager $persistenceManager,
   ): void {
     $projectionService = GeneralUtility::makeInstance(MemberJournalProjectionService::class);
     $projectionService->applyPendingFutureCancellationEndtime($memberUid);
@@ -522,6 +531,43 @@ class ProcessMemberJournalHook
     );
   }
 
+  private function addActivationUnverifiedEmailWarning(int $memberUid): void
+  {
+    if (!isset($GLOBALS['TCA']['tx_clubmanager_domain_model_member']['columns']['email_verified'])) {
+      return;
+    }
+
+    $memberRecord = BackendUtility::getRecord(
+      'tx_clubmanager_domain_model_member',
+      $memberUid,
+      'state,email,email_verified'
+    );
+    if (!is_array($memberRecord)) {
+      return;
+    }
+
+    if ((int) ($memberRecord['state'] ?? 0) !== Member::STATE_ACTIVE) {
+      return;
+    }
+
+    $email = trim((string) ($memberRecord['email'] ?? ''));
+    if ($email === '') {
+      return;
+    }
+
+    if ((int) ($memberRecord['email_verified'] ?? 0) === 1) {
+      return;
+    }
+
+    $this->addFlashMessage(
+      LocalizationUtility::translate('flash.activation_warning.unverified_email', 'clubmanager')
+        ?? 'The email address has not been verified (Double-Opt-In missing). Activation is potentially not GDPR compliant.',
+      LocalizationUtility::translate('flash.validation_warning.title', 'clubmanager')
+        ?? 'Validation Warning',
+      ContextualFeedbackSeverity::WARNING
+    );
+  }
+
   private function addFlashMessage(string $message, string $title, ContextualFeedbackSeverity $severity): void
   {
     $flashMessage = GeneralUtility::makeInstance(
@@ -544,7 +590,7 @@ class ProcessMemberJournalHook
     }
 
     $translated = $languageService->sL('LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:' . $key);
+
     return $translated ?: $fallback;
   }
 }
-

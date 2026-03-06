@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-v3-webpack-plugin');
 
 var colors = require('colors');
 
@@ -116,6 +116,9 @@ let entry = {
           },
           {
             loader: 'sass-loader',
+            options: {
+              api: 'modern-compiler',
+            }
           }
         ]
       },
