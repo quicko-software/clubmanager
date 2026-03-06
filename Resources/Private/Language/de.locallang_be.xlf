@@ -473,6 +473,14 @@
         <source>No email address is set for this member. Automatic sending of access data is not possible. The member can only be informed manually. Do you want to continue?</source>
         <target state="final">Für dieses Mitglied ist keine E-Mail-Adresse hinterlegt. Ein automatischer Versand von Zugangsdaten ist nicht möglich. Das Mitglied kann nur manuell informiert werden. Möchten Sie fortfahren?</target>
       </trans-unit>
+      <trans-unit id="memberjournal.status_change.unverified_email.dialog.title" resname="memberjournal.status_change.unverified_email.dialog.title" approved="yes">
+        <source>Email address not verified!</source>
+        <target state="final">E-Mail-Adresse nicht verifiziert!</target>
+      </trans-unit>
+      <trans-unit id="memberjournal.status_change.unverified_email.dialog.text" resname="memberjournal.status_change.unverified_email.dialog.text" approved="yes">
+        <source>The email address of this member has not been verified yet (Double-Opt-In missing). Activation is potentially not GDPR compliant. The member must be asked to verify their email address. No messages should be sent to this member otherwise. Do you want to continue with activation?</source>
+        <target state="final">Die E-Mail-Adresse dieses Mitglieds wurde noch nicht verifiziert (Double-Opt-In fehlt). Eine Aktivierung ist potentiell nicht DSGVO-konform. Das Mitglied muss aufgefordert werden, seine E-Mail-Adresse zu verifizieren. Es dürfen diesem Mitglied sonst keine Nachrichten geschickt werden. Möchten Sie die Aktivierung trotzdem fortsetzen?</target>
+      </trans-unit>
       <!-- Flash messages for member/journal validation -->
       <trans-unit id="flash.validation_error.title" resname="flash.validation_error.title" approved="yes">
         <source>Validation Error</source>
@@ -497,6 +505,10 @@
       <trans-unit id="flash.activation_warning.no_email" resname="flash.activation_warning.no_email" approved="yes">
         <source>No email address is set. Activation can continue, but automatic login communication is not possible.</source>
         <target state="final">Es ist keine E-Mail-Adresse hinterlegt. Die Aktivierung kann fortgesetzt werden, aber eine automatische Login-Kommunikation ist nicht möglich.</target>
+      </trans-unit>
+      <trans-unit id="flash.activation_warning.unverified_email" resname="flash.activation_warning.unverified_email" approved="yes">
+        <source>The email address has not been verified (Double-Opt-In missing). Activation is potentially not GDPR compliant. The member should be asked to verify their email address.</source>
+        <target state="final">Die E-Mail-Adresse wurde nicht verifiziert (Double-Opt-In fehlt). Die Aktivierung ist potentiell nicht DSGVO-konform. Das Mitglied sollte aufgefordert werden, seine E-Mail-Adresse zu verifizieren.</target>
       </trans-unit>
       <trans-unit id="flash.past_effective_date.warning" resname="flash.past_effective_date.warning" approved="yes">
         <source>The effective date is in the past. This change may affect billing/statistics and might require corrections.</source>
