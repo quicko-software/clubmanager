@@ -116,9 +116,9 @@ call_user_func(function () {
   ];
 
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1739999123] = [
-    'nodeName' => 'MemberJournalLevelChangeWarning',
+    'nodeName' => 'MemberJournalFormValidation',
     'priority' => 30,
-    'class' => Quicko\Clubmanager\FormEngine\MemberJournalLevelChangeWarning::class,
+    'class' => Quicko\Clubmanager\FormEngine\MemberJournalFormValidation::class,
   ];
 
   $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][RecoveryConfiguration::class] = [

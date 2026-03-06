@@ -10,21 +10,24 @@
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.4",
-    "browser-sync": "^2.27.9",
-    "browser-sync-webpack-plugin": "^2.3.0",
+    "browser-sync": "^3.0.4",
+    "browser-sync-v3-webpack-plugin": "^0.1.0",
     "colors": "^1.4.0",
     "css-loader": "^6.7.1",
     "mini-css-extract-plugin": "^2.6.0",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.4.3",
     "sass": "^1.49.11",
-    "sass-loader": "^12.6.0",
-    "webpack": "^5.71.0",
-    "webpack-cli": "^4.9.2"
+    "sass-loader": "^16.0.0",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.0"
+  },
+  "overrides": {
+    "serialize-javascript": "^7.0.3"
   },
   "dependencies": {
     "bootstrap-icons": "^1.10.3",
-    "css-minimizer-webpack-plugin": "^4.2.2",
+    "css-minimizer-webpack-plugin": "^8.0.0",
     "jquery": "^3.7.1",
     "resolve-url-loader": "^5.0.0"
   }

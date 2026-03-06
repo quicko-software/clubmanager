@@ -16,15 +16,16 @@ use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
  * - CR3: Status change to same status as current member
  * - CR5: Status/Level change with past effective date (warning)
  * - CR6: Activation without email address (warning)
+ * - #6125: Activation with unverified email address (warning, GDPR)
  */
-class MemberJournalLevelChangeWarning extends AbstractNode
+class MemberJournalFormValidation extends AbstractNode
 {
   public function render(): array
   {
     $ls = $this->getLanguageService();
     $resultArray = $this->initializeResultArray();
     $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create(
-      '@quicko/clubmanager/MemberJournalLevelChangeWarning.js'
+      '@quicko/clubmanager/MemberJournalFormValidation.js'
     );
 
     // CR5: Warnung bei Vergangenheitsdatum
@@ -71,19 +72,37 @@ class MemberJournalLevelChangeWarning extends AbstractNode
       'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.no_email.dialog.text'
     );
 
+    // #6125: Warnung bei Aktivierung ohne verifizierte E-Mail (nur wenn clubmanager_pro installiert)
+    $unverifiedEmailAttrs = '';
+    if (array_key_exists('email_verified', $this->data['databaseRow'])) {
+      $unverifiedEmailTitle = $ls->sL(
+        'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.unverified_email.dialog.title'
+      );
+      $unverifiedEmailText = $ls->sL(
+        'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.unverified_email.dialog.text'
+      );
+      $emailVerified = (int) $this->data['databaseRow']['email_verified'];
+      $unverifiedEmailAttrs = sprintf(
+        ' data-email-verified="%d" data-unverified-email-title="%s" data-unverified-email-text="%s"',
+        $emailVerified,
+        htmlspecialchars($unverifiedEmailTitle, ENT_QUOTES),
+        htmlspecialchars($unverifiedEmailText, ENT_QUOTES)
+      );
+    }
+
     // Aktuellen Member-Status aus dem Formular-Daten holen
     $memberState = $this->data['databaseRow']['state'] ?? 0;
 
     // Render a hidden span element that carries the dialog configuration
     $resultArray['html'] = sprintf(
-      '<span class="clbmgr_member-journal-level-warning" style="display:none" ' .
+      '<span class="clbmgr_member-journal-form-validation" style="display:none" ' .
       'data-dialog-title="%s" data-dialog-text="%s" ' .
       'data-dialog-ok-button-label="%s" data-dialog-cancel-button-label="%s" ' .
       'data-same-level-title="%s" data-same-level-text="%s" ' .
       'data-same-status-title="%s" data-same-status-text="%s" ' .
       'data-same-status-pending-cancellation-title="%s" data-same-status-pending-cancellation-text="%s" ' .
       'data-no-email-title="%s" data-no-email-text="%s" ' .
-      'data-member-state="%d" data-active-state="%d" data-cancelled-state="%d"></span>',
+      'data-member-state="%d" data-active-state="%d" data-cancelled-state="%d"%s></span>',
       htmlspecialchars($dialogTitle, ENT_QUOTES),
       htmlspecialchars($dialogText, ENT_QUOTES),
       htmlspecialchars($okButtonLabel, ENT_QUOTES),
@@ -98,7 +117,8 @@ class MemberJournalLevelChangeWarning extends AbstractNode
       htmlspecialchars($activationNoEmailText, ENT_QUOTES),
       (int) $memberState,
       Member::STATE_ACTIVE,
-      Member::STATE_CANCELLED
+      Member::STATE_CANCELLED,
+      $unverifiedEmailAttrs
     );
 
     return $resultArray;

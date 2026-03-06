@@ -351,6 +351,12 @@
 			<trans-unit id="memberjournal.status_change.no_email.dialog.text" resname="memberjournal.status_change.no_email.dialog.text">
 				<source>No email address is set for this member. Automatic sending of access data is not possible. The member can only be informed manually. Do you want to continue?</source>
 			</trans-unit>
+			<trans-unit id="memberjournal.status_change.unverified_email.dialog.title" resname="memberjournal.status_change.unverified_email.dialog.title">
+				<source>Email address not verified!</source>
+			</trans-unit>
+			<trans-unit id="memberjournal.status_change.unverified_email.dialog.text" resname="memberjournal.status_change.unverified_email.dialog.text">
+				<source>The email address of this member has not been verified yet (Double-Opt-In missing). Activation is potentially not GDPR compliant. The member must be asked to verify their email address. No messages should be sent to this member otherwise. Do you want to continue with activation?</source>
+			</trans-unit>
 
 			<!-- Flash messages for member/journal validation -->
 			<trans-unit id="flash.validation_error.title" resname="flash.validation_error.title">
@@ -370,6 +376,9 @@
 			</trans-unit>
 			<trans-unit id="flash.activation_warning.no_email" resname="flash.activation_warning.no_email">
 				<source>No email address is set. Activation can continue, but automatic login communication is not possible.</source>
+			</trans-unit>
+			<trans-unit id="flash.activation_warning.unverified_email" resname="flash.activation_warning.unverified_email">
+				<source>The email address has not been verified (Double-Opt-In missing). Activation is potentially not GDPR compliant. The member should be asked to verify their email address.</source>
 			</trans-unit>
 			<trans-unit id="flash.past_effective_date.warning" resname="flash.past_effective_date.warning">
 				<source>The effective date is in the past. This change may affect billing/statistics and might require corrections.</source>

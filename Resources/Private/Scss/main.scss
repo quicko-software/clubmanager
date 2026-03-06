@@ -1,10 +1,11 @@
 // im .build ordner:
 // npm i
 // npm run watch
-$bootstrap-icons-font-file: "~bootstrap-icons/font/fonts/bootstrap-icons";
-@import "~bootstrap-icons/font/bootstrap-icons.scss";
-@import "content.scss";
-@import "blocked-content.scss";
+@use "bootstrap-icons/font/bootstrap-icons" with (
+  $bootstrap-icons-font-file: "bootstrap-icons/font/fonts/bootstrap-icons"
+);
+@use "content";
+@use "blocked-content";
 
 .social-media-bar {
 
