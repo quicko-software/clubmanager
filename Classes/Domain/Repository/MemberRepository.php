@@ -230,6 +230,7 @@ class MemberRepository extends Repository
     $query = $this->createQuery();
     $querySettings = $query->getQuerySettings();
     $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
     $constraints = [
       $query->equals('uid', $uid),
     ];

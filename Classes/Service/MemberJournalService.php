@@ -137,7 +137,11 @@ class MemberJournalService
       $member = $this->memberRepository->findByUidWithoutStoragePage($memberUid);
 
       if (!$member instanceof Member) {
-        // Member existiert nicht mehr, markiere trotzdem als verarbeitet
+        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+        $logger->warning('Member not found for journal entry, marking as processed', [
+          'entryUid' => $entry->getUid(),
+          'memberUid' => $memberUid,
+        ]);
         $entry->setProcessed($now);
         $this->journalRepository->update($entry);
         continue;
@@ -172,9 +176,7 @@ class MemberJournalService
       }
     }
 
-    if ($processedCount > 0) {
-      $this->persistenceManager->persistAll();
-    }
+    $this->persistenceManager->persistAll();
 
     return $processedCount;
   }

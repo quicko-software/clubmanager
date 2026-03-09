@@ -22,7 +22,10 @@ class MemberJournalEntryRepository extends Repository
   public function findPendingUntilDate(DateTime $date): iterable
   {
     $query = $this->createQuery();
-    $query->getQuerySettings()->setRespectStoragePage(false);
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
+    $query->setQuerySettings($querySettings);
 
     // Konvertiere DateTime zu Timestamp für den Vergleich
     $timestamp = $date->getTimestamp();
