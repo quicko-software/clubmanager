@@ -6,6 +6,7 @@ namespace Quicko\Clubmanager\Updates;
 
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
+use Quicko\Clubmanager\Utils\SettingUtils;
 use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Install\Attribute\UpgradeWizard;
@@ -83,16 +84,17 @@ final class CreateMissingCancelledJournalEntriesWizard implements UpgradeWizardI
 
     foreach ($members as $member) {
       $memberUid = (int) $member['uid'];
-      $pid = (int) $member['pid'];
+      $memberPid = (int) $member['pid'];
       $endtime = (int) $member['endtime'];
       $tstamp = (int) $member['tstamp'];
 
       $cancelDate = $endtime > 0 ? $endtime : $tstamp;
+      $journalPid = $this->resolveJournalStoragePid($memberPid);
 
       $journalConnection->insert(
         self::TABLE_JOURNAL,
         [
-          'pid' => $pid,
+          'pid' => $journalPid,
           'member' => $memberUid,
           'entry_type' => MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE,
           'entry_date' => $cancelDate,
@@ -134,6 +136,17 @@ final class CreateMissingCancelledJournalEntriesWizard implements UpgradeWizardI
    *
    * @return array<int, array<string, mixed>>
    */
+  private function resolveJournalStoragePid(int $memberPid): int
+  {
+    if ($memberPid <= 0) {
+      return 0;
+    }
+
+    $storagePid = (int) SettingUtils::getSiteSetting($memberPid, 'clubmanager.memberJournalStoragePid', 0);
+
+    return $storagePid > 0 ? $storagePid : $memberPid;
+  }
+
   private function findAffectedMembers(): array
   {
     $connection = $this->connectionPool->getConnectionForTable(self::TABLE_MEMBER);
