@@ -178,6 +178,16 @@ Step 5: Optional Repair Wizards for Existing Data
 For installations that were already running with Member Journal data, two
 additional repair wizards may be relevant.
 
+.. note::
+
+   The repair wizards are only shown if affected records are actually found
+   in the database.
+
+   If your installation does not contain deleted Member Journal entries that
+   need to be restored or cancelled members without the corresponding journal
+   entry, these wizards will not appear in the Upgrade Wizard. This is
+   expected behavior.
+
 In some cases, members already marked as ``cancelled`` did not receive the
 corresponding ``cancelled`` Member Journal entry. This affected historical data
 around cancellations effective on or after `31.12.2025`. The wizard
