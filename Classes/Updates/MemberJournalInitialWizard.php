@@ -5,6 +5,7 @@ namespace Quicko\Clubmanager\Updates;
 use DateTime;
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
+use Quicko\Clubmanager\Utils\SettingUtils;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\ChattyInterface;
@@ -95,7 +96,8 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
       $endtime = (int)$member['endtime'];
       $crdate = (int)$member['crdate'];
       $level = (int)$member['level'];
-      $pid = (int)$member['pid'];
+      $memberPid = (int)$member['pid'];
+      $journalPid = $this->resolveJournalStoragePid($memberPid);
 
       if ($state < Member::STATE_ACTIVE) {
         continue;
@@ -106,7 +108,7 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
       $journalConnection->insert(
         'tx_clubmanager_domain_model_memberjournalentry',
         [
-          'pid' => $pid,
+          'pid' => $journalPid,
           'member' => $memberUid,
           'entry_type' => MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE,
           'entry_date' => $activationDate,
@@ -126,7 +128,7 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
         $journalConnection->insert(
           'tx_clubmanager_domain_model_memberjournalentry',
           [
-            'pid' => $pid,
+            'pid' => $journalPid,
             'member' => $memberUid,
             'entry_type' => MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE,
             'entry_date' => time(),
@@ -149,7 +151,7 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
         $journalConnection->insert(
           'tx_clubmanager_domain_model_memberjournalentry',
           [
-            'pid' => $pid,
+            'pid' => $journalPid,
             'member' => $memberUid,
             'entry_type' => MemberJournalEntry::ENTRY_TYPE_STATUS_CHANGE,
             'entry_date' => $cancelDate,
@@ -181,6 +183,17 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
       DatabaseUpdatedPrerequisite::class,
       ReferenceIndexUpdatedPrerequisite::class,
     ];
+  }
+
+  private function resolveJournalStoragePid(int $memberPid): int
+  {
+    if ($memberPid <= 0) {
+      return 0;
+    }
+
+    $storagePid = (int) SettingUtils::getSiteSetting($memberPid, 'clubmanager.memberJournalStoragePid', 0);
+
+    return $storagePid > 0 ? $storagePid : $memberPid;
   }
 }
 
