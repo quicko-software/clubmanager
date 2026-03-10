@@ -168,8 +168,6 @@ class Member extends AbstractEntity
 
   /**
    * @var ObjectStorage<MemberJournalEntry>
-   *
-   * @Cascade("remove")
    */
   protected ObjectStorage $journalEntries;
 

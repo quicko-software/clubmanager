@@ -85,6 +85,9 @@ call_user_func(function () {
 
   PluginRegisterFacade::configureAllPlugins();
 
+  // JournalStoragePidHook: Overrides PID for new journal entries based on Site Setting memberJournalStoragePid
+  $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_journal_storage_pid_hook'] = Quicko\Clubmanager\Hooks\JournalStoragePidHook::class;
+
   // AutoFillJournalEntryFieldsHook: Füllt Felder wie old_level, entry_date, creator_type
   // WICHTIG: Muss VOR ValidateJournalEntryHook laufen, damit old_level für die Validierung verfügbar ist
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['clubmanager_autofill_journal_fields'] = Quicko\Clubmanager\Hooks\AutoFillJournalEntryFieldsHook::class;

@@ -141,7 +141,8 @@ folder as the corresponding member record.
 .. important::
 
    The storage page must be configured **before** executing the upgrade wizard.
-   Otherwise initial journal entries may be created in unintended locations.
+   Otherwise initial or repaired journal entries may be created in unintended
+   locations.
 
 
 Step 4: Run Upgrade Wizard
@@ -162,8 +163,44 @@ The wizard should only be executed once.
    See :ref:`Member Journal processing task <schedulerMemberJournalProcessTask>`
    for setup details and execution behavior.
 
+.. important::
 
-Step 5: Database Compare
+   Member Journal entries now remain available even if the related member
+   record is deleted.
+   This is intentional: personal member data can still be removed where
+   required, while the journal history remains available for historical and
+   anonymous statistical evaluation.
+   See also :ref:`Clubmanager Statistics <clubmanagerStatistics>`.
+
+Step 5: Optional Repair Wizards for Existing Data
+-------------------------------------------------
+
+For installations that were already running with Member Journal data, two
+additional repair wizards may be relevant.
+
+In some cases, members already marked as ``cancelled`` did not receive the
+corresponding ``cancelled`` Member Journal entry. This affected historical data
+around cancellations effective on or after `31.12.2025`. The wizard
+**Clubmanager: Fehlende Kündigungs-Journal-Einträge nachlegen** repairs such
+cases by creating the missing journal entries.
+
+In other cases, deleting a member also removed related Member Journal entries.
+The wizard **Clubmanager: Fälschlich gelöschte Journal-Einträge
+wiederherstellen** restores these incorrectly deleted journal records.
+
+If both repair wizards are offered in your system, run them in this order:
+
+#. **Clubmanager: Fälschlich gelöschte Journal-Einträge wiederherstellen**
+#. **Clubmanager: Fehlende Kündigungs-Journal-Einträge nachlegen**
+
+.. important::
+
+   Create a database backup before running the repair wizards.
+   They are intended for existing installations where historical journal data
+   may already be incomplete.
+
+
+Step 6: Database Compare
 ------------------------
 
 After the wizard has completed successfully, you may run "Analyze Database" and "Database Compare".

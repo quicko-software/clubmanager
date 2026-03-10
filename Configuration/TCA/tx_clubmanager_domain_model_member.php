@@ -553,6 +553,9 @@ return [
                 'foreign_default_sortby' => 'entry_date DESC',
                 'minitems' => 0,
                 'maxitems' => 9999,
+                'behaviour' => [
+                    'enableCascadingDelete' => false,
+                ],
                 'appearance' => [
                     'showSynchronizationLink' => 1,
                 ],
