@@ -40,6 +40,14 @@ Processing modes:
 * Scheduled processing via the command
   ``clubmanager:journal:process`` if the effective date lies in the future.
 
+.. important::
+
+   Member Journal entries are intended to preserve the historical membership
+   timeline, even if a related member record is deleted later on.
+   This allows personal member data to be removed where required, while
+   anonymous historical developments can still be evaluated statistically.
+   See also :ref:`Clubmanager Statistics <clubmanagerStatistics>`.
+
 
 .. _member_journal_member_fields:
 
