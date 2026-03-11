@@ -51,6 +51,9 @@ Cookieman: Enable Site Set
 
    Static TypoScript templates are no longer used. Configure values via site
    settings.
+   The Clubmanager base set also disables Bootstrap Package cookie consent by
+   default via `page.theme.cookieconsent.enable = false`, so `ext:cookieman`
+   can be used without the Bootstrap consent banner running in parallel.
 
 .. _configCookiemanSiteSettings:
 
@@ -68,6 +71,10 @@ Set cookieman-related values in:
    clubmanagerCookieman.links.imprintPid: 11
 
 See also :ref:`Site sets reference <siteSetsConfiguration>`.
+
+If a project wants to use the Bootstrap Package cookie consent feature instead
+of `ext:cookieman`, it can override `page.theme.cookieconsent.enable` in its
+site settings.
 
 
 .. _configCookiemanTyposcript:
@@ -121,8 +128,16 @@ own sitepackage to your needs.
    prefer `clubmanagerCookieman.links.dataProtectionDeclarationPid` and
    `clubmanagerCookieman.links.imprintPid` in site settings.
 
+   The Clubmanager Cookieman constants also set
+   `page.theme.cookieconsent.enable = 0` by default. This disables the
+   Bootstrap Package cookie consent feature when `ext:cookieman` is used and
+   prevents both consent solutions from running in parallel. Projects can still
+   override this explicitly if needed.
+
    .. code-block:: typoscript
       :caption: TypoScript constants
+
+      page.theme.cookieconsent.enable = 0
 
       plugin.tx_cookieman {
          settings {
