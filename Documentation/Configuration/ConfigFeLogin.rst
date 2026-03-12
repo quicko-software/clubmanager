@@ -118,6 +118,10 @@ Important global configuration
       clubmanagerLogin.storagePid: 123
       clubmanagerLogin.loginFormPid: 45
       clubmanagerLogin.memberProfilePage: 67
+      clubmanagerLogin.emailFrom: 'demo@clubmanager.software'
+      clubmanagerLogin.emailFromName: 'Clubmanager Demo'
+      clubmanagerLogin.replyToEmail: 'post@quicko.software'
+      clubmanagerLogin.redirectPageLogout: 10
 
 #. Go to :guilabel:`Admin Tools > Settings > Extension Configuration`.
 
@@ -128,8 +132,14 @@ Important global configuration
    fe_user assignment).
 
 #. Optional fallback values (used if matching site settings are `0`):
-   :guilabel:`feUsersStoragePid`, :guilabel:`feUsersLoginPid`,
-   :guilabel:`defaultTargetLogoutPage`.
+   :guilabel:`feUsersStoragePid`, :guilabel:`feUsersLoginPid`.
+
+#. Configure frontend login mail values and the logout target page via site
+   settings:
+   :code:`clubmanagerLogin.emailFrom`,
+   :code:`clubmanagerLogin.emailFromName`,
+   :code:`clubmanagerLogin.replyToEmail`,
+   :code:`clubmanagerLogin.redirectPageLogout`.
 
 #. In case you want to change it, set the lifetime of password recovery links
    in hours: :guilabel:`passwordRecoveryLifeTime`.
@@ -148,7 +158,8 @@ Felogin TypoScript
 ==================
 
 TypoScript is optional and mainly relevant as legacy fallback / targeted
-override in your own sitepackage.
+override in your own sitepackage. Site settings are the preferred place for
+login page, mail sender and logout target configuration.
 
 
 .. _configFeloginTyposcriptSetup:
@@ -194,7 +205,7 @@ them in your own sitepackage to your needs.
 .. important::
 
    You can still use the following constants in legacy projects. Prefer site
-   settings for the documented login page and storage page UIDs.
+   settings for login page, mail sender and logout target configuration.
 
    .. code-block:: typoscript
       :caption: TypoScript constants

@@ -52,6 +52,18 @@ Base set `quicko/clubmanager`
    Page/folder where new member journal entries are stored.
    If set to `0`, entries are stored in the same folder as the member record.
 
+.. confval:: page.theme.cookieconsent.enable
+
+   :type: bool
+   :Default: false
+   :Path: settings.yaml
+
+   The Clubmanager base set disables the Bootstrap Package cookie consent
+   feature by default.
+   This avoids conflicts when `quicko/clubmanager-cookieman` or `ext:cookieman`
+   is used for consent handling.
+   Existing project site settings can still override this value explicitly.
+
 Login set `quicko/clubmanager-login`
 ====================================
 
@@ -62,6 +74,10 @@ Use this set if you use frontend login features.
    clubmanagerLogin.storagePid: 123
    clubmanagerLogin.loginFormPid: 45
    clubmanagerLogin.memberProfilePage: 67
+   clubmanagerLogin.emailFrom: 'demo@clubmanager.software'
+   clubmanagerLogin.emailFromName: 'Clubmanager Demo'
+   clubmanagerLogin.replyToEmail: 'post@quicko.software'
+   clubmanagerLogin.redirectPageLogout: 10
    clubmanagerLogin.label.login: 'Login'
    clubmanagerLogin.label.profile: 'Profil'
    clubmanagerLogin.label.logout: 'Logout'
@@ -78,6 +94,12 @@ Use this set if you integrate `ext:cookieman`.
    clubmanagerCookieman.links.dataProtectionDeclarationPid: 10
    clubmanagerCookieman.links.imprintPid: 11
 
+The base set already keeps `page.theme.cookieconsent.enable = false` by
+default, so Bootstrap Package cookie consent stays disabled unless a project
+explicitly enables it again.
+The legacy TypoScript constants imported by the Cookieman set also enforce
+`page.theme.cookieconsent.enable = 0` for the same reason.
+
 Fallback behavior (legacy)
 ==========================
 
@@ -89,7 +111,5 @@ values are still used as fallback in these cases:
   `plugin.tx_clubmanager.settings.feUsersStoragePid`
 * `clubmanagerLogin.loginFormPid = 0` falls back to
   `plugin.tx_clubmanager.settings.feUsersLoginPid`
-* `styles.content.loginform.redirectPageLogout = 0` falls back to
-  `plugin.tx_clubmanager.settings.defaultTargetLogoutPage`
 * `clubmanagerCookieman.links.* = 0` keeps existing values from your legacy
   cookieman TypoScript/constants configuration

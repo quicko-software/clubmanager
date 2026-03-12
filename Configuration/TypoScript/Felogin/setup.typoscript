@@ -8,7 +8,7 @@ plugin.tx_felogin_login {
         pages = {$clubmanagerLogin.storagePid}
     }
 }
-[{$clubmanagerLogin.storagePid} == 0]
+[siteSetting("clubmanagerLogin.storagePid", 0) == 0]
 plugin.tx_felogin_login.settings.pages = {$plugin.tx_clubmanager.settings.feUsersStoragePid}
 [END]
 
@@ -28,12 +28,12 @@ lib.login {
         }
     }
 }
-[{$clubmanagerLogin.loginFormPid} == 0]
+[siteSetting("clubmanagerLogin.loginFormPid", 0) == 0]
 lib.login.10.typolink.parameter = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
 [END]
 
 // SHOW MODAL ON PAGE LOGIN ON LOAD
-[page["uid"] == {$clubmanagerLogin.loginFormPid}]
+[siteSetting("clubmanagerLogin.loginFormPid", 0) > 0 && page["uid"] == siteSetting("clubmanagerLogin.loginFormPid", 0)]
     lib.login >
     lib.login = USER
     lib.login {
@@ -52,7 +52,7 @@ lib.login.10.typolink.parameter = {$plugin.tx_clubmanager.settings.feUsersLoginP
         }
     }
 [END]
-[{$clubmanagerLogin.loginFormPid} == 0 && page["uid"] == {$plugin.tx_clubmanager.settings.feUsersLoginPid}]
+[siteSetting("clubmanagerLogin.loginFormPid", 0) == 0 && page["uid"] == {$plugin.tx_clubmanager.settings.feUsersLoginPid}]
     lib.login >
     lib.login = USER
     lib.login {
@@ -193,6 +193,6 @@ Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s.
         forgot_password = forgot your password?
     }
 }
-[{$clubmanagerLogin.loginFormPid} == 0]
+[siteSetting("clubmanagerLogin.loginFormPid", 0) == 0]
 plugin.tx_felogin_login._LOCAL_LANG.de.loginFormPid = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
 [END]

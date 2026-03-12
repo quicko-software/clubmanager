@@ -6,6 +6,7 @@ use DateTime;
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
 use Quicko\Clubmanager\Utils\SettingUtils;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\ChattyInterface;
@@ -43,7 +44,7 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
     $connection = GeneralUtility::makeInstance(ConnectionPool::class)
       ->getConnectionForTable('tx_clubmanager_domain_model_member');
 
-    // Prüfe ob es Members ohne Journal-Einträge gibt
+    // Prüfe ob es Members ohne verarbeiteten Aktivierungs-Journal-Eintrag gibt
     $sql = "
       SELECT COUNT(*) 
       FROM tx_clubmanager_domain_model_member m
@@ -54,6 +55,10 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
           FROM tx_clubmanager_domain_model_memberjournalentry j
           WHERE j.member = m.uid 
             AND j.deleted = 0
+            AND j.entry_type = 'status_change'
+            AND j.target_state = 2
+            AND j.processed IS NOT NULL
+            AND j.effective_date > 0
         )
     ";
 
@@ -67,7 +72,7 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
     $connection = GeneralUtility::makeInstance(ConnectionPool::class)
       ->getConnectionForTable('tx_clubmanager_domain_model_member');
 
-    // Hole Members OHNE Journal-Einträge
+    // Hole Members OHNE verarbeiteten Aktivierungs-Journal-Eintrag
     $sql = "
       SELECT m.uid, m.pid, m.state, m.starttime, m.endtime, m.crdate, m.level
       FROM tx_clubmanager_domain_model_member m
@@ -76,7 +81,12 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
         AND NOT EXISTS (
           SELECT 1 
           FROM tx_clubmanager_domain_model_memberjournalentry j
-          WHERE j.member = m.uid AND j.deleted = 0
+          WHERE j.member = m.uid
+            AND j.deleted = 0
+            AND j.entry_type = 'status_change'
+            AND j.target_state = 2
+            AND j.processed IS NOT NULL
+            AND j.effective_date > 0
         )
     ";
 
@@ -123,8 +133,8 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
       );
       $createdCount++;
 
-      // Für SUSPENDED: Zusätzlicher Eintrag
-      if ($state === Member::STATE_SUSPENDED) {
+      // Für SUSPENDED: Zusätzlicher Eintrag (nur wenn noch keiner existiert)
+      if ($state === Member::STATE_SUSPENDED && !$this->hasProcessedStatusChangeEntry($journalConnection, $memberUid, Member::STATE_SUSPENDED)) {
         $journalConnection->insert(
           'tx_clubmanager_domain_model_memberjournalentry',
           [
@@ -144,8 +154,8 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
         $createdCount++;
       }
 
-      // Für CANCELLED: Zusätzlicher Eintrag
-      if ($state === Member::STATE_CANCELLED) {
+      // Für CANCELLED: Zusätzlicher Eintrag (nur wenn noch keiner existiert)
+      if ($state === Member::STATE_CANCELLED && !$this->hasProcessedStatusChangeEntry($journalConnection, $memberUid, Member::STATE_CANCELLED)) {
         $cancelDate = $endtime > 0 ? $endtime : time();
 
         $journalConnection->insert(
@@ -183,6 +193,18 @@ class MemberJournalInitialWizard implements UpgradeWizardInterface, ChattyInterf
       DatabaseUpdatedPrerequisite::class,
       ReferenceIndexUpdatedPrerequisite::class,
     ];
+  }
+
+  private function hasProcessedStatusChangeEntry(Connection $connection, int $memberUid, int $targetState): bool
+  {
+    $result = $connection->executeQuery(
+      "SELECT COUNT(*) FROM tx_clubmanager_domain_model_memberjournalentry
+       WHERE member = ? AND deleted = 0 AND entry_type = 'status_change'
+         AND target_state = ? AND processed IS NOT NULL AND effective_date > 0",
+      [$memberUid, $targetState]
+    );
+
+    return (int) $result->fetchOne() > 0;
   }
 
   private function resolveJournalStoragePid(int $memberPid): int

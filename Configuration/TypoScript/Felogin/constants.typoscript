@@ -1,7 +1,1 @@
 @import 'EXT:felogin/Configuration/TypoScript/constants.typoscript'
-
-# Backward compatibility for existing login TypoScript usage.
-styles.content.loginform.redirectPageLogout = {$felogin.redirectPageLogout}
-[{$styles.content.loginform.redirectPageLogout} == 0]
-styles.content.loginform.redirectPageLogout = {$plugin.tx_clubmanager.settings.defaultTargetLogoutPage}
-[END]

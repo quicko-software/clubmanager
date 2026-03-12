@@ -1,1 +1,11 @@
 @import 'EXT:clubmanager/Configuration/TypoScript/Felogin/constants.typoscript'
+
+styles.content.loginform {
+    emailFrom = {$clubmanagerLogin.emailFrom}
+    email_from = {$clubmanagerLogin.emailFrom}
+    emailFromName = {$clubmanagerLogin.emailFromName}
+    email_fromName = {$clubmanagerLogin.emailFromName}
+    replyToEmail = {$clubmanagerLogin.replyToEmail}
+    replyTo = {$clubmanagerLogin.replyToEmail}
+    redirectPageLogout = {$clubmanagerLogin.redirectPageLogout}
+}
