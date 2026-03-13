@@ -44,8 +44,16 @@ class ProcessJournalEntriesCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $dryRun = $input->getOption('dry-run');
+        $verbose = $output->isVerbose();
 
         $io->title('Journal-Einträge verarbeiten');
+
+        if ($verbose) {
+            $io->text([
+                sprintf('EXEC_TIME:       %s (%d)', date('Y-m-d H:i:s', (int) ($GLOBALS['EXEC_TIME'] ?? 0)), (int) ($GLOBALS['EXEC_TIME'] ?? 0)),
+                sprintf('SIM_ACCESS_TIME: %s (%d)', date('Y-m-d H:i:s', (int) ($GLOBALS['SIM_ACCESS_TIME'] ?? 0)), (int) ($GLOBALS['SIM_ACCESS_TIME'] ?? 0)),
+            ]);
+        }
 
         if ($dryRun) {
             $io->note('DRY-RUN Modus - Keine Änderungen werden gespeichert');
@@ -55,8 +63,18 @@ class ProcessJournalEntriesCommand extends Command
             $now = new \DateTime('now');
             $pendingEntries = $this->journalRepository->findPendingUntilDate($now);
             $pendingCount = 0;
+
+            $rows = [];
             foreach ($pendingEntries as $entry) {
                 $pendingCount++;
+                if ($verbose) {
+                    $rows[] = [
+                        $entry->getUid(),
+                        $entry->getMember(),
+                        $entry->getEntryType(),
+                        $entry->getEffectiveDate()?->format('Y-m-d H:i:s') ?? '-',
+                    ];
+                }
             }
 
             if ($pendingCount === 0) {
@@ -66,24 +84,29 @@ class ProcessJournalEntriesCommand extends Command
 
             $io->text(sprintf('Gefundene fällige Einträge: %d', $pendingCount));
 
+            if ($verbose && $rows !== []) {
+                $io->table(['Entry UID', 'Member UID', 'Typ', 'Effective Date'], $rows);
+            }
+
             if ($dryRun) {
                 $io->success(sprintf('%d Einträge würden verarbeitet werden.', $pendingCount));
                 return Command::SUCCESS;
             }
 
-            // Verarbeite die Einträge
             $processedCount = $this->journalService->processPendingEntries($now);
 
-            $io->success(sprintf('Erfolgreich %d Journal-Einträge verarbeitet.', $processedCount));
+            $io->success(sprintf('Erfolgreich %d von %d Journal-Einträgen verarbeitet.', $processedCount, $pendingCount));
             return Command::SUCCESS;
 
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $io->error([
                 'Fehler beim Verarbeiten der Journal-Einträge:',
-                $e->getMessage(),
+                sprintf('[%s] %s', get_class($e), $e->getMessage()),
+                '',
+                sprintf('EXEC_TIME: %d, SIM_ACCESS_TIME: %d', (int) ($GLOBALS['EXEC_TIME'] ?? 0), (int) ($GLOBALS['SIM_ACCESS_TIME'] ?? 0)),
                 '',
                 'Stack Trace:',
-                $e->getTraceAsString()
+                $e->getTraceAsString(),
             ]);
             return Command::FAILURE;
         }

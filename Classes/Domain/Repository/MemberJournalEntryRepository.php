@@ -97,8 +97,18 @@ class MemberJournalEntryRepository extends Repository
   public function findAllForMember(int $memberUid): iterable
   {
     $query = $this->createQuery();
-    $query->getQuerySettings()->setRespectStoragePage(false);
-    $query->matching($query->equals('member', $memberUid));
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
+    $query->setQuerySettings($querySettings);
+
+    $query->matching(
+      $query->logicalAnd(
+        $query->equals('member', $memberUid),
+        $query->equals('deleted', 0),
+        $query->equals('hidden', 0)
+      )
+    );
     $query->setOrderings(['entryDate' => QueryInterface::ORDER_DESCENDING]);
 
     return $query->execute();
@@ -112,7 +122,11 @@ class MemberJournalEntryRepository extends Repository
   public function findPendingCancellationRequest(int $memberUid): ?object
   {
     $query = $this->createQuery();
-    $query->getQuerySettings()->setRespectStoragePage(false);
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
+    $query->setQuerySettings($querySettings);
+
     $query->matching(
       $query->logicalAnd(
         $query->equals('member', $memberUid),
@@ -135,7 +149,11 @@ class MemberJournalEntryRepository extends Repository
   public function findPendingCancellationStatusChange(int $memberUid): ?object
   {
     $query = $this->createQuery();
-    $query->getQuerySettings()->setRespectStoragePage(false);
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
+    $query->setQuerySettings($querySettings);
+
     $query->matching(
       $query->logicalAnd(
         $query->equals('member', $memberUid),
@@ -159,7 +177,11 @@ class MemberJournalEntryRepository extends Repository
   public function findLastProcessedEntry(int $memberUid, string $entryType): ?object
   {
     $query = $this->createQuery();
-    $query->getQuerySettings()->setRespectStoragePage(false);
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
+    $query->setQuerySettings($querySettings);
+
     $query->matching(
       $query->logicalAnd(
         $query->equals('member', $memberUid),
@@ -189,7 +211,11 @@ class MemberJournalEntryRepository extends Repository
   public function findLastProcessedStatusEntryForStateProjection(int $memberUid): ?object
   {
     $query = $this->createQuery();
-    $query->getQuerySettings()->setRespectStoragePage(false);
+    $querySettings = $query->getQuerySettings();
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setIgnoreEnableFields(true);
+    $query->setQuerySettings($querySettings);
+
     $query->matching(
       $query->logicalAnd(
         $query->equals('member', $memberUid),
