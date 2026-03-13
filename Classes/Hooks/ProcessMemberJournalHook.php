@@ -4,11 +4,8 @@ namespace Quicko\Clubmanager\Hooks;
 
 use Exception;
 use InvalidArgumentException;
-use Psr\EventDispatcher\EventDispatcherInterface;
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
-use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
-use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Service\MemberJournalProjectionService;
 use Quicko\Clubmanager\Service\MemberJournalService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
@@ -21,7 +18,6 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class ProcessMemberJournalHook
@@ -356,18 +352,7 @@ class ProcessMemberJournalHook
   protected function processMemberSave(int $memberUid, bool $autoResolveCancellation = false): void
   {
     try {
-      $journalRepository = GeneralUtility::makeInstance(MemberJournalEntryRepository::class);
-      $memberRepository = GeneralUtility::makeInstance(MemberRepository::class);
-      $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
-      $eventDispatcher = GeneralUtility::makeInstance(EventDispatcherInterface::class);
-
-      $journalService = GeneralUtility::makeInstance(
-        MemberJournalService::class,
-        $journalRepository,
-        $memberRepository,
-        $persistenceManager,
-        $eventDispatcher
-      );
+      $journalService = GeneralUtility::makeInstance(MemberJournalService::class);
 
       if ($autoResolveCancellation) {
         $journalService->resolvePendingCancellationForMember(
@@ -387,20 +372,10 @@ class ProcessMemberJournalHook
       }
 
       // 2. Prüfe Konsistenz zwischen Member und Journal-Historie
-      $corrected = $this->ensureMemberConsistencyWithJournal(
-        $memberUid,
-        $journalRepository,
-        $memberRepository,
-        $persistenceManager
-      );
+      $corrected = $this->ensureMemberConsistencyWithJournal($memberUid);
 
       // 3. Endtime bei geplanter Kündigung sofort setzen
-      $this->applyPendingCancellationEndtime(
-        $memberUid,
-        $journalRepository,
-        $memberRepository,
-        $persistenceManager
-      );
+      $this->applyPendingCancellationEndtime($memberUid);
 
       // CR6: Bei Aktivierung ohne E-Mail eine Warning-Flashmessage anzeigen.
       // #6125: Bei Aktivierung mit nicht-verifizierter E-Mail warnen (DSGVO).
@@ -439,23 +414,15 @@ class ProcessMemberJournalHook
    * Stellt sicher, dass der Member-Zustand mit der Journal-Historie übereinstimmt
    * Korrigiert automatisch wenn nötig (z.B. nach Löschen von Journal-Einträgen).
    */
-  protected function ensureMemberConsistencyWithJournal(
-    int $memberUid,
-    MemberJournalEntryRepository $journalRepository,
-    MemberRepository $memberRepository,
-    PersistenceManager $persistenceManager,
-  ): bool {
+  protected function ensureMemberConsistencyWithJournal(int $memberUid): bool
+  {
     $projectionService = GeneralUtility::makeInstance(MemberJournalProjectionService::class);
 
     return $projectionService->projectMemberConsistency($memberUid);
   }
 
-  private function applyPendingCancellationEndtime(
-    int $memberUid,
-    MemberJournalEntryRepository $journalRepository,
-    MemberRepository $memberRepository,
-    PersistenceManager $persistenceManager,
-  ): void {
+  private function applyPendingCancellationEndtime(int $memberUid): void
+  {
     $projectionService = GeneralUtility::makeInstance(MemberJournalProjectionService::class);
     $projectionService->applyPendingFutureCancellationEndtime($memberUid);
   }
