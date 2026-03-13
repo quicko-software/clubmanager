@@ -7,6 +7,9 @@ services:
   Quicko\Clubmanager\:
     resource: "../Classes/*"
 
+  Quicko\Clubmanager\Service\MemberJournalService:
+    public: true
+
   Quicko\Clubmanager\Utils\UniversalTypoScriptService:
     public: true
 
