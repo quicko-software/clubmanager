@@ -5,6 +5,7 @@ namespace Quicko\Clubmanager\Service;
 use DateTime;
 use InvalidArgumentException;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Log\LoggerInterface;
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
@@ -12,7 +13,6 @@ use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Event\MemberStateChangedEvent;
 use Quicko\Clubmanager\Utils\SettingUtils;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
@@ -25,6 +25,7 @@ class MemberJournalService
     protected MemberRepository $memberRepository,
     protected PersistenceManager $persistenceManager,
     protected EventDispatcherInterface $eventDispatcher,
+    protected LoggerInterface $logger,
   ) {
   }
 
@@ -126,21 +127,31 @@ class MemberJournalService
   public function processPendingEntries(?DateTime $referenceDate = null): int
   {
     $refDate = $referenceDate ?? new DateTime('now');
+
+    $this->logger->info('Processing pending journal entries', [
+      'referenceDate' => $refDate->format('Y-m-d H:i:s'),
+      'simAccessTime' => $GLOBALS['SIM_ACCESS_TIME'] ?? 'N/A',
+      'execTime' => $GLOBALS['EXEC_TIME'] ?? 'N/A',
+    ]);
+
     $pendingEntries = $this->journalRepository->findPendingUntilDate($refDate);
 
     $processedCount = 0;
+    $foundCount = 0;
     $now = new DateTime();
 
     foreach ($pendingEntries as $entry) {
+      ++$foundCount;
       $memberUid = $entry->getMember();
-      // Lade Member-Objekt
       $member = $this->memberRepository->findByUidWithoutStoragePage($memberUid);
 
       if (!$member instanceof Member) {
-        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
-        $logger->warning('Member not found for journal entry, marking as processed', [
+        $this->logger->warning('Member not found for journal entry, marking as processed', [
           'entryUid' => $entry->getUid(),
           'memberUid' => $memberUid,
+          'effectiveDate' => $entry->getEffectiveDate()?->format('Y-m-d H:i:s'),
+          'entryType' => $entry->getEntryType(),
+          'simAccessTime' => $GLOBALS['SIM_ACCESS_TIME'] ?? 'N/A',
         ]);
         $entry->setProcessed($now);
         $this->journalRepository->update($entry);
@@ -161,22 +172,35 @@ class MemberJournalService
         $this->memberRepository->update($member);
         ++$processedCount;
 
-        $this->fireMemberChangedEvents($member, $oldState);
-      } catch (InvalidArgumentException $e) {
-        // Log error but continue with next entry
-        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
-        $logger->error('Skipping invalid journal entry', [
+        $this->logger->debug('Journal entry processed', [
           'entryUid' => $entry->getUid(),
           'memberUid' => $memberUid,
+          'entryType' => $entry->getEntryType(),
+          'oldState' => $oldState,
+          'newState' => $member->getState(),
+          'effectiveDate' => $entry->getEffectiveDate()?->format('Y-m-d H:i:s'),
+        ]);
+
+        $this->fireMemberChangedEvents($member, $oldState);
+      } catch (InvalidArgumentException $e) {
+        $this->logger->error('Skipping invalid journal entry', [
+          'entryUid' => $entry->getUid(),
+          'memberUid' => $memberUid,
+          'entryType' => $entry->getEntryType(),
           'error' => $e->getMessage(),
         ]);
-        // Mark as processed to prevent retry loop
         $entry->setProcessed($now);
         $this->journalRepository->update($entry);
       }
     }
 
     $this->persistenceManager->persistAll();
+
+    $this->logger->info('Journal processing completed', [
+      'foundEntries' => $foundCount,
+      'processedEntries' => $processedCount,
+      'skippedEntries' => $foundCount - $processedCount,
+    ]);
 
     return $processedCount;
   }
@@ -263,9 +287,7 @@ class MemberJournalService
           $this->fireMemberChangedEvents($member, $oldState);
         }
       } catch (InvalidArgumentException $e) {
-        // Log error and mark as processed with error note
-        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
-        $logger->error('Skipping invalid journal entry for member', [
+        $this->logger->error('Skipping invalid journal entry for member', [
           'entryUid' => $entry->getUid(),
           'memberUid' => $memberUid,
           'error' => $e->getMessage(),

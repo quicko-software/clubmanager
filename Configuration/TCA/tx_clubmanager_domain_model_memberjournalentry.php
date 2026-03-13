@@ -156,7 +156,7 @@ return [
       'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.effective_date',
       'config' => [
         'type' => 'datetime',
-        'format' => 'date',
+        'format' => 'datetime',
         'default' => 0,
       ],
     ],
