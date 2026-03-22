@@ -9,6 +9,9 @@ services:
 
   Quicko\Clubmanager\Service\MemberJournalService:
     public: true
+  
+  Quicko\Clubmanager\Service\MemberJournalProjectionService:
+    public: true
 
   Quicko\Clubmanager\Utils\UniversalTypoScriptService:
     public: true

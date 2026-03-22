@@ -2,14 +2,23 @@
 
 namespace Quicko\Clubmanager\Service;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
+use Quicko\Clubmanager\Event\MemberStateChangedEvent;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class MemberJournalProjectionService
 {
+  protected EventDispatcherInterface $eventDispatcher;
+
+  public function injectEventDispatcher(EventDispatcherInterface $eventDispatcher): void
+  {
+    $this->eventDispatcher = $eventDispatcher;
+  }
+
   public function projectMemberConsistency(int $memberUid): bool
   {
     if ($memberUid <= 0) {
@@ -58,6 +67,12 @@ class MemberJournalProjectionService
 
     if ($updates === []) {
       return false;
+    }
+
+    // Event muss ausgelöst werden, bevor der Member-Datensatz geändert wurde, da die Newsletter-Extension
+    // denn alten Status aus der Datenbank abfragt.
+    if (($newState = $updates['state'] ?? false) && $memberRecord['state'] !== $newState) {
+      $this->fireMemberStateChangedEvent($memberRecord['uid'], $memberRecord['state'], $newState);
     }
 
     $updates['tstamp'] = time();
@@ -221,7 +236,12 @@ class MemberJournalProjectionService
   {
     $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
     $queryBuilder->getRestrictions()->removeAll();
+
     return $queryBuilder;
   }
-}
 
+  protected function fireMemberStateChangedEvent(int $memberUid, int $oldState, int $newState): void
+  {
+    $this->eventDispatcher->dispatch(new MemberStateChangedEvent($memberUid, $oldState, $newState));
+  }
+}
