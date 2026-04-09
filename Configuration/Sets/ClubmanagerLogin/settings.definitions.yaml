@@ -21,6 +21,30 @@ settings:
     category: clubmanagerLogin
     type: int
     default: 0
+  clubmanagerLogin.emailFrom:
+    label: 'Email From'
+    description: 'Default sender email for frontend login mails.'
+    category: clubmanagerLogin
+    type: string
+    default: 'demo@clubmanager.software'
+  clubmanagerLogin.emailFromName:
+    label: 'Email From Name'
+    description: 'Default sender name for frontend login mails.'
+    category: clubmanagerLogin
+    type: string
+    default: 'Clubmanager Demo'
+  clubmanagerLogin.replyToEmail:
+    label: 'Reply-To Email'
+    description: 'Default reply-to address for frontend login mails.'
+    category: clubmanagerLogin
+    type: string
+    default: 'post@quicko.software'
+  clubmanagerLogin.redirectPageLogout:
+    label: 'Logout Target PID'
+    description: 'Target page for the logout link.'
+    category: clubmanagerLogin
+    type: int
+    default: 10
   clubmanagerLogin.label.login:
     label: 'Login Label'
     category: clubmanagerLogin

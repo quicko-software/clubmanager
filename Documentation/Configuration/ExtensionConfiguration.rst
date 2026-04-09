@@ -153,7 +153,8 @@ UID of the default target page after logout `defaultTargetLogoutPage`
    :Default: 0
 
    Define the default target page after logout from frontend login.
-   Used as fallback when `styles.content.loginform.redirectPageLogout` is `0`.
+   This value can be used by project-specific configuration, but there is no
+   automatic TypoScript fallback to `styles.content.loginform.redirectPageLogout`.
 
 .. _extensionConfigurationLifetimePwRecoveryLink:
 
