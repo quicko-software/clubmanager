@@ -8,7 +8,7 @@ plugin.tx_felogin_login {
         pages = {$clubmanagerLogin.storagePid}
     }
 }
-[siteSetting("clubmanagerLogin.storagePid", 0) == 0]
+[traverse(site("configuration"), "settings/clubmanagerLogin/storagePid") in ["", "0", 0]]
 plugin.tx_felogin_login.settings.pages = {$plugin.tx_clubmanager.settings.feUsersStoragePid}
 [END]
 
@@ -28,12 +28,12 @@ lib.login {
         }
     }
 }
-[siteSetting("clubmanagerLogin.loginFormPid", 0) == 0]
+[traverse(site("configuration"), "settings/clubmanagerLogin/loginFormPid") in ["", "0", 0]]
 lib.login.10.typolink.parameter = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
 [END]
 
 // SHOW MODAL ON PAGE LOGIN ON LOAD
-[siteSetting("clubmanagerLogin.loginFormPid", 0) > 0 && page["uid"] == siteSetting("clubmanagerLogin.loginFormPid", 0)]
+[traverse(site("configuration"), "settings/clubmanagerLogin/loginFormPid") not in ["", "0", 0] && traverse(page, "uid") == traverse(site("configuration"), "settings/clubmanagerLogin/loginFormPid")]
     lib.login >
     lib.login = USER
     lib.login {
@@ -52,7 +52,7 @@ lib.login.10.typolink.parameter = {$plugin.tx_clubmanager.settings.feUsersLoginP
         }
     }
 [END]
-[siteSetting("clubmanagerLogin.loginFormPid", 0) == 0 && page["uid"] == {$plugin.tx_clubmanager.settings.feUsersLoginPid}]
+[traverse(site("configuration"), "settings/clubmanagerLogin/loginFormPid") in ["", "0", 0] && traverse(page, "uid") == {$plugin.tx_clubmanager.settings.feUsersLoginPid}]
     lib.login >
     lib.login = USER
     lib.login {
@@ -105,7 +105,7 @@ lib.login.10.typolink.parameter = {$plugin.tx_clubmanager.settings.feUsersLoginP
             }
         }
     }
-[end]
+[END]
 
 // CHANGE LOCALIZATION TO YOUR NEEDS
 plugin.tx_felogin_login {
@@ -193,6 +193,6 @@ Aus Sicherheitsgründen ist dieser Link nur bis zum folgenden Datum gültig: %s.
         forgot_password = forgot your password?
     }
 }
-[siteSetting("clubmanagerLogin.loginFormPid", 0) == 0]
+[traverse(site("configuration"), "settings/clubmanagerLogin/loginFormPid") in ["", "0", 0]]
 plugin.tx_felogin_login._LOCAL_LANG.de.loginFormPid = {$plugin.tx_clubmanager.settings.feUsersLoginPid}
 [END]
