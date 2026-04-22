@@ -5,10 +5,10 @@ plugin.tx_clubmanager.settings.contentBlockerMode = cookieman
 
 # Set link targets from site settings only when explicitly configured (> 0).
 # If 0, keep existing values from legacy constants/integrator configuration.
-[siteSetting("clubmanagerCookieman.links.dataProtectionDeclarationPid", 0) > 0]
+[traverse(site("configuration"), "settings/clubmanagerCookieman/links/dataProtectionDeclarationPid") not in ["", "0", 0]]
 plugin.tx_cookieman.settings.links.dataProtectionDeclarationPid = {$clubmanagerCookieman.links.dataProtectionDeclarationPid}
 [END]
-[siteSetting("clubmanagerCookieman.links.imprintPid", 0) > 0]
+[traverse(site("configuration"), "settings/clubmanagerCookieman/links/imprintPid") not in ["", "0", 0]]
 plugin.tx_cookieman.settings.links.imprintPid = {$clubmanagerCookieman.links.imprintPid}
 [END]
 
