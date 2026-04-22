@@ -65,12 +65,15 @@ class MemberRepository extends Repository
    *
    * @param QueryInterface<T> $query
    */
-  protected function disableQueryRestrictions(QueryInterface $query): void
+  protected function disableQueryRestrictions(QueryInterface $query, ?bool $includeDeleted = false): void
   {
     $querySettings = $query->getQuerySettings();
     $querySettings
       ->setIgnoreEnableFields(true)
       ->setRespectStoragePage(false);
+    if ($includeDeleted) {
+      $querySettings->setIncludeDeleted(true);
+    }
   }
 
   /**
@@ -225,12 +228,10 @@ class MemberRepository extends Repository
    *
    * @return T|null
    */
-  public function findByUidWithoutStoragePage(int $uid): ?object
+  public function findByUidWithoutStoragePage(int $uid, ?bool $includeDeleted = false): ?object
   {
     $query = $this->createQuery();
-    $querySettings = $query->getQuerySettings();
-    $querySettings->setRespectStoragePage(false);
-    $querySettings->setIgnoreEnableFields(true);
+    $this->disableQueryRestrictions($query, $includeDeleted);
     $constraints = [
       $query->equals('uid', $uid),
     ];
@@ -248,10 +249,11 @@ class MemberRepository extends Repository
    *
    * @return iterable<int, T>
    */
-  public function findAllByUids(array $uids): iterable
+  public function findAllByUids(array $uids, ?bool $includeDeleted = false): iterable
   {
     $query = $this->createQuery();
-    $this->disableQueryRestrictions($query);
+    $this->disableQueryRestrictions($query, $includeDeleted);
+
     $constraints = [
       $query->in('uid', $uids),
     ];
