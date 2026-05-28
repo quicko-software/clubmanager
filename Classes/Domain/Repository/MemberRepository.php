@@ -10,7 +10,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * @template T of Member
  *
- * @extends Repository<T>
+ * @extends Repository<Member>
  */
 class MemberRepository extends Repository
 {

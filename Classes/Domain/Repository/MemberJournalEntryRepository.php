@@ -9,8 +9,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * @template T of MemberJournalEntry
- *
- * @extends Repository<T>
+ * @extends Repository<MemberJournalEntry>
  */
 class MemberJournalEntryRepository extends Repository
 {

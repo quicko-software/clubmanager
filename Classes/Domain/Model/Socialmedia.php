@@ -11,11 +11,11 @@ class Socialmedia extends AbstractEntity
   public const TYPE_YOUTUBE = 2;
   public const TYPE_TWITTER = 3;
 
-  protected int $type;
+  protected int $type = 0;
 
-  protected string $url;
+  protected string $url = '';
 
-  protected Location $location;
+  protected ?Location $location = null;
 
   public function getType(): int
   {
@@ -37,12 +37,12 @@ class Socialmedia extends AbstractEntity
     $this->url = $url;
   }
 
-  public function getLocation(): Location
+  public function getLocation(): ?Location
   {
     return $this->location;
   }
 
-  public function setLocation(Location $location): void
+  public function setLocation(?Location $location): void
   {
     $this->location = $location;
   }
