@@ -62,10 +62,7 @@ class CopyMemberEmailToFeuserHook
       $cmd['fe_users'][$feuserUid]['email'] = $memberProps['email'];
       $dataHandler = $this->getDataHandler();
       $dataHandler->start($cmd, []);
-      $commandResult = $dataHandler->process_datamap();
-      if ($commandResult === false) {
-        HookUtils::logError($this->logger, 'fe_users', $feuserUid);
-      }
+      $dataHandler->process_datamap();
     }
   }
 }

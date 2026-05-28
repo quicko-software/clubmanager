@@ -62,7 +62,7 @@ final class AutoFillJournalEntryFieldsHook
     private function ensureNewLevelIsSet(array &$fieldArray): void
     {
         // Check if new_level is set (null, empty string, or not set at all)
-        if (!isset($fieldArray['new_level']) || $fieldArray['new_level'] === '' || $fieldArray['new_level'] === null) {
+        if (!isset($fieldArray['new_level']) || $fieldArray['new_level'] === '') {
             // Use old_level as fallback (no change)
             $fieldArray['new_level'] = $fieldArray['old_level'] ?? 0;
         }

@@ -5,6 +5,7 @@ namespace Quicko\Clubmanager\Domain\Repository;
 use DateTime;
 use Quicko\Clubmanager\Domain\Model\Member;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -77,7 +78,7 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findAllEndedWithWrongState(DateTime $refDate): iterable
   {
@@ -99,7 +100,7 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findAllCanceleddWithWrongState(): iterable
   {
@@ -122,7 +123,7 @@ class MemberRepository extends Repository
   /**
    * Summary of findAllActiveInPid.
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findAllActiveInPid(int $pid, DateTime $endDate): iterable
   {
@@ -150,7 +151,7 @@ class MemberRepository extends Repository
   /**
    * Summary of findOneByEmailAndPid.
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findOneByEmailAndPid(string $email, int $pid): iterable
   {
@@ -174,7 +175,7 @@ class MemberRepository extends Repository
   /**
    * @param int[] $memberPidList list of pids where to look for members, e.g. [12,488,7] or null
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findMemberRoRemind(int $minDaysSinceLastEmail, array $memberPidList): iterable
   {
@@ -208,7 +209,7 @@ class MemberRepository extends Repository
    *
    * @param string[] $sorting
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findActivePublic(?array $sorting = null): iterable
   {
@@ -247,7 +248,7 @@ class MemberRepository extends Repository
   /**
    * @param int[] $uids
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findAllByUids(array $uids, ?bool $includeDeleted = false): iterable
   {

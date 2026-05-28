@@ -134,7 +134,6 @@ final class CreateMissingCancelledJournalEntriesWizard implements UpgradeWizardI
    * Prueft unabhaengig vom deleted-Status des JournalEntry, um Duplikate
    * zu vermeiden falls der RestoreDeletedJournalEntriesWizard noch nicht lief.
    *
-   * @return array<int, array<string, mixed>>
    */
   private function resolveJournalStoragePid(int $memberPid): int
   {

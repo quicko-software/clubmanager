@@ -8,15 +8,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class LocationLatLngUpdateHook
 {
-    /**
-     * @return DataHandler
-     */
-    private function getDataHandler(): DataHandler
-    {
-        return GeneralUtility::makeInstance(DataHandler::class);
-    }
-
-
 
     /**
      * @param string      $status
@@ -40,6 +31,7 @@ class LocationLatLngUpdateHook
             $uid,
             '*',
         );
+        if(!$record) return;
 
         $coordinatesUpdateService = GeneralUtility::makeInstance(LocationCoordinatesUpdateService::class);
         if($coordinatesUpdateService->needsUpdate($record,$fieldArray)) {

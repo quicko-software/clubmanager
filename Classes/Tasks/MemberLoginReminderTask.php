@@ -3,6 +3,7 @@
 namespace Quicko\Clubmanager\Tasks;
 
 use LogicException;
+use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Mail\Generator\Arguments\MemberLoginReminderArguments;
 use Quicko\Clubmanager\Mail\Generator\MemberLoginReminderGenerator;
@@ -24,7 +25,7 @@ class MemberLoginReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
   {
     $MIN_DAY_PERIOD = intval($this->getArg('MIN_DAY_PERIOD'));
     $MEMBER_PID_LIST = trim((string)$this->getArg('MEMBER_PID_LIST'));
-    $member_pid_list = $MEMBER_PID_LIST ? explode(',', $MEMBER_PID_LIST) : []; // explode on an empty string yields an array with one empty string element -> bad
+    $member_pid_list = $MEMBER_PID_LIST ? array_map('intval', explode(',', $MEMBER_PID_LIST)) : []; // explode on an empty string yields an array with one empty string element -> bad
 
     $memberRepo = $this->getMemberRepo();
     $memberList = $memberRepo->findMemberRoRemind($MIN_DAY_PERIOD, $member_pid_list);
@@ -55,9 +56,13 @@ class MemberLoginReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
     return true;
   }
 
+  /**
+   * Summary of getMemberRepo
+   * @return MemberRepository<Member>
+   */
   private function getMemberRepo(): MemberRepository
   {
-    /** @var MemberRepository $memberRepository */
+    /** @var MemberRepository<Member> $memberRepository */
     $memberRepository = GeneralUtility::makeInstance(MemberRepository::class);
 
     return $memberRepository;
