@@ -48,10 +48,8 @@ class ResetFeuserPasswordHook
     $updatePasswordCommand['fe_users'][$feuserUid]['password'] = $hashedPassword;
     $dataHandler = $this->getDataHandler();
     $dataHandler->start($updatePasswordCommand, []);
-    $commandResult = $dataHandler->process_datamap();
-    if ($commandResult === false) {
-      HookUtils::logError($this->logger, 'fe_users', $feuserUid);
-    }
+    $dataHandler->process_datamap();
+
   }
 
   private function pushRecoveryMail(int $memberUid): void

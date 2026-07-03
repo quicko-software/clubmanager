@@ -8,16 +8,15 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
- * @template T of MemberJournalEntry
  *
- * @extends Repository<T>
+ * @extends Repository<MemberJournalEntry>
  */
 class MemberJournalEntryRepository extends Repository
 {
   /**
    * Findet alle unverarbeiteten Einträge bis zum Datum
    *
-   * @return iterable<int, T>
+   * @return iterable<int, MemberJournalEntry>
    */
   public function findPendingUntilDate(DateTime $date): iterable
   {
@@ -54,7 +53,7 @@ class MemberJournalEntryRepository extends Repository
   /**
    * Findet alle unverarbeiteten Einträge bis zum Datum für einen spezifischen Member
    *
-   * @return iterable<int, T>
+   * @return iterable<int, MemberJournalEntry>
    */
   public function findPendingUntilDateForMember(DateTime $date, int $memberUid): iterable
   {
@@ -92,7 +91,7 @@ class MemberJournalEntryRepository extends Repository
   /**
    * Vollständiges Journal für ein Member
    *
-   * @return iterable<int, T>
+   * @return iterable<int, MemberJournalEntry>
    */
   public function findAllForMember(int $memberUid): iterable
   {
@@ -117,7 +116,7 @@ class MemberJournalEntryRepository extends Repository
   /**
    * Prüft ob ein Member einen offenen Kündigungswunsch hat
    *
-   * @return T|null
+   * @return MemberJournalEntry|null
    */
   public function findPendingCancellationRequest(int $memberUid): ?object
   {
@@ -144,7 +143,7 @@ class MemberJournalEntryRepository extends Repository
   /**
    * Findet den zugehörigen Status-Wechsel-Eintrag für einen Kündigungswunsch
    *
-   * @return T|null
+   * @return MemberJournalEntry|null
    */
   public function findPendingCancellationStatusChange(int $memberUid): ?object
   {
@@ -172,7 +171,7 @@ class MemberJournalEntryRepository extends Repository
   /**
    * Findet den letzten verarbeiteten Eintrag eines bestimmten Typs
    *
-   * @return T|null
+   * @return MemberJournalEntry|null
    */
   public function findLastProcessedEntry(int $memberUid, string $entryType): ?object
   {
@@ -206,7 +205,7 @@ class MemberJournalEntryRepository extends Repository
    * Folgestatus (aktiv/ruhend/gekündigt) existiert, soll dieser den
    * aktuellen Member-Status bestimmen.
    *
-   * @return T|null
+   * @return MemberJournalEntry|null
    */
   public function findLastProcessedStatusEntryForStateProjection(int $memberUid): ?object
   {
@@ -245,7 +244,7 @@ class MemberJournalEntryRepository extends Repository
    *
    * @param int $memberUid Member UID
    * @param int|null $excludeUid Optional: UID eines Eintrags, der ausgeschlossen werden soll (für Updates)
-   * @return T|null
+   * @return MemberJournalEntry|null
    */
   public function findPendingStatusChange(int $memberUid, ?int $excludeUid = null): ?object
   {
@@ -279,7 +278,7 @@ class MemberJournalEntryRepository extends Repository
    *
    * @param int $memberUid Member UID
    * @param int|null $excludeUid Optional: UID eines Eintrags, der ausgeschlossen werden soll (für Updates)
-   * @return T|null
+   * @return MemberJournalEntry|null
    */
   public function findPendingLevelChange(int $memberUid, ?int $excludeUid = null): ?object
   {

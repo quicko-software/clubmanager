@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Quicko\Clubmanager\Command;
 
+use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
+use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Service\MemberJournalService;
@@ -21,6 +23,12 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 )]
 class ProcessJournalEntriesCommand extends Command
 {
+    /**
+     * Summary of __construct
+     * @param MemberJournalService $journalService
+     * @param MemberRepository<Member> $memberRepository
+     * @param PersistenceManager $persistenceManager
+     */
     public function __construct(
         protected MemberJournalService $journalService,
         protected MemberJournalEntryRepository $journalRepository,

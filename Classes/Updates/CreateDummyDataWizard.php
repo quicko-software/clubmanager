@@ -4,6 +4,7 @@ namespace Quicko\Clubmanager\Updates;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Repository\CategoryRepository;
 use Quicko\Clubmanager\Domain\Repository\CountryRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
@@ -28,6 +29,9 @@ class CreateDummyDataWizard implements ChattyInterface, UpgradeWizardInterface, 
   use LoggerAwareTrait;
   public const IDENTIFIER = 'cubmanager_createDummyDataWizard';
 
+  /**
+   * @var MemberRepository<Member>
+   */
   private MemberRepository $memberRepo;
   protected OutputInterface $output;
 

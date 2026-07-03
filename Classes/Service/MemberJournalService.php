@@ -20,6 +20,10 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class MemberJournalService
 {
+  /**
+   * Summary of __construct
+   * @param MemberRepository<Member> $memberRepository
+   */
   public function __construct(
     protected MemberJournalEntryRepository $journalRepository,
     protected MemberRepository $memberRepository,
@@ -238,7 +242,10 @@ class MemberJournalService
           $member->setState($memberRecord['state'] ?? Member::STATE_UNSET);
           $member->setLevel($memberRecord['level'] ?? 0);
           $member->setIdent($memberRecord['ident'] ?? '');
-          $member->setStarttime($memberRecord['starttime'] ? new DateTime('@' . $memberRecord['starttime']) : null);
+          $starttime = $memberRecord['starttime'] ? new DateTime('@' . $memberRecord['starttime']) : null;
+          if ($starttime) {
+            $member->setStarttime($starttime);
+          }
           $member->setEndtime($memberRecord['endtime'] ? new DateTime('@' . $memberRecord['endtime']) : null);
 
           $oldState = $member->getState();
@@ -472,6 +479,7 @@ class MemberJournalService
   /**
    * Resolves the storage pid for journal entries based on site configuration
    * Falls back to member's pid if no site configuration is found.
+   * @return int<0, max>
    */
   protected function resolveJournalStoragePid(Member $member): int
   {

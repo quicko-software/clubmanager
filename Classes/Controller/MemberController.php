@@ -11,6 +11,10 @@ use TYPO3\CMS\Core\Pagination\SimplePagination;
 
 class MemberController extends BaseSettingsController
 {
+  /**
+   * Summary of __construct
+   * @param MemberRepository<Member> $memberRepository
+   */
   public function __construct(protected MemberRepository $memberRepository)
   {
     $this->memberRepository = $memberRepository;
