@@ -183,6 +183,7 @@ class LocationRepository extends Repository
    *
    * @param array $coords   the coordinates as array, e.g. ['latitude' => 51.123, 'longitude' => 11.456 ]
    * @param int   $radiusKm the max distance of the member location to the given $coords
+   * @return array<Location>
    */
   public function findAroundCoords($coords, $radiusKm) : array
   {
@@ -270,7 +271,7 @@ class LocationRepository extends Repository
   }
 
   /**
-   * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Location>|object[]
+   * @return QueryResultInterface<Location>|object[]
    */
   public function findSubLocsByMemberUidWithHidden(int $memberUid): array|QueryResultInterface
   {

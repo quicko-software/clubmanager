@@ -161,6 +161,15 @@ call_user_func(function () {
     ],
   ];
 
+  // FormDataProvider: Hide the "new" button of the feuser inline relation for
+  // non-admins so FE users are only created automatically via the member journal.
+  $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord']
+  [Quicko\Clubmanager\FormEngine\FormDataProvider\FeUserNewButtonAdminOnly::class] = [
+    'depends' => [
+      \TYPO3\CMS\Backend\Form\FormDataProvider\TcaColumnsProcessCommon::class,
+    ],
+  ];
+
 
   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][Quicko\Clubmanager\Tasks\MemberLoginReminderTask::class] = [
     'extension' => 'clubmanager',

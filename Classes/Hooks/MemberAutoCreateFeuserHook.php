@@ -87,9 +87,6 @@ class MemberAutoCreateFeuserHook
     $email = trim((string) ($memberRecord['email'] ?? ''));
 
     $candidate = $ident ?: ($email ?: ('member-' . $memberUid));
-    if ($candidate === '') {
-      $candidate = 'member-' . $memberUid;
-    }
 
     if (!$this->isUsernameTaken($candidate)) {
       return $candidate;
@@ -146,10 +143,8 @@ class MemberAutoCreateFeuserHook
 
     $dataHandler = $this->getDataHandler();
     $dataHandler->start($data, []);
-    $commandResult = $dataHandler->process_datamap();
-    if ($commandResult === false) {
-      HookUtils::logError($this->logger, 'fe_users', $newId);
-    }
+    $dataHandler->process_datamap();
+
   }
 
   /**
@@ -280,7 +275,7 @@ class MemberAutoCreateFeuserHook
 
     // Process each affected member
     foreach (array_keys($memberUids) as $memberUid) {
-      $this->processActiveMember($memberUid);
+      $this->processActiveMember((int) $memberUid);
     }
   }
 }

@@ -171,9 +171,6 @@ final readonly class FrontendUserAutoCreateListener
     $email = trim((string) ($memberRecord['email'] ?? ''));
 
     $candidate = $ident ?: ($email ?: ('member-' . $memberUid));
-    if ($candidate === '') {
-      $candidate = 'member-' . $memberUid;
-    }
 
     if (!$this->isUsernameTaken($candidate)) {
       return $candidate;

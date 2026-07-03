@@ -5,12 +5,13 @@ namespace Quicko\Clubmanager\Domain\Repository;
 use DateTime;
 use Quicko\Clubmanager\Domain\Model\Member;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * @template T of Member
  *
- * @extends Repository<T>
+ * @extends Repository<Member>
  */
 class MemberRepository extends Repository
 {
@@ -65,16 +66,19 @@ class MemberRepository extends Repository
    *
    * @param QueryInterface<T> $query
    */
-  protected function disableQueryRestrictions(QueryInterface $query): void
+  protected function disableQueryRestrictions(QueryInterface $query, ?bool $includeDeleted = false): void
   {
     $querySettings = $query->getQuerySettings();
     $querySettings
       ->setIgnoreEnableFields(true)
       ->setRespectStoragePage(false);
+    if ($includeDeleted) {
+      $querySettings->setIncludeDeleted(true);
+    }
   }
 
   /**
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findAllEndedWithWrongState(DateTime $refDate): iterable
   {
@@ -96,7 +100,7 @@ class MemberRepository extends Repository
   }
 
   /**
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findAllCanceleddWithWrongState(): iterable
   {
@@ -119,7 +123,7 @@ class MemberRepository extends Repository
   /**
    * Summary of findAllActiveInPid.
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findAllActiveInPid(int $pid, DateTime $endDate): iterable
   {
@@ -147,7 +151,7 @@ class MemberRepository extends Repository
   /**
    * Summary of findOneByEmailAndPid.
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findOneByEmailAndPid(string $email, int $pid): iterable
   {
@@ -171,7 +175,7 @@ class MemberRepository extends Repository
   /**
    * @param int[] $memberPidList list of pids where to look for members, e.g. [12,488,7] or null
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findMemberRoRemind(int $minDaysSinceLastEmail, array $memberPidList): iterable
   {
@@ -205,7 +209,7 @@ class MemberRepository extends Repository
    *
    * @param string[] $sorting
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
   public function findActivePublic(?array $sorting = null): iterable
   {
@@ -225,12 +229,10 @@ class MemberRepository extends Repository
    *
    * @return T|null
    */
-  public function findByUidWithoutStoragePage(int $uid): ?object
+  public function findByUidWithoutStoragePage(int $uid, ?bool $includeDeleted = false): ?object
   {
     $query = $this->createQuery();
-    $querySettings = $query->getQuerySettings();
-    $querySettings->setRespectStoragePage(false);
-    $querySettings->setIgnoreEnableFields(true);
+    $this->disableQueryRestrictions($query, $includeDeleted);
     $constraints = [
       $query->equals('uid', $uid),
     ];
@@ -246,12 +248,13 @@ class MemberRepository extends Repository
   /**
    * @param int[] $uids
    *
-   * @return iterable<int, T>
+   * @return QueryResultInterface<T>
    */
-  public function findAllByUids(array $uids): iterable
+  public function findAllByUids(array $uids, ?bool $includeDeleted = false): iterable
   {
     $query = $this->createQuery();
-    $this->disableQueryRestrictions($query);
+    $this->disableQueryRestrictions($query, $includeDeleted);
+
     $constraints = [
       $query->in('uid', $uids),
     ];

@@ -159,7 +159,7 @@ class ProcessMemberJournalHook
     // Verarbeite alle betroffenen Member
     foreach (array_keys($memberUids) as $memberUid) {
       $autoResolveCancellation = isset($activeStatusMemberUids[$memberUid]);
-      $this->processMemberSave($memberUid, $autoResolveCancellation);
+      $this->processMemberSave((int) $memberUid, $autoResolveCancellation);
     }
   }
 
@@ -425,11 +425,6 @@ class ProcessMemberJournalHook
   {
     $projectionService = GeneralUtility::makeInstance(MemberJournalProjectionService::class);
     $projectionService->applyPendingFutureCancellationEndtime($memberUid);
-  }
-
-  private function isBillingInstalled(): bool
-  {
-    return class_exists(\Quicko\ClubmanagerBilling\Service\CancellationPeriodCalculator::class);
   }
 
   /**
