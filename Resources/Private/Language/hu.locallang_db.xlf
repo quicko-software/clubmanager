@@ -5,95 +5,95 @@
     <body>
       <trans-unit id="tx_clubmanager_domain_model_location.phone" resname="tx_clubmanager_domain_model_location.phone">
         <source>Phone</source>
-        <target state="needs-translation">Phone</target>
+        <target state="translated">Telefon</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.mobile" resname="tx_clubmanager_domain_model_location.mobile">
         <source>Mobil</source>
-        <target state="needs-translation">Mobil</target>
+        <target state="translated">Mobil</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.fax" resname="tx_clubmanager_domain_model_location.fax">
         <source>FAX</source>
-        <target state="needs-translation">FAX</target>
+        <target state="translated">FAX</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.email" resname="tx_clubmanager_domain_model_location.email">
         <source>Email</source>
-        <target state="needs-translation">Email</target>
+        <target state="translated">E-mail</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.website" resname="tx_clubmanager_domain_model_location.website">
         <source>Url</source>
-        <target state="needs-translation">Url</target>
+        <target state="translated">Url</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.tab.locations" resname="tx_clubmanager_domain_model_member.tab.locations">
         <source>Locations</source>
-        <target state="needs-translation">Locations</target>
+        <target state="translated">Helyszínek</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.tab.customfields" resname="tx_clubmanager_domain_model_member.tab.customfields">
         <source>Additional data</source>
-        <target state="needs-translation">Additional data</target>
+        <target state="translated">További adatok</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.tab.bank" resname="tx_clubmanager_domain_model_member.tab.bank">
         <source>Bank</source>
-        <target state="needs-translation">Bank</target>
+        <target state="translated">Bank</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member" resname="tx_clubmanager_domain_model_member">
         <source>Member</source>
-        <target state="needs-translation">Member</target>
+        <target state="translated">Tag</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.palette.member" resname="tx_clubmanager_domain_model_member.palette.member">
         <source>Member/Person</source>
-        <target state="needs-translation">Member/Person</target>
+        <target state="translated">Tag/Személy</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.palette.address" resname="tx_clubmanager_domain_model_member.palette.address">
         <source>Address</source>
-        <target state="needs-translation">Address</target>
+        <target state="translated">Cím</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.palette.membership" resname="tx_clubmanager_domain_model_member.palette.membership">
         <source>Membership</source>
-        <target state="needs-translation">Membership</target>
+        <target state="translated">Tagság</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.palette.contact" resname="tx_clubmanager_domain_model_member.palette.contact">
         <source>Contact</source>
-        <target state="needs-translation">Contact</target>
+        <target state="translated">Kapcsolat</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.palette.account" resname="tx_clubmanager_domain_model_member.palette.account">
         <source>Account data</source>
-        <target state="needs-translation">Account data</target>
+        <target state="translated">Számlaadatok</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.palette.alt_address" resname="tx_clubmanager_domain_model_member.palette.alt_address">
         <source>Alternative billing address</source>
-        <target state="needs-translation">Alternative billing address</target>
+        <target state="translated">Alternatív számlázási cím</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.starttime" resname="tx_clubmanager_domain_model_member.starttime">
         <source>Beginning of membership</source>
-        <target state="needs-translation">Beginning of membership</target>
+        <target state="translated">A tagság kezdete</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.endtime" resname="tx_clubmanager_domain_model_member.endtime">
         <source>End of membership</source>
-        <target state="needs-translation">End of membership</target>
+        <target state="translated">A tagság vége</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.person_type" resname="tx_clubmanager_domain_model_member.person_type">
         <source>Type of person</source>
-        <target state="needs-translation">Type of person</target>
+        <target state="translated">Személy típusa</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.person_type.natural" resname="tx_clubmanager_domain_model_member.person_type.natural">
         <source>Natural person</source>
-        <target state="needs-translation">Natural person</target>
+        <target state="translated">Természetes személy</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.person_type.juridical" resname="tx_clubmanager_domain_model_member.person_type.juridical">
         <source>Legal entity (company, association, etc.)</source>
-        <target state="needs-translation">Legal entity (company, association, etc.)</target>
+        <target state="translated">Jogi személy (cég, egyesület stb.)</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.nationality" resname="tx_clubmanager_domain_model_member.nationality">
         <source>Nationality</source>
-        <target state="needs-translation">Nationality</target>
+        <target state="translated">Állampolgárság</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.salutation" resname="tx_clubmanager_domain_model_member.salutation">
         <source>Salutation</source>
-        <target state="needs-translation">Salutation</target>
+        <target state="translated">Megszólítás</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.salutation.0" resname="tx_clubmanager_domain_model_member.salutation.0">
         <source>Company</source>
-        <target state="needs-translation">Company</target>
+        <target state="translated">Cég</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.salutation.1" resname="tx_clubmanager_domain_model_member.salutation.1">
         <source>Mr.</source>
@@ -109,59 +109,59 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.email" resname="tx_clubmanager_domain_model_member.email">
         <source>Email</source>
-        <target state="needs-translation">Email</target>
+        <target state="translated">E-mail</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.phone" resname="tx_clubmanager_domain_model_member.phone">
         <source>Phone</source>
-        <target state="needs-translation">Phone</target>
+        <target state="translated">Telefon</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.telefax" resname="tx_clubmanager_domain_model_member.telefax">
         <source>Telefax</source>
-        <target state="needs-translation">Telefax</target>
+        <target state="translated">Telefax</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.title" resname="tx_clubmanager_domain_model_member.title">
         <source>Academic title</source>
-        <target state="needs-translation">Academic title</target>
+        <target state="translated">Tudományos cím</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.firstname" resname="tx_clubmanager_domain_model_member.firstname">
         <source>Firstname</source>
-        <target state="needs-translation">Firstname</target>
+        <target state="translated">Keresztnév</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.midname" resname="tx_clubmanager_domain_model_member.midname">
         <source>Middlename</source>
-        <target state="needs-translation">Middlename</target>
+        <target state="translated">Középső név</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.lastname" resname="tx_clubmanager_domain_model_member.lastname">
         <source>Lastname</source>
-        <target state="needs-translation">Lastname</target>
+        <target state="translated">Vezetéknév</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.dateofbirth" resname="tx_clubmanager_domain_model_member.dateofbirth">
         <source>Date of birth</source>
-        <target state="needs-translation">Date of birth</target>
+        <target state="translated">Születési dátum</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.street" resname="tx_clubmanager_domain_model_member.street">
         <source>Street, number</source>
-        <target state="needs-translation">Street, number</target>
+        <target state="translated">Utca, házszám</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.zip" resname="tx_clubmanager_domain_model_member.zip">
         <source>Zip</source>
-        <target state="needs-translation">Zip</target>
+        <target state="translated">Irányítószám</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.city" resname="tx_clubmanager_domain_model_member.city">
         <source>City</source>
-        <target state="needs-translation">City</target>
+        <target state="translated">Város</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.country" resname="tx_clubmanager_domain_model_member.country">
         <source>Country</source>
-        <target state="needs-translation">Country</target>
+        <target state="translated">Ország</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.federal_state" resname="tx_clubmanager_domain_model_member.federal_state">
         <source>Federal state</source>
-        <target state="needs-translation">Federal state</target>
+        <target state="translated">Tartomány</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.ident" resname="tx_clubmanager_domain_model_member.ident">
         <source>Membership number</source>
-        <target state="needs-translation">Membership number</target>
+        <target state="translated">Tagsági szám</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.company" resname="tx_clubmanager_domain_model_member.company">
         <source>Name/Company</source>
@@ -169,75 +169,75 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.level" resname="tx_clubmanager_domain_model_member.level">
         <source>Level</source>
-        <target state="needs-translation">Level</target>
+        <target state="translated">Szint</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.level.0" resname="tx_clubmanager_domain_model_member.level.0">
         <source>Base</source>
-        <target state="needs-translation">Base</target>
+        <target state="translated">Alap</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.level.10" resname="tx_clubmanager_domain_model_member.level.10">
         <source>Bronze</source>
-        <target state="needs-translation">Bronze</target>
+        <target state="translated">Bronz</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.level.20" resname="tx_clubmanager_domain_model_member.level.20">
         <source>Silver</source>
-        <target state="needs-translation">Silver</target>
+        <target state="translated">Ezüst</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.level.30" resname="tx_clubmanager_domain_model_member.level.30">
         <source>Gold</source>
-        <target state="needs-translation">Gold</target>
+        <target state="translated">Arany</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.direct_debit" resname="tx_clubmanager_domain_model_member.direct_debit">
         <source>Participates in direct debit</source>
-        <target state="needs-translation">Participates in direct debit</target>
+        <target state="translated">Részt vesz a közvetlen beszedésben</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.iban" resname="tx_clubmanager_domain_model_member.iban">
         <source>IBAN</source>
-        <target state="needs-translation">IBAN</target>
+        <target state="translated">IBAN</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.bic" resname="tx_clubmanager_domain_model_member.bic">
         <source>BIC</source>
-        <target state="needs-translation">BIC</target>
+        <target state="translated">BIC</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.account" resname="tx_clubmanager_domain_model_member.account">
         <source>Account holder</source>
-        <target state="needs-translation">Account holder</target>
+        <target state="translated">Számlatulajdonos</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.user" resname="tx_clubmanager_domain_model_member.user">
         <source>User</source>
-        <target state="needs-translation">User</target>
+        <target state="translated">Felhasználó</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.username" resname="tx_clubmanager_domain_model_member.username">
         <source>Username</source>
-        <target state="needs-translation">Username</target>
+        <target state="translated">Felhasználónév</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.main_location" resname="tx_clubmanager_domain_model_member.main_location">
         <source>Main location</source>
-        <target state="needs-translation">Main location</target>
+        <target state="translated">Fő helyszín</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.sub_locations" resname="tx_clubmanager_domain_model_member.sub_locations">
         <source>Other locations</source>
-        <target state="needs-translation">Other locations</target>
+        <target state="translated">További helyszínek</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_name" resname="tx_clubmanager_domain_model_member.alt_billing_name">
         <source>Name</source>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Név</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_street" resname="tx_clubmanager_domain_model_member.alt_billing_street">
         <source>Street, number</source>
-        <target state="needs-translation">Street, number</target>
+        <target state="translated">Utca, házszám</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_zip" resname="tx_clubmanager_domain_model_member.alt_billing_zip">
         <source>Zip</source>
-        <target state="needs-translation">Zip</target>
+        <target state="translated">Irányítószám</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_city" resname="tx_clubmanager_domain_model_member.alt_billing_city">
         <source>City</source>
-        <target state="needs-translation">City</target>
+        <target state="translated">Város</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_country" resname="tx_clubmanager_domain_model_member.alt_billing_country">
         <source>Country</source>
-        <target state="needs-translation">Country</target>
+        <target state="translated">Ország</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_email" resname="tx_clubmanager_domain_model_member.alt_billing_email">
         <source>Alternative E-Mail für Rechnungen</source>
@@ -249,11 +249,11 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.crdate" resname="tx_clubmanager_domain_model_member.crdate">
         <source>Record created on</source>
-        <target state="needs-translation">Record created on</target>
+        <target state="translated">Rekord létrehozásának dátuma</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.state" resname="tx_clubmanager_domain_model_member.state">
         <source>Membership status</source>
-        <target state="needs-translation">Membership status</target>
+        <target state="translated">Tagsági állapot</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.state.0" resname="tx_clubmanager_domain_model_member.state.0">
         <source>Not set</source>
@@ -277,35 +277,35 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info">
         <source>Address suffix</source>
-        <target state="needs-translation">Address suffix</target>
+        <target state="translated">Cím kiegészítő</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate">
         <source>Reduced membership</source>
-        <target state="needs-translation">Reduced membership</target>
+        <target state="translated">Kedvezményes tagság</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.customfield1" resname="tx_clubmanager_domain_model_member.customfield1">
         <source>Additional field 1</source>
-        <target state="needs-translation">Additional field 1</target>
+        <target state="translated">További mező 1</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.customfield2" resname="tx_clubmanager_domain_model_member.customfield2">
         <source>Additional field 2</source>
-        <target state="needs-translation">Additional field 2</target>
+        <target state="translated">További mező 2</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.customfield3" resname="tx_clubmanager_domain_model_member.customfield3">
         <source>Additional field 3</source>
-        <target state="needs-translation">Additional field 3</target>
+        <target state="translated">További mező 3</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.customfield4" resname="tx_clubmanager_domain_model_member.customfield4">
         <source>Additional field 4</source>
-        <target state="needs-translation">Additional field 4</target>
+        <target state="translated">További mező 4</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.customfield5" resname="tx_clubmanager_domain_model_member.customfield5">
         <source>Additional field 5</source>
-        <target state="needs-translation">Additional field 5</target>
+        <target state="translated">További mező 5</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.customfield6" resname="tx_clubmanager_domain_model_member.customfield6">
         <source>Additional field 6</source>
-        <target state="needs-translation">Additional field 6</target>
+        <target state="translated">További mező 6</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.club_function" resname="tx_clubmanager_domain_model_member.club_function">
         <source>Function</source>
@@ -317,119 +317,119 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location">
         <source>Location</source>
-        <target state="needs-translation">Location</target>
+        <target state="translated">Helyszín</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.tab.geography" resname="tx_clubmanager_domain_model_location.tab.geography">
         <source>Geography</source>
-        <target state="needs-translation">Geography</target>
+        <target state="translated">Földrajz</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.tab.meta" resname="tx_clubmanager_domain_model_location.tab.meta">
         <source>Meta</source>
-        <target state="needs-translation">Meta</target>
+        <target state="translated">Meta</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.tab.contacts" resname="tx_clubmanager_domain_model_location.tab.contacts">
         <source>Contact</source>
-        <target state="needs-translation">Contact</target>
+        <target state="translated">Kapcsolat</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.tab.socialmedia" resname="tx_clubmanager_domain_model_location.tab.socialmedia">
         <source>Social Media</source>
-        <target state="needs-translation">Social Media</target>
+        <target state="translated">Közösségi média</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.palette.address" resname="tx_clubmanager_domain_model_location.palette.address">
         <source>Address</source>
-        <target state="needs-translation">Address</target>
+        <target state="translated">Cím</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.palette.person" resname="tx_clubmanager_domain_model_location.palette.person">
         <source>Contact person</source>
-        <target state="needs-translation">Contact person</target>
+        <target state="translated">Kapcsolattartó</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.hidden" resname="tx_clubmanager_domain_model_location.hidden">
         <source>Hidden</source>
-        <target state="needs-translation">Hidden</target>
+        <target state="translated">Rejtett</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.slug" resname="tx_clubmanager_domain_model_location.slug">
         <source>URL fragment</source>
-        <target state="needs-translation">URL fragment</target>
+        <target state="translated">URL-részlet</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.title" resname="tx_clubmanager_domain_model_location.title">
         <source>Academic title</source>
-        <target state="needs-translation">Academic title</target>
+        <target state="translated">Tudományos cím</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.firstname" resname="tx_clubmanager_domain_model_location.firstname">
         <source>First name</source>
-        <target state="needs-translation">First name</target>
+        <target state="translated">Keresztnév</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.midname" resname="tx_clubmanager_domain_model_location.midname">
         <source>Middle name</source>
-        <target state="needs-translation">Middle name</target>
+        <target state="translated">Középső név</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.lastname" resname="tx_clubmanager_domain_model_location.lastname">
         <source>Last name</source>
-        <target state="needs-translation">Last name</target>
+        <target state="translated">Vezetéknév</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.info" resname="tx_clubmanager_domain_model_location.info">
         <source>Additional information</source>
-        <target state="needs-translation">Additional information</target>
+        <target state="translated">További információk</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.company" resname="tx_clubmanager_domain_model_location.company">
         <source>Company</source>
-        <target state="needs-translation">Company</target>
+        <target state="translated">Cég</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.street" resname="tx_clubmanager_domain_model_location.street">
         <source>Street, number</source>
-        <target state="needs-translation">Street, number</target>
+        <target state="translated">Utca, házszám</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.add_address_info" resname="tx_clubmanager_domain_model_location.add_address_info">
         <source>Address suffix</source>
-        <target state="needs-translation">Address suffix</target>
+        <target state="translated">Cím kiegészítő</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.zip" resname="tx_clubmanager_domain_model_location.zip">
         <source>Zip</source>
-        <target state="needs-translation">Zip</target>
+        <target state="translated">Irányítószám</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.city" resname="tx_clubmanager_domain_model_location.city">
         <source>City</source>
-        <target state="needs-translation">City</target>
+        <target state="translated">Város</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.latitude" resname="tx_clubmanager_domain_model_location.latitude">
         <source>Latitude</source>
-        <target state="needs-translation">Latitude</target>
+        <target state="translated">Szélességi fok</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.longitude" resname="tx_clubmanager_domain_model_location.longitude">
         <source>Longitude</source>
-        <target state="needs-translation">Longitude</target>
+        <target state="translated">Hosszúsági fok</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.search_gps_coordinates" resname="tx_clubmanager_domain_model_location.search_gps_coordinates">
         <source>Search GPS coordinates</source>
-        <target state="needs-translation">Search GPS coordinates</target>
+        <target state="translated">GPS-koordináták keresése</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.country" resname="tx_clubmanager_domain_model_location.country">
         <source>Country</source>
-        <target state="needs-translation">Country</target>
+        <target state="translated">Ország</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.state" resname="tx_clubmanager_domain_model_location.state">
         <source>State</source>
-        <target state="needs-translation">State</target>
+        <target state="translated">Állam</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.image" resname="tx_clubmanager_domain_model_location.image">
         <source>Image</source>
-        <target state="needs-translation">Image</target>
+        <target state="translated">Kép</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.category" resname="tx_clubmanager_domain_model_location.category">
         <source>Category</source>
-        <target state="needs-translation">Category</target>
+        <target state="translated">Kategória</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.socialmedia" resname="tx_clubmanager_domain_model_location.socialmedia">
         <source>Social media</source>
-        <target state="needs-translation">Social media</target>
+        <target state="translated">Közösségi média</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_location.youtube_video" resname="tx_clubmanager_domain_model_location.youtube_video">
         <source>Youtube Video ID</source>
-        <target state="needs-translation">Youtube Video ID</target>
+        <target state="translated">Youtube videóazonosító</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_user" resname="tx_clubmanager_domain_model_user">
         <source>User</source>
-        <target state="needs-translation">User</target>
+        <target state="translated">Felhasználó</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_user.password" resname="tx_clubmanager_domain_model_user.password">
         <source>Password</source>
@@ -437,31 +437,31 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_user.lastreminderemailsent" resname="tx_clubmanager_domain_model_user.lastreminderemailsent">
         <source>First login reminder email</source>
-        <target state="needs-translation">First login reminder email</target>
+        <target state="translated">Első bejelentkezési emlékeztető e-mail</target>
       </trans-unit>
       <trans-unit id="fe_users.tx_extbase_type.Tx_clubmanager_User" resname="fe_users.tx_extbase_type.Tx_clubmanager_User">
         <source>clubmanager user</source>
-        <target state="needs-translation">clubmanager user</target>
+        <target state="translated">clubmanager felhasználó</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_category" resname="tx_clubmanager_domain_model_category">
         <source>Category</source>
-        <target state="needs-translation">Category</target>
+        <target state="translated">Kategória</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_category.title" resname="tx_clubmanager_domain_model_category.title">
         <source>Title</source>
-        <target state="needs-translation">Title</target>
+        <target state="translated">Cím</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_category.description" resname="tx_clubmanager_domain_model_category.description">
         <source>Description</source>
-        <target state="needs-translation">Description</target>
+        <target state="translated">Leírás</target>
       </trans-unit>
       <trans-unit id="sys_category.tx_extbase_type.Tx_clubmanager_Category" resname="sys_category.tx_extbase_type.Tx_clubmanager_Category">
         <source>clubmanager category</source>
-        <target state="needs-translation">clubmanager category</target>
+        <target state="translated">clubmanager kategória</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_country" resname="tx_clubmanager_domain_model_country">
         <source>Country</source>
-        <target state="needs-translation">Country</target>
+        <target state="translated">Ország</target>
       </trans-unit>
       <trans-unit id="static_countries.tx_extbase_type.Tx_clubmanager_Country" resname="static_countries.tx_extbase_type.Tx_clubmanager_Country">
         <source>clubmanager country</source>
@@ -473,23 +473,23 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_street" resname="tx_clubmanager_domain_model_member.alt_street">
         <source>Street, number</source>
-        <target state="needs-translation">Street, number</target>
+        <target state="translated">Utca, házszám</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_zip" resname="tx_clubmanager_domain_model_member.alt_zip">
         <source>Zip</source>
-        <target state="needs-translation">Zip</target>
+        <target state="translated">Irányítószám</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_city" resname="tx_clubmanager_domain_model_member.alt_city">
         <source>City</source>
-        <target state="needs-translation">City</target>
+        <target state="translated">Város</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.alt_country" resname="tx_clubmanager_domain_model_member.alt_country">
         <source>Country</source>
-        <target state="needs-translation">Country</target>
+        <target state="translated">Ország</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_member.palette_alt_address" resname="tx_clubmanager_domain_model_member.palette_alt_address">
         <source>Alternative billing address</source>
-        <target state="needs-translation">Alternative billing address</target>
+        <target state="translated">Alternatív számlázási cím</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_mail_task" resname="tx_clubmanager_domain_model_mail_task">
         <source>Email Task</source>
@@ -561,11 +561,11 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_socialmedia" resname="tx_clubmanager_domain_model_socialmedia">
         <source>Social media</source>
-        <target state="needs-translation">Social media</target>
+        <target state="translated">Közösségi média</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_socialmedia.url" resname="tx_clubmanager_domain_model_socialmedia.url">
         <source>Url</source>
-        <target state="needs-translation">Url</target>
+        <target state="translated">Url</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_socialmedia.type" resname="tx_clubmanager_domain_model_socialmedia.type">
         <source>Type</source>
@@ -621,7 +621,7 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.note" resname="tx_clubmanager_domain_model_memberjournalentry.note">
         <source>Note</source>
-        <target state="needs-translation">Note</target>
+        <target state="translated">Megjegyzés</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type">
         <source>Creator</source>
@@ -637,7 +637,7 @@
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.member" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.member">
         <source>Member</source>
-        <target state="needs-translation">Member</target>
+        <target state="translated">Tag</target>
       </trans-unit>
       <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.old_level" resname="tx_clubmanager_domain_model_memberjournalentry.old_level">
         <source>Old Level</source>
