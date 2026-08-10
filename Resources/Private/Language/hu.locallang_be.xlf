@@ -33,11 +33,11 @@
       </trans-unit>
       <trans-unit id="task.ProcessJournalEntriesTask.title" resname="task.ProcessJournalEntriesTask.title">
         <source>Process Member Journal Entries</source>
-        <target state="needs-translation">Process Member Journal Entries</target>
+        <target state="translated">Tag-naplóbejegyzések feldolgozása</target>
       </trans-unit>
       <trans-unit id="task.ProcessJournalEntriesTask.description" resname="task.ProcessJournalEntriesTask.description">
         <source>Processes pending journal entries (status changes, level changes)</source>
-        <target state="needs-translation">Processes pending journal entries (status changes, level changes)</target>
+        <target state="translated">Függőben lévő naplóbejegyzések feldolgozása (állapotváltozások, szintváltozások)</target>
       </trans-unit>
       <trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS" resname="task.MailServiceTask.arg.MAX_NUM_MAILS">
         <source>Maximum number of emails per run</source>
@@ -121,7 +121,7 @@
       </trans-unit>
       <trans-unit id="bem-toolbox.selectall" resname="bem-toolbox.selectall">
         <source>Select all</source>
-        <target state="needs-translation">Select all</target>
+        <target state="translated">Összes kijelölése</target>
       </trans-unit>
       <trans-unit id="mlang_tabs_tab_memberlist" resname="mlang_tabs_tab_memberlist">
         <source>List of members</source>
@@ -189,7 +189,7 @@
       </trans-unit>
       <trans-unit id="module.memberlist.features.6" resname="module.memberlist.features.6">
         <source>Incl. double opt-in procedure for verifying email addresses during new registrations</source>
-        <target state="needs-translation">Incl. double opt-in procedure for verifying email addresses during new registrations</target>
+        <target state="translated">Beleértve a kettős opt-in eljárást az e-mail címek ellenőrzésére új regisztráció során</target>
       </trans-unit>
       <trans-unit id="module.memberlist.features.4" resname="module.memberlist.features.4">
         <source>Automated cancellation process for members</source>
@@ -409,157 +409,157 @@
       </trans-unit>
       <trans-unit id="password-reset.button.title" resname="password-reset.button.title">
         <source>Reset Password (Regenerate + Email to user)</source>
-        <target state="needs-translation">Reset Password (Regenerate + Email to user)</target>
+        <target state="translated">Jelszó visszaállítása (újragenerálás + e-mail a felhasználónak)</target>
       </trans-unit>
       <trans-unit id="memberjournal.level_change.warning.dialog.title" resname="memberjournal.level_change.warning.dialog.title">
         <source>Level change with past effective date</source>
-        <target state="needs-translation">Level change with past effective date</target>
+        <target state="translated">Szintváltozás múltbeli hatálybalépési dátummal</target>
       </trans-unit>
       <trans-unit id="memberjournal.level_change.warning.dialog.text" resname="memberjournal.level_change.warning.dialog.text">
         <source>The effective date is in the past. Adding this entry can affect billing and may require corrections. Press 'Continue' to save the member, otherwise 'Cancel'.</source>
-        <target state="needs-translation">The effective date is in the past. Adding this entry can affect billing and may require corrections. Press 'Continue' to save the member, otherwise 'Cancel'.</target>
+        <target state="translated">A hatálybalépési dátum a múltban van. A bejegyzés hozzáadása befolyásolhatja a számlázást, és javításokat igényelhet. A tag mentéséhez nyomja meg a 'Folytatás' gombot, egyébként a 'Mégse' gombot.</target>
       </trans-unit>
       <trans-unit id="memberjournal.level_change.warning.dialog.ok-button-label" resname="memberjournal.level_change.warning.dialog.ok-button-label">
         <source>Continue</source>
-        <target state="needs-translation">Continue</target>
+        <target state="translated">Folytatás</target>
       </trans-unit>
       <trans-unit id="memberjournal.level_change.warning.dialog.cancel-button-label" resname="memberjournal.level_change.warning.dialog.cancel-button-label">
         <source>Cancel</source>
-        <target state="needs-translation">Cancel</target>
+        <target state="translated">Mégse</target>
       </trans-unit>
       <!-- Bug 7: Same Level Error Dialog -->
       <trans-unit id="memberjournal.level_change.same_level.dialog.title" resname="memberjournal.level_change.same_level.dialog.title">
         <source>Validation Error</source>
-        <target state="needs-translation">Validation Error</target>
+        <target state="translated">Érvényesítési hiba</target>
       </trans-unit>
       <trans-unit id="memberjournal.level_change.same_level.dialog.text" resname="memberjournal.level_change.same_level.dialog.text">
         <source>Level change not possible: The new level is the same as the current level. Please select a different level.</source>
-        <target state="needs-translation">Level change not possible: The new level is the same as the current level. Please select a different level.</target>
+        <target state="translated">A szintváltozás nem lehetséges: Az új szint megegyezik a jelenlegi szinttel. Kérjük, válasszon másik szintet.</target>
       </trans-unit>
       <!-- CR3: Same Status Error Dialog -->
       <trans-unit id="memberjournal.status_change.same_status.dialog.title" resname="memberjournal.status_change.same_status.dialog.title">
         <source>Validation Error</source>
-        <target state="needs-translation">Validation Error</target>
+        <target state="translated">Érvényesítési hiba</target>
       </trans-unit>
       <trans-unit id="memberjournal.status_change.same_status.dialog.text" resname="memberjournal.status_change.same_status.dialog.text">
         <source>Status change not possible: The target status is the same as the current member status. Please select a different status.</source>
-        <target state="needs-translation">Status change not possible: The target status is the same as the current member status. Please select a different status.</target>
+        <target state="translated">Az állapotváltozás nem lehetséges: A célállapot megegyezik a jelenlegi tagállapottal. Kérjük, válasszon másik állapotot.</target>
       </trans-unit>
       <trans-unit id="memberjournal.status_change.same_status_pending_cancellation.dialog.title" resname="memberjournal.status_change.same_status_pending_cancellation.dialog.title">
         <source>Planned cancellation exists</source>
-        <target state="needs-translation">Planned cancellation exists</target>
+        <target state="translated">Tervezett lemondás létezik</target>
       </trans-unit>
       <trans-unit id="memberjournal.status_change.same_status_pending_cancellation.dialog.text" resname="memberjournal.status_change.same_status_pending_cancellation.dialog.text">
         <source>Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</source>
-        <target state="needs-translation">Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</target>
+        <target state="translated">Az állapotváltozás nem lehetséges: Már létezik tervezett lemondás. Kérjük, deaktiválja azt a bejegyzést (hidden=1) a lemondás visszavonásához.</target>
       </trans-unit>
       <trans-unit id="memberjournal.status_change.no_email.dialog.title" resname="memberjournal.status_change.no_email.dialog.title">
         <source>Activation without email address</source>
-        <target state="needs-translation">Activation without email address</target>
+        <target state="translated">Aktiválás e-mail cím nélkül</target>
       </trans-unit>
       <trans-unit id="memberjournal.status_change.no_email.dialog.text" resname="memberjournal.status_change.no_email.dialog.text">
         <source>No email address is set for this member. Automatic sending of access data is not possible. The member can only be informed manually. Do you want to continue?</source>
-        <target state="needs-translation">No email address is set for this member. Automatic sending of access data is not possible. The member can only be informed manually. Do you want to continue?</target>
+        <target state="translated">Ehhez a taghoz nincs e-mail cím beállítva. A hozzáférési adatok automatikus elküldése nem lehetséges. A tagot csak manuálisan lehet tájékoztatni. Szeretné folytatni?</target>
       </trans-unit>
       <trans-unit id="memberjournal.status_change.unverified_email.dialog.title" resname="memberjournal.status_change.unverified_email.dialog.title">
         <source>Email address not verified!</source>
-        <target state="needs-translation">Email address not verified!</target>
+        <target state="translated">Az e-mail cím nincs megerősítve!</target>
       </trans-unit>
       <trans-unit id="memberjournal.status_change.unverified_email.dialog.text" resname="memberjournal.status_change.unverified_email.dialog.text">
         <source>The email address of this member has not been verified yet (Double-Opt-In missing). Activation is potentially not GDPR compliant. The member must be asked to verify their email address. No messages should be sent to this member otherwise. Do you want to continue with activation?</source>
-        <target state="needs-translation">The email address of this member has not been verified yet (Double-Opt-In missing). Activation is potentially not GDPR compliant. The member must be asked to verify their email address. No messages should be sent to this member otherwise. Do you want to continue with activation?</target>
+        <target state="translated">Ennek a tagnak az e-mail címe még nincs megerősítve (hiányzik a Double-Opt-In). Az aktiválás potenciálisan nem GDPR-konform. A tagot meg kell kérni az e-mail cím megerősítésére. Ellenkező esetben nem szabad üzeneteket küldeni ennek a tagnak. Szeretné folytatni az aktiválást?</target>
       </trans-unit>
       <!-- Flash messages for member/journal validation -->
       <trans-unit id="flash.validation_error.title" resname="flash.validation_error.title">
         <source>Validation Error</source>
-        <target state="needs-translation">Validation Error</target>
+        <target state="translated">Érvényesítési hiba</target>
       </trans-unit>
       <trans-unit id="flash.validation_warning.title" resname="flash.validation_warning.title">
         <source>Validation Warning</source>
-        <target state="needs-translation">Validation Warning</target>
+        <target state="translated">Érvényesítési figyelmeztetés</target>
       </trans-unit>
       <trans-unit id="flash.journal_processing_warning.title" resname="flash.journal_processing_warning.title">
         <source>Journal processing warning</source>
-        <target state="needs-translation">Journal processing warning</target>
+        <target state="translated">A naplófeldolgozás figyelmeztetése</target>
       </trans-unit>
       <trans-unit id="flash.activation_blocked.no_ident" resname="flash.activation_blocked.no_ident">
         <source>Activation not possible: Member number (ident) is missing. Please assign a member number first before setting the status to "active". Changes were NOT saved.</source>
-        <target state="needs-translation">Activation not possible: Member number (ident) is missing. Please assign a member number first before setting the status to "active". Changes were NOT saved.</target>
+        <target state="translated">Az aktiválás nem lehetséges: Hiányzik a tagsági szám (ident). Kérjük, először rendeljen tagsági számot, mielőtt az állapotot "aktív" értékre állítja. A módosítások NEM lettek mentve.</target>
       </trans-unit>
       <trans-unit id="flash.activation_blocked.no_ident.short" resname="flash.activation_blocked.no_ident.short">
         <source>Activation not possible: Member number (ident) is missing. Please assign a member number first.</source>
-        <target state="needs-translation">Activation not possible: Member number (ident) is missing. Please assign a member number first.</target>
+        <target state="translated">Az aktiválás nem lehetséges: Hiányzik a tagsági szám (ident). Kérjük, először rendeljen tagsági számot.</target>
       </trans-unit>
       <trans-unit id="flash.activation_warning.no_email" resname="flash.activation_warning.no_email">
         <source>No email address is set. Activation can continue, but automatic login communication is not possible.</source>
-        <target state="needs-translation">No email address is set. Activation can continue, but automatic login communication is not possible.</target>
+        <target state="translated">Nincs e-mail cím beállítva. Az aktiválás folytatható, de az automatikus bejelentkezési értesítés nem lehetséges.</target>
       </trans-unit>
       <trans-unit id="flash.activation_warning.unverified_email" resname="flash.activation_warning.unverified_email">
         <source>The email address has not been verified (Double-Opt-In missing). Activation is potentially not GDPR compliant. The member should be asked to verify their email address.</source>
-        <target state="needs-translation">The email address has not been verified (Double-Opt-In missing). Activation is potentially not GDPR compliant. The member should be asked to verify their email address.</target>
+        <target state="translated">Az e-mail cím nincs megerősítve (hiányzik a Double-Opt-In). Az aktiválás potenciálisan nem GDPR-konform. A tagot meg kell kérni az e-mail cím megerősítésére.</target>
       </trans-unit>
       <trans-unit id="flash.past_effective_date.warning" resname="flash.past_effective_date.warning">
         <source>The effective date is in the past. This change may affect billing/statistics and might require corrections.</source>
-        <target state="needs-translation">The effective date is in the past. This change may affect billing/statistics and might require corrections.</target>
+        <target state="translated">A hatálybalépési dátum a múltban van. Ez a változás befolyásolhatja a számlázást/statisztikát, és javításokat igényelhet.</target>
       </trans-unit>
       <trans-unit id="flash.journal_edit_blocked.title" resname="flash.journal_edit_blocked.title">
         <source>Editing not possible</source>
-        <target state="needs-translation">Editing not possible</target>
+        <target state="translated">A szerkesztés nem lehetséges</target>
       </trans-unit>
       <trans-unit id="flash.journal_edit_blocked.system_entry" resname="flash.journal_edit_blocked.system_entry">
         <source>System-generated journal entries cannot be edited. Please create a new entry instead.</source>
-        <target state="needs-translation">System-generated journal entries cannot be edited. Please create a new entry instead.</target>
+        <target state="translated">A rendszer által generált naplóbejegyzések nem szerkeszthetők. Kérjük, hozzon létre helyette új bejegyzést.</target>
       </trans-unit>
       <trans-unit id="memberjournal.cancellation_reverted" resname="memberjournal.cancellation_reverted">
         <source>Cancellation request reverted by status change to active</source>
-        <target state="needs-translation">Cancellation request reverted by status change to active</target>
+        <target state="translated">A lemondási kérelem visszavonva az aktív állapotra történő váltással</target>
       </trans-unit>
       <trans-unit id="flash.pending_cancellation_reverted" resname="flash.pending_cancellation_reverted">
         <source>Pending cancellation was automatically reverted.</source>
-        <target state="needs-translation">Pending cancellation was automatically reverted.</target>
+        <target state="translated">A függőben lévő lemondás automatikusan vissza lett vonva.</target>
       </trans-unit>
       <trans-unit id="flash.journal_edit_blocked.processed" resname="flash.journal_edit_blocked.processed">
         <source>Processed journal entries cannot be edited.</source>
-        <target state="needs-translation">Processed journal entries cannot be edited.</target>
+        <target state="translated">A feldolgozott naplóbejegyzések nem szerkeszthetők.</target>
       </trans-unit>
       <trans-unit id="flash.journal_edit_blocked.member_entry" resname="flash.journal_edit_blocked.member_entry">
         <source>Member-created journal entries cannot be edited.</source>
-        <target state="needs-translation">Member-created journal entries cannot be edited.</target>
+        <target state="translated">A tag által létrehozott naplóbejegyzések nem szerkeszthetők.</target>
       </trans-unit>
       <!-- Bug 7: Level Change Validation -->
       <trans-unit id="flash.level_change_same_level" resname="flash.level_change_same_level">
         <source>Level change not possible: New level is the same as the current level.</source>
-        <target state="needs-translation">Level change not possible: New level is the same as the current level.</target>
+        <target state="translated">A szintváltozás nem lehetséges: Az új szint megegyezik a jelenlegi szinttel.</target>
       </trans-unit>
       <!-- CR3: Same Status Validation -->
       <trans-unit id="flash.status_change_same_status" resname="flash.status_change_same_status">
         <source>Status change not possible: Target status is the same as the current member status.</source>
-        <target state="needs-translation">Status change not possible: Target status is the same as the current member status.</target>
+        <target state="translated">Az állapotváltozás nem lehetséges: A célállapot megegyezik a jelenlegi tagállapottal.</target>
       </trans-unit>
       <trans-unit id="flash.status_change_same_status_with_pending_cancellation" resname="flash.status_change_same_status_with_pending_cancellation">
         <source>Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</source>
-        <target state="needs-translation">Status change not possible: A planned cancellation already exists. Please deactivate that entry (hidden=1) to revert the cancellation.</target>
+        <target state="translated">Az állapotváltozás nem lehetséges: Már létezik tervezett lemondás. Kérjük, deaktiválja azt a bejegyzést (hidden=1) a lemondás visszavonásához.</target>
       </trans-unit>
       <!-- CR2: Pending Entry Validations -->
       <trans-unit id="flash.pending_status_change_exists" resname="flash.pending_status_change_exists">
         <source>A pending status change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</source>
-        <target state="needs-translation">A pending status change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</target>
+        <target state="translated">Ehhez a taghoz már létezik függőben lévő állapotváltozás. Kérjük, várjon, amíg feldolgozásra kerül, vagy először deaktiválja a meglévő bejegyzést.</target>
       </trans-unit>
       <trans-unit id="flash.pending_level_change_exists" resname="flash.pending_level_change_exists">
         <source>A pending level change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</source>
-        <target state="needs-translation">A pending level change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</target>
+        <target state="translated">Ehhez a taghoz már létezik függőben lévő szintváltozás. Kérjük, várjon, amíg feldolgozásra kerül, vagy először deaktiválja a meglévő bejegyzést.</target>
       </trans-unit>
       <trans-unit id="flash.status_change_applied_not_allowed" resname="flash.status_change_applied_not_allowed">
         <source>Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.</source>
-        <target state="needs-translation">Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.</target>
+        <target state="translated">A "beantragt" állapot csak automatikusan, a Pro regisztráció során hozható létre, manuálisan nem állítható be.</target>
       </trans-unit>
       <trans-unit id="flash.status_change_cancelled_not_allowed_with_billing" resname="flash.status_change_cancelled_not_allowed_with_billing">
         <source>Manual status change to "cancelled" is not allowed while Billing is active. Please use cancellation request.</source>
-        <target state="needs-translation">Manual status change to "cancelled" is not allowed while Billing is active. Please use cancellation request.</target>
+        <target state="translated">A manuális állapotváltozás "cancelled" értékre nem engedélyezett, amíg a Billing aktív. Kérjük, használja a lemondási kérelmet.</target>
       </trans-unit>
       <trans-unit id="flash.journal_reactivation_blocked_newer_entries" resname="flash.journal_reactivation_blocked_newer_entries">
         <source>Reactivation not possible: Newer journal entries exist.</source>
-        <target state="needs-translation">Reactivation not possible: Newer journal entries exist.</target>
+        <target state="translated">Az újraaktiválás nem lehetséges: Újabb naplóbejegyzések léteznek.</target>
       </trans-unit>
     </body>
   </file>
