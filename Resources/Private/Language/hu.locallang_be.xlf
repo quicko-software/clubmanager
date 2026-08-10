@@ -5,31 +5,31 @@
     <body>
       <trans-unit id="task.MemberLoginReminderTask.title" resname="task.MemberLoginReminderTask.title">
         <source>Reminder email</source>
-        <target state="needs-translation">Reminder email</target>
+        <target state="translated">Emlékeztető e-mail</target>
       </trans-unit>
       <trans-unit id="task.MemberLoginReminderTask.description" resname="task.MemberLoginReminderTask.description">
         <source>Reminder email to members who have never registered before</source>
-        <target state="needs-translation">Reminder email to members who have never registered before</target>
+        <target state="translated">Emlékeztető e-mail azon tagoknak, akik még soha nem regisztráltak</target>
       </trans-unit>
       <trans-unit id="task.MemberLoginReminderTask.arg.MIN_DAY_PERIOD" resname="task.MemberLoginReminderTask.arg.MIN_DAY_PERIOD">
         <source>Days until reminder</source>
-        <target state="needs-translation">Days until reminder</target>
+        <target state="translated">Napok az emlékeztetőig</target>
       </trans-unit>
       <trans-unit id="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST" resname="task.MemberLoginReminderTask.arg.MEMBER_PID_LIST">
         <source>List of PID's for members, comma-separated (e.g. '147,55,99', blank for all).</source>
-        <target state="needs-translation">List of PID's for members, comma-separated (e.g. '147,55,99', blank for all).</target>
+        <target state="translated">A tagok PID listája, vesszővel elválasztva (pl. '147,55,99', üresen hagyva mindenkinek).</target>
       </trans-unit>
       <trans-unit id="task.MailServiceTask.title" resname="task.MailServiceTask.title">
         <source>Email service</source>
-        <target state="needs-translation">Email service</target>
+        <target state="translated">E-mail szolgáltatás</target>
       </trans-unit>
       <trans-unit id="task.MailServiceTask.description" resname="task.MailServiceTask.description">
         <source>Service for sending e-mails</source>
-        <target state="needs-translation">Service for sending e-mails</target>
+        <target state="translated">Szolgáltatás e-mailek küldéséhez</target>
       </trans-unit>
       <trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg">
         <source>Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </source>
-        <target state="needs-translation">Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </target>
+        <target state="translated">Nyitott e-mailek: %1$d, hibák: %2$d, e-mailek menetenként: %3$d. </target>
       </trans-unit>
       <trans-unit id="task.ProcessJournalEntriesTask.title" resname="task.ProcessJournalEntriesTask.title">
         <source>Process Member Journal Entries</source>
@@ -41,83 +41,83 @@
       </trans-unit>
       <trans-unit id="task.MailServiceTask.arg.MAX_NUM_MAILS" resname="task.MailServiceTask.arg.MAX_NUM_MAILS">
         <source>Maximum number of emails per run</source>
-        <target state="needs-translation">Maximum number of emails per run</target>
+        <target state="translated">E-mailek maximális száma futásonként</target>
       </trans-unit>
       <trans-unit id="task.general.errors.invalid_value" resname="task.general.errors.invalid_value">
         <source>Invalid value for field: %1</source>
-        <target state="needs-translation">Invalid value for field: %1</target>
+        <target state="translated">Érvénytelen érték a(z) %1 mezőhöz</target>
       </trans-unit>
       <trans-unit id="content_element.citieslist" resname="content_element.citieslist">
         <source>City overview</source>
-        <target state="needs-translation">City overview</target>
+        <target state="translated">Városáttekintés</target>
       </trans-unit>
       <trans-unit id="content_element.citieslist.description" resname="content_element.citieslist.description">
         <source>Output of the city overview</source>
-        <target state="needs-translation">Output of the city overview</target>
+        <target state="translated">A városáttekintés kimenete</target>
       </trans-unit>
       <trans-unit id="content_element.city" resname="content_element.city">
         <source>Locations per city</source>
-        <target state="needs-translation">Locations per city</target>
+        <target state="translated">Helyszínek városonként</target>
       </trans-unit>
       <trans-unit id="content_element.city.description" resname="content_element.city.description">
         <source>Output of the locations for a city</source>
-        <target state="needs-translation">Output of the locations for a city</target>
+        <target state="translated">A város helyszíneinek kimenete</target>
       </trans-unit>
       <trans-unit id="content_element.member" resname="content_element.member">
         <source>Member single view</source>
-        <target state="needs-translation">Member single view</target>
+        <target state="translated">Tag egyedi nézet</target>
       </trans-unit>
       <trans-unit id="content_element.member.description" resname="content_element.member.description">
         <source>Detail output of a member</source>
-        <target state="needs-translation">Detail output of a member</target>
+        <target state="translated">Egy tag részletes kimenete</target>
       </trans-unit>
       <trans-unit id="content_element.location" resname="content_element.location">
         <source>Location single output</source>
-        <target state="needs-translation">Location single output</target>
+        <target state="translated">Helyszín egyedi kimenet</target>
       </trans-unit>
       <trans-unit id="content_element.location.description" resname="content_element.location.description">
         <source>Detail output of a location</source>
-        <target state="needs-translation">Detail output of a location</target>
+        <target state="translated">Egy helyszín részletes kimenete</target>
       </trans-unit>
       <trans-unit id="content_element.locationlist" resname="content_element.locationlist">
         <source>Location list</source>
-        <target state="needs-translation">Location list</target>
+        <target state="translated">Helyszínlista</target>
       </trans-unit>
       <trans-unit id="content_element.locationlist.description" resname="content_element.locationlist.description">
         <source>List of all locations</source>
-        <target state="needs-translation">List of all locations</target>
+        <target state="translated">Az összes helyszín listája</target>
       </trans-unit>
       <trans-unit id="content_element.memberlist" resname="content_element.memberlist">
         <source>List of members</source>
-        <target state="needs-translation">List of members</target>
+        <target state="translated">Taglista</target>
       </trans-unit>
       <trans-unit id="content_element.memberlist.description" resname="content_element.memberlist.description">
         <source>List of all members</source>
-        <target state="needs-translation">List of all members</target>
+        <target state="translated">Az összes tag listája</target>
       </trans-unit>
       <trans-unit id="storagesettings" resname="storagesettings">
         <source>Settings</source>
-        <target state="needs-translation">Settings</target>
+        <target state="translated">Beállítások</target>
       </trans-unit>
       <trans-unit id="storagesettings.detail_city_page" resname="storagesettings.detail_city_page">
         <source>City overview page</source>
-        <target state="needs-translation">City overview page</target>
+        <target state="translated">Városáttekintő oldal</target>
       </trans-unit>
       <trans-unit id="storagesettings.detail_member_page" resname="storagesettings.detail_member_page">
         <source>Members page</source>
-        <target state="needs-translation">Members page</target>
+        <target state="translated">Tagok oldala</target>
       </trans-unit>
       <trans-unit id="backend_main_module_name" resname="backend_main_module_name">
         <source>Clubmanager</source>
-        <target state="needs-translation">Clubmanager</target>
+        <target state="translated">Clubmanager</target>
       </trans-unit>
       <trans-unit id="bem-toolbox.edit" resname="bem-toolbox.edit">
         <source>Edit</source>
-        <target state="needs-translation">Edit</target>
+        <target state="translated">Szerkesztés</target>
       </trans-unit>
       <trans-unit id="bem-toolbox.delete" resname="bem-toolbox.delete">
         <source>Delete</source>
-        <target state="needs-translation">Delete</target>
+        <target state="translated">Törlés</target>
       </trans-unit>
       <trans-unit id="bem-toolbox.selectall" resname="bem-toolbox.selectall">
         <source>Select all</source>
@@ -125,67 +125,67 @@
       </trans-unit>
       <trans-unit id="mlang_tabs_tab_memberlist" resname="mlang_tabs_tab_memberlist">
         <source>List of members</source>
-        <target state="needs-translation">List of members</target>
+        <target state="translated">Taglista</target>
       </trans-unit>
       <trans-unit id="mlang_tabs_tab_mailtasks" resname="mlang_tabs_tab_mailtasks">
         <source>Mailjournal</source>
-        <target state="needs-translation">Mailjournal</target>
+        <target state="translated">Levélenapló</target>
       </trans-unit>
       <trans-unit id="mlang_tabs_tab_settlements" resname="mlang_tabs_tab_settlements">
         <source>Billing</source>
-        <target state="needs-translation">Billing</target>
+        <target state="translated">Számlázás</target>
       </trans-unit>
       <trans-unit id="mlang_tabs_tab_membershipstatistics" resname="mlang_tabs_tab_membershipstatistics">
         <source>Statistics</source>
-        <target state="needs-translation">Statistics</target>
+        <target state="translated">Statisztika</target>
       </trans-unit>
       <trans-unit id="mlang_tabs_tab_events" resname="mlang_tabs_tab_events">
         <source>Events</source>
-        <target state="needs-translation">Events</target>
+        <target state="translated">Események</target>
       </trans-unit>
       <trans-unit id="bem.apiCall.flash.error.title" resname="bem.apiCall.flash.error.title">
         <source>Error</source>
-        <target state="needs-translation">Error</target>
+        <target state="translated">Hiba</target>
       </trans-unit>
       <trans-unit id="module.title" resname="module.title">
         <source>Quicko - The Clubmanager</source>
-        <target state="needs-translation">Quicko - The Clubmanager</target>
+        <target state="translated">Quicko - The Clubmanager</target>
       </trans-unit>
       <trans-unit id="module.memberlist.title" resname="module.memberlist.title">
         <source>Member list module</source>
-        <target state="needs-translation">Member list module</target>
+        <target state="translated">Taglista modul</target>
       </trans-unit>
       <trans-unit id="module.memberlist.lead_intro" resname="module.memberlist.lead_intro">
         <source>The member list module is part of the clubmanager_pro extension.</source>
-        <target state="needs-translation">The member list module is part of the clubmanager_pro extension.</target>
+        <target state="translated">A taglista modul a clubmanager_pro bővítmény része.</target>
       </trans-unit>
       <trans-unit id="module.memberlist.lead_full" resname="module.memberlist.lead_full">
         <source>Your club already has %d members with %d locations.</source>
-        <target state="needs-translation">Your club already has %d members with %d locations.</target>
+        <target state="translated">Az Ön klubjának már %d tagja és %d helyszíne van.</target>
       </trans-unit>
       <trans-unit id="module.memberlist.lead_none" resname="module.memberlist.lead_none">
         <source>Have you finished setting up the club manager? No members were found.</source>
-        <target state="needs-translation">Have you finished setting up the club manager? No members were found.</target>
+        <target state="translated">Befejezte már a klubkezelő beállítását? Nem található tag.</target>
       </trans-unit>
       <trans-unit id="module.memberlist.subtitle" resname="module.memberlist.subtitle">
         <source>Clubmanager Pro</source>
-        <target state="needs-translation">Clubmanager Pro</target>
+        <target state="translated">Clubmanager Pro</target>
       </trans-unit>
       <trans-unit id="module.memberlist.features.title" resname="module.memberlist.features.title">
         <source>Features</source>
-        <target state="needs-translation">Features</target>
+        <target state="translated">Funkciók</target>
       </trans-unit>
       <trans-unit id="module.memberlist.features.1" resname="module.memberlist.features.1">
         <source>Backend module for member management</source>
-        <target state="needs-translation">Backend module for member management</target>
+        <target state="translated">Háttérmodul a tagkezeléshez</target>
       </trans-unit>
       <trans-unit id="module.memberlist.features.2" resname="module.memberlist.features.2">
         <source>Mail journal module for mail task management</source>
-        <target state="needs-translation">Mail journal module for mail task management</target>
+        <target state="translated">Levélenapló modul a levelezési feladatok kezeléséhez</target>
       </trans-unit>
       <trans-unit id="module.memberlist.features.3" resname="module.memberlist.features.3">
         <source>Dynamic registration process for new members via web form</source>
-        <target state="needs-translation">Dynamic registration process for new members via web form</target>
+        <target state="translated">Dinamikus regisztrációs folyamat új tagok számára webes űrlapon keresztül</target>
       </trans-unit>
       <trans-unit id="module.memberlist.features.6" resname="module.memberlist.features.6">
         <source>Incl. double opt-in procedure for verifying email addresses during new registrations</source>
@@ -193,219 +193,219 @@
       </trans-unit>
       <trans-unit id="module.memberlist.features.4" resname="module.memberlist.features.4">
         <source>Automated cancellation process for members</source>
-        <target state="needs-translation">Automated cancellation process for members</target>
+        <target state="translated">Automatizált lemondási folyamat a tagok számára</target>
       </trans-unit>
       <trans-unit id="module.memberlist.features.5" resname="module.memberlist.features.5">
         <source>Prioritization of members (e.g. for advertising purposes)</source>
-        <target state="needs-translation">Prioritization of members (e.g. for advertising purposes)</target>
+        <target state="translated">A tagok rangsorolása (pl. reklámcélokra)</target>
       </trans-unit>
       <trans-unit id="module.memberlist.tip" resname="module.memberlist.tip">
         <source>Tip</source>
-        <target state="needs-translation">Tip</target>
+        <target state="translated">Tipp</target>
       </trans-unit>
       <trans-unit id="module.memberlist.tip.text" resname="module.memberlist.tip.text">
         <source>Have a look at `Quicko - Clubmanager Pro` for more information about `ext:clubmanager_pro`.</source>
-        <target state="needs-translation">Have a look at `Quicko - Clubmanager Pro` for more information about `ext:clubmanager_pro`.</target>
+        <target state="translated">Tekintse meg a `Quicko - Clubmanager Pro` oldalt, ha többet szeretne tudni az `ext:clubmanager_pro` bővítményről.</target>
       </trans-unit>
       <trans-unit id="module.memberlist.tip.link.text" resname="module.memberlist.tip.link.text">
         <source>More Information</source>
-        <target state="needs-translation">More Information</target>
+        <target state="translated">További információk</target>
       </trans-unit>
       <trans-unit id="module.memberlist.tip.link.url" resname="module.memberlist.tip.link.url">
         <source>https://quicko.software/en/modules/pro/</source>
-        <target state="needs-translation">https://quicko.software/en/modules/pro/</target>
+        <target state="translated">https://quicko.software/en/modules/pro/</target>
       </trans-unit>
       <trans-unit id="module.mailtasks.title" resname="module.mailtasks.title">
         <source>Mailjournal Module</source>
-        <target state="needs-translation">Mailjournal Module</target>
+        <target state="translated">Levélenapló modul</target>
       </trans-unit>
       <trans-unit id="module.mailtasks.lead_intro" resname="module.mailtasks.lead_intro">
         <source>The mail journal module is part of the clubmanager_pro extension. Keep track of the mails sent by the system.</source>
-        <target state="needs-translation">The mail journal module is part of the clubmanager_pro extension. Keep track of the mails sent by the system.</target>
+        <target state="translated">A levélenapló modul a clubmanager_pro bővítmény része. Kövesse nyomon a rendszer által küldött e-maileket.</target>
       </trans-unit>
       <trans-unit id="module.mailtasks.lead_full" resname="module.mailtasks.lead_full">
         <source>Your club has already sent %d mails to %d members.</source>
-        <target state="needs-translation">Your club has already sent %d mails to %d members.</target>
+        <target state="translated">Az Ön klubja már %d e-mailt küldött %d tagnak.</target>
       </trans-unit>
       <trans-unit id="module.mailtasks.lead_none" resname="module.mailtasks.lead_none">
         <source>Have you finished setting up the club manager? No mails to members were found.</source>
-        <target state="needs-translation">Have you finished setting up the club manager? No mails to members were found.</target>
+        <target state="translated">Befejezte már a klubkezelő beállítását? Nem található a tagoknak küldött e-mail.</target>
       </trans-unit>
       <trans-unit id="module.billing.title" resname="module.billing.title">
         <source>Billing module</source>
-        <target state="needs-translation">Billing module</target>
+        <target state="translated">Számlázási modul</target>
       </trans-unit>
       <trans-unit id="module.billing.lead_intro" resname="module.billing.lead_intro">
         <source>The billing module is part of the clubmanager_billing extension.</source>
-        <target state="needs-translation">The billing module is part of the clubmanager_billing extension.</target>
+        <target state="translated">A számlázási modul a clubmanager_billing bővítmény része.</target>
       </trans-unit>
       <trans-unit id="module.billing.subtitle" resname="module.billing.subtitle">
         <source>Clubmanager Billing</source>
-        <target state="needs-translation">Clubmanager Billing</target>
+        <target state="translated">Clubmanager Billing</target>
       </trans-unit>
       <trans-unit id="module.billing.features.title" resname="module.billing.features.title">
         <source>Features</source>
-        <target state="needs-translation">Features</target>
+        <target state="translated">Funkciók</target>
       </trans-unit>
       <trans-unit id="module.billing.features.1" resname="module.billing.features.1">
         <source>Extension of member management with bank data</source>
-        <target state="needs-translation">Extension of member management with bank data</target>
+        <target state="translated">A tagkezelés kiegészítése bankadatokkal</target>
       </trans-unit>
       <trans-unit id="module.billing.features.2" resname="module.billing.features.2">
         <source>Set up different contributions and payment frequency</source>
-        <target state="needs-translation">Set up different contributions and payment frequency</target>
+        <target state="translated">Különböző hozzájárulások és fizetési gyakoriság beállítása</target>
       </trans-unit>
       <trans-unit id="module.billing.features.3" resname="module.billing.features.3">
         <source>One-time admission fee possible</source>
-        <target state="needs-translation">One-time admission fee possible</target>
+        <target state="translated">Egyszeri belépési díj lehetséges</target>
       </trans-unit>
       <trans-unit id="module.billing.features.4" resname="module.billing.features.4">
         <source>Collect membership fees: Submit collection file for house bank</source>
-        <target state="needs-translation">Collect membership fees: Submit collection file for house bank</target>
+        <target state="translated">Tagdíjak beszedése: Beszedési fájl beküldése a házi banknak</target>
       </trans-unit>
       <trans-unit id="module.billing.features.5" resname="module.billing.features.5">
         <source>Invoice dispatch via e-mail</source>
-        <target state="needs-translation">Invoice dispatch via e-mail</target>
+        <target state="translated">Számla kiküldése e-mailben</target>
       </trans-unit>
       <trans-unit id="module.billing.features.6" resname="module.billing.features.6">
         <source>Invoice retrieval in personalized login area</source>
-        <target state="needs-translation">Invoice retrieval in personalized login area</target>
+        <target state="translated">Számlák lekérése személyre szabott bejelentkezési területen</target>
       </trans-unit>
       <trans-unit id="module.billing.features.7" resname="module.billing.features.7">
         <source>Search functions</source>
-        <target state="needs-translation">Search functions</target>
+        <target state="translated">Keresőfunkciók</target>
       </trans-unit>
       <trans-unit id="module.billing.tip" resname="module.billing.tip">
         <source>Tip</source>
-        <target state="needs-translation">Tip</target>
+        <target state="translated">Tipp</target>
       </trans-unit>
       <trans-unit id="module.billing.tip.text" resname="module.billing.tip.text">
         <source>Have a look at `Quicko - Clubmanager Billing` for more information about `ext:clubmanager_billing`.</source>
-        <target state="needs-translation">Have a look at `Quicko - Clubmanager Billing` for more information about `ext:clubmanager_billing`.</target>
+        <target state="translated">Tekintse meg a `Quicko - Clubmanager Billing` oldalt, ha többet szeretne tudni az `ext:clubmanager_billing` bővítményről.</target>
       </trans-unit>
       <trans-unit id="module.billing.tip.link.text" resname="module.billing.tip.link.text">
         <source>More Information</source>
-        <target state="needs-translation">More Information</target>
+        <target state="translated">További információk</target>
       </trans-unit>
       <trans-unit id="module.billing.tip.link.url" resname="module.billing.tip.link.url">
         <source>https://quicko.software/en/modules/billing/</source>
-        <target state="needs-translation">https://quicko.software/en/modules/billing/</target>
+        <target state="translated">https://quicko.software/en/modules/billing/</target>
       </trans-unit>
       <trans-unit id="module.calendar.title" resname="module.calendar.title">
         <source>Event module</source>
-        <target state="needs-translation">Event module</target>
+        <target state="translated">Eseménymodul</target>
       </trans-unit>
       <trans-unit id="module.calendar.lead_intro" resname="module.calendar.lead_intro">
         <source>The event module is part of the clubmanager_calendar and complementary to the clubmanager_conference extension.</source>
-        <target state="needs-translation">The event module is part of the clubmanager_calendar and complementary to the clubmanager_conference extension.</target>
+        <target state="translated">Az eseménymodul a clubmanager_calendar bővítmény része, és kiegészíti a clubmanager_conference bővítményt.</target>
       </trans-unit>
       <trans-unit id="module.calendar.subtitle" resname="module.calendar.subtitle">
         <source>Club Manager Calendar and Club Manager Conference</source>
-        <target state="needs-translation">Club Manager Calendar and Club Manager Conference</target>
+        <target state="translated">Club Manager Calendar és Club Manager Conference</target>
       </trans-unit>
       <trans-unit id="module.calendar.features.title" resname="module.calendar.features.title">
         <source>Features</source>
-        <target state="needs-translation">Features</target>
+        <target state="translated">Funkciók</target>
       </trans-unit>
       <trans-unit id="module.calendar.features.1" resname="module.calendar.features.1">
         <source>Appointment scheduling (`ext:clubmanager_calendar`)</source>
-        <target state="needs-translation">Appointment scheduling (`ext:clubmanager_calendar`)</target>
+        <target state="translated">Időpontfoglalás (`ext:clubmanager_calendar`)</target>
       </trans-unit>
       <trans-unit id="module.calendar.features.2" resname="module.calendar.features.2">
         <source>Booking appointments for members (`ext:clubmanager_calendar`)</source>
-        <target state="needs-translation">Booking appointments for members (`ext:clubmanager_calendar`)</target>
+        <target state="translated">Időpontfoglalás a tagok számára (`ext:clubmanager_calendar`)</target>
       </trans-unit>
       <trans-unit id="module.calendar.features.3" resname="module.calendar.features.3">
         <source>Event Management (`ext:clubmanager_conference`)</source>
-        <target state="needs-translation">Event Management (`ext:clubmanager_conference`)</target>
+        <target state="translated">Eseményszervezés (`ext:clubmanager_conference`)</target>
       </trans-unit>
       <trans-unit id="module.calendar.features.4" resname="module.calendar.features.4">
         <source>Bookings with costs  (`ext:clubmanager_conference`)</source>
-        <target state="needs-translation">Bookings with costs  (`ext:clubmanager_conference`)</target>
+        <target state="translated">Foglalások költségekkel  (`ext:clubmanager_conference`)</target>
       </trans-unit>
       <trans-unit id="module.calendar.features.5" resname="module.calendar.features.5">
         <source>More to come</source>
-        <target state="needs-translation">More to come</target>
+        <target state="translated">Továbbiak hamarosan</target>
       </trans-unit>
       <trans-unit id="module.calendar.tip" resname="module.calendar.tip">
         <source>Tip</source>
-        <target state="needs-translation">Tip</target>
+        <target state="translated">Tipp</target>
       </trans-unit>
       <trans-unit id="module.calendar.tip.text" resname="module.calendar.tip.text">
         <source>More information about `ext:clubmanager_calendar` and  `ext:clubmanager_conference` is coming soon.</source>
-        <target state="needs-translation">More information about `ext:clubmanager_calendar` and  `ext:clubmanager_conference` is coming soon.</target>
+        <target state="translated">További információk az `ext:clubmanager_calendar` és  `ext:clubmanager_conference` bővítményekről hamarosan elérhetők.</target>
       </trans-unit>
       <trans-unit id="module.calendar.tip.link.text" resname="module.calendar.tip.link.text">
         <source>See all our clubmanager modules</source>
-        <target state="needs-translation">See all our clubmanager modules</target>
+        <target state="translated">Tekintse meg az összes clubmanager modulunkat</target>
       </trans-unit>
       <trans-unit id="module.calendar.tip.link.url" resname="module.calendar.tip.link.url">
         <source>https://quicko.software/en/modules/</source>
-        <target state="needs-translation">https://quicko.software/en/modules/</target>
+        <target state="translated">https://quicko.software/en/modules/</target>
       </trans-unit>
       <trans-unit id="module.statistics.title" resname="module.statistics.title">
         <source>Statistics module</source>
-        <target state="needs-translation">Statistics module</target>
+        <target state="translated">Statisztika modul</target>
       </trans-unit>
       <trans-unit id="module.statistics.lead_intro" resname="module.statistics.lead_intro">
         <source>The statistics module is part of the clubmanager_statistics extension.</source>
-        <target state="needs-translation">The statistics module is part of the clubmanager_statistics extension.</target>
+        <target state="translated">A statisztika modul a clubmanager_statistics bővítmény része.</target>
       </trans-unit>
       <trans-unit id="module.statistics.subtitle" resname="module.statistics.subtitle">
         <source>Clubmanager Statistics</source>
-        <target state="needs-translation">Clubmanager Statistics</target>
+        <target state="translated">Clubmanager Statistics</target>
       </trans-unit>
       <trans-unit id="module.statistics.features.title" resname="module.statistics.features.title">
         <source>Features</source>
-        <target state="needs-translation">Features</target>
+        <target state="translated">Funkciók</target>
       </trans-unit>
       <trans-unit id="module.statistics.features.1" resname="module.statistics.features.1">
         <source>Membership development statistics</source>
-        <target state="needs-translation">Membership development statistics</target>
+        <target state="translated">A tagság alakulásának statisztikája</target>
       </trans-unit>
       <trans-unit id="module.statistics.features.2" resname="module.statistics.features.2">
         <source>Visitor analysis</source>
-        <target state="needs-translation">Visitor analysis</target>
+        <target state="translated">Látogatóelemzés</target>
       </trans-unit>
       <trans-unit id="module.statistics.features.3" resname="module.statistics.features.3">
         <source>More to come</source>
-        <target state="needs-translation">More to come</target>
+        <target state="translated">Továbbiak hamarosan</target>
       </trans-unit>
       <trans-unit id="module.statistics.features.4" resname="module.statistics.features.4">
         <source>More to come</source>
-        <target state="needs-translation">More to come</target>
+        <target state="translated">Továbbiak hamarosan</target>
       </trans-unit>
       <trans-unit id="module.statistics.tip" resname="module.statistics.tip">
         <source>Tip</source>
-        <target state="needs-translation">Tip</target>
+        <target state="translated">Tipp</target>
       </trans-unit>
       <trans-unit id="module.statistics.tip.text" resname="module.statistics.tip.text">
         <source>More information about `ext:clubmanager_statistics` is coming soon.</source>
-        <target state="needs-translation">More information about `ext:clubmanager_statistics` is coming soon.</target>
+        <target state="translated">További információk az `ext:clubmanager_statistics` bővítményről hamarosan elérhetők.</target>
       </trans-unit>
       <trans-unit id="module.statistics.tip.link.text" resname="module.statistics.tip.link.text">
         <source>See all our clubmanager modules</source>
-        <target state="needs-translation">See all our clubmanager modules</target>
+        <target state="translated">Tekintse meg az összes clubmanager modulunkat</target>
       </trans-unit>
       <trans-unit id="module.statistics.tip.link.url" resname="module.statistics.tip.link.url">
         <source>https://quicko.software/en/modules/</source>
-        <target state="needs-translation">https://quicko.software/en/modules/</target>
+        <target state="translated">https://quicko.software/en/modules/</target>
       </trans-unit>
       <trans-unit id="module.info" resname="module.info">
         <source>Note</source>
-        <target state="needs-translation">Note</target>
+        <target state="translated">Megjegyzés</target>
       </trans-unit>
       <trans-unit id="module.info.text" resname="module.info.text">
         <source>Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</source>
-        <target state="needs-translation">Request a non-binding offer today and put your association on a sustainable footing. `Quicko - The Clubmanager` is your reliable partner.</target>
+        <target state="translated">Kérjen még ma kötelezettségmentes ajánlatot, és tegye egyesületét fenntartható alapokra. A `Quicko - The Clubmanager` az Ön megbízható partnere.</target>
       </trans-unit>
       <trans-unit id="module.info.link.text" resname="module.info.link.text">
         <source>Submit request now</source>
-        <target state="needs-translation">Submit request now</target>
+        <target state="translated">Ajánlatkérés most</target>
       </trans-unit>
       <trans-unit id="module.info.link.url" resname="module.info.link.url">
         <source>https://quicko.software/en/contact-us/</source>
-        <target state="needs-translation">https://quicko.software/en/contact-us/</target>
+        <target state="translated">https://quicko.software/en/contact-us/</target>
       </trans-unit>
       <trans-unit id="password-reset.button.title" resname="password-reset.button.title">
         <source>Reset Password (Regenerate + Email to user)</source>
