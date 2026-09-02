@@ -19,6 +19,11 @@ class PluginRegisterFacade
    */
   protected static array $registeredSignatures = [];
 
+  /**
+   * @var array<string, string>
+   */
+  protected static array $iconsToRegister = [];
+
   public static function configureAllPlugins(): void
   {
     /** @var Plugin $plugin */
@@ -30,9 +35,24 @@ class PluginRegisterFacade
         $plugin->getNonCacheableControllerActions(),
         $plugin->getPluginType()
       );
-      self::registerIcon($plugin);
+      self::collectIcon($plugin);
     }
     self::$pluginsToConfigure = [];
+  }
+
+  public static function registerCollectedIcons(IconRegistry $iconRegistry): void
+  {
+    foreach (self::$iconsToRegister as $identifier => $source) {
+      if ($iconRegistry->isRegistered($identifier)) {
+        continue;
+      }
+      $iconRegistry->registerIcon(
+        $identifier,
+        SvgIconProvider::class,
+        ['source' => $source]
+      );
+    }
+    self::$iconsToRegister = [];
   }
 
   public static function registerAllPlugins(): void
@@ -89,15 +109,9 @@ class PluginRegisterFacade
     self::$pluginsToRegister[] = $plugin;
   }
 
-  private static function registerIcon(Plugin $plugin): void
+  private static function collectIcon(Plugin $plugin): void
   {
-    /** @var IconRegistry $iconRegistry */
-    $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
-    $iconRegistry->registerIcon(
-      self::getIconIdentifier($plugin),
-      SvgIconProvider::class,
-      ['source' => self::getIconFilePath($plugin)]
-    );
+    self::$iconsToRegister[self::getIconIdentifier($plugin)] = self::getIconFilePath($plugin);
   }
 
   private static function getIconIdentifier(Plugin $plugin): string
