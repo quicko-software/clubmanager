@@ -14,6 +14,11 @@ class PluginRegisterFacade
   protected static array $pluginsToConfigure = [];
   protected static array $pluginsToRegister = [];
 
+  /**
+   * @var array<string, true>
+   */
+  protected static array $registeredSignatures = [];
+
   public static function configureAllPlugins(): void
   {
     /** @var Plugin $plugin */
@@ -25,72 +30,54 @@ class PluginRegisterFacade
         $plugin->getNonCacheableControllerActions(),
         $plugin->getPluginType()
       );
-      self::addToWizard($plugin);
+      self::registerIcon($plugin);
     }
     self::$pluginsToConfigure = [];
   }
 
-  private static function addToWizard(Plugin $plugin): void
-  {
-    $wizardGroupId = $plugin->getWizardGroupId();
-    if (empty($wizardGroupId)) {
-      return;
-    }
-    $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
-
-    $speakingName = 'LLL:EXT:' . $underscoreName . '/Resources/Private/Language/locallang_be.xlf:content_element.' . self::getPluginId($plugin);
-    $speakingDescription = 'LLL:EXT:' . $underscoreName . '/Resources/Private/Language/locallang_be.xlf:content_element.' . self::getPluginId($plugin) . '.description';
-    $list_type = self::getPluginSignature($plugin);
-    $iconIdentifier = 'ext-' . $underscoreName . '-content-' . self::getPluginId($plugin) . '-icon';
-
-    $tsconfig = <<<EOS
-    mod.wizards.newContentElement.wizardItems.$wizardGroupId {
-      elements {
-          $list_type {
-              iconIdentifier = $iconIdentifier
-              title = $speakingName
-              description = $speakingDescription
-              tt_content_defValues {
-                  CType = list
-                  list_type = $list_type
-              }
-          }   
-      }
-      show := addToList($list_type)
-    }
-    EOS;
-    ExtensionManagementUtility::addPageTSConfig($tsconfig);
-
-    /** @var IconRegistry $iconRegistry */
-    $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
-    $iconRegistry->registerIcon(
-      $iconIdentifier,
-      SvgIconProvider::class,
-      ['source' => self::getIconFilePath($plugin)]
-    );
-  }
-
   public static function registerAllPlugins(): void
   {
+    if (!isset($GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['clubmanager'])) {
+      $GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['clubmanager'] = 'Clubmanager';
+    }
+
     /** @var Plugin $plugin */
     foreach (self::$pluginsToRegister as $plugin) {
-      $pluginLowerName = strtolower($plugin->getPluginName());
+      $pluginSignature = self::getPluginSignature($plugin);
+      if (isset(self::$registeredSignatures[$pluginSignature])) {
+        continue;
+      }
+      self::$registeredSignatures[$pluginSignature] = true;
+
       $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
+      $pluginLowerName = strtolower($plugin->getPluginName());
+      $wizardGroup = $plugin->getWizardGroupId() !== '' ? $plugin->getWizardGroupId() : 'plugins';
+
       ExtensionUtility::registerPlugin(
         $plugin->getExtensionKey(),
         $plugin->getPluginName(),
         'LLL:EXT:' . $underscoreName . '/Resources/Private/Language/locallang_be.xlf:content_element.' . $pluginLowerName,
-        self::getIconFilePath($plugin)
+        self::getIconIdentifier($plugin),
+        $wizardGroup,
+        'LLL:EXT:' . $underscoreName . '/Resources/Private/Language/locallang_be.xlf:content_element.' . $pluginLowerName . '.description'
       );
 
       if ($plugin->getFlexFormFileName()) {
-        $pluginSignature = self::getExtensionShortName($plugin) . '_' . self::getPluginId($plugin);
-        $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-
         ExtensionManagementUtility::addPiFlexFormValue(
-          $pluginSignature,
-          'FILE:EXT:' . $underscoreName . '/Configuration/FlexForms/' . $plugin->getFlexFormFileName()
+          '*',
+          'FILE:EXT:' . $underscoreName . '/Configuration/FlexForms/' . $plugin->getFlexFormFileName(),
+          $pluginSignature
         );
+
+        $showitem = (string)($GLOBALS['TCA']['tt_content']['types'][$pluginSignature]['showitem'] ?? '');
+        if ($showitem !== '' && !str_contains($showitem, 'pi_flexform')) {
+          ExtensionManagementUtility::addToAllTCAtypes(
+            'tt_content',
+            '--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.plugin,pi_flexform',
+            $pluginSignature,
+            'after:header'
+          );
+        }
       }
     }
     self::$pluginsToRegister = [];
@@ -102,6 +89,24 @@ class PluginRegisterFacade
     self::$pluginsToRegister[] = $plugin;
   }
 
+  private static function registerIcon(Plugin $plugin): void
+  {
+    /** @var IconRegistry $iconRegistry */
+    $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
+    $iconRegistry->registerIcon(
+      self::getIconIdentifier($plugin),
+      SvgIconProvider::class,
+      ['source' => self::getIconFilePath($plugin)]
+    );
+  }
+
+  private static function getIconIdentifier(Plugin $plugin): string
+  {
+    $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
+
+    return 'ext-' . $underscoreName . '-content-' . self::getPluginId($plugin) . '-icon';
+  }
+
   private static function getPluginId(Plugin $plugin): string
   {
     return strtolower($plugin->getPluginName());
@@ -111,9 +116,8 @@ class PluginRegisterFacade
   {
     $fileName = $plugin->getIconFileName();
     $underscoreName = GeneralUtility::camelCaseToLowerCaseUnderscored($plugin->getExtensionKey());
-    $result = 'EXT:' . $underscoreName . '/Resources/Public/Icons/' . $fileName;
 
-    return $result;
+    return 'EXT:' . $underscoreName . '/Resources/Public/Icons/' . $fileName;
   }
 
   private static function getExtensionShortName(Plugin $plugin): string

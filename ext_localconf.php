@@ -187,15 +187,6 @@ call_user_func(function () {
 
 
   $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class);
-  $fe_users_storagePid = $extConf->get(
-    'clubmanager',
-    'feUsersStoragePid'
-  );
-
-  ExtensionManagementUtility::addPageTSConfig(
-    'TCAdefaults.fe_users.pid = ' . $fe_users_storagePid
-  );
-
   $settings = $extConf->get('clubmanager');
   foreach ($settings as $key => $setting) {
     if ($key == 'storagePid') {

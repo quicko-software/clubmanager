@@ -68,5 +68,5 @@ page.TCEFORM.tx_clubmanager_domain_model_location {
 // Override for Admin-Users
 // -----------------------------------------------------------//
 [backend.user.isAdmin]
-    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:clubmanager/Configuration/TsConfig/User/admin.tsconfig">
+    @import 'EXT:clubmanager/Configuration/TsConfig/User/admin.tsconfig'
 [END]
