@@ -35,7 +35,7 @@
 				<source>Service for sending e-mails</source>
 				<target>Service zum Versenden von E-Mails</target>
 			</trans-unit>
-			<trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg">
+			<trans-unit id="task.MailServiceTask.statusMsg" resname="task.MailServiceTask.statusMsg" xml:space="preserve">
 				<source>Open mails: %1$d, Errors: %2$d, Emails per pass: %3$d. </source>
 				<target>Offene Mails: %1$d, Fehler: %2$d, E-Mails pro Durchlauf: %3$d. </target>
 			</trans-unit>

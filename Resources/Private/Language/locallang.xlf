@@ -67,7 +67,7 @@
 			<trans-unit id="mail.footer.linktext" resname="mail.footer.linktext">
 				<source>Quicko - The Clubmanager</source>
 			</trans-unit>
-			<trans-unit id="mail.footer.copyright" resname="mail.footer.copyright">
+			<trans-unit id="mail.footer.copyright" resname="mail.footer.copyright" xml:space="preserve">
 				<source>© 2024 </source>
 			</trans-unit>
 			<trans-unit id="mail.footer.imprint.text" resname="mail.footer.imprint.text">
@@ -91,7 +91,7 @@
 			<trans-unit id="mail.reminder.preheader" resname="mail.reminder.preheader">
 				<source>Reminder e-mail of your first login in the member area</source>
 			</trans-unit>
-			<trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome">
+			<trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome" xml:space="preserve">
 				<source>Hello </source>
 			</trans-unit>
 			<trans-unit id="mail.reminder.text" resname="mail.reminder.text">

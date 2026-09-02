@@ -42,7 +42,7 @@
 				<source>Your access data to the member area</source>
 				<target>Ihre Zugangsdaten zum Mitgliederbereich</target>
 			</trans-unit>
-			<trans-unit id="mail.logindata.welcome" resname="mail.logindata.welcome">
+			<trans-unit id="mail.logindata.welcome" resname="mail.logindata.welcome" xml:space="preserve">
 				<source>Hello</source>
 				<target>Guten Tag </target>
 			</trans-unit>
@@ -87,7 +87,7 @@
 				<source>Quicko - The Clubmanager</source>
 				<target>Quicko - Der Clubmanager</target>
 			</trans-unit>
-			<trans-unit id="mail.footer.copyright" resname="mail.footer.copyright">
+			<trans-unit id="mail.footer.copyright" resname="mail.footer.copyright" xml:space="preserve">
 				<source>© 2024 </source>
 				<target>© 2024 </target>
 			</trans-unit>
@@ -119,7 +119,7 @@
 				<source>Reminder e-mail of your first login in the member area</source>
 				<target>Erinnerungs-Mail an Ihren ersten Login im Mitglieder-Bereich</target>
 			</trans-unit>
-			<trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome">
+			<trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome" xml:space="preserve">
 				<source>Hello </source>
 				<target>Guten Tag </target>
 			</trans-unit>
