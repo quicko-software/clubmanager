@@ -20,7 +20,7 @@ lib.login {
     10 = TEXT
     10 {
         wrap = <div class="ms-md-5 my-3 text-end"> | </div>
-        value = {$clubmanagerLogin.label.login}
+        value = {$clubmanagerLogin.label.login ?? $styles.content.loginform.label.login}
         typolink {
             ATagParams = class="btn btn-primary d-block text-white"
             enable = 1
@@ -83,7 +83,7 @@ lib.login.10.typolink.parameter = {$plugin.tx_clubmanager.settings.feUsersLoginP
             10 = TEXT
             10 {
                 wrap = <div class="col"> | </div>
-                value = {$clubmanagerLogin.label.profile}
+                value = {$clubmanagerLogin.label.profile ?? $styles.content.loginform.label.profile}
                 typolink {
                     ATagParams = class="btn btn-success d-block text-white"
                     enable = 1
@@ -95,7 +95,7 @@ lib.login.10.typolink.parameter = {$plugin.tx_clubmanager.settings.feUsersLoginP
             20 = TEXT
             20 {
                 wrap = <div class="col"> | </div>
-                value = {$clubmanagerLogin.label.logout}
+                value = {$clubmanagerLogin.label.logout ?? $styles.content.loginform.label.logout}
                 typolink {
                     ATagParams = class="btn btn-danger d-block text-white"
                     enable = 1

@@ -204,8 +204,10 @@ them in your own sitepackage to your needs.
 
 .. important::
 
-   You can still use the following constants in legacy projects. Prefer site
-   settings for login page, mail sender and logout target configuration.
+   Static includes of this file ship the same `clubmanagerLogin.*` defaults as
+   the login Site Set (including `clubmanagerLogin.label.login`). Prefer site
+   settings when the set `quicko/clubmanager-login` is enabled. You can still
+   use the following constants in legacy projects.
 
    .. code-block:: typoscript
       :caption: TypoScript constants

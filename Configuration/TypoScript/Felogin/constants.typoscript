@@ -1,1 +1,19 @@
 @import 'EXT:felogin/Configuration/TypoScript/constants.typoscript'
+
+# Defaults for legacy sys_template includes (include_static_file).
+# Site Set `quicko/clubmanager-login` overlays the same identifiers via Site Settings.
+clubmanagerLogin.storagePid = 0
+clubmanagerLogin.loginFormPid = 0
+clubmanagerLogin.memberProfilePage = 0
+clubmanagerLogin.emailFrom = demo@clubmanager.software
+clubmanagerLogin.emailFromName = Clubmanager Demo
+clubmanagerLogin.replyToEmail = post@quicko.software
+clubmanagerLogin.redirectPageLogout = 10
+clubmanagerLogin.label.login = Login
+clubmanagerLogin.label.profile = Profil
+clubmanagerLogin.label.logout = Logout
+
+# Legacy identifiers still referenced by docs and sitepackages.
+styles.content.loginform.label.login = {$clubmanagerLogin.label.login}
+styles.content.loginform.label.profile = {$clubmanagerLogin.label.profile}
+styles.content.loginform.label.logout = {$clubmanagerLogin.label.logout}
