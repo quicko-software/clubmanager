@@ -8,8 +8,9 @@ use TYPO3\CMS\Core\Log\Logger;
 
 class HookUtils
 {
-  public static function getRecordUid(string $uidCandidate, DataHandler &$dataHandler): ?string
+  public static function getRecordUid(string|int $uidCandidate, DataHandler &$dataHandler): ?string
   {
+    $uidCandidate = (string) $uidCandidate;
     if (str_starts_with($uidCandidate, 'NEW')) {
       return array_key_exists($uidCandidate, $dataHandler->substNEWwithIDs)
         ? $dataHandler->substNEWwithIDs[$uidCandidate]
