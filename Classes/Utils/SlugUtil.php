@@ -31,7 +31,7 @@ class SlugUtil
     // The specCharsToASCII() converts "€" to "EUR"
     /** @var CharsetConverter $charsetConverter */
     $charsetConverter = GeneralUtility::makeInstance(CharsetConverter::class);
-    $slug = $charsetConverter->specCharsToASCII('utf-8', $slug);
+    $slug = $charsetConverter->utf8_char_mapping($slug);
 
     // Get rid of all invalid characters, but allow slashes
     $slug = preg_replace('/[^\p{L}\p{M}0-9\/' . preg_quote($fallbackCharacter) . ']/u', '', $slug);

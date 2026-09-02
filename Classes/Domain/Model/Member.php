@@ -54,11 +54,8 @@ class Member extends AbstractEntity
 
   protected int $state = self::STATE_UNSET;
 
-  /**
-   * @Lazy
-   *
-   * @Cascade("remove")
-   */
+  #[Lazy]
+  #[Cascade(['value' => 'remove'])]
   protected FrontendUser|LazyLoadingProxy|null $feuser = null;
 
   protected int $directDebit = 0;
@@ -69,20 +66,15 @@ class Member extends AbstractEntity
 
   protected ?string $account = null;
 
-  /**
-   * @Lazy
-   *
-   * @Cascade("remove")
-   */
+  #[Lazy]
+  #[Cascade(['value' => 'remove'])]
   protected Location|LazyLoadingProxy|null $mainLocation = null;
 
   /**
    * @var ObjectStorage<Location>
-   *
-   * @Lazy
-   *
-   * @Cascade("remove")
    */
+  #[Lazy]
+  #[Cascade(['value' => 'remove'])]
   protected ObjectStorage $subLocations;
 
   protected ?string $altBillingName = '';
@@ -93,9 +85,7 @@ class Member extends AbstractEntity
 
   protected ?string $altBillingCity = '';
 
-  /**
-   * @Lazy
-   */
+  #[Lazy]
   protected Country|LazyLoadingProxy|null $altBillingCountry = null;
 
   protected ?string $altEmail;
@@ -118,9 +108,7 @@ class Member extends AbstractEntity
 
   protected int $federalState = 0;
 
-  /**
-   * @Lazy
-   */
+  #[Lazy]
   protected Country|LazyLoadingProxy|null $country = null;
 
   protected ?string $email = '';
@@ -161,9 +149,8 @@ class Member extends AbstractEntity
 
   /**
    * @var ObjectStorage<Category>
-   *
-   * @Lazy
    */
+  #[Lazy]
   protected ObjectStorage $categories;
 
   /**

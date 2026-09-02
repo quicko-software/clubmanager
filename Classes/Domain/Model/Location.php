@@ -50,18 +50,15 @@ class Location extends AbstractEntity
 
   protected string $longitude = '';
 
-  /**
-   * @Cascade("remove")
-   */
+  #[Cascade(['value' => 'remove'])]
   protected ?FileReference $image = null;
 
   protected string $info = '';
 
   /**
    * @var ObjectStorage<Category>
-   *
-   * @Lazy
    */
+  #[Lazy]
   protected $categories;
 
   protected string $phone = '';
@@ -76,11 +73,9 @@ class Location extends AbstractEntity
 
   /**
    * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Socialmedia>
-   *
-   * @Lazy
-   *
-   * @Cascade("remove")
    */
+  #[Lazy]
+  #[Cascade(['value' => 'remove'])]
   protected $socialmedia;
 
   protected string $youtubeVideo = '';

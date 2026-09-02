@@ -298,7 +298,14 @@ class ProcessMemberJournalHook
    */
   private function enforcePendingHiddenFromRequestData(array &$memberUids): void
   {
-    $postData = $_POST['data']['tx_clubmanager_domain_model_memberjournalentry'] ?? null;
+    $postData = null;
+    $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+    if ($request instanceof \Psr\Http\Message\ServerRequestInterface) {
+      $parsedBody = $request->getParsedBody();
+      if (is_array($parsedBody)) {
+        $postData = $parsedBody['data']['tx_clubmanager_domain_model_memberjournalentry'] ?? null;
+      }
+    }
     if (!is_array($postData)) {
       return;
     }

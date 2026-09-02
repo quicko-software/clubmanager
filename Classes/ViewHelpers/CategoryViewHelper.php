@@ -20,7 +20,7 @@ class CategoryViewHelper extends AbstractViewHelper
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('uid', 'int', 'The category uid', true);
         $this->registerArgument(
@@ -33,10 +33,8 @@ class CategoryViewHelper extends AbstractViewHelper
 
     /**
      * Returns the category by uid
-     *
-     * @return string
      */
-    public function render()
+    public function render(): string
     {
         if ($this->templateVariableContainer->exists($this->arguments['as']) === TRUE) {
             $this->templateVariableContainer->remove($this->arguments['as']);
