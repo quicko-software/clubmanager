@@ -12,13 +12,14 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '2.0.6',
     'constraints' => [
         'depends' => [
-            'typo3' => '13.4.0-13.4.99',
-            'static_info_tables' => '13.4.0-13.4.99',
+            'typo3' => '13.4.0-14.3.99',
+            'install' => '13.4.0-14.3.99',
+            'static_info_tables' => '13.4.0-14.3.99',
         ],
         'suggests' => [
             'php' => '8.3.1-8.3.99',
-            'vhs' => '7.2.1-7.2.99',
-            'cms-felogin' => '13.4.0-13.4.99',
+            'vhs' => '7.2.0-8.99.99',
+            'cms-felogin' => '13.4.0-14.3.99',
             'bootstrap_package' => '16.0.0-16.0.99',
         ],
         'conflicts' => [

@@ -5,7 +5,12 @@
   "homepage": "https://quicko.software",
   "license": "GPL-2.0-or-later",
   "keywords": [
-    "typo3","club","manager","location","member","membership"
+    "typo3",
+    "club",
+    "manager",
+    "location",
+    "member",
+    "membership"
   ],
   "autoload": {
     "psr-4": {
@@ -18,13 +23,14 @@
     }
   },
   "require": {
-    "typo3/cms-core": "^13.4",
-    "sjbr/static-info-tables": "^13.4"
+    "typo3/cms-core": "^13.4 || ^14.3",
+    "sjbr/static-info-tables": "^13.4 || ^14.3",
+    "typo3/cms-install": "^13.4 || ^14.3"
   },
   "suggest": {
     "php": "^8.3",
-    "fluidtypo3/vhs": "^7",
-    "typo3/cms-felogin": "^13.4",
+    "fluidtypo3/vhs": "^7 || ^8",
+    "typo3/cms-felogin": "^13.4 || ^14.3",
     "bk2k/bootstrap-package": "^16.0"
   }
 }
