@@ -93,7 +93,7 @@ class UniversalTypoScriptService
     $pageInformation = new PageInformation();
     $pageInformation->setId($pageUid);
 
-    $pageRecord = BackendUtility::getRecord('pages', $pageUid, '*');
+    $pageRecord = BackendUtility::getRecord('pages', $pageUid, '*') ?? [];
     $pageInformation->setPageRecord($pageRecord);
 
     $rootLine = [];

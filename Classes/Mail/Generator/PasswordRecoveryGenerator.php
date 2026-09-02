@@ -8,17 +8,15 @@ use Quicko\Clubmanager\Records\FeUserRecordRepository;
 use Quicko\Clubmanager\Utils\ForgotPasswordHashGenerator;
 use Quicko\Clubmanager\Utils\TypoScriptUtils;
 use Symfony\Component\Mime\Address;
-use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Crypto\HashService;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\FrontendLogin\Controller\PasswordRecoveryController;
 
 class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
 {
-  private ?int $timestamp = null;
-
   public function getLabel(BaseMailGeneratorArguments $args): string
   {
     return LocalizationUtility::translate('passwordrecoverygenerator.label', 'clubmanager') ?? '';
@@ -27,13 +25,8 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
   protected function generateForgotHash(ForgotPasswordHashGenerator $forgotPasswordHashGenerator, int $feUserUid): string
   {
     $forgotHash = $forgotPasswordHashGenerator->generate();
-    $hmac = '';
-    if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 13) {
-      $hmac = GeneralUtility::hmac($forgotHash);
-    } else {
-      $hashService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\HashService::class);
-      $hmac = $hashService->hmac($forgotHash, \TYPO3\CMS\FrontendLogin\Controller\PasswordRecoveryController::class);
-    }
+    $hashService = GeneralUtility::makeInstance(HashService::class);
+    $hmac = $hashService->hmac($forgotHash, PasswordRecoveryController::class);
 
     $feUserRecordRepo = GeneralUtility::makeInstance(FeUserRecordRepository::class);
     $feUserRecordRepo->update([$feUserUid], [
