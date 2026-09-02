@@ -6,7 +6,9 @@ use Quicko\Clubmanager\Utils\BackendModuleHelper;
 
 return [
   'clubmanager' => [
-    'labels' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:backend_main_module_name',
+    'labels' => [
+      'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:backend_main_module_name',
+    ],
     'iconIdentifier' => 'tx-clubmanager_icon-be_mod_clubmanager',
     'navigationComponent' => '@typo3/backend/page-tree/page-tree-element',
   ],
