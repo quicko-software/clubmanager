@@ -81,7 +81,7 @@ class MemberJournalFormValidation extends AbstractNode
       $unverifiedEmailText = $ls->sL(
         'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:memberjournal.status_change.unverified_email.dialog.text'
       );
-      $emailVerified = (int) $this->data['databaseRow']['email_verified'];
+      $emailVerified = $this->intFromFormValue($this->data['databaseRow']['email_verified'] ?? 0);
       $unverifiedEmailAttrs = sprintf(
         ' data-email-verified="%d" data-unverified-email-title="%s" data-unverified-email-text="%s"',
         $emailVerified,
@@ -91,7 +91,7 @@ class MemberJournalFormValidation extends AbstractNode
     }
 
     // Aktuellen Member-Status aus dem Formular-Daten holen
-    $memberState = $this->data['databaseRow']['state'] ?? 0;
+    $memberState = $this->intFromFormValue($this->data['databaseRow']['state'] ?? 0);
 
     // Render a hidden span element that carries the dialog configuration
     $resultArray['html'] = sprintf(
@@ -122,6 +122,15 @@ class MemberJournalFormValidation extends AbstractNode
     );
 
     return $resultArray;
+  }
+
+  private function intFromFormValue(mixed $value): int
+  {
+    if (is_array($value)) {
+      return $this->intFromFormValue($value[0] ?? 0);
+    }
+
+    return (int) $value;
   }
 
   protected function getLanguageService(): LanguageService

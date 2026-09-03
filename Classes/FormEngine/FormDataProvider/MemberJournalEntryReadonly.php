@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Quicko\Clubmanager\FormEngine\FormDataProvider;
 
+use DateTimeInterface;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 
@@ -58,7 +59,7 @@ final class MemberJournalEntryReadonly implements FormDataProviderInterface
 
     // Check if entry has been processed
     $processedRaw = $result['databaseRow']['processed'] ?? null;
-    $isProcessed = !empty($processedRaw) && ((is_array($processedRaw) ? (int) ($processedRaw[0] ?? 0) : (int) $processedRaw) > 0);
+    $isProcessed = $this->toTimestamp($processedRaw) > 0;
 
     // Check creator type
     $creatorTypeRaw = $result['databaseRow']['creator_type'] ?? -1;
@@ -88,6 +89,24 @@ final class MemberJournalEntryReadonly implements FormDataProviderInterface
     }
 
     return $result;
+  }
+
+  private function toTimestamp(mixed $value): int
+  {
+    if ($value instanceof DateTimeInterface) {
+      return $value->getTimestamp();
+    }
+    if (is_array($value)) {
+      return $this->toTimestamp($value[0] ?? 0);
+    }
+    if ($value === null || $value === '' || $value === false) {
+      return 0;
+    }
+    if (is_numeric($value)) {
+      return (int) $value;
+    }
+
+    return 0;
   }
 
   private function getBackendUser(): BackendUserAuthentication

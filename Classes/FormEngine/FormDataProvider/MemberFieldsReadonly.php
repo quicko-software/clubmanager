@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Quicko\Clubmanager\FormEngine\FormDataProvider;
 
+use DateTimeInterface;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 
@@ -46,6 +47,14 @@ final class MemberFieldsReadonly implements FormDataProviderInterface
    */
   private function wasEverActivated(mixed $starttime): bool
   {
+    if ($starttime instanceof DateTimeInterface) {
+      return $starttime->getTimestamp() > 0;
+    }
+
+    if (is_array($starttime)) {
+      return $this->wasEverActivated($starttime[0] ?? null);
+    }
+
     if ($starttime === null || $starttime === '' || $starttime === 0 || $starttime === '0') {
       return false;
     }
