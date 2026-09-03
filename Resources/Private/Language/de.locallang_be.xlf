@@ -601,6 +601,10 @@
 				<source>Manual status change to "cancelled" is not allowed while Billing is active. Please use cancellation request.</source>
 				<target>Manuelle Status-Änderung auf "gekündigt" ist bei aktivem Billing nicht erlaubt. Bitte nutzen Sie den Kündigungswunsch.</target>
 			</trans-unit>
+			<trans-unit id="flash.status_change_applied_not_allowed" resname="flash.status_change_applied_not_allowed">
+				<source>Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.</source>
+				<target>Status "beantragt" kann nur automatisch durch die Pro-Registrierung entstehen und darf nicht manuell gesetzt werden.</target>
+			</trans-unit>
 
 			<!-- CR2: Pending Entry Validations -->
 			<trans-unit id="flash.pending_status_change_exists" resname="flash.pending_status_change_exists">
@@ -610,6 +614,10 @@
 			<trans-unit id="flash.pending_level_change_exists" resname="flash.pending_level_change_exists">
 				<source>A pending level change already exists for this member. Please wait until it is processed or deactivate the existing entry first.</source>
 				<target>Für dieses Mitglied existiert bereits eine offene Level-Änderung. Bitte warten Sie, bis diese verarbeitet wurde, oder deaktivieren Sie den bestehenden Eintrag.</target>
+			</trans-unit>
+			<trans-unit id="flash.journal_reactivation_blocked_newer_entries" resname="flash.journal_reactivation_blocked_newer_entries">
+				<source>Reactivation not possible: Newer journal entries exist.</source>
+				<target>Reaktivierung nicht möglich: Es existieren neuere Journal-Einträge.</target>
 			</trans-unit>
 
 		</body>
