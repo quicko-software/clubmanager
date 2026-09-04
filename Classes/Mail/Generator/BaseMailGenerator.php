@@ -36,12 +36,32 @@ abstract class BaseMailGenerator {
 
   protected function createFluidMail(int $configRefPid): SubpathableFluidEmail {
     $config = TypoScriptUtils::getTypoScriptValueForPage("plugin.tx_clubmanager.settings.mailView", $configRefPid);
-    $fluidMail = new SubpathableFluidEmail(new TemplatePaths($config));
+    $fluidMail = new SubpathableFluidEmail(self::buildTemplatePaths($config));
     // in TYPO3 V12, this is hardcoded to 'Default' - setting it
     // to 'Standard' makes the code compatible with V11 AND V12
     // -> /Resources/Private/Templates/Email/Standard
     // 2024-01-26, stephanw
     $fluidMail->setTemplateSubpath('Standard'); 
     return $fluidMail;
+  }
+
+  /**
+   * Build TemplatePaths from a TypoScript "mailView" array.
+   *
+   * Fluid 4 (TYPO3 v14) dropped the TemplatePaths constructor, so
+   * `new TemplatePaths($config)` silently discards the paths: every mail
+   * then fails to render with "No paths configured" and stays in the
+   * queue. The setters exist in v13 and v14 alike.
+   *
+   * @param mixed $config
+   */
+  protected static function buildTemplatePaths($config): TemplatePaths {
+    $config = is_array($config) ? $config : [];
+    $paths = new TemplatePaths();
+    $paths->setTemplateRootPaths($config['templateRootPaths'] ?? []);
+    $paths->setLayoutRootPaths($config['layoutRootPaths'] ?? []);
+    $paths->setPartialRootPaths($config['partialRootPaths'] ?? []);
+
+    return $paths;
   }
 }
