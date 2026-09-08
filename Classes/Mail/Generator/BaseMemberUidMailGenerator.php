@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Quicko\Clubmanager\Mail\Generator;
 
-use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 use Quicko\Clubmanager\Mail\Generator\Arguments\MemberUidArguments;
 use Quicko\Clubmanager\Records\CachedMemberRecordRepository;
 use Quicko\Clubmanager\Records\MemberRecordRepository;
+use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
+use Quicko\Mailjournal\Mail\Generator\BaseMailGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 abstract class BaseMemberUidMailGenerator extends BaseMailGenerator
 {
   /**
-   * Summary of member.
-   *
-   * @var ?array<string,mixed>
+   * @var ?array<string, mixed>
    */
   private ?array $member = null;
 
@@ -59,9 +60,7 @@ abstract class BaseMemberUidMailGenerator extends BaseMailGenerator
   }
 
   /**
-   * Summary of getMemberFromArgs.
-   *
-   * @return array<string,mixed>|null
+   * @return array<string, mixed>|null
    */
   protected function getMemberFromArgs(BaseMailGeneratorArguments $args): array|null
   {
@@ -87,13 +86,11 @@ abstract class BaseMemberUidMailGenerator extends BaseMailGenerator
 
   protected function getMemberRepo(): MemberRecordRepository
   {
-    /** @var MemberRecordRepository */
-    $repo = null;
     if ($this->useCachedRepository) {
-      /** @var MemberRecordRepository */
+      /** @var MemberRecordRepository $repo */
       $repo = GeneralUtility::makeInstance(CachedMemberRecordRepository::class);
     } else {
-      /** @var MemberRecordRepository */
+      /** @var MemberRecordRepository $repo */
       $repo = GeneralUtility::makeInstance(MemberRecordRepository::class);
     }
 

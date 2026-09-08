@@ -17,15 +17,18 @@ Scheduler tasks
 Mail service task
 =================
 
-The `ext:clubmanager` automatically generates e-mails for certain actions. To
-send them automatically, the scheduler task :guilabel:`EMail Service
-(clubmanager)` must be set up and triggered in short intervals if possible.
+The `ext:clubmanager` automatically generates e-mails for certain actions. Sending
+is handled by `ext:mailjournal`: set up the scheduler task :guilabel:`EMail Service
+(mailjournal)` and trigger it in short intervals if possible.
+
+The backend list of queued mails is the mailjournal module under
+:guilabel:`Admin` / :guilabel:`Tools`.
 
 #. Go to the module :guilabel:`System > Scheduler`
 
 #. Use the :guilabel:`+` icon in the topbar :guilabel:`Create new task`
 
-#. Set dropdown :guilabel:`Class` to :guilabel:`clubmanager > EMail Service` (1.)
+#. Set dropdown :guilabel:`Class` to :guilabel:`mailjournal > EMail Service` (1.)
 
 #. Set task :guilabel:`frequency` (2.) to a short interval.
    :guilabel:`*/1 * * * *` ensures that the task is executed every minute.
@@ -45,17 +48,18 @@ send them automatically, the scheduler task :guilabel:`EMail Service
 
 .. figure:: /Images/Configuration/be-edit-mail-service-task.png
    :class: with-shadow
-   :alt: Create new task `EMail Service (clubmanager)`
+   :alt: Create new task `EMail Service (mailjournal)`
 
-   Create new task :guilabel:`clubmanager > EMail Service`
+   Create new task :guilabel:`mailjournal > EMail Service`
 
 .. note::
 
    See section :ref:`E-Mail Tasks <recordEmailTask>` for more information on
-   emails send by `ext:clubmanager`!
+   emails send by `ext:clubmanager`.
 
-   A TYPO3 module with improved view of all email tasks and extended
-   options, is available with the :ref:`ext:clubmanager_pro <clubmanagerPro>`!
+   After upgrading, run the Upgrade Wizard
+   :guilabel:`Clubmanager: Mail-Queue nach mailjournal übernehmen` so existing
+   queue rows and scheduler tasks keep working.
 
 .. _schedulerMemberLoginReminderTask:
 
@@ -109,11 +113,8 @@ next automatic execution of the
 
 .. note::
 
-   You can find all your :ref:`E-Mail Tasks <recordEmailTask>` in your TYPO3
-   installation root at id=0!
-
-   A TYPO3 module with improved view of all email tasks and extended
-   options, is available with the :ref:`ext:clubmanager_pro <clubmanagerPro>`!
+   You can find all your :ref:`E-Mail Tasks <recordEmailTask>` in the
+   `ext:mailjournal` backend module under :guilabel:`Admin` / :guilabel:`Tools`.
 
 .. important::
 

@@ -1,15 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Quicko\Clubmanager\Mail\Generator\Arguments;
 
+use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 
 class MemberUidArguments extends BaseMailGeneratorArguments
 {
-  /**
-   * memberUid
-   *
-   * @var int
-   */
   public ?int $memberUid = null;
-
 }

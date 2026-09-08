@@ -8,7 +8,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Site\SiteFinder;
-use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
+use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 
 class MemberLoginReminderGenerator extends BaseMemberUidMailGenerator
 {

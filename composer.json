@@ -25,7 +25,8 @@
   "require": {
     "typo3/cms-core": "^13.4 || ^14.3",
     "sjbr/static-info-tables": "^13.4 || ^14.3",
-    "typo3/cms-install": "^13.4 || ^14.3"
+    "typo3/cms-install": "^13.4 || ^14.3",
+    "quicko/mailjournal": "@dev"
   },
   "suggest": {
     "php": "^8.3",

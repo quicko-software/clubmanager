@@ -1,57 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Quicko\Clubmanager\Mail\Generator\Arguments;
 
-class GenericMailArguments extends MemberUidArguments
+/**
+ * @deprecated Use GenericMemberMailArguments. Kept so queued tasks and call sites still resolve.
+ */
+class GenericMailArguments extends GenericMemberMailArguments
 {
-  /**
-   * Label.
-   */
-  public string $label;
-
-  /**
-   * MailTo.
-   */
-  public string $mailTo;
-
-  /**
-   * MailToName.
-   */
-  public string $mailToName;
-
-  /**
-   * subject.
-   */
-  public string $subject;
-
-  /**
-   * configRefPid.
-   *
-   * @var ?int
-   */
-  public ?int $configRefPid;
-
-  /**
-   * TemplateName.
-   */
-  public string $templateName;
-
-  /**
-   * FluidVars.
-   *
-   * @var ?array<string,mixed>
-   */
-  public ?array $fluidVars;
-
-  /**
-   * Attachments.
-   *
-   * @var ?array<array<string,string>>
-   */
-  public ?array $attachments;
-
-  /**
-   * deleteAttachmentsAfterSend.
-   */
-  public bool $deleteAttachmentsAfterSend = false;
 }

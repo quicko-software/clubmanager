@@ -2,8 +2,8 @@
 
 namespace Quicko\Clubmanager\Mail\Generator;
 
-use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 use Quicko\Clubmanager\Mail\Generator\Arguments\PasswordRecoveryArguments;
+use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 use Quicko\Clubmanager\Records\FeUserRecordRepository;
 use Quicko\Clubmanager\Utils\ForgotPasswordHashGenerator;
 use Quicko\Clubmanager\Utils\TypoScriptUtils;

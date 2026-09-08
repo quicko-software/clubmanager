@@ -1,5 +1,7 @@
 name: quicko/clubmanager
 label: Clubmanager
+dependencies:
+  - quicko/mailjournal
 optionalDependencies:
   - bootstrap-package/full
   - bootstrap-package/bootstrap-5

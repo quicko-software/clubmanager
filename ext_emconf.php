@@ -15,6 +15,7 @@ $EM_CONF[$_EXTKEY] = [
             'typo3' => '13.4.0-14.3.99',
             'install' => '13.4.0-14.3.99',
             'static_info_tables' => '13.4.0-14.3.99',
+            'mailjournal' => '1.0.0-1.0.99',
         ],
         'suggests' => [
             'php' => '8.3.1-8.3.99',

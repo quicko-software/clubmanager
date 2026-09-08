@@ -7,7 +7,7 @@ use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Mail\Generator\Arguments\MemberLoginReminderArguments;
 use Quicko\Clubmanager\Mail\Generator\MemberLoginReminderGenerator;
-use Quicko\Clubmanager\Mail\MailQueue;
+use Quicko\Mailjournal\Mail\MailQueue;
 use Quicko\Clubmanager\Utils\LogUtils;
 use Quicko\Clubmanager\Utils\TypoScriptUtils;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

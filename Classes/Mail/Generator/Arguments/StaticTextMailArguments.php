@@ -1,40 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Quicko\Clubmanager\Mail\Generator\Arguments;
 
+use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 
 class StaticTextMailArguments extends BaseMailGeneratorArguments
 {
-  
-  /**
-   * MailTo
-   *
-   */
   public string $mailTo;
 
-  /**
-   * MailToName
-   *
-   */
-  public string $mailToName;  
+  public string $mailToName;
 
-  /**
-   * configRefPid
-   *
-   */
   public ?int $configRefPid;
 
-  /**
-   * subject
-   *
-   */
-  public string $subject;  
+  public string $subject;
 
-  /**
-   * text
-   *
-   */
-  public string $text;    
-
-
+  public string $text;
 }

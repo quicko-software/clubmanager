@@ -23,3 +23,8 @@ services:
     tags:
       - name: install.upgradewizard
         identifier: clubmanagerMemberJournalInitial
+
+  Quicko\Clubmanager\Updates\MailjournalMigrationWizard:
+    tags:
+      - name: install.upgradewizard
+        identifier: clubmanager_mailjournalMigration

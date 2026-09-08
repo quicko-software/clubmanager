@@ -20,6 +20,4 @@ return [
     BackendModuleHelper::createAdvertisingModuleDescripterV12('events','ClubmanagerCalendarEvents'),
   'membershipstatistics' => 
     BackendModuleHelper::createAdvertisingModuleDescripterV12('membershipstatistics','ClubmanagerStatisticsMembershipstatistics'),
-  'mailtasks' =>
-    BackendModuleHelper::createAdvertisingModuleDescripterV12('mailtasks','ClubmanagerProMailtasks'),
 ];

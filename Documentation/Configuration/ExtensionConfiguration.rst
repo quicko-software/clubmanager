@@ -184,5 +184,8 @@ Number of attempts for a mail delivery  `mailTries`
    :Default: 6
 
    Define how often a mail delivery via :guilabel:`System > Scheduler`-Task is
-   tried, when it failed before. See section :ref:`Mail service task
-   <schedulerMailServiceTask>` for more information.
+   tried, when it failed before.
+
+   This setting is **legacy**. The queue lives in `ext:mailjournal`; configure
+   :guilabel:`mailTries` there. See the Upgrade Wizard
+   :guilabel:`Clubmanager: Mail-Queue nach mailjournal übernehmen`.

@@ -8,11 +8,8 @@ Email Tasks
 
 .. note::
 
-   You can find all your :ref:`E-Mail Tasks <recordEmailTask>` in your TYPO3
-   installation root at id=0!
-
-   A TYPO3 module with improved view of all email tasks and extended
-   options, is available with the :ref:`ext:clubmanager_pro <clubmanagerPro>`!
+   You can find all your :ref:`E-Mail Tasks <recordEmailTask>` in the
+   `ext:mailjournal` backend module under :guilabel:`Admin` / :guilabel:`Tools`.
 
 .. important::
 

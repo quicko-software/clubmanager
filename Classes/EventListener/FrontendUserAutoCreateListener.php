@@ -3,13 +3,13 @@
 namespace Quicko\Clubmanager\EventListener;
 
 use Psr\Log\LoggerInterface;
-use Quicko\Clubmanager\Domain\Model\Mail\Task;
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Event\MemberStateChangedEvent;
 use Quicko\Clubmanager\Mail\Generator\Arguments\PasswordRecoveryArguments;
 use Quicko\Clubmanager\Mail\Generator\PasswordRecoveryGenerator;
-use Quicko\Clubmanager\Mail\MailQueue;
 use Quicko\Clubmanager\Utils\PasswordGenerator;
+use Quicko\Mailjournal\Domain\Model\Mail\Task;
+use Quicko\Mailjournal\Mail\MailQueue;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;

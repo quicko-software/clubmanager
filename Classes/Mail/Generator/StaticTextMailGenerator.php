@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Quicko\Clubmanager\Mail\Generator;
 
-use Quicko\Clubmanager\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 use Quicko\Clubmanager\Mail\Generator\Arguments\StaticTextMailArguments;
+use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
+use Quicko\Mailjournal\Mail\Generator\BaseMailGenerator;
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
@@ -17,9 +20,7 @@ class StaticTextMailGenerator extends BaseMailGenerator
 
   public function getMailTo(BaseMailGeneratorArguments $args): string
   {
-    /**
-     * @var Arguments\GenericMailArguments $mailToargs
-     */
+    /** @var StaticTextMailArguments $mailToargs */
     $mailToargs = $args;
 
     return $mailToargs->mailTo;

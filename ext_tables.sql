@@ -143,20 +143,6 @@ CREATE TABLE sys_category (
 );
 
 #
-# Table structure for table 'tx_clubmanager_mail_task'
-#
-CREATE TABLE tx_clubmanager_domain_model_mail_task (
-	priority_level int(11) DEFAULT '0' NOT NULL, 
-	send_state int(11) DEFAULT '0' NOT NULL, 
-	generator_class varchar(512) DEFAULT '' NOT NULL,
-	generator_arguments longtext,
-	processed_time datetime default NULL,
-	error_time datetime default NULL,
-	error_message text DEFAULT '' NOT NULL,
-	open_tries int(11) DEFAULT '0' NOT NULL, 
-);
-
-#
 # Table structure for table 'tx_clubmanager_domain_model_socialmedia'
 #
 CREATE TABLE tx_clubmanager_domain_model_socialmedia (
