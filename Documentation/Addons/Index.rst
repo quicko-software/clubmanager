@@ -17,7 +17,6 @@ This sections describes extensions which extend EXT:clubmanager with additional 
    ClubmanagerZipSearch
    ClubmanagerFacetedSearch
    ClubmanagerCalendar
-   ClubmanagerConference
    ClubmanagerStatistics
    ClubmanagerNewsletter
    ClubmanagerPrivacy
