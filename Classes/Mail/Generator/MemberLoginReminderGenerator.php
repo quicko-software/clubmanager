@@ -29,6 +29,7 @@ class MemberLoginReminderGenerator extends BaseMemberUidMailGenerator
     }
     $address_email = $member['fe_users_email'];
     $address_name = ($member['firstname'] ?? "") . ' ' . ($member['lastname'] ?? "");
+    $mailLanguage = $this->getMailLanguage((int)$member['pid']);
 
     $fluidEmail = parent::createFluidMail($member["pid"]);
     $fluidEmail->to(
@@ -37,9 +38,10 @@ class MemberLoginReminderGenerator extends BaseMemberUidMailGenerator
         $address_name
       )
     )
-      ->subject(LocalizationUtility::translate('mail.reminder.subject', 'clubmanager') ?? '')
+      ->subject(LocalizationUtility::translate('mail.reminder.subject', 'clubmanager', null, $mailLanguage) ?? '')
       ->format('html')
       ->setTemplate('Reminder')
+      ->assign('mailLanguage', $mailLanguage)
       ->assign('member', $member)
       ->assign('recoveryLink', $this->generateRecoveryLink($memberArgs->loginPid))
       ->assign('loginLink', $this->generateLoginLink($memberArgs->loginPid));

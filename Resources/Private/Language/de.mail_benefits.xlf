@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="EXT:clubmanager/Resources/Private/Language/mail_benefits.xlf" product-name="clubmanager">
+    <header/>
+    <body>
+      <trans-unit id="information"><source>Benefit from exclusive information for members.</source><target>Profitieren Sie von den exklusiven Informationen für Mitglieder.</target></trans-unit>
+      <trans-unit id="memberdata"><source>Review the membership details stored in your profile.</source><target>Überprüfen Sie die in Ihrem Profil hinterlegten Mitgliedsdaten.</target></trans-unit>
+      <trans-unit id="image"><source>Upload an image for your directory listing.</source><target>Laden Sie ein Bild für Ihren Eintrag im Branchenbuch hoch.</target></trans-unit>
+      <trans-unit id="news"><source>Get updates about exclusive news for members.</source><target>Lassen Sie sich bei exklusiven Neuigkeiten für Mitglieder automatisch informieren.</target></trans-unit>
+      <trans-unit id="changes"><source>Submit changes to your details conveniently in your profile.</source><target>Änderungen an Ihren Daten können Sie bequem in Ihrem Profilbereich einreichen.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

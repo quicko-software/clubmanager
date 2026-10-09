@@ -4,10 +4,25 @@ categories:
   Clubmanager.Journal:
     label: "Member Journal"
     parent: Clubmanager
+  Clubmanager.Storage:
+    label: "Data storage"
+    parent: Clubmanager
 settings:
   clubmanager.memberJournalStoragePid:
     label: "Member Journal Storage Page"
     description: "Page/folder where new member journal entries will be stored. If not set (0), entries are stored in the same folder as the member record."
     category: Clubmanager.Journal
+    type: int
+    default: 0
+  clubmanager.billingStoragePid:
+    label: "Billing storage page"
+    description: "Page/folder for settlements and invoices. If not set (0), the configured member storage page is used."
+    category: Clubmanager.Storage
+    type: int
+    default: 0
+  clubmanager.calendarStoragePid:
+    label: "Calendar storage page"
+    description: "Page/folder for events and dates. If not set (0), the configured member storage page is used."
+    category: Clubmanager.Storage
     type: int
     default: 0

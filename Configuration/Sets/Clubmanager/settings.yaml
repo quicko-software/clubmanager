@@ -21,7 +21,7 @@ page.theme.socialmedia.channels.twitter.url: 'https://twitter.com/typo3'
 page.theme.socialmedia.channels.github.url: 'https://github.com/TYPO3/TYPO3.CMS'
 page.theme.socialmedia.channels.youtube.url: 'https://www.youtube.com/user/typo3'
 page.theme.meta.navigationValue: '173,174'
-page.theme.copyright.text: '<a href="https://quicko.software" rel="noopener" target="_blank">QUiCKO - Der Clubmanager</a> - entwickelt von <a href="https://www.wirkwerk.com" rel="noopener" target="_blank">WirkWerk</a> & <a href="https://www.codemacher.de" rel="noopener" target="_blank">Codemacher UG</a>. // <a href="https://quicko.software/impressum/" rel="noopener" target="_blank">Impressum</a> // <a href="https://quicko.software/datenschutzerklaerung/" rel="noopener" target="_blank">Datenschutz</a> // <a href="https://quicko.software/agb/" rel="noopener" target="_blank">AGB</a>'
+page.theme.copyright.text: '<a href="https://quicko.software" rel="noopener" target="_blank">QUiCKO - Der Clubmanager</a> - entwickelt von <a href="https://www.svenquick.de" rel="noopener" target="_blank">WirkWerk - Sven Quick</a>, Vertrieb durch <a href="https://www.wirkwerk.com" rel="noopener" target="_blank">WirkWerk KIT GmbH</a>. // <a href="https://quicko.software/impressum/" rel="noopener" target="_blank">Impressum</a> // <a href="https://quicko.software/datenschutzerklaerung/" rel="noopener" target="_blank">Datenschutz</a> // <a href="https://quicko.software/agb/" rel="noopener" target="_blank">AGB</a>'
 page.theme.cookieconsent.enable: false
 
 page.fluidtemplate.layoutRootPath: 'EXT:clubmanager/Resources/Private/Extensions/Bootstrap_package/Layouts/Page/'

@@ -9,6 +9,7 @@ use Quicko\Clubmanager\Utils\ForgotPasswordHashGenerator;
 use Quicko\Clubmanager\Utils\TypoScriptUtils;
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Crypto\HashService;
+use TYPO3\CMS\Core\Crypto\HashAlgo;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -26,7 +27,10 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
   {
     $forgotHash = $forgotPasswordHashGenerator->generate();
     $hashService = GeneralUtility::makeInstance(HashService::class);
-    $hmac = $hashService->hmac($forgotHash, PasswordRecoveryController::class);
+    // TYPO3 v14 validates felogin reset hashes with SHA3-256; v13 still uses SHA-1.
+    $hmac = class_exists(HashAlgo::class)
+      ? $hashService->hmac($forgotHash, PasswordRecoveryController::class, HashAlgo::SHA3_256)
+      : $hashService->hmac($forgotHash, PasswordRecoveryController::class);
 
     $feUserRecordRepo = GeneralUtility::makeInstance(FeUserRecordRepository::class);
     $feUserRecordRepo->update([$feUserUid], [
@@ -51,6 +55,7 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
       return null;
     }
     $address_name = ($member['firstname'] ?? '') . ' ' . ($member['lastname'] ?? '');
+    $mailLanguage = $this->getMailLanguage((int)$member['pid']);
 
     $loginPidString = TypoScriptUtils::getTypoScriptValueForPage('plugin.tx_clubmanager.settings.feUsersLoginPid', $member['fe_users_pid']);
     $loginPid = intval($loginPidString);
@@ -64,9 +69,10 @@ class PasswordRecoveryGenerator extends BaseMemberUidMailGenerator
         $address_name
       )
     )
-      ->subject(LocalizationUtility::translate('mail.logindata.subject', 'clubmanager') ?? '')
+      ->subject(LocalizationUtility::translate('mail.logindata.subject', 'clubmanager', null, $mailLanguage) ?? '')
       ->format('html')
       ->setTemplate($passwordArgs->templateName)
+      ->assign('mailLanguage', $mailLanguage)
       ->assign('member', $member)
       ->assign('passwordRecoveryLifeTime', $passwordRecoveryLifeTime)
       ->assign('recoveryLink', $this->generateRecoveryLink($loginPid, $forgotHash))

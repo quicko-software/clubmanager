@@ -19,7 +19,7 @@ Quicko - Der Clubmanager
    en
 
 :Author:
-    WirkWerk & codemacher
+    WirkWerk - Sven Quick
 
 :License:
     This document is published under the

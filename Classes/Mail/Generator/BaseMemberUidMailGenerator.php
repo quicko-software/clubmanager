@@ -9,10 +9,20 @@ use Quicko\Clubmanager\Records\CachedMemberRecordRepository;
 use Quicko\Clubmanager\Records\MemberRecordRepository;
 use Quicko\Mailjournal\Mail\Generator\Arguments\BaseMailGeneratorArguments;
 use Quicko\Mailjournal\Mail\Generator\BaseMailGenerator;
+use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 abstract class BaseMemberUidMailGenerator extends BaseMailGenerator
 {
+  protected function getMailLanguage(int $pageId): string
+  {
+    return GeneralUtility::makeInstance(SiteFinder::class)
+      ->getSiteByPageId($pageId)
+      ->getDefaultLanguage()
+      ->getLocale()
+      ->getLanguageCode();
+  }
+
   /**
    * @var ?array<string, mixed>
    */

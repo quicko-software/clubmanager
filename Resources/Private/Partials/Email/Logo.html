@@ -1,9 +1,14 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:if condition="{typo3.systemConfiguration.backend.loginLogo}">
-    <tr>
-        <td>
-            <img src="{typo3.systemConfiguration.backend.loginLogo}"
-                 alt="{typo3.systemConfiguration.backend.loginLogoAlt}" />
-        </td>
-    </tr>
-</f:if>
+<tr>
+    <td style="text-align:center;padding-bottom:20px">
+        <f:if condition="{baseUrl}">
+            <f:then>
+                <f:variable name="logoPath" value="{f:uri.resource(path:'EXT:clubmanager/Resources/Public/Images/quicko-clubmanager-login-logo.png') -> f:format.trim(characters:'/',side:'left')}" />
+                <img src="{baseUrl}{logoPath}" alt="Quicko – Der Clubmanager" width="237" height="119" style="display:block;margin:0 auto;max-width:100%;height:auto" />
+            </f:then>
+            <f:else>
+                <f:image src="EXT:clubmanager/Resources/Public/Images/quicko-clubmanager-login-logo.png" absolute="1" alt="Quicko – Der Clubmanager" width="237" height="119" style="display:block;margin:0 auto;max-width:100%;height:auto" />
+            </f:else>
+        </f:if>
+    </td>
+</tr>

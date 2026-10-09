@@ -10,11 +10,10 @@ export default class ContentBlocker {
   }
 
   allow() {
-    var $alwaysCheckbox = $('.allow-always', this.$element);
     if (this.getMode() == "cookieman" && window.cookieman) {
-      if ($alwaysCheckbox.is(':checked')) {
-        cookieman.consent(this.getConsentGroupId());
-      }
+      // Cookieman owns the consent; Google maps is initialized after its API script has loaded.
+      cookieman.consent(this.getConsentGroupId());
+      if (this.$element.data('mapsource') === 'googlemap') return;
     } else {
       this.setCookie(this.getCookieName(),true,30);
     }
@@ -25,7 +24,13 @@ export default class ContentBlocker {
     this.$element = $element;
     let $allowButton = $(".contentAllowButton", this.$element);
     if (this.getMode() == "cookieman" && window.cookieman) { 
-      if(cookieman.hasConsented(this.getCookieName())) {
+      if (this.$element.data('mapsource') === 'googlemap') {
+        cookieman.onScriptLoaded('MapProvider', 0, () => {
+          if (cookieman.hasConsented(this.getConsentGroupId())) {
+            ContentBlocker.loadContent(this.$element);
+          }
+        });
+      } else if (cookieman.hasConsented(this.getConsentGroupId())) {
         ContentBlocker.loadContent(this.$element);
       }
     } else {
@@ -74,7 +79,7 @@ export default class ContentBlocker {
   }
 
   getConsentGroupId() {
-    return this.$element.data("consent-group-id")
+    return this.$element.data("consent-groupid")
   }
 
   getMode() {
@@ -106,7 +111,5 @@ export default class ContentBlocker {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 }
-
-
 
 

@@ -11,6 +11,7 @@ return [
     ],
     'iconIdentifier' => 'tx-clubmanager_icon-be_mod_clubmanager',
     'navigationComponent' => '@typo3/backend/page-tree/page-tree-element',
+    'position' => ['before' => 'organisr'],
   ],
   'memberlist' => 
     BackendModuleHelper::createAdvertisingModuleDescripterV12('memberlist','ClubmanagerProMemberList'),
