@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns:t3="http://typo3.org/schemas/xliff" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" original="EXT:clubmanager/Resources/Private/Language/locallang_db.xlf" datatype="plaintext" product-name="clubmanager" date="2023-02-16T18:05:50+01:00" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="tx_clubmanager_domain_model_location.phone" resname="tx_clubmanager_domain_model_location.phone">
+        <source>Phone</source>
+        <target>crwdns294791:0crwdne294791:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.mobile" resname="tx_clubmanager_domain_model_location.mobile">
+        <source>Mobil</source>
+        <target>crwdns294793:0crwdne294793:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.fax" resname="tx_clubmanager_domain_model_location.fax">
+        <source>FAX</source>
+        <target>crwdns294795:0crwdne294795:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.email" resname="tx_clubmanager_domain_model_location.email">
+        <source>Email</source>
+        <target>crwdns294797:0crwdne294797:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.website" resname="tx_clubmanager_domain_model_location.website">
+        <source>Url</source>
+        <target>crwdns294799:0crwdne294799:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.tab.locations" resname="tx_clubmanager_domain_model_member.tab.locations">
+        <source>Locations</source>
+        <target>crwdns294801:0crwdne294801:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.tab.customfields" resname="tx_clubmanager_domain_model_member.tab.customfields">
+        <source>Additional data</source>
+        <target>crwdns294803:0crwdne294803:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.tab.bank" resname="tx_clubmanager_domain_model_member.tab.bank">
+        <source>Bank</source>
+        <target>crwdns294805:0crwdne294805:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member" resname="tx_clubmanager_domain_model_member">
+        <source>Member</source>
+        <target>crwdns294807:0crwdne294807:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.member" resname="tx_clubmanager_domain_model_member.palette.member">
+        <source>Member/Person</source>
+        <target>crwdns294809:0crwdne294809:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.address" resname="tx_clubmanager_domain_model_member.palette.address">
+        <source>Address</source>
+        <target>crwdns294811:0crwdne294811:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.membership" resname="tx_clubmanager_domain_model_member.palette.membership">
+        <source>Membership</source>
+        <target>crwdns294813:0crwdne294813:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.contact" resname="tx_clubmanager_domain_model_member.palette.contact">
+        <source>Contact</source>
+        <target>crwdns392742:0crwdne392742:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.account" resname="tx_clubmanager_domain_model_member.palette.account">
+        <source>Account data</source>
+        <target>crwdns294815:0crwdne294815:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.palette.alt_address" resname="tx_clubmanager_domain_model_member.palette.alt_address">
+        <source>Alternative billing address</source>
+        <target>crwdns294817:0crwdne294817:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.starttime" resname="tx_clubmanager_domain_model_member.starttime">
+        <source>Beginning of membership</source>
+        <target>crwdns294819:0crwdne294819:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.endtime" resname="tx_clubmanager_domain_model_member.endtime">
+        <source>End of membership</source>
+        <target>crwdns294821:0crwdne294821:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.person_type" resname="tx_clubmanager_domain_model_member.person_type">
+        <source>Type of person</source>
+        <target>crwdns294823:0crwdne294823:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.person_type.natural" resname="tx_clubmanager_domain_model_member.person_type.natural">
+        <source>Natural person</source>
+        <target>crwdns294825:0crwdne294825:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.person_type.juridical" resname="tx_clubmanager_domain_model_member.person_type.juridical">
+        <source>Legal entity (company, association, etc.)</source>
+        <target>crwdns294827:0crwdne294827:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.nationality" resname="tx_clubmanager_domain_model_member.nationality">
+        <source>Nationality</source>
+        <target>crwdns294829:0crwdne294829:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation" resname="tx_clubmanager_domain_model_member.salutation">
+        <source>Salutation</source>
+        <target>crwdns294831:0crwdne294831:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.0" resname="tx_clubmanager_domain_model_member.salutation.0">
+        <source>Company</source>
+        <target>crwdns301578:0crwdne301578:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.1" resname="tx_clubmanager_domain_model_member.salutation.1">
+        <source>Mr.</source>
+        <target>crwdns301580:0crwdne301580:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.2" resname="tx_clubmanager_domain_model_member.salutation.2">
+        <source>Ms.</source>
+        <target>crwdns301582:0crwdne301582:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.salutation.3" resname="tx_clubmanager_domain_model_member.salutation.3">
+        <source>Divers</source>
+        <target>crwdns301584:0crwdne301584:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.email" resname="tx_clubmanager_domain_model_member.email">
+        <source>Email</source>
+        <target>crwdns294841:0crwdne294841:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.phone" resname="tx_clubmanager_domain_model_member.phone">
+        <source>Phone</source>
+        <target>crwdns294843:0crwdne294843:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.telefax" resname="tx_clubmanager_domain_model_member.telefax">
+        <source>Telefax</source>
+        <target>crwdns294845:0crwdne294845:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.title" resname="tx_clubmanager_domain_model_member.title">
+        <source>Academic title</source>
+        <target>crwdns294847:0crwdne294847:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.firstname" resname="tx_clubmanager_domain_model_member.firstname">
+        <source>Firstname</source>
+        <target>crwdns294849:0crwdne294849:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.midname" resname="tx_clubmanager_domain_model_member.midname">
+        <source>Middlename</source>
+        <target>crwdns294851:0crwdne294851:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.lastname" resname="tx_clubmanager_domain_model_member.lastname">
+        <source>Lastname</source>
+        <target>crwdns294853:0crwdne294853:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.dateofbirth" resname="tx_clubmanager_domain_model_member.dateofbirth">
+        <source>Date of birth</source>
+        <target>crwdns294855:0crwdne294855:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.street" resname="tx_clubmanager_domain_model_member.street">
+        <source>Street, number</source>
+        <target>crwdns301586:0crwdne301586:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.zip" resname="tx_clubmanager_domain_model_member.zip">
+        <source>Zip</source>
+        <target>crwdns294859:0crwdne294859:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.city" resname="tx_clubmanager_domain_model_member.city">
+        <source>City</source>
+        <target>crwdns294861:0crwdne294861:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.country" resname="tx_clubmanager_domain_model_member.country">
+        <source>Country</source>
+        <target>crwdns294863:0crwdne294863:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.federal_state" resname="tx_clubmanager_domain_model_member.federal_state">
+        <source>Federal state</source>
+        <target>crwdns294865:0crwdne294865:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.ident" resname="tx_clubmanager_domain_model_member.ident">
+        <source>Membership number</source>
+        <target>crwdns294867:0crwdne294867:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.company" resname="tx_clubmanager_domain_model_member.company">
+        <source>Name/Company</source>
+        <target>crwdns301588:0crwdne301588:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.level" resname="tx_clubmanager_domain_model_member.level">
+        <source>Level</source>
+        <target>crwdns294871:0crwdne294871:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.level.0" resname="tx_clubmanager_domain_model_member.level.0">
+        <source>Base</source>
+        <target>crwdns294873:0crwdne294873:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.level.10" resname="tx_clubmanager_domain_model_member.level.10">
+        <source>Bronze</source>
+        <target>crwdns294875:0crwdne294875:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.level.20" resname="tx_clubmanager_domain_model_member.level.20">
+        <source>Silver</source>
+        <target>crwdns294877:0crwdne294877:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.level.30" resname="tx_clubmanager_domain_model_member.level.30">
+        <source>Gold</source>
+        <target>crwdns294879:0crwdne294879:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.direct_debit" resname="tx_clubmanager_domain_model_member.direct_debit">
+        <source>Participates in direct debit</source>
+        <target>crwdns294881:0crwdne294881:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.iban" resname="tx_clubmanager_domain_model_member.iban">
+        <source>IBAN</source>
+        <target>crwdns294883:0crwdne294883:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.bic" resname="tx_clubmanager_domain_model_member.bic">
+        <source>BIC</source>
+        <target>crwdns294885:0crwdne294885:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.account" resname="tx_clubmanager_domain_model_member.account">
+        <source>Account holder</source>
+        <target>crwdns294887:0crwdne294887:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.user" resname="tx_clubmanager_domain_model_member.user">
+        <source>User</source>
+        <target>crwdns294889:0crwdne294889:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.username" resname="tx_clubmanager_domain_model_member.username">
+        <source>Username</source>
+        <target>crwdns294891:0crwdne294891:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.main_location" resname="tx_clubmanager_domain_model_member.main_location">
+        <source>Main location</source>
+        <target>crwdns294893:0crwdne294893:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.sub_locations" resname="tx_clubmanager_domain_model_member.sub_locations">
+        <source>Other locations</source>
+        <target>crwdns294895:0crwdne294895:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_name" resname="tx_clubmanager_domain_model_member.alt_billing_name">
+        <source>Name</source>
+        <target>crwdns294897:0crwdne294897:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_street" resname="tx_clubmanager_domain_model_member.alt_billing_street">
+        <source>Street, number</source>
+        <target>crwdns301590:0crwdne301590:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_zip" resname="tx_clubmanager_domain_model_member.alt_billing_zip">
+        <source>Zip</source>
+        <target>crwdns294901:0crwdne294901:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_city" resname="tx_clubmanager_domain_model_member.alt_billing_city">
+        <source>City</source>
+        <target>crwdns294903:0crwdne294903:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_country" resname="tx_clubmanager_domain_model_member.alt_billing_country">
+        <source>Country</source>
+        <target>crwdns294905:0crwdne294905:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_billing_email" resname="tx_clubmanager_domain_model_member.alt_billing_email">
+        <source>Alternative E-Mail für Rechnungen</source>
+        <target>crwdns377680:0crwdne377680:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_email" resname="tx_clubmanager_domain_model_member.alt_email">
+        <source>Alternative e-mail</source>
+        <target>crwdns392744:0crwdne392744:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.crdate" resname="tx_clubmanager_domain_model_member.crdate">
+        <source>Record created on</source>
+        <target>crwdns294907:0crwdne294907:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.state" resname="tx_clubmanager_domain_model_member.state">
+        <source>Membership status</source>
+        <target>crwdns294909:0crwdne294909:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.state.0" resname="tx_clubmanager_domain_model_member.state.0">
+        <source>Not set</source>
+        <target>crwdns301592:0crwdne301592:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.state.1" resname="tx_clubmanager_domain_model_member.state.1">
+        <source>Requested</source>
+        <target>crwdns301594:0crwdne301594:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.state.2" resname="tx_clubmanager_domain_model_member.state.2">
+        <source>Active</source>
+        <target>crwdns301596:0crwdne301596:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.state.3" resname="tx_clubmanager_domain_model_member.state.3">
+        <source>Resting</source>
+        <target>crwdns301598:0crwdne301598:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.state.4" resname="tx_clubmanager_domain_model_member.state.4">
+        <source>Cancelled</source>
+        <target>crwdns301600:0crwdne301600:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.add_address_info" resname="tx_clubmanager_domain_model_member.add_address_info">
+        <source>Address suffix</source>
+        <target>crwdns294919:0crwdne294919:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.reduced_rate" resname="tx_clubmanager_domain_model_member.reduced_rate">
+        <source>Reduced membership</source>
+        <target>crwdns294923:0crwdne294923:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield1" resname="tx_clubmanager_domain_model_member.customfield1">
+        <source>Additional field 1</source>
+        <target>crwdns294927:0crwdne294927:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield2" resname="tx_clubmanager_domain_model_member.customfield2">
+        <source>Additional field 2</source>
+        <target>crwdns294929:0crwdne294929:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield3" resname="tx_clubmanager_domain_model_member.customfield3">
+        <source>Additional field 3</source>
+        <target>crwdns294931:0crwdne294931:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield4" resname="tx_clubmanager_domain_model_member.customfield4">
+        <source>Additional field 4</source>
+        <target>crwdns294933:0crwdne294933:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield5" resname="tx_clubmanager_domain_model_member.customfield5">
+        <source>Additional field 5</source>
+        <target>crwdns294935:0crwdne294935:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.customfield6" resname="tx_clubmanager_domain_model_member.customfield6">
+        <source>Additional field 6</source>
+        <target>crwdns294937:0crwdne294937:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.club_function" resname="tx_clubmanager_domain_model_member.club_function">
+        <source>Function</source>
+        <target>crwdns335660:0crwdne335660:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via" resname="tx_clubmanager_domain_model_member.found_via">
+        <source>How did you find out about us</source>
+        <target>crwdns335662:0crwdne335662:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location" resname="tx_clubmanager_domain_model_location">
+        <source>Location</source>
+        <target>crwdns294939:0crwdne294939:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.tab.geography" resname="tx_clubmanager_domain_model_location.tab.geography">
+        <source>Geography</source>
+        <target>crwdns294941:0crwdne294941:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.tab.meta" resname="tx_clubmanager_domain_model_location.tab.meta">
+        <source>Meta</source>
+        <target>crwdns294943:0crwdne294943:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.tab.contacts" resname="tx_clubmanager_domain_model_location.tab.contacts">
+        <source>Contact</source>
+        <target>crwdns294945:0crwdne294945:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.tab.socialmedia" resname="tx_clubmanager_domain_model_location.tab.socialmedia">
+        <source>Social Media</source>
+        <target>crwdns294947:0crwdne294947:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.palette.address" resname="tx_clubmanager_domain_model_location.palette.address">
+        <source>Address</source>
+        <target>crwdns294949:0crwdne294949:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.palette.person" resname="tx_clubmanager_domain_model_location.palette.person">
+        <source>Contact person</source>
+        <target>crwdns294951:0crwdne294951:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.hidden" resname="tx_clubmanager_domain_model_location.hidden">
+        <source>Hidden</source>
+        <target>crwdns294953:0crwdne294953:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.slug" resname="tx_clubmanager_domain_model_location.slug">
+        <source>URL fragment</source>
+        <target>crwdns294955:0crwdne294955:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.title" resname="tx_clubmanager_domain_model_location.title">
+        <source>Academic title</source>
+        <target>crwdns294957:0crwdne294957:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.firstname" resname="tx_clubmanager_domain_model_location.firstname">
+        <source>First name</source>
+        <target>crwdns294959:0crwdne294959:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.midname" resname="tx_clubmanager_domain_model_location.midname">
+        <source>Middle name</source>
+        <target>crwdns294961:0crwdne294961:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.lastname" resname="tx_clubmanager_domain_model_location.lastname">
+        <source>Last name</source>
+        <target>crwdns294963:0crwdne294963:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.info" resname="tx_clubmanager_domain_model_location.info">
+        <source>Additional information</source>
+        <target>crwdns294965:0crwdne294965:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.company" resname="tx_clubmanager_domain_model_location.company">
+        <source>Company</source>
+        <target>crwdns294967:0crwdne294967:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.street" resname="tx_clubmanager_domain_model_location.street">
+        <source>Street, number</source>
+        <target>crwdns294969:0crwdne294969:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.add_address_info" resname="tx_clubmanager_domain_model_location.add_address_info">
+        <source>Address suffix</source>
+        <target>crwdns294971:0crwdne294971:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.zip" resname="tx_clubmanager_domain_model_location.zip">
+        <source>Zip</source>
+        <target>crwdns294973:0crwdne294973:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.city" resname="tx_clubmanager_domain_model_location.city">
+        <source>City</source>
+        <target>crwdns294975:0crwdne294975:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.latitude" resname="tx_clubmanager_domain_model_location.latitude">
+        <source>Latitude</source>
+        <target>crwdns294977:0crwdne294977:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.longitude" resname="tx_clubmanager_domain_model_location.longitude">
+        <source>Longitude</source>
+        <target>crwdns294979:0crwdne294979:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.search_gps_coordinates" resname="tx_clubmanager_domain_model_location.search_gps_coordinates">
+        <source>Search GPS coordinates</source>
+        <target>crwdns294981:0crwdne294981:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.country" resname="tx_clubmanager_domain_model_location.country">
+        <source>Country</source>
+        <target>crwdns294983:0crwdne294983:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.state" resname="tx_clubmanager_domain_model_location.state">
+        <source>State</source>
+        <target>crwdns294985:0crwdne294985:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.image" resname="tx_clubmanager_domain_model_location.image">
+        <source>Image</source>
+        <target>crwdns294987:0crwdne294987:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.category" resname="tx_clubmanager_domain_model_location.category">
+        <source>Category</source>
+        <target>crwdns294989:0crwdne294989:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.socialmedia" resname="tx_clubmanager_domain_model_location.socialmedia">
+        <source>Social media</source>
+        <target>crwdns294991:0crwdne294991:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_location.youtube_video" resname="tx_clubmanager_domain_model_location.youtube_video">
+        <source>Youtube Video ID</source>
+        <target>crwdns294993:0crwdne294993:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_user" resname="tx_clubmanager_domain_model_user">
+        <source>User</source>
+        <target>crwdns294995:0crwdne294995:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_user.password" resname="tx_clubmanager_domain_model_user.password">
+        <source>Password</source>
+        <target>crwdns374300:0crwdne374300:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_user.lastreminderemailsent" resname="tx_clubmanager_domain_model_user.lastreminderemailsent">
+        <source>First login reminder email</source>
+        <target>crwdns294999:0crwdne294999:0</target>
+      </trans-unit>
+      <trans-unit id="fe_users.tx_extbase_type.Tx_clubmanager_User" resname="fe_users.tx_extbase_type.Tx_clubmanager_User">
+        <source>clubmanager user</source>
+        <target>crwdns295001:0crwdne295001:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_category" resname="tx_clubmanager_domain_model_category">
+        <source>Category</source>
+        <target>crwdns295003:0crwdne295003:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_category.title" resname="tx_clubmanager_domain_model_category.title">
+        <source>Title</source>
+        <target>crwdns295005:0crwdne295005:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_category.description" resname="tx_clubmanager_domain_model_category.description">
+        <source>Description</source>
+        <target>crwdns295007:0crwdne295007:0</target>
+      </trans-unit>
+      <trans-unit id="sys_category.tx_extbase_type.Tx_clubmanager_Category" resname="sys_category.tx_extbase_type.Tx_clubmanager_Category">
+        <source>clubmanager category</source>
+        <target>crwdns295009:0crwdne295009:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_country" resname="tx_clubmanager_domain_model_country">
+        <source>Country</source>
+        <target>crwdns295011:0crwdne295011:0</target>
+      </trans-unit>
+      <trans-unit id="static_countries.tx_extbase_type.Tx_clubmanager_Country" resname="static_countries.tx_extbase_type.Tx_clubmanager_Country">
+        <source>clubmanager country</source>
+        <target>crwdns295013:0crwdne295013:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_praxis" resname="tx_clubmanager_domain_model_member.alt_praxis">
+        <source>Practice / Clinic name</source>
+        <target>crwdns295015:0crwdne295015:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_street" resname="tx_clubmanager_domain_model_member.alt_street">
+        <source>Street, number</source>
+        <target>crwdns301602:0crwdne301602:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_zip" resname="tx_clubmanager_domain_model_member.alt_zip">
+        <source>Zip</source>
+        <target>crwdns295019:0crwdne295019:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_city" resname="tx_clubmanager_domain_model_member.alt_city">
+        <source>City</source>
+        <target>crwdns295021:0crwdne295021:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.alt_country" resname="tx_clubmanager_domain_model_member.alt_country">
+        <source>Country</source>
+        <target>crwdns295023:0crwdne295023:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.palette_alt_address" resname="tx_clubmanager_domain_model_member.palette_alt_address">
+        <source>Alternative billing address</source>
+        <target>crwdns295025:0crwdne295025:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task" resname="tx_clubmanager_domain_model_mail_task">
+        <source>Email Task</source>
+        <target>crwdns295027:0crwdne295027:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.mail_to" resname="tx_clubmanager_domain_model_mail_task.mail_to">
+        <source>Email To</source>
+        <target>crwdns295029:0crwdne295029:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.mail_from" resname="tx_clubmanager_domain_model_mail_task.mail_from">
+        <source>Email From</source>
+        <target>crwdns295031:0crwdne295031:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.generator_class" resname="tx_clubmanager_domain_model_mail_task.generator_class">
+        <source>Email Generator Class</source>
+        <target>crwdns295033:0crwdne295033:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.generator_arguments" resname="tx_clubmanager_domain_model_mail_task.generator_arguments">
+        <source>Email Generator Arguments</source>
+        <target>crwdns295035:0crwdne295035:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.processed_time" resname="tx_clubmanager_domain_model_mail_task.processed_time">
+        <source>Last processing</source>
+        <target>crwdns295037:0crwdne295037:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.error_time" resname="tx_clubmanager_domain_model_mail_task.error_time">
+        <source>Last time of error</source>
+        <target>crwdns295039:0crwdne295039:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.error_message" resname="tx_clubmanager_domain_model_mail_task.error_message">
+        <source>Error message</source>
+        <target>crwdns295041:0crwdne295041:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.open_tries" resname="tx_clubmanager_domain_model_mail_task.open_tries">
+        <source>Open attempts for delivery</source>
+        <target>crwdns295043:0crwdne295043:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state" resname="tx_clubmanager_domain_model_mail_task.send_state">
+        <source>Status</source>
+        <target>crwdns295045:0crwdne295045:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state.0" resname="tx_clubmanager_domain_model_mail_task.send_state.0">
+        <source>Will be sent</source>
+        <target>crwdns295047:0crwdne295047:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state.1" resname="tx_clubmanager_domain_model_mail_task.send_state.1">
+        <source>Processing completed</source>
+        <target>crwdns295049:0crwdne295049:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.send_state.2" resname="tx_clubmanager_domain_model_mail_task.send_state.2">
+        <source>Not shipped</source>
+        <target>crwdns295051:0crwdne295051:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.priority_level" resname="tx_clubmanager_domain_model_mail_task.priority_level">
+        <source>Priority</source>
+        <target>crwdns295053:0crwdne295053:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.priority_level.0" resname="tx_clubmanager_domain_model_mail_task.priority_level.0">
+        <source>Minimal</source>
+        <target>crwdns295055:0crwdne295055:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.priority_level.5" resname="tx_clubmanager_domain_model_mail_task.priority_level.5">
+        <source>Medium</source>
+        <target>crwdns295057:0crwdne295057:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_mail_task.priority_level.10" resname="tx_clubmanager_domain_model_mail_task.priority_level.10">
+        <source>High</source>
+        <target>crwdns295059:0crwdne295059:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_socialmedia" resname="tx_clubmanager_domain_model_socialmedia">
+        <source>Social media</source>
+        <target>crwdns295061:0crwdne295061:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_socialmedia.url" resname="tx_clubmanager_domain_model_socialmedia.url">
+        <source>Url</source>
+        <target>crwdns295063:0crwdne295063:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_socialmedia.type" resname="tx_clubmanager_domain_model_socialmedia.type">
+        <source>Type</source>
+        <target>crwdns295065:0crwdne295065:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_socialmedia.type.0" resname="tx_clubmanager_domain_model_socialmedia.type.0">
+        <source>Facebook</source>
+        <target>crwdns295067:0crwdne295067:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_socialmedia.type.1" resname="tx_clubmanager_domain_model_socialmedia.type.1">
+        <source>Instagram</source>
+        <target>crwdns295069:0crwdne295069:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_socialmedia.type.2" resname="tx_clubmanager_domain_model_socialmedia.type.2">
+        <source>Youtube</source>
+        <target>crwdns295071:0crwdne295071:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_socialmedia.type.3" resname="tx_clubmanager_domain_model_socialmedia.type.3">
+        <source>Twitter</source>
+        <target>crwdns295073:0crwdne295073:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry" resname="tx_clubmanager_domain_model_memberjournalentry">
+        <source>Member Journal Entry</source>
+        <target>crwdns392746:0crwdne392746:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type">
+        <source>Entry Type</source>
+        <target>crwdns392748:0crwdne392748:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.cancellation_request">
+        <source>Cancellation Request</source>
+        <target>crwdns392750:0crwdne392750:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.status_change">
+        <source>Status Change</source>
+        <target>crwdns392752:0crwdne392752:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change" resname="tx_clubmanager_domain_model_memberjournalentry.entry_type.level_change">
+        <source>Level Change</source>
+        <target>crwdns392754:0crwdne392754:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.entry_date" resname="tx_clubmanager_domain_model_memberjournalentry.entry_date">
+        <source>Entry Date</source>
+        <target>crwdns392756:0crwdne392756:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.effective_date" resname="tx_clubmanager_domain_model_memberjournalentry.effective_date">
+        <source>Effective Date</source>
+        <target>crwdns392758:0crwdne392758:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.processed" resname="tx_clubmanager_domain_model_memberjournalentry.processed">
+        <source>Processed</source>
+        <target>crwdns392760:0crwdne392760:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.note" resname="tx_clubmanager_domain_model_memberjournalentry.note">
+        <source>Note</source>
+        <target>crwdns392762:0crwdne392762:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type">
+        <source>Creator</source>
+        <target>crwdns392764:0crwdne392764:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.system" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.system">
+        <source>System</source>
+        <target>crwdns392766:0crwdne392766:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.backend" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.backend">
+        <source>Backend User</source>
+        <target>crwdns392768:0crwdne392768:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.creator_type.member" resname="tx_clubmanager_domain_model_memberjournalentry.creator_type.member">
+        <source>Member</source>
+        <target>crwdns392770:0crwdne392770:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.old_level" resname="tx_clubmanager_domain_model_memberjournalentry.old_level">
+        <source>Old Level</source>
+        <target>crwdns392772:0crwdne392772:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_memberjournalentry.new_level" resname="tx_clubmanager_domain_model_memberjournalentry.new_level">
+        <source>New Level</source>
+        <target>crwdns392774:0crwdne392774:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.journal_entries" resname="tx_clubmanager_domain_model_member.journal_entries">
+        <source>Member Journal</source>
+        <target>crwdns392776:0crwdne392776:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.tab.journal" resname="tx_clubmanager_domain_model_member.tab.journal">
+        <source>Journal</source>
+        <target>crwdns392778:0crwdne392778:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
