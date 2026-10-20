@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="EXT:clubmanager/Resources/Private/Language/locallang.xlf" product-name="clubmanager" date="2023-02-16T16:57:51+01:00" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="statictextmailgenerator.label" resname="statictextmailgenerator.label">
+        <source>Static text mail</source>
+        <target>crwdns374120:0crwdne374120:0</target>
+      </trans-unit>
+      <trans-unit id="memberloginremindergenerator.label" resname="memberloginremindergenerator.label">
+        <source>Member Login Reminder</source>
+        <target>crwdns374122:0crwdne374122:0</target>
+      </trans-unit>
+      <trans-unit id="passwordrecoverygenerator.label" resname="passwordrecoverygenerator.label">
+        <source>Password Set/Recovery</source>
+        <target>crwdns374124:0crwdne374124:0</target>
+      </trans-unit>
+      <trans-unit id="search" resname="search">
+        <source>Search</source>
+        <target>crwdns374126:0crwdne374126:0</target>
+      </trans-unit>
+      <trans-unit id="datatable.resetfilters" resname="datatable.resetfilters">
+        <source>Reset filters</source>
+        <target>crwdns374128:0crwdne374128:0</target>
+      </trans-unit>
+      <trans-unit id="datatable.resettable" resname="datatable.resettable">
+        <source>Reset table</source>
+        <target>crwdns374130:0crwdne374130:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.subject" resname="mail.logindata.subject">
+        <source>Your login data for the club</source>
+        <target>crwdns374132:0crwdne374132:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.title" resname="mail.logindata.title">
+        <source>Your access data to the member area</source>
+        <target>crwdns374134:0crwdne374134:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.preheader" resname="mail.logindata.preheader">
+        <source>Your access data to the member area</source>
+        <target>crwdns374136:0crwdne374136:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.welcome" resname="mail.logindata.welcome">
+        <source>Hello</source>
+        <target>crwdns374138:0crwdne374138:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.text" resname="mail.logindata.text">
+        <source>Enclosed we send you your personal access data to the member area.</source>
+        <target>crwdns374140:0crwdne374140:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.access.title" resname="mail.logindata.access.title">
+        <source>Your login data:</source>
+        <target>crwdns374142:0crwdne374142:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.access.number" resname="mail.logindata.access.number">
+        <source>Membership number:</source>
+        <target>crwdns374144:0crwdne374144:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.link.recovery" resname="mail.logindata.link.recovery">
+        <source>Assign password now!</source>
+        <target>crwdns374146:0crwdne374146:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.link.recovery.validuntil" resname="mail.logindata.link.recovery.validuntil">
+        <source>The link is valid until</source>
+        <target>crwdns374148:0crwdne374148:0</target>
+      </trans-unit>
+      <trans-unit id="mail.logindata.link.login" resname="mail.logindata.link.login">
+        <source>Log in to the members area here.</source>
+        <target>crwdns374150:0crwdne374150:0</target>
+      </trans-unit>
+      <trans-unit id="mail.signature.text" resname="mail.signature.text">
+        <source>Best regards,</source>
+        <target>crwdns374152:0crwdne374152:0</target>
+      </trans-unit>
+      <trans-unit id="mail.signature.name" resname="mail.signature.name">
+        <source>Quicko - The Clubmanager</source>
+        <target>crwdns374154:0crwdne374154:0</target>
+      </trans-unit>
+      <trans-unit id="mail.footer.url" resname="mail.footer.url">
+        <source>https://quicko.software/</source>
+        <target>crwdns374156:0crwdne374156:0</target>
+      </trans-unit>
+      <trans-unit id="mail.footer.linktext" resname="mail.footer.linktext">
+        <source>Quicko - The Clubmanager</source>
+        <target>crwdns374158:0crwdne374158:0</target>
+      </trans-unit>
+      <trans-unit id="mail.footer.copyright" resname="mail.footer.copyright">
+        <source>© 2024 </source>
+        <target>crwdns374160:0crwdne374160:0</target>
+      </trans-unit>
+      <trans-unit id="mail.footer.imprint.text" resname="mail.footer.imprint.text">
+        <source>Legal notice</source>
+        <target>crwdns374162:0crwdne374162:0</target>
+      </trans-unit>
+      <trans-unit id="mail.footer.imprint.url" resname="mail.footer.imprint.url">
+        <source>https://quicko.software/en/legal-notice/</source>
+        <target>crwdns374164:0crwdne374164:0</target>
+      </trans-unit>
+      <trans-unit id="mail.footer.privacy.text" resname="mail.footer.privacy.text">
+        <source>Privacy policy</source>
+        <target>crwdns374166:0crwdne374166:0</target>
+      </trans-unit>
+      <trans-unit id="mail.footer.privacy.url" resname="mail.footer.privacy.url">
+        <source>https://quicko.software/en/privacy-policy/</source>
+        <target>crwdns374168:0crwdne374168:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.subject" resname="mail.reminder.subject">
+        <source>Club login reminder email</source>
+        <target>crwdns374170:0crwdne374170:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.title" resname="mail.reminder.title">
+        <source>Reminder e-mail of your first login in the member area</source>
+        <target>crwdns374172:0crwdne374172:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.preheader" resname="mail.reminder.preheader">
+        <source>Reminder e-mail of your first login in the member area</source>
+        <target>crwdns374174:0crwdne374174:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.welcome" resname="mail.reminder.welcome">
+        <source>Hello </source>
+        <target>crwdns374176:0crwdne374176:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.text" resname="mail.reminder.text">
+        <source>You have not yet registered in the members area, so we are sending you a reminder.
+					Don't miss out on the many exciting topics in our exclusive member area!</source>
+        <target>crwdns374178:0crwdne374178:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.access.title" resname="mail.reminder.access.title">
+        <source>Your login data:</source>
+        <target>crwdns374180:0crwdne374180:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.access.number" resname="mail.reminder.access.number">
+        <source>Membership number:</source>
+        <target>crwdns374182:0crwdne374182:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.link.recovery" resname="mail.reminder.link.recovery">
+        <source>Assign password now!</source>
+        <target>crwdns374184:0crwdne374184:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.link.recovery.validuntil" resname="mail.reminder.link.recovery.validuntil">
+        <source>valid until</source>
+        <target>crwdns374186:0crwdne374186:0</target>
+      </trans-unit>
+      <trans-unit id="mail.reminder.link.login" resname="mail.reminder.link.login">
+        <source>Log in to the members area here.</source>
+        <target>crwdns374188:0crwdne374188:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.clubfunction" resname="content_element.member.label.clubfunction">
+        <source>Member function:</source>
+        <target>crwdns374190:0crwdne374190:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.ident" resname="content_element.member.label.ident">
+        <source>Membership number:</source>
+        <target>crwdns374192:0crwdne374192:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.category" resname="content_element.member.label.category">
+        <source>Member Category:</source>
+        <target>crwdns374194:0crwdne374194:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.standard.category" resname="content_element.member.standard.category">
+        <source>Without</source>
+        <target>crwdns374196:0crwdne374196:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.state" resname="content_element.member.label.state">
+        <source>Membership Status:</source>
+        <target>crwdns374198:0crwdne374198:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.level" resname="content_element.member.label.level">
+        <source>Type of membership:</source>
+        <target>crwdns374200:0crwdne374200:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.reducedRate" resname="content_element.member.label.reducedRate">
+        <source>Reduced membership:</source>
+        <target>crwdns374202:0crwdne374202:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.reducedRate.yes" resname="content_element.member.reducedRate.yes">
+        <source>Yes</source>
+        <target>crwdns374204:0crwdne374204:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.reducedRate.no" resname="content_element.member.reducedRate.no">
+        <source>No</source>
+        <target>crwdns374206:0crwdne374206:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.starttime" resname="content_element.member.label.starttime">
+        <source>Start of membership:</source>
+        <target>crwdns374208:0crwdne374208:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.endtime" resname="content_element.member.label.endtime">
+        <source>End of membership:</source>
+        <target>crwdns374210:0crwdne374210:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.route" resname="content_element.member.label.route">
+        <source>To plan your route with Google Maps.</source>
+        <target>crwdns374218:0crwdne374218:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.leaving" resname="content_element.member.label.leaving">
+        <source>You are leaving our website!</source>
+        <target>crwdns374220:0crwdne374220:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.noLocation" resname="content_element.member.label.noLocation">
+        <source>No location specified yet</source>
+        <target>crwdns374222:0crwdne374222:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.mainLocation" resname="content_element.member.label.mainLocation">
+        <source>Head office</source>
+        <target>crwdns374224:0crwdne374224:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.subLocation" resname="content_element.member.label.subLocation">
+        <source>Secondary seat</source>
+        <target>crwdns374226:0crwdne374226:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.label.back" resname="content_element.member.label.back">
+        <source>Back</source>
+        <target>crwdns374228:0crwdne374228:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.detail.button" resname="content_element.member.detail.button">
+        <source>Member details</source>
+        <target>crwdns374230:0crwdne374230:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.license.badgeA" resname="content_element.member.license.badgeA">
+        <source>Licenseholder A</source>
+        <target>crwdns374232:0crwdne374232:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.license.badgeB" resname="content_element.member.license.badgeB">
+        <source>Licenseholder B</source>
+        <target>crwdns374234:0crwdne374234:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.member.license.badgeC" resname="content_element.member.license.badgeC">
+        <source>Licenseholder C</source>
+        <target>crwdns374236:0crwdne374236:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.label.category" resname="content_element.location.label.category">
+        <source>Location Category:</source>
+        <target>crwdns374238:0crwdne374238:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.standard.category" resname="content_element.location.standard.category">
+        <source>Without</source>
+        <target>crwdns374240:0crwdne374240:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.main.detail.button" resname="content_element.location.main.detail.button">
+        <source>Headquarters</source>
+        <target>crwdns374242:0crwdne374242:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.sub.detail.button" resname="content_element.location.sub.detail.button">
+        <source>Secondary seat detail view</source>
+        <target>crwdns374244:0crwdne374244:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.label.phone" resname="content_element.location.label.phone">
+        <source>Phone:</source>
+        <target>crwdns374246:0crwdne374246:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.label.telefax" resname="content_element.location.label.telefax">
+        <source>Telefax:</source>
+        <target>crwdns374248:0crwdne374248:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.label.mobile" resname="content_element.location.label.mobile">
+        <source>Mobile:</source>
+        <target>crwdns374250:0crwdne374250:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.label.fax" resname="content_element.location.label.fax">
+        <source>Fax:</source>
+        <target>crwdns374252:0crwdne374252:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.label.email" resname="content_element.location.label.email">
+        <source>Email:</source>
+        <target>crwdns374254:0crwdne374254:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.location.label.website" resname="content_element.location.label.website">
+        <source>Internet:</source>
+        <target>crwdns374256:0crwdne374256:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.cities.header" resname="content_element.cities.header">
+        <source>All members from</source>
+        <target>crwdns374258:0crwdne374258:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.contentBlocker.youtube.text" resname="content_element.contentBlocker.youtube.text">
+        <source>By loading the video, you accept YouTube's privacy policy.</source>
+        <target>crwdns374260:0crwdne374260:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.contentBlocker.youtube.loadButton.text" resname="content_element.contentBlocker.youtube.loadButton.text">
+        <source>Load video</source>
+        <target>crwdns374262:0crwdne374262:0</target>
+      </trans-unit>
+      <trans-unit id="content_element.contentBlocker.youtube.alwaysCheckbox.label" resname="content_element.contentBlocker.youtube.alwaysCheckbox.label">
+        <source>Always unlock Youtube</source>
+        <target>crwdns374264:0crwdne374264:0</target>
+      </trans-unit>
+      <trans-unit id="sepa.error.invalid_user_iban" resname="sepa.error.invalid_user_iban">
+        <source>No valid IBAN %s.</source>
+        <target>crwdns374266:0%scrwdne374266:0</target>
+      </trans-unit>
+      <trans-unit id="sepa.error.invalid_user_bic" resname="sepa.error.invalid_user_bic">
+        <source>No valid BIC %s</source>
+        <target>crwdns374268:0%scrwdne374268:0</target>
+      </trans-unit>
+      <trans-unit id="tca.invalid_field" resname="tca.invalid_field">
+        <source>Invalid field</source>
+        <target>crwdns374270:0crwdne374270:0</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.0" resname="member.salutation.0">
+        <source>Good day %s,</source>
+        <target>crwdns374272:0%scrwdne374272:0</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.1" resname="member.salutation.1">
+        <source>Dear Mr. %s,</source>
+        <target>crwdns374274:0%scrwdne374274:0</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.2" resname="member.salutation.2">
+        <source>Dear Mrs. %s,</source>
+        <target>crwdns374276:0%scrwdne374276:0</target>
+      </trans-unit>
+      <trans-unit id="member.salutation.3" resname="member.salutation.3">
+        <source>Good day %s,</source>
+        <target>crwdns374278:0%scrwdne374278:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.0" resname="tx_clubmanager_domain_model_member.found_via.0">
+        <source>Unkown</source>
+        <target>crwdns374280:0crwdne374280:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.10" resname="tx_clubmanager_domain_model_member.found_via.10">
+        <source>Recommendation</source>
+        <target>crwdns374282:0crwdne374282:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.20" resname="tx_clubmanager_domain_model_member.found_via.20">
+        <source>Social media</source>
+        <target>crwdns374284:0crwdne374284:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.30" resname="tx_clubmanager_domain_model_member.found_via.30">
+        <source>Press</source>
+        <target>crwdns374286:0crwdne374286:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.40" resname="tx_clubmanager_domain_model_member.found_via.40">
+        <source>Courses</source>
+        <target>crwdns374288:0crwdne374288:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.50" resname="tx_clubmanager_domain_model_member.found_via.50">
+        <source>Congress</source>
+        <target>crwdns374290:0crwdne374290:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.60" resname="tx_clubmanager_domain_model_member.found_via.60">
+        <source>Friendship advertising</source>
+        <target>crwdns374292:0crwdne374292:0</target>
+      </trans-unit>
+      <trans-unit id="tx_clubmanager_domain_model_member.found_via.70" resname="tx_clubmanager_domain_model_member.found_via.70">
+        <source>Misc</source>
+        <target>crwdns374294:0crwdne374294:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
