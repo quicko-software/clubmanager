@@ -563,7 +563,7 @@
       </trans-unit>
       <trans-unit id="flash.status_change_applied_not_allowed" resname="flash.status_change_applied_not_allowed">
         <source>Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.</source>
-        <target state="needs-translation">Status "beantragt" can only be created automatically by Pro registration and cannot be set manually.</target>
+        <target state="translated">Status "beantragt" kann nur automatisch durch Pro Registrierung erstellt werden und kann nicht manuell gesetzt werden.</target>
       </trans-unit>
       <trans-unit id="flash.status_change_cancelled_not_allowed_with_billing" resname="flash.status_change_cancelled_not_allowed_with_billing" approved="yes">
         <source>Manual status change to "cancelled" is not allowed while Billing is active. Please use cancellation request.</source>
@@ -571,7 +571,7 @@
       </trans-unit>
       <trans-unit id="flash.journal_reactivation_blocked_newer_entries" resname="flash.journal_reactivation_blocked_newer_entries">
         <source>Reactivation not possible: Newer journal entries exist.</source>
-        <target state="needs-translation">Reactivation not possible: Newer journal entries exist.</target>
+        <target state="translated">Reaktivierung nicht möglich: Neuere Journaleinträge sind vorhanden.</target>
       </trans-unit>
     </body>
   </file>
