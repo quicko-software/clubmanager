@@ -10,7 +10,7 @@ return [
       'title' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_be.xlf:backend_main_module_name',
     ],
     'iconIdentifier' => 'tx-clubmanager_icon-be_mod_clubmanager',
-    'navigationComponent' => '@typo3/backend/page-tree/page-tree-element',
+    'navigationComponent' => '@typo3/backend/tree/page-tree-element',
     'position' => ['before' => 'organisr'],
   ],
   'memberlist' => 
