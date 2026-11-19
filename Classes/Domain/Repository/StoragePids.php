@@ -3,7 +3,6 @@
 namespace Quicko\Clubmanager\Domain\Repository;
 
 use Quicko\Clubmanager\Utils\Typo3Mode;
-use Quicko\Clubmanager\Utils\SettingUtils;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
@@ -46,24 +45,5 @@ class StoragePids
     $list = self::getList($extensionName);
 
     return $list[0] ?? 0;
-  }
-
-  /**
-   * Gets a site-specific storage page and falls back to the primary member storage page.
-   */
-  public static function getConfiguredStoragePid(string $siteSettingName): int
-  {
-    $memberStoragePid = (int) self::getFirst();
-    if ($memberStoragePid <= 0) {
-      return 0;
-    }
-
-    $configuredStoragePid = (int) SettingUtils::getSiteSetting(
-      $memberStoragePid,
-      $siteSettingName,
-      0
-    );
-
-    return $configuredStoragePid > 0 ? $configuredStoragePid : $memberStoragePid;
   }
 }

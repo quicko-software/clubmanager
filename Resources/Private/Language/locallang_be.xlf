@@ -431,6 +431,12 @@
 			<trans-unit id="flash.journal_reactivation_blocked_newer_entries" resname="flash.journal_reactivation_blocked_newer_entries">
 				<source>Reactivation not possible: Newer journal entries exist.</source>
 			</trans-unit>
+			<trans-unit id="module.noPageSelected.title" resname="module.noPageSelected.title">
+				<source>No folder selected</source>
+			</trans-unit>
+			<trans-unit id="module.noPageSelected.message" resname="module.noPageSelected.message">
+				<source>Please select a folder in the page tree. The module shows the data of the selected folder.</source>
+			</trans-unit>
 			
 		</body>
 	</file>

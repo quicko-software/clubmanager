@@ -16,13 +16,13 @@ settings:
     default: 0
   clubmanager.billingStoragePid:
     label: "Billing storage page"
-    description: "Page/folder for settlements and invoices. If not set (0), the configured member storage page is used."
+    description: "Page/folder from which the frontend billing plugins read settlements and invoices. If not set (0), the configured member storage page is used. Backend modules use the folder selected in the page tree."
     category: Clubmanager.Storage
     type: int
     default: 0
   clubmanager.calendarStoragePid:
     label: "Calendar storage page"
-    description: "Page/folder for events and dates. If not set (0), the configured member storage page is used."
+    description: "Page/folder from which the frontend calendar plugins read events and dates. If not set (0), the configured member storage page is used. Backend modules use the folder selected in the page tree."
     category: Clubmanager.Storage
     type: int
     default: 0
