@@ -658,6 +658,78 @@
 		<source>Journal</source>
 		<target>Journal</target>
 	</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_membershiptype" resname="tx_clubmanager_domain_model_membershiptype">
+				<source>Membership type</source>
+				<target>Mitgliedschaftstyp</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_membershiptype.title" resname="tx_clubmanager_domain_model_membershiptype.title">
+				<source>Title</source>
+				<target>Bezeichnung</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_membershiptype.person_type" resname="tx_clubmanager_domain_model_membershiptype.person_type">
+				<source>Type of person</source>
+				<target>Personenart</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_membershiptype.person_type.description" resname="tx_clubmanager_domain_model_membershiptype.person_type.description">
+				<source>Natural person or legal entity; replaces the former person type at the member.</source>
+				<target>Natürliche oder juristische Person; ersetzt die bisherige Personenart am Mitglied.</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_membershiptype.inactive" resname="tx_clubmanager_domain_model_membershiptype.inactive">
+				<source>Deactivated</source>
+				<target>Deaktiviert</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_membershiptype.inactive.description" resname="tx_clubmanager_domain_model_membershiptype.inactive.description">
+				<source>No longer offered for new assignments. Members and journal entries that already use it keep it.</source>
+				<target>Wird für neue Zuordnungen nicht mehr angeboten. Mitglieder und Journal-Einträge, die ihn bereits verwenden, behalten ihn.</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_membershiptype.member_levels" resname="tx_clubmanager_domain_model_membershiptype.member_levels">
+				<source>Selectable levels</source>
+				<target>Wählbare Level</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_membershiptype.member_levels.description" resname="tx_clubmanager_domain_model_membershiptype.member_levels.description">
+				<source>Levels that can be chosen for members of this type.</source>
+				<target>Level, die für Mitglieder dieses Typs gewählt werden können.</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel" resname="tx_clubmanager_domain_model_memberlevel">
+				<source>Membership level</source>
+				<target>Mitglieds-Level</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel.title" resname="tx_clubmanager_domain_model_memberlevel.title">
+				<source>Title</source>
+				<target>Bezeichnung</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel.ranking" resname="tx_clubmanager_domain_model_memberlevel.ranking">
+				<source>Rank</source>
+				<target>Rang</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel.ranking.description" resname="tx_clubmanager_domain_model_memberlevel.ranking.description">
+				<source>Orders the levels; a higher value means a higher level.</source>
+				<target>Ordnet die Level; ein höherer Wert bedeutet ein höheres Level.</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel.display_class" resname="tx_clubmanager_domain_model_memberlevel.display_class">
+				<source>Display class</source>
+				<target>Darstellungsklasse</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel.display_class.description" resname="tx_clubmanager_domain_model_memberlevel.display_class.description">
+				<source>CSS modifier used for colours in the frontend, e.g. default, secondary, tertiary, quaternary.</source>
+				<target>CSS-Modifikator für die Farbgebung im Frontend, z. B. default, secondary, tertiary, quaternary.</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel.inactive" resname="tx_clubmanager_domain_model_memberlevel.inactive">
+				<source>Deactivated</source>
+				<target>Deaktiviert</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel.inactive.description" resname="tx_clubmanager_domain_model_memberlevel.inactive.description">
+				<source>No longer offered for new assignments. Members and journal entries that already use it keep it.</source>
+				<target>Wird für neue Zuordnungen nicht mehr angeboten. Mitglieder und Journal-Einträge, die es bereits verwenden, behalten es.</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel.membership_types" resname="tx_clubmanager_domain_model_memberlevel.membership_types">
+				<source>Membership types</source>
+				<target>Mitgliedschaftstypen</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberlevel.membership_types.description" resname="tx_clubmanager_domain_model_memberlevel.membership_types.description">
+				<source>Membership types for which this level can be chosen.</source>
+				<target>Mitgliedschaftstypen, für die dieses Level gewählt werden kann.</target>
+			</trans-unit>
 </body>
 	</file>
 </xliff>

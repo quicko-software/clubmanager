@@ -7,6 +7,9 @@ categories:
   Clubmanager.Storage:
     label: "Data storage"
     parent: Clubmanager
+  Clubmanager.Membership:
+    label: "Membership types and levels"
+    parent: Clubmanager
 settings:
   clubmanager.memberJournalStoragePid:
     label: "Member Journal Storage Page"
@@ -26,3 +29,9 @@ settings:
     category: Clubmanager.Storage
     type: int
     default: 0
+  clubmanager.membershipMasterDataPids:
+    label: "Pages with membership types and levels"
+    description: "Comma-separated page uids. If set, only membership types and levels stored on these pages can be selected for members and journal entries of this site. If empty, records from any page can be selected."
+    category: Clubmanager.Membership
+    type: string
+    default: ""

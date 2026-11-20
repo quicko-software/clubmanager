@@ -178,3 +178,24 @@ CREATE TABLE tx_clubmanager_domain_model_memberjournalentry (
 	KEY entry_type (entry_type),
 	KEY effective_processed (effective_date, processed, entry_type)
 );
+#
+# Table structure for table 'tx_clubmanager_domain_model_membershiptype'
+# Systemfelder (uid, pid, tstamp, sorting, Sprache …) legt TYPO3 aus der TCA an.
+#
+CREATE TABLE tx_clubmanager_domain_model_membershiptype (
+	title varchar(255) DEFAULT '' NOT NULL,
+	person_type tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	inactive tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	member_levels int(11) unsigned DEFAULT '0' NOT NULL,
+);
+
+#
+# Table structure for table 'tx_clubmanager_domain_model_memberlevel'
+#
+CREATE TABLE tx_clubmanager_domain_model_memberlevel (
+	title varchar(255) DEFAULT '' NOT NULL,
+	ranking int(11) DEFAULT '0' NOT NULL,
+	display_class varchar(64) DEFAULT '' NOT NULL,
+	inactive tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	membership_types int(11) unsigned DEFAULT '0' NOT NULL,
+);

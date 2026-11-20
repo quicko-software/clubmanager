@@ -13,6 +13,9 @@ services:
   Quicko\Clubmanager\Service\MemberJournalProjectionService:
     public: true
 
+  Quicko\Clubmanager\Service\MembershipMasterDataService:
+    public: true
+
   Quicko\Clubmanager\Utils\UniversalTypoScriptService:
     public: true
 
