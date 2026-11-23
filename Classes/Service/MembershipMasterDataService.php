@@ -108,6 +108,34 @@ final class MembershipMasterDataService
     );
   }
 
+  /**
+   * Alle wählbaren Level unabhängig vom Typ, aufsteigend nach Rang (z. B. Beitragssätze „für alle Typen“).
+   *
+   * @return list<array{uid: int, pid: int, title: string, ranking: int, display_class: string}>
+   */
+  public function selectableLevelsOfAnyType(int $contextPid): array
+  {
+    $queryBuilder = $this->queryBuilder(self::TABLE_LEVEL);
+    $queryBuilder
+      ->select('l.uid', 'l.pid', 'l.title', 'l.ranking', 'l.display_class')
+      ->from(self::TABLE_LEVEL, 'l')
+      ->where(...$this->selectableConstraints($queryBuilder, 'l', $contextPid))
+      ->orderBy('l.ranking')
+      ->addOrderBy('l.sorting')
+      ->addOrderBy('l.uid');
+
+    return array_map(
+      static fn(array $row): array => [
+        'uid' => (int)$row['uid'],
+        'pid' => (int)$row['pid'],
+        'title' => (string)$row['title'],
+        'ranking' => (int)$row['ranking'],
+        'display_class' => (string)$row['display_class'],
+      ],
+      $queryBuilder->executeQuery()->fetchAllAssociative()
+    );
+  }
+
   public function isSelectableCombination(int $membershipTypeUid, int $memberLevelUid, int $contextPid): bool
   {
     foreach ($this->selectableLevels($membershipTypeUid, $contextPid) as $level) {

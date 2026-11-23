@@ -30,6 +30,11 @@ final class MembershipItems
   {
     $rows = $this->masterData->selectableTypes($this->contextPid($params));
     $params['items'] = $this->buildItems($rows, $params, MembershipMasterDataService::TABLE_TYPE);
+    // Option `emptyLabel`: Beschriftung des leeren Eintrags (z. B. „Alle Typen“).
+    $emptyLabel = (string)($params['config']['itemsProcConfig']['emptyLabel'] ?? '');
+    if ($emptyLabel !== '') {
+      $params['items'][0]['label'] = $emptyLabel;
+    }
   }
 
   /**
@@ -40,7 +45,10 @@ final class MembershipItems
     $row = is_array($params['row'] ?? null) ? $params['row'] : [];
     $typeField = (string)($params['config']['itemsProcConfig']['typeField'] ?? 'new_membership_type');
     $typeUid = self::firstUid($row[$typeField] ?? 0);
-    $rows = $this->masterData->selectableLevels($typeUid, $this->contextPid($params));
+    // Option `allLevelsWithoutType`: ohne Typ alle wählbaren Level (z. B. Beitragssatz „alle Typen“).
+    $rows = $typeUid <= 0 && !empty($params['config']['itemsProcConfig']['allLevelsWithoutType'])
+      ? $this->masterData->selectableLevelsOfAnyType($this->contextPid($params))
+      : $this->masterData->selectableLevels($typeUid, $this->contextPid($params));
     $params['items'] = $this->buildItems($rows, $params, MembershipMasterDataService::TABLE_LEVEL);
   }
 
