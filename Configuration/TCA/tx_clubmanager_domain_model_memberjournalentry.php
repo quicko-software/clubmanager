@@ -226,6 +226,68 @@ return [
         'required' => true,
       ],
     ],
+    // Seit #6425: Verweise auf Typ und Level. Formular und Logik stellt Step 1.3 um;
+    // bis dahin bleibt die Palette `level_data` auf `old_level`/`new_level`.
+    'old_membership_type' => [
+      'displayCond' => 'FIELD:entry_type:=:level_change',
+      'exclude' => true,
+      'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.old_membership_type',
+      'config' => [
+        'type' => 'select',
+        'renderType' => 'selectSingle',
+        'foreign_table' => 'tx_clubmanager_domain_model_membershiptype',
+        'foreign_table_where' => 'AND {#tx_clubmanager_domain_model_membershiptype}.{#sys_language_uid} IN (-1,0)',
+        'items' => [
+          ['label' => '', 'value' => 0],
+        ],
+        'default' => 0,
+      ],
+    ],
+    'new_membership_type' => [
+      'displayCond' => 'FIELD:entry_type:=:level_change',
+      'exclude' => true,
+      'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.new_membership_type',
+      'config' => [
+        'type' => 'select',
+        'renderType' => 'selectSingle',
+        'foreign_table' => 'tx_clubmanager_domain_model_membershiptype',
+        'foreign_table_where' => 'AND {#tx_clubmanager_domain_model_membershiptype}.{#sys_language_uid} IN (-1,0)',
+        'items' => [
+          ['label' => '', 'value' => 0],
+        ],
+        'default' => 0,
+      ],
+    ],
+    'old_member_level' => [
+      'displayCond' => 'FIELD:entry_type:=:level_change',
+      'exclude' => true,
+      'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.old_member_level',
+      'config' => [
+        'type' => 'select',
+        'renderType' => 'selectSingle',
+        'foreign_table' => 'tx_clubmanager_domain_model_memberlevel',
+        'foreign_table_where' => 'AND {#tx_clubmanager_domain_model_memberlevel}.{#sys_language_uid} IN (-1,0)',
+        'items' => [
+          ['label' => '', 'value' => 0],
+        ],
+        'default' => 0,
+      ],
+    ],
+    'new_member_level' => [
+      'displayCond' => 'FIELD:entry_type:=:level_change',
+      'exclude' => true,
+      'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.new_member_level',
+      'config' => [
+        'type' => 'select',
+        'renderType' => 'selectSingle',
+        'foreign_table' => 'tx_clubmanager_domain_model_memberlevel',
+        'foreign_table_where' => 'AND {#tx_clubmanager_domain_model_memberlevel}.{#sys_language_uid} IN (-1,0)',
+        'items' => [
+          ['label' => '', 'value' => 0],
+        ],
+        'default' => 0,
+      ],
+    ],
   ],
 ];
 

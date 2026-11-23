@@ -41,6 +41,15 @@ class MemberJournalEntry extends AbstractEntity
 
   protected ?int $newLevel = null;
 
+  // Seit #6425: Verweise auf Typ und Level; ersetzen oldLevel/newLevel nach der Migration.
+  protected ?MembershipType $oldMembershipType = null;
+
+  protected ?MembershipType $newMembershipType = null;
+
+  protected ?MemberLevel $oldMemberLevel = null;
+
+  protected ?MemberLevel $newMemberLevel = null;
+
   public function getMember(): int
   {
     return $this->member;
@@ -139,6 +148,46 @@ class MemberJournalEntry extends AbstractEntity
   public function setNewLevel(?int $newLevel): void
   {
     $this->newLevel = $newLevel;
+  }
+
+  public function getOldMembershipType(): ?MembershipType
+  {
+    return $this->oldMembershipType;
+  }
+
+  public function setOldMembershipType(?MembershipType $oldMembershipType): void
+  {
+    $this->oldMembershipType = $oldMembershipType;
+  }
+
+  public function getNewMembershipType(): ?MembershipType
+  {
+    return $this->newMembershipType;
+  }
+
+  public function setNewMembershipType(?MembershipType $newMembershipType): void
+  {
+    $this->newMembershipType = $newMembershipType;
+  }
+
+  public function getOldMemberLevel(): ?MemberLevel
+  {
+    return $this->oldMemberLevel;
+  }
+
+  public function setOldMemberLevel(?MemberLevel $oldMemberLevel): void
+  {
+    $this->oldMemberLevel = $oldMemberLevel;
+  }
+
+  public function getNewMemberLevel(): ?MemberLevel
+  {
+    return $this->newMemberLevel;
+  }
+
+  public function setNewMemberLevel(?MemberLevel $newMemberLevel): void
+  {
+    $this->newMemberLevel = $newMemberLevel;
   }
 
   // Helper Methods

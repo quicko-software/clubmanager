@@ -48,6 +48,10 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 
 	level int(11) DEFAULT '0' NOT NULL,
 
+	membership_type int(11) unsigned DEFAULT '0' NOT NULL,
+
+	member_level int(11) unsigned DEFAULT '0' NOT NULL,
+
 	alt_billing_name varchar(255) DEFAULT '' NOT NULL,
 	alt_billing_street varchar(255) DEFAULT '' NOT NULL,
 	alt_billing_zip varchar(255) DEFAULT '' NOT NULL,
@@ -173,6 +177,11 @@ CREATE TABLE tx_clubmanager_domain_model_memberjournalentry (
 	-- Für entry_type = 'level_change'
 	old_level int(11) DEFAULT NULL,
 	new_level int(11) DEFAULT NULL,
+	-- Seit #6425: Verweise auf Typ und Level (0 = nicht gesetzt)
+	old_membership_type int(11) unsigned DEFAULT '0' NOT NULL,
+	new_membership_type int(11) unsigned DEFAULT '0' NOT NULL,
+	old_member_level int(11) unsigned DEFAULT '0' NOT NULL,
+	new_member_level int(11) unsigned DEFAULT '0' NOT NULL,
 
 	KEY member_date (member, entry_date DESC),
 	KEY entry_type (entry_type),

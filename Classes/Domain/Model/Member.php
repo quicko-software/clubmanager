@@ -125,6 +125,13 @@ class Member extends AbstractEntity
 
   protected int $level = 0;
 
+  /**
+   * Seit #6425 maßgeblich; `level` und `personType` bleiben bis zur Migration erhalten.
+   */
+  protected ?MembershipType $membershipType = null;
+
+  protected ?MemberLevel $memberLevel = null;
+
   protected ?string $addAddressInfo = '';
 
   protected ?DateTime $dateofbirth = null;
@@ -603,6 +610,39 @@ class Member extends AbstractEntity
   public function getLevel(): int
   {
     return $this->level;
+  }
+
+  public function getMembershipType(): ?MembershipType
+  {
+    return $this->membershipType;
+  }
+
+  public function setMembershipType(?MembershipType $membershipType): void
+  {
+    $this->membershipType = $membershipType;
+  }
+
+  public function getMemberLevel(): ?MemberLevel
+  {
+    return $this->memberLevel;
+  }
+
+  public function setMemberLevel(?MemberLevel $memberLevel): void
+  {
+    $this->memberLevel = $memberLevel;
+  }
+
+  /**
+   * Juristische Person laut Mitgliedschaftstyp; ohne Typ (vor der Migration) gilt `personType`.
+   */
+  public function isLegalPerson(): bool
+  {
+    $membershipType = $this->getMembershipType();
+    if ($membershipType !== null) {
+      return $membershipType->isLegalPerson();
+    }
+
+    return $this->personType === self::PERSON_TYPE_JURIDICAL;
   }
 
   public function setAddAddressInfo(?string $addAddressInfo): void

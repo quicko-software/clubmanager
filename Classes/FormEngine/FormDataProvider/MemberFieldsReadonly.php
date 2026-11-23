@@ -10,7 +10,7 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 
 /**
  * Sets fields to readOnly for Members:
- * - level: Always readOnly (changes only through Journal entries)
+ * - level, membership_type, member_level: Always readOnly (changes only through Journal entries)
  * - ident: ReadOnly for non-admins after first activation (starttime is set)
  */
 final class MemberFieldsReadonly implements FormDataProviderInterface
@@ -23,8 +23,10 @@ final class MemberFieldsReadonly implements FormDataProviderInterface
 
     // Set level field to readOnly for ALL users (including admins)
     // Level is determined by journal entries and processed by commands/tasks
-    if (isset($result['processedTca']['columns']['level'])) {
-      $result['processedTca']['columns']['level']['config']['readOnly'] = true;
+    foreach (['level', 'membership_type', 'member_level'] as $journalManagedField) {
+      if (isset($result['processedTca']['columns'][$journalManagedField])) {
+        $result['processedTca']['columns'][$journalManagedField]['config']['readOnly'] = true;
+      }
     }
 
     // CR1: ident nach erster Aktivierung für Redakteure sperren

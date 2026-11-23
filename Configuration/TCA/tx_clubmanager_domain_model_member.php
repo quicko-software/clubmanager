@@ -45,7 +45,7 @@ return [
         'membership' => [
             'showitem' => '
                 ident, starttime, endtime, --linebreak--,
-                state, level, reduced_rate
+                state, membership_type, member_level, reduced_rate
             ',
         ],
         'contact' => [
@@ -56,7 +56,7 @@ return [
         ],
         'member' => [
             'showitem' => '
-                person_type, nationality,--linebreak--,
+                nationality,--linebreak--,
                 salutation, title, --linebreak--,
                 firstname, midname, --linebreak--, 
                 lastname,  dateofbirth
@@ -403,6 +403,41 @@ return [
                     ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.20', 'value' => Quicko\Clubmanager\Domain\Model\Member::LEVEL_SILVER],
                     ['label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.30', 'value' => Quicko\Clubmanager\Domain\Model\Member::LEVEL_GOLD],
                 ],
+                'size' => 1,
+                'maxitems' => 1,
+            ],
+        ],
+        // Seit #6425: Typ und Level als Datensätze. Gesetzt nur über das Journal (readOnly über
+        // MemberFieldsReadonly). Die alten Felder `level` und `person_type` bleiben bis zur
+        // Migration im Schema, sind aber nicht mehr im Formular.
+        'membership_type' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.membership_type',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'tx_clubmanager_domain_model_membershiptype',
+                'foreign_table_where' => 'AND {#tx_clubmanager_domain_model_membershiptype}.{#sys_language_uid} IN (-1,0)',
+                'items' => [
+                    ['label' => '', 'value' => 0],
+                ],
+                'default' => 0,
+                'size' => 1,
+                'maxitems' => 1,
+            ],
+        ],
+        'member_level' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.member_level',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'tx_clubmanager_domain_model_memberlevel',
+                'foreign_table_where' => 'AND {#tx_clubmanager_domain_model_memberlevel}.{#sys_language_uid} IN (-1,0)',
+                'items' => [
+                    ['label' => '', 'value' => 0],
+                ],
+                'default' => 0,
                 'size' => 1,
                 'maxitems' => 1,
             ],

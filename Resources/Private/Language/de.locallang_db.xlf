@@ -730,6 +730,30 @@
 				<source>Membership types for which this level can be chosen.</source>
 				<target>Mitgliedschaftstypen, für die dieses Level gewählt werden kann.</target>
 			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.membership_type" resname="tx_clubmanager_domain_model_member.membership_type">
+				<source>Membership type</source>
+				<target>Mitgliedschaftstyp</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_member.member_level" resname="tx_clubmanager_domain_model_member.member_level">
+				<source>Level</source>
+				<target>Level</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.old_membership_type" resname="tx_clubmanager_domain_model_memberjournalentry.old_membership_type">
+				<source>Previous membership type</source>
+				<target>Bisheriger Mitgliedschaftstyp</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.new_membership_type" resname="tx_clubmanager_domain_model_memberjournalentry.new_membership_type">
+				<source>New membership type</source>
+				<target>Neuer Mitgliedschaftstyp</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.old_member_level" resname="tx_clubmanager_domain_model_memberjournalentry.old_member_level">
+				<source>Previous level</source>
+				<target>Bisheriges Level</target>
+			</trans-unit>
+			<trans-unit id="tx_clubmanager_domain_model_memberjournalentry.new_member_level" resname="tx_clubmanager_domain_model_memberjournalentry.new_member_level">
+				<source>New level</source>
+				<target>Neues Level</target>
+			</trans-unit>
 </body>
 	</file>
 </xliff>
