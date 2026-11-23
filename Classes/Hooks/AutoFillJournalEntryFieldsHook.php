@@ -6,6 +6,7 @@ namespace Quicko\Clubmanager\Hooks;
 
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
+use Quicko\Clubmanager\Service\MembershipMasterDataService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -15,6 +16,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * - entry_date: Set to current timestamp
  * - creator_type: Set to "Backend" (1)
  * - old_level: Set from member's current level or last processed level_change entry
+ * - old_membership_type/old_member_level: same sources (#6425); new_membership_type defaults to the old type
  *
  * Note: Required field validation for effective_date is handled via TCA columnsOverrides.
  */
@@ -50,8 +52,72 @@ final class AutoFillJournalEntryFieldsHook
         // Handle level_change specific fields
         $entryType = $fieldArray['entry_type'] ?? '';
         if ($entryType === MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE) {
+            $this->fillOldMembership($fieldArray, $id, $dataHandler);
+            $this->fillNewMembership($fieldArray);
             $this->fillOldLevel($fieldArray, $id, $dataHandler);
             $this->ensureNewLevelIsSet($fieldArray);
+        }
+    }
+
+    /**
+     * Seit #6425: alten Typ und altes Level aus dem letzten verarbeiteten Level-Wechsel,
+     * sonst aus dem Mitglied übernehmen. Bereits gesetzte Werte bleiben.
+     */
+    private function fillOldMembership(array &$fieldArray, string|int $id, DataHandler $dataHandler): void
+    {
+        $hasOldType = (int) ($fieldArray['old_membership_type'] ?? 0) > 0;
+        $hasOldLevel = (int) ($fieldArray['old_member_level'] ?? 0) > 0;
+        if ($hasOldType && $hasOldLevel) {
+            return;
+        }
+
+        $memberUid = $this->getMemberUid($fieldArray, $id, $dataHandler);
+        if ($memberUid === 0) {
+            return;
+        }
+
+        $oldType = 0;
+        $oldLevel = 0;
+        $journalRepository = GeneralUtility::makeInstance(MemberJournalEntryRepository::class);
+        $lastLevelEntry = $journalRepository->findLastProcessedEntry(
+            $memberUid,
+            MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE
+        );
+        if ($lastLevelEntry !== null) {
+            $oldType = (int) ($lastLevelEntry->getNewMembershipType()?->getUid() ?? 0);
+            $oldLevel = (int) ($lastLevelEntry->getNewMemberLevel()?->getUid() ?? 0);
+        }
+        if ($oldType === 0 || $oldLevel === 0) {
+            $memberRecord = BackendUtility::getRecord('tx_clubmanager_domain_model_member', $memberUid);
+            $oldType = $oldType ?: (int) ($memberRecord['membership_type'] ?? 0);
+            $oldLevel = $oldLevel ?: (int) ($memberRecord['member_level'] ?? 0);
+        }
+
+        if (!$hasOldType) {
+            $fieldArray['old_membership_type'] = $oldType;
+        }
+        if (!$hasOldLevel) {
+            $fieldArray['old_member_level'] = $oldLevel;
+        }
+    }
+
+    /**
+     * Ohne neuen Typ bleibt der bisherige Typ (reiner Level-Wechsel). Das alte Feld
+     * `new_level` folgt im Übergang dem Rang des neuen Levels (siehe MembershipMasterDataService).
+     */
+    private function fillNewMembership(array &$fieldArray): void
+    {
+        if ((int) ($fieldArray['new_membership_type'] ?? 0) === 0 && (int) ($fieldArray['old_membership_type'] ?? 0) > 0) {
+            $fieldArray['new_membership_type'] = (int) $fieldArray['old_membership_type'];
+        }
+
+        $newMemberLevel = (int) ($fieldArray['new_member_level'] ?? 0);
+        if ($newMemberLevel > 0 && (!isset($fieldArray['new_level']) || $fieldArray['new_level'] === '')) {
+            $values = GeneralUtility::makeInstance(MembershipMasterDataService::class)
+                ->memberFieldsForLevelChange(0, $newMemberLevel, null);
+            if (isset($values['level'])) {
+                $fieldArray['new_level'] = $values['level'];
+            }
         }
     }
 

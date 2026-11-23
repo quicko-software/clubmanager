@@ -122,6 +122,37 @@ final class MembershipMasterDataService
   }
 
   /**
+   * Werte, die ein verarbeiteter Level-Wechsel am Mitglied setzt.
+   *
+   * Mit Verweisen: `membership_type`, `person_type` (aus dem Typ), `member_level` und
+   * `level` = Rang des Levels. Das alte Feld `level` wird im Übergang mitgeschrieben, bis
+   * Pro, Billing und Statistik den Level-Datensatz lesen; der Upgrade-Wizard legt die Level
+   * mit Rang 0/10/20/30 an, damit die Werte zusammenpassen. Ohne Verweise (Alteinträge)
+   * gilt nur `new_level`. Deaktivierte Datensätze werden hier bewusst nicht gefiltert.
+   *
+   * @return array<string, int>
+   */
+  public function memberFieldsForLevelChange(int $newMembershipTypeUid, int $newMemberLevelUid, ?int $legacyNewLevel): array
+  {
+    $values = [];
+    $level = $newMemberLevelUid > 0 ? $this->fetchRecord(self::TABLE_LEVEL, $newMemberLevelUid, ['ranking']) : null;
+    if ($level !== null) {
+      $values['member_level'] = $newMemberLevelUid;
+      $values['level'] = (int)$level['ranking'];
+    }
+    $type = $newMembershipTypeUid > 0 ? $this->fetchRecord(self::TABLE_TYPE, $newMembershipTypeUid, ['person_type']) : null;
+    if ($type !== null) {
+      $values['membership_type'] = $newMembershipTypeUid;
+      $values['person_type'] = (int)$type['person_type'];
+    }
+    if (!isset($values['level']) && $legacyNewLevel !== null) {
+      $values['level'] = $legacyNewLevel;
+    }
+
+    return $values;
+  }
+
+  /**
    * Akzeptiert "12, 34", Listen und einzelne Zahlen; ungültige Einträge entfallen.
    *
    * @return list<int>
@@ -168,6 +199,24 @@ final class MembershipMasterDataService
     }
 
     return $constraints;
+  }
+
+  /**
+   * @param list<string> $fields
+   * @return array<string, mixed>|null
+   */
+  private function fetchRecord(string $table, int $uid, array $fields): ?array
+  {
+    $queryBuilder = $this->queryBuilder($table);
+    $row = $queryBuilder
+      ->select(...$fields)
+      ->from($table)
+      ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)))
+      ->setMaxResults(1)
+      ->executeQuery()
+      ->fetchAssociative();
+
+    return is_array($row) ? $row : null;
   }
 
   private function queryBuilder(string $table): QueryBuilder

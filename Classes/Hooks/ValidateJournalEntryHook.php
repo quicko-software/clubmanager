@@ -6,6 +6,7 @@ namespace Quicko\Clubmanager\Hooks;
 
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
+use Quicko\Clubmanager\Service\MembershipMasterDataService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
@@ -232,7 +233,12 @@ class ValidateJournalEntryHook
 
         // Bug 7: Level-Change Validierung (old_level != new_level)
         if ($entryType === MemberJournalEntry::ENTRY_TYPE_LEVEL_CHANGE) {
-            if ($this->validateLevelChange($fieldArray, $oldLevel, $newLevel, $id)) {
+            // Seit #6425: mit Level-Verweis gelten Typ und Level, sonst die alten Zahlenfelder.
+            if ($this->entryValue($fieldArray, $existingUid, 'new_member_level') > 0) {
+                if ($this->validateMembershipChange($fieldArray, $existingUid, $memberUid, $id)) {
+                    return; // Eintrag wurde blockiert
+                }
+            } elseif ($this->validateLevelChange($fieldArray, $oldLevel, $newLevel, $id)) {
                 return; // Eintrag wurde blockiert
             }
 
@@ -403,6 +409,96 @@ class ValidateJournalEntryHook
         }
 
         return false;
+    }
+
+    /**
+     * #6425: Level-Wechsel mit Verweisen. Blockiert, wenn Typ und Level unverändert bleiben
+     * oder das neue Level dem neuen Typ nicht zugeordnet, deaktiviert oder außerhalb der
+     * im Site-Setting erlaubten Seiten ist.
+     *
+     * @return bool True wenn blockiert, false wenn OK
+     */
+    private function validateMembershipChange(array &$fieldArray, ?int $existingUid, ?int $memberUid, string|int $id): bool
+    {
+        $oldType = $this->entryValue($fieldArray, $existingUid, 'old_membership_type');
+        $newType = $this->entryValue($fieldArray, $existingUid, 'new_membership_type');
+        $oldLevel = $this->entryValue($fieldArray, $existingUid, 'old_member_level');
+        $newLevel = $this->entryValue($fieldArray, $existingUid, 'new_member_level');
+
+        if ($oldType === $newType && $oldLevel === $newLevel) {
+            $this->blockEntry($fieldArray, $id, $memberUid);
+            $this->addFlashMessage(
+                $this->translate('flash.level_change_same_level', 'Level change not possible: New level is the same as the current level.'),
+                $this->translate('flash.validation_error.title', 'Validation Error'),
+                ContextualFeedbackSeverity::ERROR
+            );
+
+            return true;
+        }
+
+        $contextPid = $this->resolveContextPid($fieldArray, $existingUid, $memberUid);
+        $masterData = GeneralUtility::makeInstance(MembershipMasterDataService::class);
+        if (!$masterData->isSelectableCombination($newType, $newLevel, $contextPid)) {
+            $this->blockEntry($fieldArray, $id, $memberUid);
+            $this->addFlashMessage(
+                $this->translate('flash.level_change_invalid_combination', 'Level change not possible: The selected level is not available for the selected membership type.'),
+                $this->translate('flash.validation_error.title', 'Validation Error'),
+                ContextualFeedbackSeverity::ERROR
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Wert aus dem fieldArray, bei bestehenden Einträgen sonst aus der Datenbank.
+     */
+    private function entryValue(array $fieldArray, ?int $existingUid, string $field): int
+    {
+        if (array_key_exists($field, $fieldArray)) {
+            return (int) $fieldArray[$field];
+        }
+        if ($existingUid !== null) {
+            $record = BackendUtility::getRecord(self::TABLE_NAME, $existingUid, $field);
+            return (int) ($record[$field] ?? 0);
+        }
+
+        return 0;
+    }
+
+    /**
+     * Seite, deren Site über die erlaubten Stammdaten-Seiten entscheidet: Ordner des Mitglieds,
+     * sonst die pid des Eintrags.
+     */
+    private function resolveContextPid(array $fieldArray, ?int $existingUid, ?int $memberUid): int
+    {
+        if ($memberUid !== null && $memberUid > 0) {
+            $member = BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'pid');
+            if ((int) ($member['pid'] ?? 0) > 0) {
+                return (int) $member['pid'];
+            }
+        }
+        if ((int) ($fieldArray['pid'] ?? 0) > 0) {
+            return (int) $fieldArray['pid'];
+        }
+        if ($existingUid !== null) {
+            $record = BackendUtility::getRecord(self::TABLE_NAME, $existingUid, 'pid');
+            return (int) ($record['pid'] ?? 0);
+        }
+
+        return 0;
+    }
+
+    private function blockEntry(array &$fieldArray, string|int $id, ?int $memberUid): void
+    {
+        self::$invalidEntryIds[$id] = $memberUid ?? 0;
+        $pid = $fieldArray['pid'] ?? null;
+        $fieldArray = [];
+        if ($pid !== null) {
+            $fieldArray['pid'] = $pid;
+        }
     }
 
     /**

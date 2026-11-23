@@ -32,9 +32,9 @@ final class MemberJournalEntryReadonly implements FormDataProviderInterface
       $result['databaseRow']['entry_date'] = time();
     }
 
-    // old_level and processed are ALWAYS readOnly (even for admins)
+    // old_level, old_membership_type, old_member_level and processed are ALWAYS readOnly (even for admins)
     // These are system-determined values
-    $systemFields = ['old_level', 'processed'];
+    $systemFields = ['old_level', 'old_membership_type', 'old_member_level', 'processed'];
     foreach ($systemFields as $fieldName) {
       if (isset($result['processedTca']['columns'][$fieldName])) {
         $result['processedTca']['columns'][$fieldName]['config']['readOnly'] = true;

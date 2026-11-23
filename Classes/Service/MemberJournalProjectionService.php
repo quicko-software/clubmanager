@@ -19,6 +19,13 @@ class MemberJournalProjectionService
     $this->eventDispatcher = $eventDispatcher;
   }
 
+  protected MembershipMasterDataService $membershipMasterDataService;
+
+  public function injectMembershipMasterDataService(MembershipMasterDataService $membershipMasterDataService): void
+  {
+    $this->membershipMasterDataService = $membershipMasterDataService;
+  }
+
   public function projectMemberConsistency(int $memberUid): bool
   {
     if ($memberUid <= 0) {
@@ -59,9 +66,16 @@ class MemberJournalProjectionService
 
     $lastLevelEntry = $this->findLastProcessedLevelChangeEntry($memberUid);
     if (is_array($lastLevelEntry)) {
-      $expectedLevel = (int) ($lastLevelEntry['new_level'] ?? 0);
-      if ((int) ($memberRecord['level'] ?? 0) !== $expectedLevel) {
-        $updates['level'] = $expectedLevel;
+      // Seit #6425: Typ, Level, Personenart und (im Übergang) das alte Feld `level` aus dem Eintrag.
+      $expected = $this->membershipMasterDataService->memberFieldsForLevelChange(
+        (int) ($lastLevelEntry['new_membership_type'] ?? 0),
+        (int) ($lastLevelEntry['new_member_level'] ?? 0),
+        isset($lastLevelEntry['new_level']) ? (int) $lastLevelEntry['new_level'] : 0
+      );
+      foreach ($expected as $field => $value) {
+        if ((int) ($memberRecord[$field] ?? 0) !== $value) {
+          $updates[$field] = $value;
+        }
       }
     }
 
@@ -137,7 +151,7 @@ class MemberJournalProjectionService
   {
     $queryBuilder = $this->createQueryBuilder('tx_clubmanager_domain_model_member');
     $record = $queryBuilder
-      ->select('uid', 'state', 'starttime', 'endtime', 'level')
+      ->select('uid', 'state', 'starttime', 'endtime', 'level', 'person_type', 'membership_type', 'member_level')
       ->from('tx_clubmanager_domain_model_member')
       ->where(
         $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($memberUid)),
@@ -192,7 +206,7 @@ class MemberJournalProjectionService
   {
     $queryBuilder = $this->createQueryBuilder('tx_clubmanager_domain_model_memberjournalentry');
     $entry = $queryBuilder
-      ->select('uid', 'new_level')
+      ->select('uid', 'new_level', 'new_membership_type', 'new_member_level')
       ->from('tx_clubmanager_domain_model_memberjournalentry')
       ->where(
         $queryBuilder->expr()->eq('member', $queryBuilder->createNamedParameter($memberUid)),

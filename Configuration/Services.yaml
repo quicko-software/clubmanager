@@ -16,6 +16,9 @@ services:
   Quicko\Clubmanager\Service\MembershipMasterDataService:
     public: true
 
+  Quicko\Clubmanager\FormEngine\ItemsProcFunc\MembershipItems:
+    public: true
+
   Quicko\Clubmanager\Utils\UniversalTypoScriptService:
     public: true
 

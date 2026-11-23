@@ -8,7 +8,11 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
 use Quicko\Clubmanager\Domain\Model\Member;
 use Quicko\Clubmanager\Domain\Model\MemberJournalEntry;
+use Quicko\Clubmanager\Domain\Model\MemberLevel;
+use Quicko\Clubmanager\Domain\Model\MembershipType;
 use Quicko\Clubmanager\Domain\Repository\MemberJournalEntryRepository;
+use Quicko\Clubmanager\Domain\Repository\MemberLevelRepository;
+use Quicko\Clubmanager\Domain\Repository\MembershipTypeRepository;
 use Quicko\Clubmanager\Domain\Repository\MemberRepository;
 use Quicko\Clubmanager\Event\MemberStateChangedEvent;
 use Quicko\Clubmanager\Utils\SettingUtils;
@@ -30,6 +34,9 @@ class MemberJournalService
     protected PersistenceManager $persistenceManager,
     protected EventDispatcherInterface $eventDispatcher,
     protected LoggerInterface $logger,
+    protected MembershipMasterDataService $membershipMasterDataService,
+    protected MembershipTypeRepository $membershipTypeRepository,
+    protected MemberLevelRepository $memberLevelRepository,
   ) {
   }
 
@@ -241,6 +248,9 @@ class MemberJournalService
           $member->_setProperty('uid', $memberRecord['uid']);
           $member->setState($memberRecord['state'] ?? Member::STATE_UNSET);
           $member->setLevel($memberRecord['level'] ?? 0);
+          $member->setPersonType((int) ($memberRecord['person_type'] ?? 0));
+          $member->setMembershipType($this->findMembershipType((int) ($memberRecord['membership_type'] ?? 0)));
+          $member->setMemberLevel($this->findMemberLevel((int) ($memberRecord['member_level'] ?? 0)));
           $member->setIdent($memberRecord['ident'] ?? '');
           $starttime = $memberRecord['starttime'] ? new DateTime('@' . $memberRecord['starttime']) : null;
           if ($starttime) {
@@ -265,6 +275,9 @@ class MemberJournalService
             [
               'state' => $member->getState(),
               'level' => $member->getLevel(),
+              'person_type' => $member->getPersonType(),
+              'membership_type' => $member->getMembershipType()?->getUid() ?? 0,
+              'member_level' => $member->getMemberLevel()?->getUid() ?? 0,
               'starttime' => $member->getStarttime() ? $member->getStarttime()->getTimestamp() : 0,
               'endtime' => $member->getEndtime() ? $member->getEndtime()->getTimestamp() : 0,
             ],
@@ -355,15 +368,46 @@ class MemberJournalService
     }
   }
 
+  /**
+   * Setzt Typ und Level des Mitglieds aus dem Journal-Eintrag.
+   * Alteinträge ohne Verweise setzen nur das alte Feld `level` (siehe MembershipMasterDataService).
+   */
   protected function applyLevelChange(Member $member, MemberJournalEntry $entry): void
   {
-    $newLevel = $entry->getNewLevel();
+    $values = $this->membershipMasterDataService->memberFieldsForLevelChange(
+      (int) ($entry->getNewMembershipType()?->getUid() ?? 0),
+      (int) ($entry->getNewMemberLevel()?->getUid() ?? 0),
+      $entry->getNewLevel()
+    );
 
-    if ($newLevel === null) {
-      throw new InvalidArgumentException('Level-Change benötigt new_level');
+    if (!isset($values['level']) && !isset($values['member_level'])) {
+      throw new InvalidArgumentException('Level-Change benötigt new_member_level oder new_level');
     }
 
-    $member->setLevel($newLevel);
+    if (isset($values['level'])) {
+      $member->setLevel($values['level']);
+    }
+    if (isset($values['member_level'])) {
+      $member->setMemberLevel($this->findMemberLevel($values['member_level']));
+    }
+    if (isset($values['membership_type'])) {
+      $member->setMembershipType($this->findMembershipType($values['membership_type']));
+      $member->setPersonType($values['person_type']);
+    }
+  }
+
+  private function findMembershipType(int $uid): ?MembershipType
+  {
+    $type = $uid > 0 ? $this->membershipTypeRepository->findByUid($uid) : null;
+
+    return $type instanceof MembershipType ? $type : null;
+  }
+
+  private function findMemberLevel(int $uid): ?MemberLevel
+  {
+    $level = $uid > 0 ? $this->memberLevelRepository->findByUid($uid) : null;
+
+    return $level instanceof MemberLevel ? $level : null;
   }
 
   /**

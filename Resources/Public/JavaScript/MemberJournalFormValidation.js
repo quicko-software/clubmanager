@@ -4,7 +4,7 @@ import $ from 'jquery';
  * Client-side validation for member journal entries in the Backend form.
  *
  * Validates before save:
- * - Bug 7: Blocks saving if old_level == new_level (hard error)
+ * - Bug 7: Blocks saving if membership type and level stay the same (hard error)
  * - CR3: Blocks saving if target_state == current member state (hard error)
  * - CR5: Shows warning if effective_date < today for status/level changes
  * - CR6: Warns on activation without email address
@@ -230,7 +230,7 @@ const MemberJournalFormValidation = {
   },
 
   /**
-   * Bug 7: Findet Level-Change-Einträge wo old_level == new_level
+   * Bug 7: Findet Level-Change-Einträge, bei denen Typ und Level unverändert bleiben
    * Gibt den recordId des ersten gefundenen Eintrags zurück, oder null.
    */
   findSameLevelEntry(form) {
@@ -262,15 +262,18 @@ const MemberJournalFormValidation = {
         continue;
       }
 
-      const oldLevel = this.getFieldValue(form, recordId, 'old_level');
-      const newLevel = this.getFieldValue(form, recordId, 'new_level');
+      // #6425: Typ und Level als Datensätze; gleich ist es nur, wenn beide unverändert bleiben.
+      const oldLevel = this.getFieldValue(form, recordId, 'old_member_level');
+      const newLevel = this.getFieldValue(form, recordId, 'new_member_level');
 
-      // Nur prüfen wenn beide Werte vorhanden sind
-      if (oldLevel === null || newLevel === null) {
+      // Nur prüfen wenn beide Level gesetzt sind (0 = kein Level)
+      if (oldLevel === null || newLevel === null || String(oldLevel) === '0' || String(newLevel) === '0') {
         continue;
       }
 
-      if (oldLevel === newLevel) {
+      const oldType = this.getFieldValue(form, recordId, 'old_membership_type');
+      const newType = this.getFieldValue(form, recordId, 'new_membership_type');
+      if (oldLevel === newLevel && String(oldType ?? '0') === String(newType ?? '0')) {
         return recordId;
       }
     }

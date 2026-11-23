@@ -77,8 +77,10 @@ return [
             'required' => true,
           ],
         ],
-        'new_level' => [
+        'new_member_level' => [
           'config' => [
+        'itemsProcFunc' => Quicko\Clubmanager\FormEngine\ItemsProcFunc\MembershipItems::class . '->levels',
+        'itemsProcConfig' => ['typeField' => 'new_membership_type'],
             'required' => true,
           ],
         ],
@@ -96,7 +98,7 @@ return [
       'showitem' => 'target_state, --linebreak--, effective_date, processed',
     ],
     'level_data' => [
-      'showitem' => 'old_level, new_level, --linebreak--, effective_date, processed',
+      'showitem' => 'old_membership_type, old_member_level, --linebreak--, new_membership_type, new_member_level, --linebreak--, effective_date, processed',
     ],
   ],
   'columns' => [
@@ -226,8 +228,8 @@ return [
         'required' => true,
       ],
     ],
-    // Seit #6425: Verweise auf Typ und Level. Formular und Logik stellt Step 1.3 um;
-    // bis dahin bleibt die Palette `level_data` auf `old_level`/`new_level`.
+    // Seit #6425: Verweise auf Typ und Level. `old_level`/`new_level` bleiben bis zur Migration
+    // im Schema und werden im Übergang mitgeschrieben, stehen aber nicht mehr im Formular.
     'old_membership_type' => [
       'displayCond' => 'FIELD:entry_type:=:level_change',
       'exclude' => true,
@@ -247,7 +249,9 @@ return [
       'displayCond' => 'FIELD:entry_type:=:level_change',
       'exclude' => true,
       'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_memberjournalentry.new_membership_type',
+      'onChange' => 'reload',
       'config' => [
+        'itemsProcFunc' => Quicko\Clubmanager\FormEngine\ItemsProcFunc\MembershipItems::class . '->types',
         'type' => 'select',
         'renderType' => 'selectSingle',
         'foreign_table' => 'tx_clubmanager_domain_model_membershiptype',

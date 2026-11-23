@@ -406,6 +406,9 @@
 			<trans-unit id="flash.level_change_same_level" resname="flash.level_change_same_level">
 				<source>Level change not possible: New level is the same as the current level.</source>
 			</trans-unit>
+			<trans-unit id="flash.level_change_invalid_combination" resname="flash.level_change_invalid_combination">
+				<source>Level change not possible: The selected level is not available for the selected membership type.</source>
+			</trans-unit>
 
 			<!-- CR3: Same Status Validation -->
 			<trans-unit id="flash.status_change_same_status" resname="flash.status_change_same_status">
