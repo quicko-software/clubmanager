@@ -26,6 +26,8 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
         'member.city',
         'member.email',
         'member.level',
+        'memberlevel.title AS level_title',
+        'memberlevel.ranking AS level_ranking',
         'countries.cn_short_local AS country',
         'fe_users.email AS fe_users_email',
         'fe_users.uid AS fe_users_uid',
@@ -37,6 +39,16 @@ class MemberRecordRepository extends BaseRecordRepository implements SingletonIn
         'static_countries',
         'countries',
         $queryBuilder->expr()->eq('countries.uid', $queryBuilder->quoteIdentifier('member.country'))
+      )
+      // #6425: Level-Datensatz (Titel, Rang) für Listen; ohne Level bleiben beide leer.
+      ->leftJoin(
+        'member',
+        'tx_clubmanager_domain_model_memberlevel',
+        'memberlevel',
+        $queryBuilder->expr()->and(
+          $queryBuilder->expr()->eq('memberlevel.uid', $queryBuilder->quoteIdentifier('member.member_level')),
+          $queryBuilder->expr()->eq('memberlevel.deleted', 0),
+        )
       )
       ->leftJoin(
         'member',
