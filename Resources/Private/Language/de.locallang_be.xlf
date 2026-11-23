@@ -591,6 +591,22 @@
 				<source>Level change not possible: The selected level is not available for the selected membership type.</source>
 				<target>Level-Änderung nicht möglich: Das gewählte Level ist für den gewählten Mitgliedschaftstyp nicht verfügbar.</target>
 			</trans-unit>
+			<trans-unit id="flash.masterdata_delete_blocked" resname="flash.masterdata_delete_blocked">
+				<source>Record cannot be deleted because it is still in use (%s). Deactivate it instead.</source>
+				<target>Datensatz kann nicht gelöscht werden, weil er noch verwendet wird (%s). Bitte stattdessen deaktivieren.</target>
+			</trans-unit>
+			<trans-unit id="flash.masterdata_page_delete_blocked" resname="flash.masterdata_page_delete_blocked">
+				<source>Page cannot be deleted because it contains membership types or levels in use: %s. Deactivate or move them first.</source>
+				<target>Seite kann nicht gelöscht werden, weil sie verwendete Mitgliedschaftstypen oder Level enthält: %s. Bitte diese zuerst deaktivieren oder verschieben.</target>
+			</trans-unit>
+			<trans-unit id="masterdata.usage.members" resname="masterdata.usage.members">
+				<source>Members</source>
+				<target>Mitglieder</target>
+			</trans-unit>
+			<trans-unit id="masterdata.usage.journal" resname="masterdata.usage.journal">
+				<source>Journal entries</source>
+				<target>Journal-Einträge</target>
+			</trans-unit>
 
 			<!-- CR3: Same Status Validation -->
 			<trans-unit id="flash.status_change_same_status" resname="flash.status_change_same_status">

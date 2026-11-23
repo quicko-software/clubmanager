@@ -16,7 +16,13 @@ services:
   Quicko\Clubmanager\Service\MembershipMasterDataService:
     public: true
 
+  Quicko\Clubmanager\Service\MembershipMasterDataUsageService:
+    public: true
+
   Quicko\Clubmanager\FormEngine\ItemsProcFunc\MembershipItems:
+    public: true
+
+  Quicko\Clubmanager\Hooks\PreventUsedMembershipMasterDataDeleteHook:
     public: true
 
   Quicko\Clubmanager\Utils\UniversalTypoScriptService:
