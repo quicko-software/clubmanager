@@ -7,6 +7,7 @@ namespace Quicko\Clubmanager\FormEngine\FormDataProvider;
 use DateTimeInterface;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Information\Typo3Version;
 
 /**
  * Sets fields of MemberJournalEntry records to readOnly:
@@ -28,8 +29,11 @@ final class MemberJournalEntryReadonly implements FormDataProviderInterface
 
     // For new records: Set entry_date to current timestamp for display
     // Note: The actual value will be set by AutoFillJournalEntryFieldsHook on save
+    // TYPO3 14 erwartet im Datetime-Element ein DateTimeInterface, TYPO3 13 einen Timestamp.
     if ($result['command'] === 'new') {
-      $result['databaseRow']['entry_date'] = time();
+      $result['databaseRow']['entry_date'] = (new Typo3Version())->getMajorVersion() >= 14
+        ? new \DateTimeImmutable()
+        : time();
     }
 
     // old_level, old_membership_type, old_member_level and processed are ALWAYS readOnly (even for admins)
