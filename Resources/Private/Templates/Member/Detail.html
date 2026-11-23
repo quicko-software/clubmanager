@@ -5,10 +5,10 @@
         <f:debug>{member}</f:debug>
     </f:comment>
 
-    <f:variable name="levelName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.{member.level}')}"/>
+    <f:variable name="levelName" value="{member.memberLevel.title}"/>
     <f:variable name="salutationName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.{member.salutation}')}"/>
     <f:variable name="stateName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.{member.state}')}"/>
-    <f:variable name="levelColors" value="{f:if(condition: '{member.level} == 0', then: 'default')}{f:if(condition: '{member.level} == 10', then: 'secondary')}{f:if(condition: '{member.level} == 20', then: 'tertiary')}{f:if(condition: '{member.level} == 30', then: 'quaternary')}"/>
+    <f:variable name="levelColors" value="{f:if(condition: '{member.memberLevel.displayClass}', then: '{member.memberLevel.displayClass}', else: 'default')}"/>
 
     <div class="row mb-5 pb-3">
         <div class="col-sm-12 col-md-6">
@@ -80,14 +80,16 @@
                         </div>
                     </f:if>
 
-                    <div class="mb-3">
-                        <span class="levellabel btn btn-default">
-                            {f:translate(key:'content_element.member.label.level',extensionName:'clubmanager')}
-                        </span>
-                        <span class="level btn btn-{levelColors}">
-                {levelName}
-            </span>
-                    </div>
+                    <f:if condition="{levelName}">
+                        <div class="mb-3">
+                            <span class="levellabel btn btn-default">
+                                {f:translate(key:'content_element.member.label.level',extensionName:'clubmanager')}
+                            </span>
+                            <span class="level btn btn-{levelColors}">
+                                {levelName}
+                            </span>
+                        </div>
+                    </f:if>
 
                     <f:if condition="{member.reducedRate} == 1">
                         <div class="mb-3">

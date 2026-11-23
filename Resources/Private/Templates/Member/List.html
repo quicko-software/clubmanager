@@ -5,7 +5,7 @@
 
     <div class="row">
         <f:for each="{paginator.paginatedItems}" as="member">
-            <f:variable name="levelName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.level.{member.level}')}"/>
+            <f:variable name="levelName" value="{member.memberLevel.title}"/>
             <f:variable name="salutationName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.salutation.{member.salutation}')}"/>
             <f:variable name="stateName" value="{f:translate(key:'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.state.{member.state}')}"/>
 

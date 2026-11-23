@@ -25,6 +25,9 @@ services:
   Quicko\Clubmanager\Hooks\PreventUsedMembershipMasterDataDeleteHook:
     public: true
 
+  Quicko\Clubmanager\Hooks\MemberMembershipDefaultsHook:
+    public: true
+
   Quicko\Clubmanager\Utils\UniversalTypoScriptService:
     public: true
 

@@ -38,7 +38,7 @@ class MemberController extends BaseSettingsController
     $this->setDefaultSettingsIfRequired();
     $members = $this->memberRepository->findActivePublic(
       [
-        'level' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
+        'memberLevel.ranking' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
         'lastname' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
         'firstname' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
       ]

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Quicko\Clubmanager\Service;
 
+use Quicko\Clubmanager\Domain\Model\Member;
+use Quicko\Clubmanager\Domain\Repository\MemberLevelRepository;
+use Quicko\Clubmanager\Domain\Repository\MembershipTypeRepository;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -22,6 +25,8 @@ use TYPO3\CMS\Core\Site\SiteFinder;
 final class MembershipMasterDataService
 {
   public const SETTING_PIDS = 'clubmanager.membershipMasterDataPids';
+  public const SETTING_DEFAULT_TYPE = 'clubmanager.defaultMembershipType';
+  public const SETTING_DEFAULT_LEVEL = 'clubmanager.defaultMemberLevel';
   public const TABLE_TYPE = 'tx_clubmanager_domain_model_membershiptype';
   public const TABLE_LEVEL = 'tx_clubmanager_domain_model_memberlevel';
   public const TABLE_MM = 'tx_clubmanager_memberlevel_membershiptype_mm';
@@ -29,6 +34,8 @@ final class MembershipMasterDataService
   public function __construct(
     private readonly ConnectionPool $connectionPool,
     private readonly SiteFinder $siteFinder,
+    private readonly MembershipTypeRepository $membershipTypeRepository,
+    private readonly MemberLevelRepository $memberLevelRepository,
   ) {}
 
   /**
@@ -39,16 +46,7 @@ final class MembershipMasterDataService
    */
   public function restrictionPids(int $contextPid): array
   {
-    if ($contextPid <= 0) {
-      return [];
-    }
-    try {
-      $value = $this->siteFinder->getSiteByPageId($contextPid)->getSettings()->get(self::SETTING_PIDS, '');
-    } catch (SiteNotFoundException) {
-      return [];
-    }
-
-    return self::parsePidList($value);
+    return self::parsePidList($this->siteSetting($contextPid, self::SETTING_PIDS, ''));
   }
 
   /**
@@ -153,6 +151,51 @@ final class MembershipMasterDataService
   }
 
   /**
+   * Startwerte für ein neues Mitglied aus den Site-Settings `clubmanager.defaultMembershipType`
+   * und `clubmanager.defaultMemberLevel` (gleiche Felder wie `memberFieldsForLevelChange()`).
+   *
+   * Der Typ muss wählbar sein, sonst gibt es keine Startwerte. Ist das Level nicht gesetzt oder
+   * passt es nicht zum Typ, gilt das wählbare Level des Typs mit dem niedrigsten Rang.
+   *
+   * @return array<string, int> leer, wenn kein gültiger Starttyp konfiguriert ist
+   */
+  public function defaultsForNewMember(int $contextPid): array
+  {
+    $typeUid = (int)$this->siteSetting($contextPid, self::SETTING_DEFAULT_TYPE, 0);
+    if ($typeUid <= 0 || !in_array($typeUid, array_column($this->selectableTypes($contextPid), 'uid'), true)) {
+      return [];
+    }
+    $levels = $this->selectableLevels($typeUid, $contextPid);
+    $levelUid = (int)$this->siteSetting($contextPid, self::SETTING_DEFAULT_LEVEL, 0);
+    if (!in_array($levelUid, array_column($levels, 'uid'), true)) {
+      $levelUid = (int)($levels[0]['uid'] ?? 0);
+    }
+
+    return $this->memberFieldsForLevelChange($typeUid, $levelUid, null);
+  }
+
+  /**
+   * Setzt die Startwerte an einem neuen Mitglied (Extbase, z. B. Registrierung), wenn es noch
+   * keinen Typ hat. Die Site ergibt sich aus der Seite des Mitglieds.
+   */
+  public function applyNewMemberDefaults(Member $member): void
+  {
+    if ($member->getMembershipType() !== null) {
+      return;
+    }
+    $defaults = $this->defaultsForNewMember((int)$member->getPid());
+    if ($defaults === []) {
+      return;
+    }
+    $member->setMembershipType($this->membershipTypeRepository->findByUid($defaults['membership_type']));
+    $member->setPersonType($defaults['person_type']);
+    if (isset($defaults['member_level'])) {
+      $member->setMemberLevel($this->memberLevelRepository->findByUid($defaults['member_level']));
+      $member->setLevel($defaults['level']);
+    }
+  }
+
+  /**
    * Akzeptiert "12, 34", Listen und einzelne Zahlen; ungültige Einträge entfallen.
    *
    * @return list<int>
@@ -217,6 +260,18 @@ final class MembershipMasterDataService
       ->fetchAssociative();
 
     return is_array($row) ? $row : null;
+  }
+
+  private function siteSetting(int $contextPid, string $key, mixed $default): mixed
+  {
+    if ($contextPid <= 0) {
+      return $default;
+    }
+    try {
+      return $this->siteFinder->getSiteByPageId($contextPid)->getSettings()->get($key, $default);
+    } catch (SiteNotFoundException) {
+      return $default;
+    }
   }
 
   private function queryBuilder(string $table): QueryBuilder

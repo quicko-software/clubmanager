@@ -35,3 +35,15 @@ settings:
     category: Clubmanager.Membership
     type: string
     default: ""
+  clubmanager.defaultMembershipType:
+    label: "Membership type for new members"
+    description: "Uid of the membership type that new members (registration, backend) get. 0 = none. Must be selectable for this site."
+    category: Clubmanager.Membership
+    type: int
+    default: 0
+  clubmanager.defaultMemberLevel:
+    label: "Level for new members"
+    description: "Uid of the level that new members get. Must be assigned to the membership type above; if not set or not matching, the lowest-ranked selectable level of the type is used."
+    category: Clubmanager.Membership
+    type: int
+    default: 0

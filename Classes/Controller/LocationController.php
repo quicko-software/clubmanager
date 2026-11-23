@@ -27,7 +27,7 @@ class LocationController extends BaseSettingsController
     $this->setDefaultSettingsIfRequired();
     $locations = $this->locationRepository->findPublicActive(
       [
-        'member.level' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
+        'member.memberLevel.ranking' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
         'lastname' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
         'firstname' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
       ]
