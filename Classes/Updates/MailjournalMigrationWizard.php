@@ -172,19 +172,12 @@ final class MailjournalMigrationWizard implements UpgradeWizardInterface, Chatty
   private function columnNames(Connection $connection, string $table): array
   {
     $schemaManager = $connection->createSchemaManager();
-    // DBAL 4: getColumns() is a list (keys 0,1,2…). array_keys() would
+    // DBAL 4 (TYPO3 13 und 14): getColumns() is a list (keys 0,1,2…). array_keys() would
     // produce INSERT columns named `0` → Unknown column '0' in 'field list'.
-    if (method_exists($schemaManager, 'introspectTable')) {
-      return array_values(array_map(
-        static fn ($col) => $col->getName(),
-        $schemaManager->introspectTable($table)->getColumns()
-      ));
-    }
-
-    return array_values(array_map(
+    return array_map(
       static fn ($col) => $col->getName(),
-      $schemaManager->listTableColumns($table)
-    ));
+      $schemaManager->introspectTable($table)->getColumns()
+    );
   }
 
   private function hasOldSchedulerTasks(): bool

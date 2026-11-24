@@ -88,16 +88,16 @@ final class MembershipItems
     $row = is_array($params['row'] ?? null) ? $params['row'] : [];
     $memberUid = self::firstUid($row['member'] ?? 0);
     if ($memberUid > 0) {
-      $member = BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'pid');
-      if ((int)($member['pid'] ?? 0) > 0) {
-        return (int)$member['pid'];
+      $memberPid = (int)(BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'pid')['pid'] ?? 0);
+      if ($memberPid > 0) {
+        return $memberPid;
       }
     }
     $inlineParentUid = self::firstUid($params['inlineParentUid'] ?? 0);
     if (($params['inlineParentTableName'] ?? '') === self::MEMBER_TABLE && $inlineParentUid > 0) {
-      $member = BackendUtility::getRecord(self::MEMBER_TABLE, $inlineParentUid, 'pid');
-      if ((int)($member['pid'] ?? 0) > 0) {
-        return (int)$member['pid'];
+      $memberPid = (int)(BackendUtility::getRecord(self::MEMBER_TABLE, $inlineParentUid, 'pid')['pid'] ?? 0);
+      if ($memberPid > 0) {
+        return $memberPid;
       }
     }
 

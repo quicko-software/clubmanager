@@ -475,9 +475,9 @@ class ValidateJournalEntryHook
     private function resolveContextPid(array $fieldArray, ?int $existingUid, ?int $memberUid): int
     {
         if ($memberUid !== null && $memberUid > 0) {
-            $member = BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'pid');
-            if ((int) ($member['pid'] ?? 0) > 0) {
-                return (int) $member['pid'];
+            $memberPid = (int) (BackendUtility::getRecord(self::MEMBER_TABLE, $memberUid, 'pid')['pid'] ?? 0);
+            if ($memberPid > 0) {
+                return $memberPid;
             }
         }
         if ((int) ($fieldArray['pid'] ?? 0) > 0) {

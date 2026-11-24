@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Quicko\Clubmanager\Domain\Model;
 
-use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -27,7 +26,6 @@ class MemberLevel extends AbstractEntity
   /**
    * @var ObjectStorage<MembershipType>
    */
-  #[Lazy]
   protected ObjectStorage $membershipTypes;
 
   public function __construct()

@@ -23,14 +23,15 @@ trait ReturnResultTrait
   private function returnResult(mixed $result): mixed
   {
     $as = $this->arguments['as'];
-    if (!$as) {
+    $variables = $this->templateVariableContainer;
+    if (!$as || $variables === null) {
       return $result;
     }
 
-    if ($this->templateVariableContainer->exists($as) === true) {
-      $this->templateVariableContainer->remove($as);
+    if ($variables->exists($as) === true) {
+      $variables->remove($as);
     }
-    $this->templateVariableContainer->add($as, $result);
+    $variables->add($as, $result);
 
     return $this->renderChildren();
   }

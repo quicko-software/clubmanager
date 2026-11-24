@@ -64,7 +64,9 @@ final class MembershipMasterDataUsageService
       $this->countReferences(self::JOURNAL_TABLE, $fields['journal'], $uid)
     );
 
-    return $this->eventDispatcher->dispatch($event)->getUsages();
+    $this->eventDispatcher->dispatch($event);
+
+    return $event->getUsages();
   }
 
   /**

@@ -28,7 +28,7 @@ class MemberStartTimeHook
 
     $uid = $id;
     if ($status === 'new') {
-      $uid = $pObj->substNEWwithIDs[$id];
+      $uid = $pObj->substNEWwithIDs[$id] ?? $id;
     }
 
     $record = BackendUtility::getRecord(
